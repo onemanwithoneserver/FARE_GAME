@@ -142,8 +142,9 @@ export default function DesktopView() {
             >
               <div className="justify-self-start">
                 <Advisor
-                  name={player?.name || (en ? 'FARE Coach' : 'FARE కోచ్')}
-                  role={en ? 'Pipeline TL' : 'పైప్‌లైన్ TL'}
+                  characterType="coach"
+                  name={en ? 'FARE Coach' : 'FARE కోచ్'}
+                  role={en ? 'Executive Mentor' : 'ఎగ్జిక్యూటివ్ మెంటార్'}
                   message={
                     en
                       ? 'Your sales funnel has revenue leaks! Pick a mode below to hire talent or upgrade systems.'
@@ -187,7 +188,8 @@ export default function DesktopView() {
             >
               <div className="justify-self-start w-full">
                 <Advisor
-                  name={player?.name || (en ? 'FARE TL' : 'FARE TL')}
+                  characterType="tl"
+                  name={player?.name ? `${player.name} (TL)` : en ? 'Pipeline TL' : 'పైప్‌లైన్ TL'}
                   role={STAGES[currentCase.leak]?.name[lang]}
                   message={advisorMessage}
                   messageKey={lastFeedback ? `fb-${totalDecisions}-${lang}` : `case-${caseIndex}-${lang}`}

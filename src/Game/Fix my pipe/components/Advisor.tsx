@@ -1,7 +1,7 @@
 import { ReactNode, useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import gsap from 'gsap';
-import { TlCharacter } from './CharacterAvatars';
+import { CoachCharacter, TlCharacter } from './CharacterAvatars';
 
 interface AdvisorProps {
   name: string;
@@ -9,6 +9,7 @@ interface AdvisorProps {
   message: ReactNode;
   messageKey: string | number;
   tone?: 'neutral' | 'good' | 'bad';
+  characterType?: 'coach' | 'tl';
   customCharacter?: ReactNode;
   compact?: boolean;
 }
@@ -405,7 +406,7 @@ function ExecutiveCoachSvg({
   );
 }
 
-export default function Advisor({ name, role, message, messageKey, tone = 'neutral', customCharacter, compact = false }: AdvisorProps) {
+export default function Advisor({ name, role, message, messageKey, tone = 'neutral', characterType = 'tl', customCharacter, compact = false }: AdvisorProps) {
   const [hovered, setHovered] = useState(false);
 
   return (
@@ -463,13 +464,23 @@ export default function Advisor({ name, role, message, messageKey, tone = 'neutr
         transition={{ type: 'spring', stiffness: 260, damping: 20 }}
       >
         {customCharacter ?? (
-          <TlCharacter
-            name={name}
-            role={role}
-            tone={tone}
-            reactionKey={messageKey}
-            compact={compact}
-          />
+          characterType === 'coach' ? (
+            <CoachCharacter
+              name={name}
+              role={role}
+              tone={tone}
+              reactionKey={messageKey}
+              compact={compact}
+            />
+          ) : (
+            <TlCharacter
+              name={name}
+              role={role}
+              tone={tone}
+              reactionKey={messageKey}
+              compact={compact}
+            />
+          )
         )}
       </motion.div>
     </div>

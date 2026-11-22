@@ -11,8 +11,143 @@ interface AvatarProps {
 }
 
 /**
- * High-fidelity human TL (Team Leader / Agent) SVG Avatar.
- * Styled after the blonde-haired, friendly executive TL in the reference game.
+ * 1. High-fidelity FARE Coach SVG Avatar.
+ * Mature executive mentor, dark espresso styled hair, gold-rimmed executive spectacles,
+ * tailored midnight navy suit & FARE Gold silk tie.
+ */
+export function CoachHumanAvatar({ name }: { name?: string }) {
+  const rootRef = useRef<SVGSVGElement>(null);
+  const headRef = useRef<SVGGElement>(null);
+  const leftEyeRef = useRef<SVGEllipseElement>(null);
+  const rightEyeRef = useRef<SVGEllipseElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      if (headRef.current) {
+        gsap.to(headRef.current, {
+          y: -1.6,
+          rotation: 0.8,
+          transformOrigin: '50px 48px',
+          duration: 2.3,
+          repeat: -1,
+          yoyo: true,
+          ease: 'sine.inOut',
+        });
+      }
+      if (leftEyeRef.current && rightEyeRef.current) {
+        const blinkTl = gsap.timeline({ repeat: -1, repeatDelay: 3.6 });
+        blinkTl
+          .to([leftEyeRef.current, rightEyeRef.current], {
+            scaleY: 0.1,
+            transformOrigin: 'center center',
+            duration: 0.08,
+            ease: 'power2.in',
+          })
+          .to([leftEyeRef.current, rightEyeRef.current], {
+            scaleY: 1,
+            duration: 0.1,
+            ease: 'power2.out',
+          });
+      }
+    }, rootRef);
+    return () => ctx.revert();
+  }, []);
+
+  return (
+    <div className="flex flex-col items-center">
+      <div className="relative h-20 w-20 sm:h-24 sm:w-24">
+        <div className="absolute inset-x-2 bottom-0 h-4 rounded-full bg-[#EAB308]/25 blur-sm" />
+
+        <svg
+          ref={rootRef}
+          viewBox="0 0 100 110"
+          className="relative z-10 h-full w-full overflow-visible drop-shadow-[0_4px_10px_rgba(0,0,0,0.35)]"
+        >
+          <defs>
+            <linearGradient id="coachDarkHair" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#4A2818" />
+              <stop offset="60%" stopColor="#2E170C" />
+              <stop offset="100%" stopColor="#150A05" />
+            </linearGradient>
+            <linearGradient id="coachSkinTone" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#FDE6D2" />
+              <stop offset="100%" stopColor="#E2A782" />
+            </linearGradient>
+            <linearGradient id="coachNavySuit" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#152B52" />
+              <stop offset="50%" stopColor="#0B1D3A" />
+              <stop offset="100%" stopColor="#061122" />
+            </linearGradient>
+            <linearGradient id="coachGoldTie" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#F59E0B" />
+              <stop offset="100%" stopColor="#B45309" />
+            </linearGradient>
+          </defs>
+
+          {/* Shoulders & Midnight Suit */}
+          <path d="M12 104 C12 80 28 72 50 72 C72 72 88 80 88 104 Z" fill="url(#coachNavySuit)" />
+          <polygon points="42,72 58,72 50,96" fill="#FFFFFF" />
+          <polygon points="48,74 52,74 54,92 50,96 46,92" fill="url(#coachGoldTie)" />
+          <path d="M42 72 L50 96 L32 84 L36 74 Z" fill="#0B1D3A" />
+          <path d="M58 72 L50 96 L68 84 L64 74 Z" fill="#0B1D3A" />
+          {/* Gold Pin */}
+          <circle cx="34" cy="80" r="1.5" fill="#F59E0B" />
+
+          {/* Head & Neck */}
+          <g ref={headRef}>
+            <rect x="44" y="60" width="12" height="15" rx="4" fill="#E2A782" />
+            <circle cx="30" cy="46" r="4.5" fill="#E2A782" />
+            <circle cx="70" cy="46" r="4.5" fill="#E2A782" />
+            <rect x="32" y="24" width="36" height="42" rx="16" fill="url(#coachSkinTone)" />
+            <ellipse cx="38" cy="50" rx="3.5" ry="2" fill="#FB7185" opacity="0.3" />
+            <ellipse cx="62" cy="50" rx="3.5" ry="2" fill="#FB7185" opacity="0.3" />
+
+            {/* Dark Styled Side-Part Hair */}
+            <path
+              d="M30 36 C28 14 42 10 50 10 C62 10 72 14 70 36 C66 26 58 20 50 20 C40 20 34 26 30 36 Z"
+              fill="url(#coachDarkHair)"
+            />
+            <path d="M38 18 C44 14 54 14 62 18" stroke="#78350F" strokeWidth="2" strokeLinecap="round" fill="none" />
+            <circle cx="34" cy="24" r="3" fill="url(#coachDarkHair)" />
+            <circle cx="66" cy="24" r="3" fill="url(#coachDarkHair)" />
+
+            {/* Eyebrows */}
+            <path d="M37 36 Q42 34 46 36" stroke="#29140B" strokeWidth="1.8" strokeLinecap="round" fill="none" />
+            <path d="M54 36 Q58 34 63 36" stroke="#29140B" strokeWidth="1.8" strokeLinecap="round" fill="none" />
+
+            {/* Gold-Rimmed Executive Spectacles */}
+            <g stroke="#D97706" strokeWidth="1.3" fill="none">
+              <rect x="35" y="36" width="11" height="9" rx="2" />
+              <rect x="54" y="36" width="11" height="9" rx="2" />
+              <line x1="46" y1="40" x2="54" y2="40" strokeWidth="1.5" />
+            </g>
+
+            {/* Warm Brown Eyes behind spectacles */}
+            <ellipse ref={leftEyeRef} cx="41" cy="40.5" rx="2.2" ry="2.6" fill="#2E150B" />
+            <ellipse ref={rightEyeRef} cx="59.5" cy="40.5" rx="2.2" ry="2.6" fill="#2E150B" />
+            <circle cx="42" cy="39.5" r="0.8" fill="#FFFFFF" />
+            <circle cx="60.5" cy="39.5" r="0.8" fill="#FFFFFF" />
+
+            {/* Nose */}
+            <path d="M50 43 L48.5 49 Q50 50 51.5 49" stroke="#C2410C" strokeWidth="1.2" strokeLinecap="round" fill="none" />
+
+            {/* Wise Smile */}
+            <path d="M44 54 Q50 60 56 54" stroke="#78350F" strokeWidth="1.8" strokeLinecap="round" fill="none" />
+            <path d="M45 54 Q50 58 55 54 Z" fill="#FFFFFF" opacity="0.85" />
+          </g>
+        </svg>
+      </div>
+
+      <span className="mt-1 whitespace-nowrap rounded-full border border-[#C99A2E]/70 bg-[#0B1D3A] px-2.5 py-0.5 text-[11px] font-extrabold tracking-wide text-white shadow-md">
+        {name || 'FARE COACH'}
+      </span>
+    </div>
+  );
+}
+
+/**
+ * 2. High-fidelity human TL (Team Leader / Agent) SVG Avatar.
+ * Styled with blonde hair, tech operations headset, cobalt suit and emerald tie.
  */
 export function TlHumanAvatar({ name }: { name?: string }) {
   const rootRef = useRef<SVGSVGElement>(null);
