@@ -45,10 +45,13 @@ src/
 - `npm run dev` - start the dev server
 - `npm run build` - type-check and build
 - `npm run preview` - preview the production build
+- `npm run deploy` - build and push `main` to trigger GitHub Pages deployment
 
 ## Deployment
 
 Pushes to `main` build and deploy to GitHub Pages through `.github/workflows/deploy.yml`. In the repository settings, set Pages source to "GitHub Actions". `vite.config.ts` uses `base: './'` for this.
+
+Commit your changes to `main` before running `npm run deploy`. The command pushes committed changes only; GitHub Actions performs the actual deployment. If `main` is already up to date, no new deployment is triggered.
 
 ## Configuration
 

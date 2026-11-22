@@ -137,7 +137,7 @@ export default function DesktopView() {
               className={`grid ${
                 isShortLandscape
                   ? 'grid-cols-[180px_minmax(0,1fr)_180px] sm:grid-cols-[200px_minmax(0,1fr)_200px] gap-2.5 items-center'
-                  : 'grid-cols-[260px_minmax(0,1fr)_260px] xl:grid-cols-[280px_minmax(0,1fr)_280px] gap-6 items-start'
+                  : 'grid-cols-[270px_minmax(0,1fr)_315px] xl:grid-cols-[290px_minmax(0,1fr)_335px] gap-6 items-start'
               }`}
             >
               <div className="justify-self-start">

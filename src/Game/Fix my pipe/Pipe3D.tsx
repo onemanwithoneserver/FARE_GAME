@@ -350,34 +350,45 @@ function Inlet() {
 }
 
 const GOLD = { color: '#C99A2E', metalness: 0.88, roughness: 0.24 } as const;
+const GOLD_LIGHT = { color: '#D5AA45', metalness: 0.85, roughness: 0.26 } as const;
+const GOLD_BRIGHT = { color: '#E8C252', metalness: 0.82, roughness: 0.22 } as const;
 
 function GoldenTap({ flow }: { flow: number }) {
   const streamRef = useRef<THREE.Mesh>(null);
   const dropsRef = useRef<THREE.InstancedMesh>(null);
-  const handleRef = useRef<THREE.Group>(null);
+  const leverRef = useRef<THREE.Group>(null);
+  const glowRef = useRef<THREE.PointLight>(null);
   const dummy = useMemo(() => new THREE.Object3D(), []);
-  const drops = useMemo(() => Array.from({ length: 8 }, (_, k) => ({ t: k / 8 })), []);
+  const drops = useMemo(() => Array.from({ length: 12 }, (_, k) => ({ t: k / 12 })), []);
 
-  const nozzleBottom = PIPE_Y - 0.66;
-  const chestTop = FLOOR_Y + 0.06 + 0.64;
+  const spoutTip = PIPE_Y - 0.58;
+  const vaultTop = FLOOR_Y + 0.08 + 0.52;
 
-  useFrame((_, dt) => {
+  useFrame(({ clock }, dt) => {
     if (streamRef.current) {
       const s = THREE.MathUtils.lerp(streamRef.current.scale.x, Math.max(0.001, flow), 0.08);
       streamRef.current.scale.set(s, 1, s);
       streamRef.current.visible = s > 0.05;
     }
-    if (handleRef.current) handleRef.current.rotation.y += dt * flow * 0.55;
+    if (leverRef.current) {
+      const target = flow > 0.5 ? -0.35 : 0;
+      leverRef.current.rotation.z = THREE.MathUtils.lerp(leverRef.current.rotation.z, target, 0.04);
+    }
+    if (glowRef.current) {
+      glowRef.current.intensity = flow * 2.4 + Math.sin(clock.getElapsedTime() * 2.8) * 0.3;
+    }
     if (dropsRef.current) {
       const visible = flow > 0.15;
       dropsRef.current.visible = visible;
       if (visible) {
-        const span = Math.max(0.2, nozzleBottom - chestTop);
+        const span = Math.max(0.2, spoutTip - vaultTop);
         drops.forEach((d, i) => {
-          d.t = (d.t + dt * (0.85 + flow * 0.6)) % 1;
-          dummy.position.set(TAP_X + Math.sin(i * 1.9) * 0.035, nozzleBottom - d.t * span, Math.cos(i * 1.3) * 0.035);
-          dummy.rotation.set(d.t * 4, i, 0);
-          dummy.scale.setScalar((0.055 + (i % 2) * 0.015) * flow);
+          d.t = (d.t + dt * (0.7 + flow * 0.5)) % 1;
+          const wobble = Math.sin(d.t * 6 + i * 2.1) * 0.025;
+          dummy.position.set(TAP_X + wobble, spoutTip - d.t * span, wobble * 0.6);
+          dummy.rotation.set(d.t * 5, i * 1.2, 0);
+          const coinScale = (0.045 + (i % 3) * 0.01) * flow * (1 - d.t * 0.3);
+          dummy.scale.setScalar(coinScale);
           dummy.updateMatrix();
           dropsRef.current!.setMatrixAt(i, dummy.matrix);
         });
@@ -388,63 +399,92 @@ function GoldenTap({ flow }: { flow: number }) {
 
   return (
     <group>
-      {/* Clean connector matching intermediate connectors */}
-      <mesh position={[(LAST_EDGE + TAP_X) / 2, PIPE_Y, 0]} rotation={[0, 0, Math.PI / 2]}>
-        <cylinderGeometry args={[0.45, 0.45, TAP_X - LAST_EDGE + 0.08, 32]} />
-        <meshStandardMaterial {...GOLD} />
+      {/* ── Transition Connector: pipe → faucet ── */}
+      <mesh position={[LAST_EDGE + 0.14, PIPE_Y, 0]} rotation={[0, 0, Math.PI / 2]}>
+        <cylinderGeometry args={[0.48, 0.48, 0.1, 32]} />
+        <meshStandardMaterial {...GOLD_LIGHT} />
       </mesh>
-      <mesh position={[LAST_EDGE + 0.12, PIPE_Y, 0]} rotation={[0, 0, Math.PI / 2]}>
-        <cylinderGeometry args={[0.49, 0.49, 0.08, 32]} />
-        <meshStandardMaterial {...GOLD} color="#D5AA45" />
-      </mesh>
-
-      {/* Machined elbow valve housing */}
-      <mesh position={[TAP_X, PIPE_Y, 0]}>
-        <sphereGeometry args={[0.37, 32, 32]} />
+      <mesh position={[(LAST_EDGE + TAP_X) / 2 + 0.04, PIPE_Y, 0]} rotation={[0, 0, Math.PI / 2]}>
+        <cylinderGeometry args={[0.38, 0.42, TAP_X - LAST_EDGE - 0.12, 32]} />
         <meshStandardMaterial {...GOLD} />
       </mesh>
 
-      {/* Tapered downward spigot spout */}
-      <mesh position={[TAP_X, PIPE_Y - 0.36, 0]}>
-        <cylinderGeometry args={[0.27, 0.21, 0.54, 32]} />
+      {/* ── Smooth Faucet Body (rounded cylinder, not a sphere) ── */}
+      <mesh position={[TAP_X, PIPE_Y, 0]} rotation={[0, 0, Math.PI / 2]}>
+        <cylinderGeometry args={[0.34, 0.34, 0.5, 32]} />
         <meshStandardMaterial {...GOLD} />
       </mesh>
-      <mesh position={[TAP_X, nozzleBottom + 0.03, 0]}>
-        <cylinderGeometry args={[0.25, 0.26, 0.07, 32]} />
-        <meshStandardMaterial {...GOLD} color="#E2C068" />
+      {/* Front & back cap spheres for smooth rounded ends */}
+      <mesh position={[TAP_X - 0.25, PIPE_Y, 0]}>
+        <sphereGeometry args={[0.34, 24, 24]} />
+        <meshStandardMaterial {...GOLD} />
+      </mesh>
+      <mesh position={[TAP_X + 0.25, PIPE_Y, 0]}>
+        <sphereGeometry args={[0.34, 24, 24]} />
+        <meshStandardMaterial {...GOLD} />
+      </mesh>
+      {/* Decorative gold ring around faucet body */}
+      <mesh position={[TAP_X, PIPE_Y, 0]} rotation={[0, Math.PI / 2, 0]}>
+        <torusGeometry args={[0.35, 0.03, 12, 32]} />
+        <meshStandardMaterial {...GOLD_BRIGHT} />
       </mesh>
 
-      {/* Valve stem & brushed-brass handwheel */}
-      <mesh position={[TAP_X, PIPE_Y + 0.48, 0]}>
-        <cylinderGeometry args={[0.065, 0.08, 0.32, 20]} />
+      {/* ── Elegant Curved Swan-Neck Spout ── */}
+      {/* Upper curve section */}
+      <mesh position={[TAP_X, PIPE_Y - 0.14, 0]}>
+        <cylinderGeometry args={[0.2, 0.22, 0.28, 24]} />
         <meshStandardMaterial {...GOLD} />
       </mesh>
-      <group ref={handleRef} position={[TAP_X, PIPE_Y + 0.65, 0]}>
-        <mesh rotation={[Math.PI / 2, 0, 0]}>
-          <torusGeometry args={[0.34, 0.045, 14, 36]} />
-          <meshStandardMaterial {...GOLD} color="#E2C068" />
+      {/* Mid taper */}
+      <mesh position={[TAP_X, PIPE_Y - 0.34, 0]}>
+        <cylinderGeometry args={[0.16, 0.19, 0.16, 24]} />
+        <meshStandardMaterial {...GOLD} />
+      </mesh>
+      {/* Lower spout — elegant taper to tip */}
+      <mesh position={[TAP_X, PIPE_Y - 0.47, 0]}>
+        <cylinderGeometry args={[0.11, 0.15, 0.14, 24]} />
+        <meshStandardMaterial {...GOLD_LIGHT} />
+      </mesh>
+      {/* Spout lip ring */}
+      <mesh position={[TAP_X, spoutTip + 0.02, 0]}>
+        <torusGeometry args={[0.12, 0.025, 10, 24]} />
+        <meshStandardMaterial {...GOLD_BRIGHT} />
+      </mesh>
+
+      {/* ── Modern Lever Handle (tilts when flowing) ── */}
+      <mesh position={[TAP_X, PIPE_Y + 0.36, 0]}>
+        <cylinderGeometry args={[0.055, 0.065, 0.14, 16]} />
+        <meshStandardMaterial {...GOLD_LIGHT} />
+      </mesh>
+      <group ref={leverRef} position={[TAP_X, PIPE_Y + 0.44, 0]}>
+        {/* Lever arm */}
+        <mesh position={[0.22, 0.04, 0]} rotation={[0, 0, 0.15]}>
+          <boxGeometry args={[0.48, 0.055, 0.065]} />
+          <meshStandardMaterial {...GOLD_BRIGHT} />
         </mesh>
-        <mesh>
-          <boxGeometry args={[0.64, 0.05, 0.05]} />
+        {/* Rounded lever tip */}
+        <mesh position={[0.46, 0.08, 0]}>
+          <sphereGeometry args={[0.055, 16, 16]} />
+          <meshStandardMaterial {...GOLD_BRIGHT} />
+        </mesh>
+        {/* Lever pivot cap */}
+        <mesh position={[0, 0, 0]}>
+          <sphereGeometry args={[0.07, 16, 16]} />
           <meshStandardMaterial {...GOLD} />
-        </mesh>
-        <mesh>
-          <boxGeometry args={[0.05, 0.05, 0.64]} />
-          <meshStandardMaterial {...GOLD} />
-        </mesh>
-        <mesh position={[0, 0.04, 0]}>
-          <cylinderGeometry args={[0.09, 0.1, 0.07, 20]} />
-          <meshStandardMaterial color="#0B1D3A" metalness={0.5} roughness={0.35} />
         </mesh>
       </group>
 
-      {/* Golden revenue stream + falling coins */}
-      <mesh ref={streamRef} position={[TAP_X, (nozzleBottom + chestTop) / 2, 0]}>
-        <cylinderGeometry args={[0.075, 0.1, nozzleBottom - chestTop, 16, 1, true]} />
-        <meshBasicMaterial color="#FCD34D" transparent opacity={0.82} />
+      {/* ── Golden Revenue Stream ── */}
+      <mesh ref={streamRef} position={[TAP_X, (spoutTip + vaultTop) / 2, 0]}>
+        <cylinderGeometry args={[0.055, 0.085, spoutTip - vaultTop, 16, 1, true]} />
+        <meshBasicMaterial color="#FCD34D" transparent opacity={0.78} />
       </mesh>
-      <instancedMesh ref={dropsRef} args={[undefined, undefined, 8]} frustumCulled={false}>
-        <cylinderGeometry args={[1, 1, 0.32, 14]} />
+      {/* Faint glow on the stream */}
+      <pointLight ref={glowRef} position={[TAP_X, (spoutTip + vaultTop) / 2, 0.3]} color="#FCD34D" distance={2} />
+
+      {/* ── Falling Gold Coins ── */}
+      <instancedMesh ref={dropsRef} args={[undefined, undefined, 12]} frustumCulled={false}>
+        <cylinderGeometry args={[1, 1, 0.28, 16]} />
         <meshStandardMaterial {...GOLD} color="#FCD34D" />
       </instancedMesh>
     </group>
@@ -454,26 +494,48 @@ function GoldenTap({ flow }: { flow: number }) {
 function TreasureVault({ flow, isDark }: { flow: number; isDark: boolean }) {
   const sparkRef = useRef<THREE.InstancedMesh>(null);
   const lightRef = useRef<THREE.PointLight>(null);
+  const pulseRef = useRef<THREE.MeshStandardMaterial>(null);
   const dummy = useMemo(() => new THREE.Object3D(), []);
   const x = TAP_X;
-  const plinthH = 0.06;
-  const h = 0.64;
-  const y = FLOOR_Y + plinthH + h / 2;
+  const baseH = 0.08;
+  const h = 0.52;
+  const y = FLOOR_Y + baseH + h / 2;
   const top = y + h / 2;
-  const sparks = useMemo(() => Array.from({ length: 18 }, () => ({ t: Math.random(), a: Math.random() * Math.PI * 2, r: 0.08 + Math.random() * 0.38 })), []);
+  const sparks = useMemo(() => Array.from({ length: 24 }, () => ({
+    t: Math.random(),
+    a: Math.random() * Math.PI * 2,
+    r: 0.06 + Math.random() * 0.42,
+    speed: 0.3 + Math.random() * 0.5,
+  })), []);
   const coins = useMemo(
-    () => Array.from({ length: 16 }, (_, k) => ({ x: (Math.random() - 0.5) * 0.8, z: (Math.random() - 0.5) * 0.48, rx: Math.random() * 0.6, ry: k * 0.7 })),
+    () => Array.from({ length: 20 }, (_, k) => ({
+      x: (Math.random() - 0.5) * 0.65,
+      z: (Math.random() - 0.5) * 0.42,
+      rx: Math.random() * 0.5 - 0.25,
+      ry: k * 0.5,
+      s: 0.05 + Math.random() * 0.035,
+    })),
     []
   );
 
   useFrame(({ clock }, dt) => {
-    if (lightRef.current) lightRef.current.intensity = 0.9 + flow * 1.6 + Math.sin(clock.getElapsedTime() * 3.5) * 0.18;
+    const t = clock.getElapsedTime();
+    if (lightRef.current) lightRef.current.intensity = 1.2 + flow * 2.2 + Math.sin(t * 3) * 0.25;
+    if (pulseRef.current) {
+      pulseRef.current.emissiveIntensity = 0.08 + flow * 0.15 + Math.sin(t * 2.5) * 0.04;
+    }
     const mesh = sparkRef.current;
     if (!mesh) return;
     sparks.forEach((s, i) => {
-      s.t = (s.t + dt * (0.35 + flow * 0.45)) % 1;
-      dummy.position.set(x + Math.cos(s.a) * s.r, top + 0.08 + s.t * 0.95, Math.sin(s.a) * s.r * 0.55);
-      dummy.scale.setScalar(0.028 * (1 - s.t) * flow);
+      s.t = (s.t + dt * (s.speed + flow * 0.4)) % 1;
+      const rise = s.t * 1.1;
+      const fade = 1 - s.t;
+      dummy.position.set(
+        x + Math.cos(s.a + t * 0.3) * s.r * (0.6 + s.t * 0.5),
+        top + 0.06 + rise,
+        Math.sin(s.a + t * 0.3) * s.r * 0.5
+      );
+      dummy.scale.setScalar(0.03 * fade * flow);
       dummy.updateMatrix();
       mesh.setMatrixAt(i, dummy.matrix);
     });
@@ -482,69 +544,103 @@ function TreasureVault({ flow, isDark }: { flow: number; isDark: boolean }) {
 
   return (
     <group>
-      {/* Clean chamfered rectangular plinth matching vault footprint (no circular ring) */}
-      <mesh position={[x, FLOOR_Y + plinthH / 2, 0]}>
-        <boxGeometry args={[1.38, plinthH, 0.96]} />
-        <meshStandardMaterial color={isDark ? '#0D1B35' : '#CBD5E1'} metalness={0.35} roughness={0.5} />
+      {/* ── Tiered Pedestal Base ── */}
+      {/* Bottom tier — wide */}
+      <mesh position={[x, FLOOR_Y + 0.025, 0]}>
+        <boxGeometry args={[1.3, 0.05, 0.9]} />
+        <meshStandardMaterial color={isDark ? '#0D1B35' : '#CBD5E1'} metalness={0.4} roughness={0.45} />
+      </mesh>
+      {/* Top tier — slightly smaller */}
+      <mesh position={[x, FLOOR_Y + 0.065, 0]}>
+        <boxGeometry args={[1.18, 0.04, 0.8]} />
+        <meshStandardMaterial {...GOLD} roughness={0.35} />
       </mesh>
 
-      {/* Armored FARE Navy Vault Body */}
+      {/* ── Vault Body — Rich Navy with Gold Emboss ── */}
       <mesh position={[x, y, 0]}>
-        <boxGeometry args={[1.22, h, 0.82]} />
-        <meshStandardMaterial color="#0B1D3A" metalness={0.55} roughness={0.38} />
+        <boxGeometry args={[1.1, h, 0.74]} />
+        <meshStandardMaterial
+          ref={pulseRef}
+          color="#0B1D3A"
+          metalness={0.6}
+          roughness={0.35}
+          emissive="#C99A2E"
+          emissiveIntensity={0.08}
+        />
       </mesh>
 
-      {/* Brushed Brass Vertical Straps & Corner Trim */}
-      {[-0.44, 0.44].map((dx) => (
-        <mesh key={dx} position={[x + dx, y, 0]}>
-          <boxGeometry args={[0.09, h + 0.02, 0.85]} />
-          <meshStandardMaterial {...GOLD} />
+      {/* ── Elegant Gold Frame — Thin Corner Pillars ── */}
+      {/* Vertical corner pillars */}
+      {[[-0.52, 0.34], [-0.52, -0.34], [0.52, 0.34], [0.52, -0.34]].map(([dx, dz], k) => (
+        <mesh key={`pillar-${k}`} position={[x + dx, y, dz]}>
+          <cylinderGeometry args={[0.035, 0.035, h + 0.04, 12]} />
+          <meshStandardMaterial {...GOLD_BRIGHT} />
         </mesh>
       ))}
-      <mesh position={[x, top - 0.035, 0]}>
-        <boxGeometry args={[1.26, 0.07, 0.86]} />
+      {/* Top horizontal frame */}
+      <mesh position={[x, top + 0.01, 0]}>
+        <boxGeometry args={[1.14, 0.045, 0.78]} />
+        <meshStandardMaterial {...GOLD} />
+      </mesh>
+      {/* Bottom horizontal frame */}
+      <mesh position={[x, y - h / 2 - 0.01, 0]}>
+        <boxGeometry args={[1.14, 0.04, 0.78]} />
         <meshStandardMaterial {...GOLD} />
       </mesh>
 
-      {/* Front Brass Clasp & Lock Escutcheon */}
-      <mesh position={[x, y + 0.06, 0.42]}>
-        <boxGeometry args={[0.22, 0.24, 0.04]} />
-        <meshStandardMaterial {...GOLD} color="#E2C068" />
+      {/* ── Front Emblem: FARE Shield ── */}
+      {/* Shield backing plate */}
+      <mesh position={[x, y + 0.04, 0.38]}>
+        <cylinderGeometry args={[0.11, 0.1, 0.03, 6]} />
+        <meshStandardMaterial {...GOLD_BRIGHT} />
       </mesh>
-      <mesh position={[x, y + 0.04, 0.445]}>
-        <cylinderGeometry args={[0.035, 0.035, 0.02, 16]} />
-        <meshStandardMaterial color="#0B1D3A" metalness={0.6} roughness={0.3} />
+      {/* Inner dark disc */}
+      <mesh position={[x, y + 0.04, 0.395]}>
+        <cylinderGeometry args={[0.065, 0.065, 0.015, 20]} />
+        <meshStandardMaterial color="#0B1D3A" metalness={0.7} roughness={0.3} />
       </mesh>
 
-      {/* Hinged Open Vault Lid angled at rear */}
-      <group position={[x, top, -0.41]} rotation={[-0.65, 0, 0]}>
-        <mesh position={[0, 0.14, 0.34]}>
-          <boxGeometry args={[1.22, 0.12, 0.78]} />
-          <meshStandardMaterial color="#0B1D3A" metalness={0.55} roughness={0.38} />
+      {/* ── Open Lid — Angled Back with Polished Interior ── */}
+      <group position={[x, top, -0.37]} rotation={[-0.55, 0, 0]}>
+        {/* Lid body */}
+        <mesh position={[0, 0.12, 0.3]}>
+          <boxGeometry args={[1.1, 0.09, 0.7]} />
+          <meshStandardMaterial color="#0B1D3A" metalness={0.6} roughness={0.35} />
         </mesh>
-        <mesh position={[0, 0.14, 0.72]}>
-          <boxGeometry args={[1.25, 0.14, 0.05]} />
+        {/* Lid inner lining — gold satin */}
+        <mesh position={[0, 0.072, 0.3]} rotation={[0, 0, 0]}>
+          <boxGeometry args={[1.02, 0.01, 0.62]} />
+          <meshStandardMaterial {...GOLD_LIGHT} />
+        </mesh>
+        {/* Lid top trim */}
+        <mesh position={[0, 0.17, 0.64]}>
+          <boxGeometry args={[1.14, 0.1, 0.04]} />
           <meshStandardMaterial {...GOLD} />
         </mesh>
       </group>
 
-      {/* Subtle gold coin bed inside open top */}
-      <mesh position={[x, top - 0.01, 0.02]} scale={[0.52, 0.11 + flow * 0.05, 0.32]}>
+      {/* ── Coin Pile — Overflowing Gold ── */}
+      {/* Base gold mound */}
+      <mesh position={[x, top - 0.01, 0.02]} scale={[0.46, 0.09 + flow * 0.06, 0.28]}>
         <sphereGeometry args={[1, 28, 14, 0, Math.PI * 2, 0, Math.PI / 2]} />
-        <meshStandardMaterial color="#D5AA45" metalness={0.88} roughness={0.26} />
+        <meshStandardMaterial color="#D5AA45" metalness={0.9} roughness={0.2} />
       </mesh>
+      {/* Individual coins scattered */}
       {coins.map((c, k) => (
-        <mesh key={k} position={[x + c.x, top + 0.02, c.z]} rotation={[c.rx, c.ry, 0]}>
-          <cylinderGeometry args={[0.078, 0.078, 0.02, 20]} />
+        <mesh key={k} position={[x + c.x, top + 0.015 + (k % 3) * 0.015, c.z]} rotation={[c.rx, c.ry, 0]}>
+          <cylinderGeometry args={[c.s, c.s, 0.018, 20]} />
           <meshStandardMaterial {...GOLD} color="#FCD34D" />
         </mesh>
       ))}
 
-      <instancedMesh ref={sparkRef} args={[undefined, undefined, 18]} frustumCulled={false}>
+      {/* ── Sparkle Particle Effects ── */}
+      <instancedMesh ref={sparkRef} args={[undefined, undefined, 24]} frustumCulled={false}>
         <sphereGeometry args={[1, 6, 6]} />
         <meshBasicMaterial color="#FDE68A" />
       </instancedMesh>
-      <pointLight ref={lightRef} position={[x, top + 0.55, 0.7]} color="#E2C068" distance={4} />
+
+      {/* ── Warm Glow Light ── */}
+      <pointLight ref={lightRef} position={[x, top + 0.6, 0.6]} color="#E8C252" distance={4.5} />
     </group>
   );
 }
