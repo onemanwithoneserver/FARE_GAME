@@ -117,7 +117,7 @@ export default function DesktopView() {
               <Pipe3D activeLeakStage={null} leakLevel={0} isFixed={false} lang={lang} flow={1} />
             </div>
 
-            <div className="grid grid-cols-[260px_minmax(0,1fr)_260px] items-end gap-6 xl:grid-cols-[280px_minmax(0,1fr)_280px]">
+            <div className="grid grid-cols-[260px_minmax(0,1fr)_260px] items-start gap-6 xl:grid-cols-[280px_minmax(0,1fr)_280px]">
               <div className="justify-self-start">
                 <Advisor
                   name={player?.name || (en ? 'FARE Coach' : 'FARE కోచ్')}
@@ -131,8 +131,9 @@ export default function DesktopView() {
                 />
               </div>
 
-              <div className="mx-auto w-full max-w-2xl space-y-4">
+              <div className="mx-auto flex w-full max-w-2xl flex-col gap-4">
                 <ModeButtons />
+                <FooterSection className="!mt-0 !pt-0" />
               </div>
 
               <div className="justify-self-end">
@@ -217,7 +218,7 @@ export default function DesktopView() {
           </div>
         )}
 
-        <FooterSection />
+        {screen !== 'home' && <FooterSection />}
       </div>
 
       <GameModals />

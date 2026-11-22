@@ -67,7 +67,13 @@ interface SocialLinkItem {
   icon: React.ReactNode;
 }
 
-export default function FooterSection({ compact = false }: { compact?: boolean }) {
+export default function FooterSection({
+  compact = false,
+  className = '',
+}: {
+  compact?: boolean;
+  className?: string;
+}) {
   const lang = usePipeGameStore((s) => s.lang);
   const en = lang === 'en';
   const [copied, setCopied] = useState(false);
@@ -160,7 +166,7 @@ export default function FooterSection({ compact = false }: { compact?: boolean }
   ];
 
   return (
-    <footer className={`w-full select-none ${compact ? 'pt-2 pb-1' : 'mt-4 pt-2'}`}>
+    <footer className={`w-full select-none ${compact ? 'pt-2 pb-1' : 'mt-4 pt-2'} ${className}`}>
       <div className="fare-card-3d mx-auto flex w-full max-w-2xl flex-col items-center gap-3.5 rounded-[10px] px-4 py-3.5 text-center">
         <div className="flex w-full justify-center">
           <button
