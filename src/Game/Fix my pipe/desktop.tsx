@@ -168,7 +168,7 @@ export default function DesktopView() {
 
         {screen === 'play' && currentCase && currentCard && (
           <div className={`flex flex-1 flex-col justify-start ${isShortLandscape ? 'gap-0.5 pb-0.5 pt-0 -mt-0.5' : 'gap-1 pb-2 pt-0 -mt-1'}`}>
-            <div className={`relative w-full ${isShortLandscape ? 'h-[76px] sm:h-[86px]' : 'h-[155px] xl:h-[180px]'}`}>
+            <div className={`relative w-full ${isShortLandscape ? 'h-[95px] sm:h-[110px]' : 'h-[235px] md:h-[265px] xl:h-[300px]'}`}>
               <FeedbackToast />
               <Pipe3D
                 activeLeakStage={currentCase.leak as StageId}

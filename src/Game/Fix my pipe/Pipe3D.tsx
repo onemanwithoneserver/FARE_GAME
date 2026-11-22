@@ -40,23 +40,23 @@ interface Pipe3DProps {
   flow?: number;
 }
 
-function FitCamera({ onPpu }: { onPpu: (v: number) => void }) {
+function FitCamera({ onPpu, isQuestion = false }: { onPpu: (v: number) => void; isQuestion?: boolean }) {
   const { camera, size } = useThree();
   useEffect(() => {
     const cam = camera as THREE.PerspectiveCamera;
     const aspect = size.width / Math.max(1, size.height);
     const isNarrow = size.width < 520;
-    const halfW = (SCENE_MAX_X - SCENE_MIN_X) / 2 + (isNarrow ? 0.05 : 0.15);
-    const halfH = ((SCENE_TOP - SCENE_BOTTOM) / 2 + (isNarrow ? 0.06 : 0.15)) * 0.82;
+    const halfW = (SCENE_MAX_X - SCENE_MIN_X) / 2 + (isNarrow ? 0.05 : (isQuestion ? 0.08 : 0.15));
+    const halfH = ((SCENE_TOP - SCENE_BOTTOM) / 2 + (isNarrow ? 0.06 : 0.15)) * (isQuestion ? 0.72 : 0.82);
     const t = Math.tan(THREE.MathUtils.degToRad(cam.fov / 2));
     const dist = Math.max(halfH / t, halfW / (t * aspect));
     const cx = (SCENE_MAX_X + SCENE_MIN_X) / 2;
-    const cy = (SCENE_TOP + SCENE_BOTTOM) / 2 - 0.04;
-    cam.position.set(cx, cy + dist * (isNarrow ? 0.08 : 0.11), dist);
+    const cy = (SCENE_TOP + SCENE_BOTTOM) / 2 - (isQuestion ? 0.01 : 0.04);
+    cam.position.set(cx, cy + dist * (isNarrow ? 0.08 : (isQuestion ? 0.09 : 0.11)), dist);
     cam.lookAt(cx, cy, 0);
     cam.updateProjectionMatrix();
     onPpu(size.height / (2 * t * dist));
-  }, [camera, size.width, size.height, onPpu]);
+  }, [camera, size.width, size.height, onPpu, isQuestion]);
   return null;
 }
 
@@ -603,11 +603,12 @@ export default function Pipe3D({ activeLeakStage, leakLevel, isFixed, lang, flow
   const [ppu, setPpu] = useState(0);
   const handlePpu = useCallback((v: number) => setPpu((prev) => (Math.abs(prev - v) > 0.5 ? v : prev)), []);
   const resolvedFlow = flow ?? (activeLeakStage === null || isFixed ? 1 : Math.max(0.12, 1 - leakLevel * 0.88));
+  const isQuestion = activeLeakStage !== 'all' && activeLeakStage !== null;
 
   return (
     <div className="absolute inset-0">
       <Canvas dpr={[1, 1.75]} gl={{ alpha: true, antialias: true, powerPreference: 'high-performance' }} camera={{ fov: 34, near: 0.1, far: 100 }}>
-        <FitCamera onPpu={handlePpu} />
+        <FitCamera onPpu={handlePpu} isQuestion={isQuestion} />
         <ambientLight intensity={isDark ? 0.55 : 0.75} />
         <hemisphereLight args={[isDark ? '#BFDBFE' : '#FFFFFF', isDark ? '#0B1D3A' : '#CBD5E1', isDark ? 0.65 : 0.8]} />
         <directionalLight position={[4, 7, 6]} intensity={1.6} />
