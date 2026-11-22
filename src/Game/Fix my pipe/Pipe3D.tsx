@@ -25,10 +25,10 @@ const segX = (i: number) => (i - 2) * SPACING + X_SHIFT;
 const FIRST_EDGE = segX(0) - SEG_LEN / 2;
 const LAST_EDGE = segX(4) + SEG_LEN / 2;
 const TAP_X = LAST_EDGE + 0.95;
-const SCENE_MIN_X = FIRST_EDGE - 0.95;
-const SCENE_MAX_X = TAP_X + 1.15;
-const SCENE_TOP = PIPE_Y + R + 0.65;
-const SCENE_BOTTOM = FLOOR_Y - 0.18;
+const SCENE_MIN_X = FIRST_EDGE - 1.05;
+const SCENE_MAX_X = TAP_X + 1.25;
+const SCENE_TOP = PIPE_Y + R + 0.88;
+const SCENE_BOTTOM = FLOOR_Y - 0.28;
 
 type SegmentState = 'normal' | 'leak' | 'fixed' | 'starved';
 
@@ -40,23 +40,23 @@ interface Pipe3DProps {
   flow?: number;
 }
 
-function FitCamera({ onPpu, isQuestion = false }: { onPpu: (v: number) => void; isQuestion?: boolean }) {
+function FitCamera({ onPpu }: { onPpu: (v: number) => void }) {
   const { camera, size } = useThree();
   useEffect(() => {
     const cam = camera as THREE.PerspectiveCamera;
     const aspect = size.width / Math.max(1, size.height);
     const isNarrow = size.width < 520;
-    const halfW = (SCENE_MAX_X - SCENE_MIN_X) / 2 + (isNarrow ? 0.05 : (isQuestion ? 0.08 : 0.65));
-    const halfH = ((SCENE_TOP - SCENE_BOTTOM) / 2 + (isNarrow ? 0.06 : 0.15)) * (isQuestion ? 0.72 : 1.05);
+    const halfW = (SCENE_MAX_X - SCENE_MIN_X) / 2 + (isNarrow ? 0.08 : 0.28);
+    const halfH = (SCENE_TOP - SCENE_BOTTOM) / 2 + (isNarrow ? 0.08 : 0.18);
     const t = Math.tan(THREE.MathUtils.degToRad(cam.fov / 2));
     const dist = Math.max(halfH / t, halfW / (t * aspect));
     const cx = (SCENE_MAX_X + SCENE_MIN_X) / 2;
-    const cy = (SCENE_TOP + SCENE_BOTTOM) / 2 - (isQuestion ? 0.01 : 0.06);
-    cam.position.set(cx, cy + dist * (isNarrow ? 0.08 : (isQuestion ? 0.09 : 0.13)), dist);
+    const cy = (SCENE_TOP + SCENE_BOTTOM) / 2 + 0.02;
+    cam.position.set(cx, cy + dist * (isNarrow ? 0.06 : 0.08), dist);
     cam.lookAt(cx, cy, 0);
     cam.updateProjectionMatrix();
     onPpu(size.height / (2 * t * dist));
-  }, [camera, size.width, size.height, onPpu, isQuestion]);
+  }, [camera, size.width, size.height, onPpu]);
   return null;
 }
 
@@ -587,7 +587,7 @@ function PipelineScene({ activeLeakStage, leakLevel, isFixed, flow, ppu, lang, i
       {typeof activeLeakStage === 'number' && ppu > 0 && (
         <StatusBadge x={segX(activeLeakStage)} ppu={ppu} fixed={isFixed} lang={lang} />
       )}
-      {activeLeakStage === 'all' && ppu >= 46 && (
+      {activeLeakStage === 'all' && ppu > 0 && (
         STAGES.map((_, i) => (
           <StatusBadge key={i} x={segX(i)} ppu={ppu} fixed={isFixed} lang={lang} />
         ))
@@ -603,12 +603,10 @@ export default function Pipe3D({ activeLeakStage, leakLevel, isFixed, lang, flow
   const [ppu, setPpu] = useState(0);
   const handlePpu = useCallback((v: number) => setPpu((prev) => (Math.abs(prev - v) > 0.5 ? v : prev)), []);
   const resolvedFlow = flow ?? (activeLeakStage === null || isFixed ? 1 : Math.max(0.12, 1 - leakLevel * 0.88));
-  const isQuestion = activeLeakStage !== 'all' && activeLeakStage !== null;
-
   return (
     <div className="absolute inset-0">
       <Canvas dpr={[1, 1.75]} gl={{ alpha: true, antialias: true, powerPreference: 'high-performance' }} camera={{ fov: 34, near: 0.1, far: 100 }}>
-        <FitCamera onPpu={handlePpu} isQuestion={isQuestion} />
+        <FitCamera onPpu={handlePpu} />
         <ambientLight intensity={isDark ? 0.55 : 0.75} />
         <hemisphereLight args={[isDark ? '#BFDBFE' : '#FFFFFF', isDark ? '#0B1D3A' : '#CBD5E1', isDark ? 0.65 : 0.8]} />
         <directionalLight position={[4, 7, 6]} intensity={1.6} />
