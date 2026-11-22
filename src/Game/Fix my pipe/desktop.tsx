@@ -90,7 +90,7 @@ export default function DesktopView() {
     <div className="relative min-h-screen w-full overflow-x-hidden font-sans text-[#0B1D3A] dark:text-slate-100 selection:bg-amber-500 selection:text-slate-950">
       <Backdrop />
 
-      <div className={`relative z-10 mx-auto flex min-h-screen w-full max-w-[1440px] flex-col px-6 py-5 lg:px-8 ${screen === 'home' ? 'justify-start' : 'justify-between'}`}>
+      <div className={`relative z-10 mx-auto flex min-h-screen w-full max-w-[1440px] flex-col px-6 py-3 lg:px-8 ${screen === 'result' ? 'justify-between' : 'justify-start'}`}>
         <Hud
           center={
             screen === 'home' ? (
@@ -145,8 +145,8 @@ export default function DesktopView() {
         )}
 
         {screen === 'play' && currentCase && currentCard && (
-          <div className="flex flex-1 flex-col justify-start gap-2.5 pb-2 pt-1">
-            <div className="relative h-[180px] w-full xl:h-[210px]">
+          <div className="flex flex-1 flex-col justify-start gap-1 pb-2 pt-0 -mt-1">
+            <div className="relative h-[135px] w-full xl:h-[155px]">
               <FeedbackToast />
               <Pipe3D
                 activeLeakStage={currentCase.leak as StageId}
