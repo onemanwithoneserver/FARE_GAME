@@ -41,7 +41,7 @@ export default function ResultScreen({
 
   return (
     <div className="mx-auto w-full max-w-2xl p-2 md:p-4">
-      <div className="fare-card-3d relative overflow-hidden rounded-[10px] p-6 md:p-8">
+      <div className="fare-card-3d relative max-h-[86vh] overflow-y-auto rounded-[10px] p-4 sm:p-6 md:p-8">
         <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-[#0B1D3A] via-[#C99A2E] to-[#16A34A]" />
 
         <div className="mb-7 text-center">

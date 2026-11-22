@@ -10,6 +10,7 @@ interface AdvisorProps {
   messageKey: string | number;
   tone?: 'neutral' | 'good' | 'bad';
   customCharacter?: ReactNode;
+  compact?: boolean;
 }
 
 const TONE_ACCENT = {
@@ -404,12 +405,12 @@ function ExecutiveCoachSvg({
   );
 }
 
-export default function Advisor({ name, role, message, messageKey, tone = 'neutral', customCharacter }: AdvisorProps) {
+export default function Advisor({ name, role, message, messageKey, tone = 'neutral', customCharacter, compact = false }: AdvisorProps) {
   const [hovered, setHovered] = useState(false);
 
   return (
     <div
-      className="flex w-full max-w-[295px] flex-col items-start"
+      className={`flex w-full ${compact ? 'max-w-[200px] sm:max-w-[230px]' : 'max-w-[295px]'} flex-col items-start`}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
@@ -420,15 +421,15 @@ export default function Advisor({ name, role, message, messageKey, tone = 'neutr
           animate={{ opacity: 1, y: hovered ? -2 : 0, scale: 1 }}
           exit={{ opacity: 0, y: -5, scale: 0.98 }}
           transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
-          className={`relative ml-4 sm:ml-6 overflow-hidden rounded-[10px] border bg-white p-3 sm:p-3.5 pl-3.5 sm:pl-4 text-xs sm:text-sm leading-snug text-[#0B1D3A] shadow-[0_8px_24px_rgba(11,29,58,0.08)] dark:bg-[#0D1B35] dark:text-slate-100 dark:shadow-[0_10px_28px_rgba(0,0,0,0.4)] ${TONE_ACCENT[tone]}`}
+          className={`relative ${compact ? 'ml-2 sm:ml-3 p-2 sm:p-2.5 pl-2.5 sm:pl-3 text-[10px] sm:text-xs leading-snug rounded-[8px]' : 'ml-4 sm:ml-6 p-3 sm:p-3.5 pl-3.5 sm:pl-4 text-xs sm:text-sm leading-snug rounded-[10px]'} overflow-hidden border bg-white text-[#0B1D3A] shadow-[0_8px_24px_rgba(11,29,58,0.08)] dark:bg-[#0D1B35] dark:text-slate-100 dark:shadow-[0_10px_28px_rgba(0,0,0,0.4)] ${TONE_ACCENT[tone]}`}
         >
           <span className={`absolute inset-y-0 left-0 w-1 ${TONE_BAR[tone]}`} />
-          <div className="mb-1 flex items-center justify-between gap-2">
-            <div className="text-[10px] font-bold uppercase tracking-[0.14em] text-[#C99A2E]">
+          <div className="mb-1 flex items-center justify-between gap-1.5">
+            <div className={`${compact ? 'text-[9px]' : 'text-[10px]'} font-bold uppercase tracking-[0.14em] text-[#C99A2E]`}>
               {name} · <span className="text-[#64748B] dark:text-slate-400">{role}</span>
             </div>
             {/* Live speaking equalizer bars */}
-            <div className="flex h-3 items-end gap-0.5" aria-hidden>
+            <div className="flex h-2.5 items-end gap-0.5" aria-hidden>
               {[0, 1, 2].map((b) => (
                 <motion.span
                   key={b}
@@ -450,7 +451,7 @@ export default function Advisor({ name, role, message, messageKey, tone = 'neutr
       </AnimatePresence>
 
       {/* Pointer stem connecting speech card to coach */}
-      <div className="ml-10 sm:ml-14 h-2 w-3.5 overflow-hidden">
+      <div className={`${compact ? 'ml-6 sm:ml-8 h-1.5 w-2.5' : 'ml-10 sm:ml-14 h-2 w-3.5'} overflow-hidden`}>
         <div
           className={`mx-auto h-2.5 w-2.5 -translate-y-1.5 rotate-45 border-b border-r bg-white dark:bg-[#0D1B35] ${TONE_ACCENT[tone]}`}
         />
@@ -467,6 +468,7 @@ export default function Advisor({ name, role, message, messageKey, tone = 'neutr
             role={role}
             tone={tone}
             reactionKey={messageKey}
+            compact={compact}
           />
         )}
       </motion.div>

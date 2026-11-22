@@ -4,10 +4,11 @@ import gsap from 'gsap';
 import type { CardItem, Language } from '../types';
 
 interface TlCharacterProps {
-  name: string;
-  role: string;
+  name?: string;
+  role?: string;
   tone?: 'neutral' | 'good' | 'bad';
   reactionKey?: string | number;
+  compact?: boolean;
 }
 
 interface CandidateCharacterProps {
@@ -15,6 +16,7 @@ interface CandidateCharacterProps {
   isPerson: boolean;
   lang: Language;
   reactionKey?: string | number;
+  compact?: boolean;
 }
 
 /**
@@ -22,7 +24,7 @@ interface CandidateCharacterProps {
  * Features blonde styled hair, friendly executive expression, tailored navy suit,
  * live animated blinking, breathing, tablet metrics, and pointing gesture towards center card.
  */
-export function TlCharacter({ tone = 'neutral', reactionKey }: TlCharacterProps) {
+export function TlCharacter({ tone = 'neutral', reactionKey, compact = false }: TlCharacterProps) {
   const rootRef = useRef<SVGSVGElement>(null);
   const torsoRef = useRef<SVGGElement>(null);
   const headRef = useRef<SVGGElement>(null);
@@ -148,7 +150,7 @@ export function TlCharacter({ tone = 'neutral', reactionKey }: TlCharacterProps)
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      <div className="relative h-[165px] w-[130px] sm:h-[185px] sm:w-[145px]">
+      <div className={`relative ${compact ? 'h-[105px] w-[84px] sm:h-[120px] sm:w-[96px]' : 'h-[165px] w-[130px] sm:h-[185px] sm:w-[145px]'}`}>
         {/* Soft golden aura beneath character */}
         <div className="absolute inset-x-3 bottom-1 h-5 rounded-full bg-[#C99A2E]/25 blur-md" />
 
@@ -291,7 +293,7 @@ export function TlCharacter({ tone = 'neutral', reactionKey }: TlCharacterProps)
       </div>
 
       {/* Identity Pill */}
-      <div className="fare-card-3d -mt-1 flex items-center gap-1 rounded-full border border-[#C99A2E]/50 bg-[#0B1D3A]/95 px-3 py-0.5 text-[11px] font-extrabold text-white shadow-md">
+      <div className={`fare-card-3d flex items-center gap-1 rounded-full border border-[#C99A2E]/50 bg-[#0B1D3A]/95 text-white shadow-md ${compact ? '-mt-0.5 px-2 py-0.5 text-[9px]' : '-mt-1 px-3 py-0.5 text-[11px]'} font-extrabold`}>
         <span className="h-1.5 w-1.5 rounded-full bg-[#10B981] animate-pulse" />
         <span>FARE TL</span>
       </div>
@@ -304,7 +306,7 @@ export function TlCharacter({ tone = 'neutral', reactionKey }: TlCharacterProps)
  * Features mirrored posture facing toward the center card,
  * tailored professional suit, live blinking, breathing, role badge, and entrance spring animation.
  */
-export function CandidateCharacter({ item, isPerson, lang, reactionKey }: CandidateCharacterProps) {
+export function CandidateCharacter({ item, isPerson, lang, reactionKey, compact = false }: CandidateCharacterProps) {
   const rootRef = useRef<SVGSVGElement>(null);
   const torsoRef = useRef<SVGGElement>(null);
   const headRef = useRef<SVGGElement>(null);
@@ -389,7 +391,7 @@ export function CandidateCharacter({ item, isPerson, lang, reactionKey }: Candid
       transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
       className="relative flex flex-col items-center select-none"
     >
-      <div className="relative h-[165px] w-[130px] sm:h-[185px] sm:w-[145px]">
+      <div className={`relative ${compact ? 'h-[105px] w-[84px] sm:h-[120px] sm:w-[96px]' : 'h-[165px] w-[130px] sm:h-[185px] sm:w-[145px]'}`}>
         {/* Soft violet/emerald ground glow */}
         <div
           className={`absolute inset-x-3 bottom-1 h-5 rounded-full blur-md ${
@@ -537,7 +539,7 @@ export function CandidateCharacter({ item, isPerson, lang, reactionKey }: Candid
       </div>
 
       {/* Identity Pill */}
-      <div className="fare-card-3d -mt-1 flex items-center gap-1 rounded-full border border-[#C99A2E]/50 bg-[#0B1D3A]/95 px-3 py-0.5 text-[11px] font-extrabold text-white shadow-md">
+      <div className={`fare-card-3d flex items-center gap-1 rounded-full border border-[#C99A2E]/50 bg-[#0B1D3A]/95 text-white shadow-md ${compact ? '-mt-0.5 px-2 py-0.5 text-[9px]' : '-mt-1 px-3 py-0.5 text-[11px]'} font-extrabold`}>
         <span className="h-1.5 w-1.5 rounded-full bg-[#38BDF8] animate-pulse" />
         <span className="max-w-[100px] truncate">{isPerson ? (lang === 'en' ? 'Candidate' : 'అభ్యర్థి') : lang === 'en' ? 'Idea' : 'ఐడియా'}</span>
       </div>

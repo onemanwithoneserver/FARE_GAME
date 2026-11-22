@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import Backdrop from './components/Backdrop';
 import Hud from './components/Hud';
@@ -54,6 +54,26 @@ export default function DesktopView() {
   const isPerson = mode === 1;
   const en = lang === 'en';
 
+  const [isShortLandscape, setIsShortLandscape] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    return window.innerHeight <= 520 && window.innerWidth >= window.innerHeight;
+  });
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (typeof window === 'undefined') return;
+      const isShort = window.innerHeight <= 520 && window.innerWidth >= window.innerHeight;
+      setIsShortLandscape(isShort);
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    window.addEventListener('orientationchange', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('orientationchange', handleResize);
+    };
+  }, []);
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (screen !== 'play' || showBriefing || showRoundEnd || showCta || showRoster || showOnboarding || showQuitConfirm) {
@@ -90,11 +110,18 @@ export default function DesktopView() {
     <div className="relative min-h-screen w-full overflow-x-hidden font-sans text-[#0B1D3A] dark:text-slate-100 selection:bg-amber-500 selection:text-slate-950">
       <Backdrop />
 
-      <div className={`relative z-10 mx-auto flex min-h-screen w-full max-w-[1440px] flex-col px-6 py-3 lg:px-8 ${screen === 'result' ? 'justify-between' : 'justify-start'}`}>
+      <div
+        className={`relative z-10 mx-auto flex w-full max-w-[1440px] flex-col ${
+          isShortLandscape
+            ? 'h-dvh max-h-dvh justify-between px-2.5 py-1 sm:px-4 sm:py-1.5 overflow-hidden'
+            : 'min-h-screen px-6 py-3 lg:px-8 ' + (screen === 'result' ? 'justify-between' : 'justify-start')
+        }`}
+      >
         <Hud
+          compact={isShortLandscape}
           center={
             screen === 'home' ? (
-              <TitleBanner />
+              <TitleBanner compact={isShortLandscape} />
             ) : screen === 'play' && currentCase ? (
               <CaseBanner
                 title={currentCase.t}
@@ -105,20 +132,27 @@ export default function DesktopView() {
                 deckLength={deck.length}
                 cardIndex={cardIndex}
                 lang={lang}
+                compact={isShortLandscape}
               />
             ) : (
-              <TitleBanner subtitle={en ? 'Performance Report' : 'మీ ఫలితాలు'} />
+              <TitleBanner compact={isShortLandscape} subtitle={en ? 'Performance Report' : 'మీ ఫలితాలు'} />
             )
           }
         />
 
         {screen === 'home' && (
-          <div className="flex flex-col gap-4 pb-2 pt-2">
-            <div className="relative h-[240px] w-full xl:h-[300px]">
+          <div className={`flex flex-col ${isShortLandscape ? 'gap-1.5 pb-0.5 pt-0.5 justify-around flex-1' : 'gap-4 pb-2 pt-2'}`}>
+            <div className={`relative w-full ${isShortLandscape ? 'h-[90px] sm:h-[110px]' : 'h-[240px] xl:h-[300px]'}`}>
               <Pipe3D activeLeakStage="all" leakLevel={0.65} isFixed={false} lang={lang} flow={0.25} />
             </div>
 
-            <div className="grid grid-cols-[260px_minmax(0,1fr)_260px] items-start gap-6 xl:grid-cols-[280px_minmax(0,1fr)_280px]">
+            <div
+              className={`grid ${
+                isShortLandscape
+                  ? 'grid-cols-[180px_minmax(0,1fr)_180px] sm:grid-cols-[200px_minmax(0,1fr)_200px] gap-2.5 items-center'
+                  : 'grid-cols-[260px_minmax(0,1fr)_260px] xl:grid-cols-[280px_minmax(0,1fr)_280px] gap-6 items-start'
+              }`}
+            >
               <div className="justify-self-start">
                 <Advisor
                   name={player?.name || (en ? 'FARE Coach' : 'FARE కోచ్')}
@@ -129,24 +163,25 @@ export default function DesktopView() {
                       : 'మీ సేల్స్ ఫన్నెల్‌లో లీక్‌లు ఉన్నాయి! సరైన మోడ్ ఎంచుకుని పరిష్కరించండి.'
                   }
                   messageKey={`home-${lang}`}
+                  compact={isShortLandscape}
                 />
               </div>
 
-              <div className="mx-auto flex w-full max-w-2xl flex-col gap-4">
-                <ModeButtons />
-                <FooterSection className="!mt-0 !pt-0" />
+              <div className="mx-auto flex w-full max-w-2xl flex-col gap-2 md:gap-4">
+                <ModeButtons compact={isShortLandscape} />
+                {!isShortLandscape && <FooterSection className="!mt-0 !pt-0" />}
               </div>
 
               <div className="justify-self-end">
-                <HomeInfoCard />
+                <HomeInfoCard compact={isShortLandscape} />
               </div>
             </div>
           </div>
         )}
 
         {screen === 'play' && currentCase && currentCard && (
-          <div className="flex flex-1 flex-col justify-start gap-1 pb-2 pt-0 -mt-1">
-            <div className="relative h-[155px] w-full xl:h-[180px]">
+          <div className={`flex flex-1 flex-col justify-start ${isShortLandscape ? 'gap-0.5 pb-0.5 pt-0 -mt-0.5' : 'gap-1 pb-2 pt-0 -mt-1'}`}>
+            <div className={`relative w-full ${isShortLandscape ? 'h-[76px] sm:h-[86px]' : 'h-[155px] xl:h-[180px]'}`}>
               <FeedbackToast />
               <Pipe3D
                 activeLeakStage={currentCase.leak as StageId}
@@ -156,7 +191,13 @@ export default function DesktopView() {
               />
             </div>
 
-            <div className="grid grid-cols-[200px_minmax(0,1fr)_200px] items-end gap-3 lg:gap-4 xl:grid-cols-[220px_minmax(0,1fr)_220px]">
+            <div
+              className={`grid ${
+                isShortLandscape
+                  ? 'grid-cols-[165px_minmax(0,1fr)_165px] sm:grid-cols-[185px_minmax(0,1fr)_185px] gap-2 items-end'
+                  : 'grid-cols-[200px_minmax(0,1fr)_200px] lg:gap-4 xl:grid-cols-[220px_minmax(0,1fr)_220px] gap-3 items-end'
+              }`}
+            >
               <div className="justify-self-start w-full">
                 <Advisor
                   name={player?.name || (en ? 'FARE TL' : 'FARE TL')}
@@ -164,6 +205,7 @@ export default function DesktopView() {
                   message={advisorMessage}
                   messageKey={lastFeedback ? `fb-${totalDecisions}-${lang}` : `case-${caseIndex}-${lang}`}
                   tone={advisorTone}
+                  compact={isShortLandscape}
                 />
               </div>
 
@@ -181,19 +223,20 @@ export default function DesktopView() {
                       lang={lang}
                       onAccept={() => decide(true)}
                       onReject={() => decide(false)}
-                      dense={false}
+                      dense={isShortLandscape}
                     />
                   </motion.div>
                 </AnimatePresence>
               </div>
 
-              <div className="flex flex-col items-center gap-2.5 justify-self-end w-full">
-                <PressureGauge leakLevel={leak} score={score} combo={combo} lang={lang} />
+              <div className={`flex flex-col items-center ${isShortLandscape ? 'gap-1.5' : 'gap-2.5'} justify-self-end w-full`}>
+                <PressureGauge leakLevel={leak} score={score} combo={combo} lang={lang} compact={isShortLandscape} />
                 <CandidateCharacter
                   item={currentCard}
                   isPerson={isPerson}
                   lang={lang}
                   reactionKey={totalDecisions}
+                  compact={isShortLandscape}
                 />
               </div>
             </div>
@@ -201,7 +244,7 @@ export default function DesktopView() {
         )}
 
         {screen === 'result' && (
-          <div className="flex flex-1 items-center justify-center py-4">
+          <div className="flex flex-1 items-center justify-center py-2 sm:py-4">
             <ResultScreen
               score={score}
               goodCount={goodCount}
@@ -218,7 +261,7 @@ export default function DesktopView() {
           </div>
         )}
 
-        {screen !== 'home' && <FooterSection />}
+        {screen !== 'home' && (!isShortLandscape || screen !== 'play') && <FooterSection />}
       </div>
 
       <GameModals />

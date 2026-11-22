@@ -131,20 +131,20 @@ export default function Hud({ center, compact = false }: { center?: ReactNode; c
   };
 
   const scorePill = (
-    <div className={`flex items-center rounded-[8px] ${surface} ${compact ? 'gap-2 px-2.5 py-1.5' : 'gap-3 px-3.5 py-2'}`}>
-      <div className={`fare-icon-3d grid place-items-center rounded-[6px] bg-[#0B1D3A] text-white dark:bg-[#1A3463] ${compact ? 'h-7 w-7' : 'h-10 w-10'}`}>
-        <PersonIcon sx={{ fontSize: compact ? 17 : 22, color: '#FFFFFF' }} />
+    <div className={`flex items-center rounded-[8px] ${surface} ${compact ? 'gap-1.5 px-2 py-1' : 'gap-3 px-3.5 py-2'}`}>
+      <div className={`fare-icon-3d grid place-items-center rounded-[6px] bg-[#0B1D3A] text-white dark:bg-[#1A3463] ${compact ? 'h-6 w-6' : 'h-10 w-10'}`}>
+        <PersonIcon sx={{ fontSize: compact ? 15 : 22, color: '#FFFFFF' }} />
       </div>
       <div className="leading-tight">
-        <div className={`font-semibold uppercase tracking-wider text-[#64748B] dark:text-slate-400 ${compact ? 'text-[9px]' : 'text-[10px]'}`}>
+        <div className={`font-semibold uppercase tracking-wider text-[#64748B] dark:text-slate-400 ${compact ? 'text-[8px]' : 'text-[10px]'}`}>
           {isHome ? (lang === 'en' ? 'Best Score' : 'బెస్ట్ స్కోర్') : lang === 'en' ? 'Your Score' : 'మీ స్కోర్'}
         </div>
-        <div className="flex items-center gap-1.5">
-          <span className={`font-black tabular-nums text-[#0B1D3A] dark:text-white ${compact ? 'text-base' : 'text-xl'}`}>
+        <div className="flex items-center gap-1">
+          <span className={`font-black tabular-nums text-[#0B1D3A] dark:text-white ${compact ? 'text-xs sm:text-sm' : 'text-xl'}`}>
             {shown.toLocaleString()}
           </span>
-          <span className="fare-icon-3d grid h-4.5 w-4.5 place-items-center rounded-[4px] bg-[#C99A2E] text-white">
-            <Star3DIcon size={12} />
+          <span className={`fare-icon-3d grid ${compact ? 'h-3.5 w-3.5' : 'h-4.5 w-4.5'} place-items-center rounded-[4px] bg-[#C99A2E] text-white`}>
+            <Star3DIcon size={compact ? 9 : 12} />
           </span>
         </div>
       </div>
@@ -255,6 +255,18 @@ export default function Hud({ center, compact = false }: { center?: ReactNode; c
   );
 
   if (compact) {
+    if (center) {
+      return (
+        <div className="grid grid-cols-[auto_1fr_auto] items-center gap-2">
+          <div className="flex shrink-0 items-center gap-1.5">
+            <FareLogo compact={true} />
+            {scorePill}
+          </div>
+          <div className="flex justify-center px-1">{center}</div>
+          <div className="justify-self-end">{controls}</div>
+        </div>
+      );
+    }
     return (
       <div className="flex items-center justify-between gap-1.5">
         <div className="flex shrink-0 items-center gap-1.5">

@@ -7,12 +7,54 @@ interface PressureGaugeProps {
   score: number;
   combo: number;
   lang: Language;
+  compact?: boolean;
 }
 
-export default function PressureGauge({ leakLevel, score, combo, lang }: PressureGaugeProps) {
+export default function PressureGauge({ leakLevel, score, combo, lang, compact = false }: PressureGaugeProps) {
   const pressurePct = Math.round(Math.max(10, (1 - leakLevel) * 100));
   const isHealthy = pressurePct >= 80;
   const isCritical = pressurePct < 40;
+
+  if (compact) {
+    return (
+      <div className="fare-card-3d flex w-full items-center justify-between gap-2 rounded-[8px] px-2.5 py-1 text-xs">
+        <div className="flex items-center gap-1.5">
+          <span
+            className={`fare-icon-3d grid h-5 w-5 place-items-center rounded-full text-white ${
+              isHealthy ? 'bg-[#16A34A]' : isCritical ? 'bg-[#DC2626]' : 'bg-[#0B1D3A] dark:bg-[#1A3463]'
+            }`}
+          >
+            <SpeedIcon sx={{ fontSize: 13, color: '#FFFFFF' }} />
+          </span>
+          <div className="leading-tight">
+            <span className="block text-[9px] font-bold uppercase tracking-wider text-[#C99A2E]">
+              {lang === 'en' ? 'Pressure' : 'ప్రెషర్'}
+            </span>
+            <span className="block text-[10px] font-semibold text-[#0B1D3A] dark:text-slate-200">
+              {pressurePct}%
+            </span>
+          </div>
+        </div>
+
+        <div className="flex items-center gap-2">
+          {combo > 1 && (
+            <div className="fare-icon-3d flex items-center gap-0.5 rounded-[4px] bg-[#C99A2E] px-1 py-0.5 text-[9px] font-bold text-white">
+              <Bolt3DIcon size={10} />
+              <span>{combo}x</span>
+            </div>
+          )}
+          <div className="text-right leading-tight">
+            <span className="block text-[8px] font-bold uppercase tracking-wider text-[#64748B] dark:text-slate-400">
+              {lang === 'en' ? 'SCORE' : 'స్కోరు'}
+            </span>
+            <span className="font-mono text-xs font-black text-[#0B1D3A] dark:text-white tabular-nums sm:text-sm">
+              {score.toLocaleString()}
+            </span>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="fare-card-3d flex items-center justify-between gap-4 rounded-[10px] p-4">

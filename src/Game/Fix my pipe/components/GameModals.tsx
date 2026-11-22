@@ -33,19 +33,19 @@ function BriefingModal() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 8, scale: 0.98 }}
             transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="fare-card-3d relative max-h-[88vh] w-full max-w-lg overflow-y-auto rounded-[10px] p-6 md:p-7"
+            className="fare-card-3d relative max-h-[94vh] w-full max-w-lg overflow-y-auto rounded-[10px] p-4 sm:p-6 md:p-7"
           >
             <span className="absolute inset-x-0 top-0 h-1" style={{ background: STAGES[currentCase.leak].color }} />
             <button
               type="button"
               onClick={quitGame}
               aria-label={en ? 'Cancel game' : 'రద్దు చేయండి'}
-              className="fare-icon-3d absolute right-4 top-4 grid h-8 w-8 cursor-pointer place-items-center rounded-[6px] bg-[#0B1D3A] text-white transition hover:bg-[#DC2626] dark:bg-[#1A3463] dark:hover:bg-[#DC2626]"
+              className="fare-icon-3d absolute right-3.5 top-3.5 grid h-7 w-7 sm:h-8 sm:w-8 cursor-pointer place-items-center rounded-[6px] bg-[#0B1D3A] text-white transition hover:bg-[#DC2626] dark:bg-[#1A3463] dark:hover:bg-[#DC2626]"
             >
-              <CloseIcon sx={{ fontSize: 17, color: '#FFFFFF' }} />
+              <CloseIcon sx={{ fontSize: 16, color: '#FFFFFF' }} />
             </button>
 
-            <div className="mb-3 flex items-center gap-2 pr-10 text-[11px] font-bold uppercase tracking-[0.14em]">
+            <div className="mb-2 sm:mb-3 flex items-center gap-2 pr-8 sm:pr-10 text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.14em]">
               <span className="fare-icon-3d flex items-center gap-1 rounded-[4px] px-2 py-0.5 text-white" style={{ background: STAGES[currentCase.leak].color }}>
                 <WarningAmberIcon sx={{ fontSize: 13, color: '#FFFFFF' }} />
                 {STAGES[currentCase.leak].name[lang]}
@@ -54,12 +54,12 @@ function BriefingModal() {
                 {en ? 'Case briefing' : 'సమస్య వివరణ'} · {caseIndex + 1}/{caseOrder.length}
               </span>
             </div>
-            <h3 className="mb-2 text-xl font-bold leading-snug text-[#0B1D3A] dark:text-white md:text-2xl">{translateText(currentCase.t, lang)}</h3>
-            <p className="mb-5 text-sm italic text-[#475569] dark:text-slate-300">“{translateText(currentCase.q, lang)}”</p>
-            <div className="mb-6 space-y-2.5 rounded-[8px] border border-[#DBE4FA] bg-[#F5F8FF] p-3.5 text-sm text-[#475569] dark:border-white/10 dark:bg-[#071124]/60 dark:text-slate-300">
-              <div className="flex items-start gap-2.5">
-                <span className="fare-icon-3d mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-[4px] bg-[#16A34A] text-white">
-                  <Check3DIcon size={13} />
+            <h3 className="mb-1.5 text-base sm:text-xl font-bold leading-snug text-[#0B1D3A] dark:text-white md:text-2xl">{translateText(currentCase.t, lang)}</h3>
+            <p className="mb-2.5 sm:mb-4 text-xs sm:text-sm italic text-[#475569] dark:text-slate-300">“{translateText(currentCase.q, lang)}”</p>
+            <div className="mb-3 sm:mb-5 space-y-1.5 sm:space-y-2.5 rounded-[8px] border border-[#DBE4FA] bg-[#F5F8FF] p-2.5 sm:p-3.5 text-xs sm:text-sm text-[#475569] dark:border-white/10 dark:bg-[#071124]/60 dark:text-slate-300">
+              <div className="flex items-start gap-2">
+                <span className="fare-icon-3d mt-0.5 grid h-4.5 w-4.5 shrink-0 place-items-center rounded-[4px] bg-[#16A34A] text-white">
+                  <Check3DIcon size={12} />
                 </span>
                 <span>
                   {isPerson
@@ -67,29 +67,29 @@ function BriefingModal() {
                     : en ? 'Implement systems that permanently fix this stage.' : 'ఈ దశను శాశ్వతంగా సరిచేసే సిస్టమ్స్ అమలు చేయండి.'}
                 </span>
               </div>
-              <div className="flex items-start gap-2.5">
-                <span className="fare-icon-3d mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-[4px] bg-[#DC2626] text-white">
-                  <Cross3DIcon size={13} />
+              <div className="flex items-start gap-2">
+                <span className="fare-icon-3d mt-0.5 grid h-4.5 w-4.5 shrink-0 place-items-center rounded-[4px] bg-[#DC2626] text-white">
+                  <Cross3DIcon size={12} />
                 </span>
                 <span>{en ? "Reject anything that doesn't address this bottleneck." : 'ఈ సమస్యకు సరిపోని వాటిని తిరస్కరించండి.'}</span>
               </div>
             </div>
-            <div className="grid grid-cols-2 gap-2.5 sm:gap-3">
+            <div className="grid grid-cols-2 gap-2 sm:gap-3">
               <motion.button
                 type="button"
                 whileHover={{ y: -1.5 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={quitGame}
-                className="group relative flex cursor-pointer items-center gap-2 rounded-[8px] border border-[#DBE4FA] bg-gradient-to-b from-white to-[#F8FAFC] px-3 py-2.5 text-left shadow-[0_6px_16px_-6px_rgba(29,78,216,0.1),0_2px_0_#D5DFF6] transition-all hover:border-rose-300 hover:from-white hover:to-rose-50/60 hover:text-rose-700 dark:border-white/10 dark:from-[#0E1E38] dark:to-[#091528] dark:hover:border-rose-500/40 dark:hover:from-[#0E1E38] dark:hover:to-rose-950/25 sm:gap-2.5"
+                className="group relative flex cursor-pointer items-center gap-1.5 sm:gap-2 rounded-[8px] border border-[#DBE4FA] bg-gradient-to-b from-white to-[#F8FAFC] px-2.5 py-2 text-left shadow-[0_6px_16px_-6px_rgba(29,78,216,0.1),0_2px_0_#D5DFF6] transition-all hover:border-rose-300 hover:from-white hover:to-rose-50/60 hover:text-rose-700 dark:border-white/10 dark:from-[#0E1E38] dark:to-[#091528] dark:hover:border-rose-500/40 dark:hover:from-[#0E1E38] dark:hover:to-rose-950/25 sm:px-3 sm:py-2.5"
               >
-                <span className="fare-icon-3d grid h-8 w-8 shrink-0 place-items-center rounded-[6px] bg-[#F1F5F9] text-[#64748B] transition-colors group-hover:bg-[#DC2626] group-hover:text-white dark:bg-[#1A2C4B] dark:text-slate-300 dark:group-hover:bg-[#DC2626]">
-                  <ArrowBackIcon sx={{ fontSize: 18 }} />
+                <span className="fare-icon-3d grid h-7 w-7 sm:h-8 sm:w-8 shrink-0 place-items-center rounded-[6px] bg-[#F1F5F9] text-[#64748B] transition-colors group-hover:bg-[#DC2626] group-hover:text-white dark:bg-[#1A2C4B] dark:text-slate-300 dark:group-hover:bg-[#DC2626]">
+                  <ArrowBackIcon sx={{ fontSize: 16 }} />
                 </span>
                 <span className="min-w-0 flex-1">
-                  <span className="block truncate text-sm font-bold text-[#0B1D3A] transition-colors group-hover:text-rose-700 dark:text-white dark:group-hover:text-rose-300">
+                  <span className="block truncate text-xs sm:text-sm font-bold text-[#0B1D3A] transition-colors group-hover:text-rose-700 dark:text-white dark:group-hover:text-rose-300">
                     {en ? 'Cancel & Return' : 'రద్దు చేయండి'}
                   </span>
-                  <span className="block truncate text-[11px] text-[#64748B] dark:text-slate-400">
+                  <span className="block truncate text-[10px] sm:text-[11px] text-[#64748B] dark:text-slate-400">
                     {en ? 'Back to lobby' : 'హోమ్‌కి వెళ్లండి'}
                   </span>
                 </span>
@@ -97,11 +97,12 @@ function BriefingModal() {
 
               <BigButton
                 tone="navy"
-                size="md"
+                size="sm"
                 icon={PlayArrowIcon}
                 title={en ? 'Begin Round' : 'రౌండ్ ప్రారంభించండి'}
                 subtitle={`${deck.length} ${isPerson ? (en ? 'candidates to interview' : 'అభ్యర్థులు') : en ? 'ideas to evaluate' : 'ఐడియాలు'}`}
                 onClick={dismissBriefing}
+                className="!py-2"
               />
             </div>
           </motion.div>
