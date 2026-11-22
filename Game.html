@@ -1,0 +1,3973 @@
+<!DOCTYPE html>
+<html lang="te" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>Fix Your Sales Funnel · FARE TL Hiring Desk</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Noto+Sans+Telugu:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --fare-navy: #0B1D3A;
+  --fare-navy-deep: #071A49;
+  --fare-navy-light: #102B63;
+  --fare-navy-surface: #0D2654;
+  --fare-navy-midnight: #030816;
+  --fare-gold: #C99A2E;
+  --fare-gold-mid: #D5AA45;
+  --fare-gold-light: #E4C46A;
+  --fare-gold-warm: #E2C068;
+  --fare-gold-dark: #8A5A00;
+  --fare-indigo: #6366F1;
+  --fare-indigo-dark: #4F46E5;
+  --fare-cyan: #06B6D4;
+  --fare-cyan-dark: #0891B2;
+  --fare-emerald: #10B981;
+  --fare-emerald-dark: #059669;
+  --fare-rose: #E11D48;
+  --fare-rose-light: #F43F5E;
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ===== DARK THEME (Trainer Directory Hero / Dark Mesh) ===== */
+html[data-theme="dark"] {
+  --bg-page: #061226;
+  --bg-mesh:
+    radial-gradient(ellipse at 15% 20%, rgba(99, 102, 241, 0.16) 0%, transparent 50%),
+    radial-gradient(ellipse at 85% 75%, rgba(201, 154, 46, 0.14) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, rgba(6, 182, 212, 0.08) 0%, transparent 60%),
+    linear-gradient(180deg, #0B1D3A 0%, #061124 65%, #030816 100%);
+  --bg-header: rgba(11, 29, 58, 0.88);
+  --bg-card: rgba(255, 255, 255, 0.045);
+  --bg-card-hover: rgba(255, 255, 255, 0.08);
+  --bg-card-solid: #0D2244;
+  --bg-panel: #0B1D3A;
+  --bg-panel-inner: rgba(255, 255, 255, 0.05);
+  --bg-input: rgba(255, 255, 255, 0.06);
+  --bg-overlay: rgba(3, 8, 22, 0.86);
+  --bg-scene: linear-gradient(180deg, #0D2246 0%, #091936 68%, #0D2426 68%, #07191C 100%);
+  --text-primary: #FFFFFF;
+  --text-secondary: #CBD5E1;
+  --text-muted: #94A3B8;
+  --border-subtle: rgba(255, 255, 255, 0.09);
+  --border-strong: rgba(201, 154, 46, 0.35);
+  --dot-grid: rgba(255, 255, 255, 0.1);
+  --shadow-card: 0 8px 32px -4px rgba(0, 0, 0, 0.38), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  --shadow-float: 0 16px 48px -8px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.07);
+}
+
+/* ===== LIGHT THEME (Trainer Directory Content / Light Mesh) ===== */
+html[data-theme="light"] {
+  --bg-page: #F8F9FC;
+  --bg-mesh:
+    radial-gradient(ellipse at 20% 25%, rgba(99, 102, 241, 0.07) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(201, 154, 46, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 60% 80%, rgba(6, 182, 212, 0.05) 0%, transparent 50%),
+    linear-gradient(180deg, #F8F9FC 0%, #EEF4FF 55%, #FFFFFF 100%);
+  --bg-header: rgba(255, 255, 255, 0.88);
+  --bg-card: rgba(255, 255, 255, 0.9);
+  --bg-card-hover: #FFFFFF;
+  --bg-card-solid: #FFFFFF;
+  --bg-panel: #FFFFFF;
+  --bg-panel-inner: #F8F9FC;
+  --bg-input: #F8F9FC;
+  --bg-overlay: rgba(11, 29, 58, 0.72);
+  --bg-scene: linear-gradient(180deg, #0F2752 0%, #0B1D3A 68%, #132F32 68%, #0D2224 100%);
+  --text-primary: #0B1D3A;
+  --text-secondary: #475569;
+  --text-muted: #7B8DAA;
+  --border-subtle: rgba(11, 29, 58, 0.09);
+  --border-strong: rgba(201, 154, 46, 0.45);
+  --dot-grid: rgba(11, 29, 58, 0.06);
+  --shadow-card: 0 2px 8px -2px rgba(11, 29, 58, 0.05), 0 12px 32px -6px rgba(11, 29, 58, 0.07);
+  --shadow-float: 0 4px 12px rgba(11, 29, 58, 0.06), 0 20px 48px -10px rgba(11, 29, 58, 0.14);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-family: 'Outfit', 'Noto Sans Telugu', system-ui, -apple-system, sans-serif;
+  background: var(--bg-mesh);
+  background-color: var(--bg-page);
+  color: var(--text-primary);
+  min-height: 100vh;
+  user-select: none;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+  transition: background-color 0.4s var(--ease-out-expo), color 0.4s var(--ease-out-expo);
+}
+
+html[lang="te"] body {
+  line-height: 1.55;
+}
+
+button, input {
+  font-family: inherit;
+}
+
+button {
+  cursor: pointer;
+  transition: all 0.35s var(--ease-out-expo);
+}
+
+button:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+/* Ambient Background Layers (Trainer Directory style) */
+.bg-dots {
+  position: fixed;
+  inset: 0;
+  background-image: radial-gradient(circle at 2px 2px, var(--dot-grid) 1px, transparent 0);
+  background-size: 30px 30px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.orb {
+  position: fixed;
+  border-radius: 9999px;
+  filter: blur(110px);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.45;
+  animation: floatOrb 12s ease-in-out infinite;
+}
+.orb.o1 {
+  top: -80px;
+  right: -60px;
+  width: 360px;
+  height: 360px;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.32) 0%, transparent 70%);
+}
+.orb.o2 {
+  bottom: -100px;
+  left: -80px;
+  width: 420px;
+  height: 420px;
+  background: radial-gradient(circle, rgba(201, 154, 46, 0.26) 0%, transparent 70%);
+  animation-delay: -5s;
+}
+@keyframes floatOrb {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(24px, -20px) scale(1.08); }
+}
+
+/* Top Sticky Navigation Bar (Trainer Directory Header) */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 25;
+  width: 100%;
+  background: var(--bg-header);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border-bottom: 1px solid var(--border-subtle);
+  box-shadow: 0 4px 24px -6px rgba(11, 29, 58, 0.12);
+  transition: background 0.35s var(--ease-out-expo), border-color 0.35s var(--ease-out-expo);
+}
+.topbar-inner {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.brand-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+.logo-box {
+  height: 34px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  background: #FFFFFF;
+  border: 1px solid rgba(201, 154, 46, 0.28);
+  box-shadow: 0 2px 8px rgba(11, 29, 58, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.logo-box svg {
+  height: 24px;
+  width: auto;
+  display: block;
+}
+.verified-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  background: rgba(201, 154, 46, 0.11);
+  border: 1px solid rgba(201, 154, 46, 0.28);
+  color: var(--fare-gold);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+html[data-theme="dark"] .verified-pill {
+  color: var(--fare-gold-light);
+}
+.pulse-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background: var(--fare-emerald);
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.22);
+  animation: pulseDot 2s infinite;
+}
+@keyframes pulseDot {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.25); opacity: 0.65; }
+}
+
+.ctrl-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+.ctrl-btn {
+  height: 34px;
+  padding: 0 10px;
+  border-radius: 6px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  font-size: 11.5px;
+  font-weight: 700;
+  box-shadow: var(--shadow-card);
+}
+.ctrl-btn:hover {
+  border-color: var(--fare-gold);
+  background: var(--bg-card-hover);
+  transform: translateY(-1px);
+}
+.ctrl-btn svg {
+  width: 15px;
+  height: 15px;
+  color: var(--fare-gold);
+  flex-shrink: 0;
+}
+.ctrl-btn.icon-only {
+  width: 34px;
+  padding: 0;
+}
+
+/* Main App Container */
+.app {
+  position: relative;
+  z-index: 1;
+  max-width: 680px;
+  margin: 0 auto;
+  min-height: calc(100vh - 56px);
+  display: flex;
+  flex-direction: column;
+  padding: 14px 14px 24px;
+}
+
+.scr {
+  display: none;
+  flex-direction: column;
+  gap: 14px;
+  animation: fadeUp 0.5s var(--ease-out-expo);
+}
+.scr.on {
+  display: flex;
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Icon Badge Helper (Trainer Directory Stat Card style) */
+.ic-badge {
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #FFFFFF;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.16);
+  transition: transform 0.35s var(--ease-out-expo);
+}
+.ic-badge svg {
+  width: 18px;
+  height: 18px;
+}
+.ic-badge.gold { background: linear-gradient(135deg, #C99A2E 0%, #9E7419 100%); }
+.ic-badge.indigo { background: linear-gradient(135deg, #6366F1 0%, #4F46E5 100%); }
+.ic-badge.emerald { background: linear-gradient(135deg, #10B981 0%, #059669 100%); }
+.ic-badge.cyan { background: linear-gradient(135deg, #06B6D4 0%, #0891B2 100%); }
+.ic-badge.rose { background: linear-gradient(135deg, #F43F5E 0%, #E11D48 100%); }
+.ic-badge.navy { background: linear-gradient(135deg, #0B1D3A 0%, #163366 100%); }
+
+/* Primary & Ghost Buttons with Trainer Directory Shimmer */
+.btn {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 6px;
+  padding: 13px 22px;
+  font-weight: 800;
+  font-size: 14.5px;
+  letter-spacing: 0.01em;
+  background: linear-gradient(135deg, #C99A2E 0%, #A87B1B 100%);
+  color: #FFFFFF;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 8px 24px -6px rgba(201, 154, 46, 0.5);
+}
+.btn::after {
+  content: "";
+  position: absolute;
+  top: -20%;
+  bottom: -20%;
+  left: -60%;
+  width: 35%;
+  transform: skewX(-18deg);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+  transition: left 0.65s var(--ease-out-expo);
+}
+.btn:hover:not(:disabled)::after {
+  left: 130%;
+}
+.btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px -6px rgba(201, 154, 46, 0.65);
+}
+.btn svg {
+  width: 17px;
+  height: 17px;
+  flex-shrink: 0;
+}
+.btn.ghost {
+  background: var(--bg-card);
+  border: 1.5px solid var(--border-strong);
+  color: var(--text-primary);
+  box-shadow: var(--shadow-card);
+}
+.btn.ghost:hover:not(:disabled) {
+  border-color: var(--fare-gold);
+  background: var(--bg-card-hover);
+}
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+
+/* ===== BRAND LOGO & HERO BADGES ===== */
+.hero-brand-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+  animation: fadeUp 0.6s var(--ease-out-expo);
+}
+.hero-logo-box {
+  height: 52px;
+  padding: 8px 18px;
+  border-radius: 8px;
+  background: #FFFFFF;
+  border: 1px solid rgba(201, 154, 46, 0.45);
+  box-shadow: 0 10px 28px rgba(11, 29, 58, 0.12), 0 0 20px rgba(201, 154, 46, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.35s var(--ease-out-expo), box-shadow 0.35s ease, border-color 0.35s ease;
+  animation: heroLogoFloat 4s ease-in-out infinite;
+}
+html[data-theme="dark"] .hero-logo-box {
+  background: #FFFFFF;
+  border: 1px solid rgba(201, 154, 46, 0.6);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45), 0 0 24px rgba(201, 154, 46, 0.28);
+}
+.hero-logo-box:hover {
+  transform: translateY(-3px) scale(1.025);
+  border-color: var(--fare-gold);
+  box-shadow: 0 14px 36px rgba(201, 154, 46, 0.32);
+}
+.hero-logo-box svg {
+  height: 36px;
+  width: auto;
+  display: block;
+}
+.hero-brand-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  color: var(--fare-gold);
+  text-transform: uppercase;
+  background: rgba(201, 154, 46, 0.08);
+  border: 1px solid rgba(201, 154, 46, 0.28);
+  border-radius: 9999px;
+  padding: 4px 14px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  margin-top: 4px;
+}
+html[data-theme="dark"] .hero-brand-badge {
+  color: var(--fare-gold-light);
+  background: rgba(201, 154, 46, 0.12);
+  border-color: rgba(201, 154, 46, 0.35);
+}
+.gold-star {
+  color: var(--fare-gold);
+  font-size: 11px;
+  line-height: 1;
+}
+
+/* Results Screen Brand Badge */
+.res-brand-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 2px;
+}
+.res-logo-box {
+  height: 44px;
+  padding: 6px 14px;
+  border-radius: 8px;
+  background: #FFFFFF;
+  border: 1px solid rgba(201, 154, 46, 0.45);
+  box-shadow: 0 8px 24px rgba(11, 29, 58, 0.12), 0 0 16px rgba(201, 154, 46, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+html[data-theme="dark"] .res-logo-box {
+  background: #FFFFFF;
+  border: 1px solid rgba(201, 154, 46, 0.6);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.4), 0 0 20px rgba(201, 154, 46, 0.25);
+}
+.res-logo-box svg {
+  height: 30px;
+  width: auto;
+  display: block;
+}
+.res-laurel-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  color: var(--fare-gold);
+  text-transform: uppercase;
+}
+html[data-theme="dark"] .res-laurel-badge {
+  color: var(--fare-gold-light);
+}
+
+@keyframes heroLogoFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+/* Button Shimmer Sheen */
+.btn, .md2, #bYes, .ctaP .btn {
+  position: relative;
+  overflow: hidden;
+}
+.btn::after, .md2::after, #bYes::after, .ctaP .btn::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 40%;
+  height: 200%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.22) 50%,
+    transparent 100%
+  );
+  transform: rotate(25deg);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+}
+.btn:hover::after, .md2:hover::after, #bYes:hover::after, .ctaP .btn:hover::after {
+  opacity: 1;
+  animation: btnSheen 1.2s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+@keyframes btnSheen {
+  0% { left: -60%; }
+  100% { left: 140%; }
+}
+
+/* Floating Score Popups */
+.score-popup {
+  position: fixed;
+  font-size: 17px;
+  font-weight: 900;
+  border-radius: 9999px;
+  padding: 5px 14px;
+  pointer-events: none;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  animation: scorePopAnim 0.85s var(--ease-out-expo) forwards;
+}
+.score-popup.pos {
+  background: linear-gradient(135deg, #10B981, #059669);
+  color: #FFFFFF;
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
+}
+.score-popup.neg {
+  background: linear-gradient(135deg, #F43F5E, #E11D48);
+  color: #FFFFFF;
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
+}
+.score-popup.neu {
+  background: #0B1D3A;
+  color: var(--fare-gold-light);
+  border: 1.5px solid var(--fare-gold);
+}
+@keyframes scorePopAnim {
+  0% { transform: translate(-50%, 0) scale(0.6); opacity: 0; }
+  25% { transform: translate(-50%, -18px) scale(1.15); opacity: 1; }
+  100% { transform: translate(-50%, -48px) scale(0.95); opacity: 0; }
+}
+
+/* Water Ripple on Puddle */
+.puddle::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 1.5px solid rgba(56, 189, 248, 0.6);
+  transform: translate(-50%, -50%) scale(0.8);
+  opacity: 0;
+  animation: puddleRipple 1.8s ease-out infinite;
+}
+@keyframes puddleRipple {
+  0% { transform: translate(-50%, -50%) scale(0.6); opacity: 0.8; }
+  100% { transform: translate(-50%, -50%) scale(1.6); opacity: 0; }
+}
+
+/* Pipe Sparkle Burst Effect */
+.sparkle-burst {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #FDE047;
+  box-shadow: 0 0 12px 3px #F59E0B;
+  pointer-events: none;
+  z-index: 10;
+  animation: sparkleExplode 0.6s ease-out forwards;
+}
+@keyframes sparkleExplode {
+  0% { transform: scale(0.2); opacity: 1; }
+  50% { transform: scale(1.8); opacity: 1; }
+  100% { transform: scale(0); opacity: 0; }
+}
+
+/* Confetti Canvas */
+#confettiCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 99999;
+}
+
+@media (max-width: 480px) {
+  .hero-logo-box {
+    height: 44px;
+    padding: 6px 12px;
+  }
+  .hero-logo-box svg {
+    height: 28px;
+  }
+  .res-logo-box {
+    height: 38px;
+    padding: 5px 10px;
+  }
+  .res-logo-box svg {
+    height: 24px;
+  }
+}
+
+
+/* ===== HOME SCREEN ===== */
+.hm {
+  align-items: center;
+  text-align: center;
+  padding-top: 4px;
+}
+.section-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--fare-gold);
+  font-weight: 800;
+}
+html[data-theme="dark"] .section-eyebrow {
+  color: var(--fare-gold-light);
+}
+.eyebrow-bar {
+  width: 18px;
+  height: 3px;
+  border-radius: 99px;
+  background: linear-gradient(90deg, var(--fare-gold), var(--fare-gold-light));
+}
+.ht {
+  font-size: clamp(26px, 7vw, 36px);
+  font-weight: 900;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+.ht em {
+  font-style: normal;
+  background: linear-gradient(135deg, #C99A2E 0%, #E4C46A 55%, #C99A2E 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hsub {
+  font-size: 13.5px;
+  color: var(--text-muted);
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+/* Home Pipeline Preview Card */
+.hpipe {
+  width: 100%;
+  background: var(--bg-card);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  padding: 18px 12px 12px;
+  box-shadow: var(--shadow-card);
+  position: relative;
+  overflow: hidden;
+}
+.hpipe::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--fare-indigo), var(--fare-gold), var(--fare-emerald));
+}
+.hpp {
+  display: flex;
+  align-items: center;
+}
+.hpp .cap {
+  width: 8px;
+  height: 46px;
+  background: linear-gradient(180deg, #1E3A6E, #0B1D3A);
+  border-radius: 4px;
+  flex: none;
+}
+.hsg {
+  position: relative;
+  flex: 1;
+  height: 40px;
+  background: linear-gradient(180deg, #9F2D3A 0%, #F4838F 50%, #8C212E 100%);
+  border-right: 2px solid #0B1D3A;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hsg span {
+  background: rgba(255, 255, 255, 0.96);
+  color: #0B1D3A;
+  font-size: 9.5px;
+  font-weight: 800;
+  padding: 2px 5px;
+  border-radius: 4px;
+  line-height: 1.15;
+  text-align: center;
+  max-width: 94%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+.hsg i {
+  position: absolute;
+  top: 100%;
+  left: 44%;
+  width: 7px;
+  height: 10px;
+  background: #38BDF8;
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  opacity: 0;
+  animation: hdrip 1.3s infinite ease-in;
+}
+.hsg i + i { left: 56%; animation-delay: 0.65s; }
+.hsg:nth-child(3) i { animation-delay: 0.3s; }
+.hsg:nth-child(4) i { animation-delay: 0.9s; }
+.hsg:nth-child(5) i { animation-delay: 0.5s; }
+.hsg:nth-child(6) i { animation-delay: 1.1s; }
+@keyframes hdrip {
+  0% { transform: translateY(0); opacity: 0; }
+  20% { opacity: 1; }
+  100% { transform: translateY(26px); opacity: 0; }
+}
+.htap {
+  position: relative;
+  width: 52px;
+  height: 50px;
+  flex: none;
+}
+.htap svg { width: 52px; height: 50px; }
+.htap .rs {
+  position: absolute;
+  left: 30px;
+  top: 44px;
+  font-size: 12px;
+  opacity: 0;
+  animation: hdrip 1.4s infinite ease-in;
+}
+.hpn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 32px;
+  font-size: 12px;
+  color: var(--text-secondary);
+  padding: 0 4px;
+  font-weight: 600;
+}
+.hpn-alert {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.hpn-alert svg {
+  width: 15px;
+  height: 15px;
+  color: var(--fare-rose-light);
+}
+.hpn span:last-child {
+  color: var(--fare-gold);
+  font-weight: 800;
+}
+
+/* Story / Instructions Glass Card */
+.story {
+  width: 100%;
+  background: var(--bg-card);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: left;
+  box-shadow: var(--shadow-card);
+  position: relative;
+  overflow: hidden;
+}
+.story::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--fare-gold), var(--fare-indigo));
+}
+.story-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  font-size: 13.5px;
+  color: var(--text-secondary);
+  line-height: 1.45;
+  font-weight: 500;
+}
+.story-row strong {
+  color: var(--text-primary);
+  font-weight: 800;
+}
+.story-row .hl-emerald { color: var(--fare-emerald); font-weight: 800; }
+.story-row .hl-gold { color: var(--fare-gold); font-weight: 800; }
+.story-row .hl-rose, .story-row .hl-red { color: var(--fare-rose); font-weight: 800; }
+html[data-theme="dark"] .story-row .hl-rose, html[data-theme="dark"] .story-row .hl-red {
+  color: var(--fare-rose-light);
+}
+
+/* Game Mode Selection Cards (Trainer Directory Featured Card style) */
+.modes2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  width: 100%;
+}
+.md2 {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  padding: 18px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+  box-shadow: var(--shadow-float);
+  transition: all 0.4s var(--ease-out-expo);
+}
+.md2:hover {
+  transform: translateY(-4px);
+}
+.md2 .mi {
+  width: 46px;
+  height: 46px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.35s var(--ease-out-expo);
+}
+.md2:hover .mi {
+  transform: scale(1.1);
+}
+.md2 .mi svg {
+  width: 24px;
+  height: 24px;
+}
+.md2 b {
+  font-size: 15.5px;
+  font-weight: 800;
+  line-height: 1.25;
+}
+.md2 small {
+  font-size: 12px;
+  font-weight: 500;
+  opacity: 0.9;
+  line-height: 1.35;
+}
+.md2.a {
+  background: linear-gradient(160deg, #0B1D3A 0%, #122E5E 100%);
+  color: #FFFFFF;
+  border: 1.5px solid rgba(201, 154, 46, 0.55);
+}
+.md2.a::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #C99A2E, #E4C46A);
+}
+.md2.a .mi {
+  background: linear-gradient(135deg, #C99A2E 0%, #9E7419 100%);
+  color: #FFFFFF;
+  box-shadow: 0 6px 16px rgba(201, 154, 46, 0.4);
+}
+.md2.b {
+  background: var(--bg-card-solid);
+  color: var(--text-primary);
+  border: 1.5px solid var(--border-subtle);
+}
+.md2.b:hover {
+  border-color: var(--fare-emerald);
+}
+.md2.b::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #10B981, #06B6D4);
+}
+.md2.b .mi {
+  background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+  color: #FFFFFF;
+  box-shadow: 0 6px 16px rgba(16, 185, 129, 0.35);
+}
+
+/* Share & Contact Footer */
+.shareB {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-decoration: none;
+  border: 1.5px solid rgba(16, 185, 129, 0.45);
+  background: rgba(16, 185, 129, 0.1);
+  color: var(--fare-emerald);
+  border-radius: 9999px;
+  padding: 10px 22px;
+  font-weight: 800;
+  font-size: 13.5px;
+  cursor: pointer;
+  transition: all 0.35s var(--ease-out-expo);
+}
+.shareB:hover {
+  background: rgba(16, 185, 129, 0.18);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px -4px rgba(16, 185, 129, 0.3);
+}
+.shareB svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* ===== POLISHED CONTACT DESK & REAL-TIME BRAND CHIPS ===== */
+.contact {
+  width: 100%;
+  margin-top: 14px;
+  padding: 16px 8px 6px;
+  border-top: 1px solid var(--border-subtle);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.contact::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 20%;
+  right: 20%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--fare-gold), transparent);
+  opacity: 0.65;
+}
+
+.contact-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 12px;
+  width: 100%;
+  max-width: 520px;
+}
+.contact-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201, 154, 46, 0.45));
+}
+.contact-line:last-child {
+  background: linear-gradient(90deg, rgba(201, 154, 46, 0.45), transparent);
+}
+.contact-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 3px 12px;
+  border-radius: 9999px;
+  background: rgba(201, 154, 46, 0.08);
+  border: 1px solid rgba(201, 154, 46, 0.28);
+  box-shadow: 0 2px 8px rgba(11, 29, 58, 0.04);
+}
+html[data-theme="dark"] .contact-badge {
+  background: rgba(201, 154, 46, 0.14);
+  border: 1px solid rgba(201, 154, 46, 0.4);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+.contact-title {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, #C99A2E 0%, #E4C46A 50%, #C99A2E 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.cl {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.cl-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  text-decoration: none;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-weight: 700;
+  font-size: 12px;
+  color: var(--text-primary);
+  box-shadow: var(--shadow-card);
+  transition: all 0.25s var(--ease-out-expo);
+  position: relative;
+  user-select: none;
+}
+.cl-item:hover {
+  transform: translateY(-2px);
+}
+.cl-item:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.cl-ic {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.25s ease;
+}
+.cl-ic svg {
+  width: 13px;
+  height: 13px;
+  display: block;
+}
+.cl-label {
+  white-space: nowrap;
+  font-size: 12px;
+  letter-spacing: -0.01em;
+}
+
+/* 1. Real-Time Phone (Calling Blue #2563EB) */
+.cl-item.phone .cl-ic {
+  background: rgba(37, 99, 235, 0.12);
+  color: #2563EB;
+  border: 1px solid rgba(37, 99, 235, 0.22);
+}
+html[data-theme="dark"] .cl-item.phone .cl-ic {
+  background: rgba(59, 130, 246, 0.2);
+  color: #60A5FA;
+  border: 1px solid rgba(59, 130, 246, 0.4);
+}
+.cl-item.phone:hover {
+  border-color: #2563EB;
+  color: #2563EB;
+  box-shadow: 0 6px 18px rgba(37, 99, 235, 0.2);
+  background: rgba(37, 99, 235, 0.04);
+}
+html[data-theme="dark"] .cl-item.phone:hover {
+  border-color: #60A5FA;
+  color: #93C5FD;
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.35);
+  background: rgba(37, 99, 235, 0.15);
+}
+.cl-item.phone:hover .cl-ic {
+  background: #2563EB;
+  color: #FFFFFF;
+  border-color: #2563EB;
+  transform: scale(1.1);
+}
+
+/* 2. Real-Time WhatsApp (Official Green #25D366 / #16A34A) */
+.cl-item.wa .cl-ic {
+  background: rgba(37, 211, 102, 0.14);
+  color: #15803D;
+  border: 1px solid rgba(37, 211, 102, 0.28);
+}
+html[data-theme="dark"] .cl-item.wa .cl-ic {
+  background: rgba(37, 211, 102, 0.22);
+  color: #25D366;
+  border: 1px solid rgba(37, 211, 102, 0.45);
+}
+.cl-item.wa:hover {
+  border-color: #22C55E;
+  color: #15803D;
+  box-shadow: 0 6px 18px rgba(37, 211, 102, 0.25);
+  background: rgba(37, 211, 102, 0.05);
+}
+html[data-theme="dark"] .cl-item.wa:hover {
+  border-color: #4ADE80;
+  color: #86EFAC;
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.35);
+  background: rgba(37, 211, 102, 0.15);
+}
+.cl-item.wa:hover .cl-ic {
+  background: #22C55E;
+  color: #FFFFFF;
+  border-color: #22C55E;
+  transform: scale(1.1);
+}
+
+/* 3. Real-Time Web Portal (FARE Luxury Gold #C99A2E) */
+.cl-item.web .cl-ic {
+  background: rgba(201, 154, 46, 0.14);
+  color: #B48216;
+  border: 1px solid rgba(201, 154, 46, 0.28);
+}
+html[data-theme="dark"] .cl-item.web .cl-ic {
+  background: rgba(201, 154, 46, 0.22);
+  color: #E4C46A;
+  border: 1px solid rgba(201, 154, 46, 0.45);
+}
+.cl-item.web:hover {
+  border-color: var(--fare-gold);
+  color: var(--fare-gold-dark);
+  box-shadow: 0 6px 18px rgba(201, 154, 46, 0.22);
+  background: rgba(201, 154, 46, 0.05);
+}
+html[data-theme="dark"] .cl-item.web:hover {
+  border-color: var(--fare-gold-light);
+  color: #FDE047;
+  box-shadow: 0 6px 20px rgba(201, 154, 46, 0.35);
+  background: rgba(201, 154, 46, 0.15);
+}
+.cl-item.web:hover .cl-ic {
+  background: linear-gradient(135deg, #C99A2E, #E4C46A);
+  color: #0B1D3A;
+  border-color: #C99A2E;
+  transform: scale(1.1);
+}
+
+/* 4. Real-Time Instagram (Signature Sunset / Berry #E1306C) */
+.cl-item.ig .cl-ic {
+  background: rgba(225, 48, 108, 0.12);
+  color: #E1306C;
+  border: 1px solid rgba(225, 48, 108, 0.26);
+}
+html[data-theme="dark"] .cl-item.ig .cl-ic {
+  background: rgba(225, 48, 108, 0.22);
+  color: #F472B6;
+  border: 1px solid rgba(225, 48, 108, 0.45);
+}
+.cl-item.ig:hover {
+  border-color: #E1306C;
+  color: #BE185D;
+  box-shadow: 0 6px 18px rgba(225, 48, 108, 0.22);
+  background: rgba(225, 48, 108, 0.05);
+}
+html[data-theme="dark"] .cl-item.ig:hover {
+  border-color: #F472B6;
+  color: #FBCFE8;
+  box-shadow: 0 6px 20px rgba(225, 48, 108, 0.35);
+  background: rgba(225, 48, 108, 0.15);
+}
+.cl-item.ig:hover .cl-ic {
+  background: linear-gradient(135deg, #f09433, #dc2743, #bc1888);
+  color: #FFFFFF;
+  border-color: #dc2743;
+  transform: scale(1.1);
+}
+
+@media (max-width: 480px) {
+  .contact-header {
+    gap: 8px;
+  }
+  .contact-line {
+    max-width: 24px;
+  }
+  .contact-title {
+    font-size: 9.5px;
+    letter-spacing: 0.08em;
+  }
+  .cl {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+  }
+  .cl-item {
+    padding: 7px 9px;
+    font-size: 11px;
+    justify-content: center;
+  }
+}
+
+/* ===== PLAY SCREEN ===== */
+.bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--bg-card);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  padding: 10px 12px;
+  box-shadow: var(--shadow-card);
+}
+.bar .pg {
+  flex: 1;
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+}
+.bar .pg span {
+  display: flex;
+  gap: 4px;
+  margin-top: 5px;
+}
+.bar .pg i {
+  flex: 1;
+  height: 5px;
+  border-radius: 3px;
+  background: var(--border-subtle);
+  transition: background 0.3s;
+}
+.bar .pg i.d { background: var(--fare-gold); }
+.bar .pg i.c { background: var(--fare-emerald); box-shadow: 0 0 8px rgba(16, 185, 129, 0.6); }
+.bar .sc {
+  background: linear-gradient(135deg, #0B1D3A 0%, #122E5E 100%);
+  border: 1px solid rgba(201, 154, 46, 0.4);
+  color: #FFFFFF;
+  border-radius: 6px;
+  padding: 4px 12px;
+  text-align: center;
+  min-width: 68px;
+}
+.bar .sc small {
+  display: block;
+  font-size: 9px;
+  color: var(--fare-gold-light);
+  letter-spacing: 0.12em;
+  font-weight: 800;
+}
+.bar .sc b {
+  font-size: 17px;
+  font-weight: 900;
+}
+
+/* Interactive Funnel Scene */
+.scene {
+  position: relative;
+  height: 365px;
+  border-radius: 10px;
+  background: var(--bg-scene);
+  overflow: hidden;
+  border: 1px solid rgba(201, 154, 46, 0.28);
+  box-shadow: var(--shadow-float);
+}
+.scene::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.06) 1px, transparent 0);
+  background-size: 24px 24px;
+  pointer-events: none;
+}
+.scene::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 68%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 5%, rgba(201, 154, 46, 0.28) 50%, transparent 95%);
+  pointer-events: none;
+}
+.pipe {
+  position: absolute;
+  left: 3%;
+  right: 15%;
+  top: 18px;
+  height: 34px;
+  display: flex;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+.pipe .sg {
+  flex: 1;
+  position: relative;
+  background: linear-gradient(180deg, #3B4F7A 0%, #94A8D0 50%, #2C3D63 100%);
+  border-right: 2px solid #0B1D3A;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.4s, box-shadow 0.4s;
+}
+.pipe .sg:last-child {
+  border-right: none;
+}
+.pipe .sg span {
+  background: rgba(255, 255, 255, 0.95);
+  color: #0B1D3A;
+  font-size: 9px;
+  font-weight: 800;
+  padding: 2.5px 5px;
+  border-radius: 4px;
+  line-height: 1.1;
+  text-align: center;
+  max-width: 94%;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+.pipe .sg.lk {
+  background: linear-gradient(180deg, #9F2D3A 0%, #F4838F 50%, #8C212E 100%);
+  box-shadow: inset 0 0 12px rgba(244, 63, 94, 0.5);
+}
+.pipe .sg.fx {
+  background: linear-gradient(180deg, #059669 0%, #6EE7B7 50%, #047857 100%);
+  box-shadow: inset 0 0 12px rgba(16, 185, 129, 0.5);
+}
+.ptap {
+  position: absolute;
+  right: 2%;
+  top: 8px;
+  width: 50px;
+  height: 50px;
+  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.4));
+}
+.ptap svg { width: 50px; height: 50px; }
+
+.rs {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.18em;
+  height: 1.18em;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #FDE68A, #C99A2E 65%, #8A5A00);
+  color: #0B1D3A;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 0.95em;
+  line-height: 1;
+  box-shadow: 0 0 0 1.5px #B88A22 inset;
+  vertical-align: -0.1em;
+}
+
+.coins {
+  position: absolute;
+  right: 5%;
+  top: 54px;
+  width: 20px;
+  height: 70px;
+}
+.coins i {
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 13px;
+  opacity: 0;
+  animation: coin 1.1s infinite ease-in;
+}
+.coins i:nth-child(2) { animation-delay: 0.35s; left: 6px; }
+.coins i:nth-child(3) { animation-delay: 0.7s; left: -4px; }
+.coins i.off { display: none; }
+@keyframes coin {
+  0% { transform: translateY(0); opacity: 0; }
+  15% { opacity: 1; }
+  100% { transform: translateY(60px); opacity: 0; }
+}
+
+.drops {
+  position: absolute;
+  top: 52px;
+  width: 40px;
+  height: 54px;
+  margin-left: -20px;
+}
+.drops i {
+  position: absolute;
+  width: 7.5px;
+  height: 10px;
+  background: #38BDF8;
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  opacity: 0;
+  animation: drip 0.95s infinite ease-in;
+  filter: drop-shadow(0 0 4px #38BDF8);
+}
+.drops i:nth-child(1) { left: 6px; }
+.drops i:nth-child(2) { left: 18px; animation-delay: 0.25s; }
+.drops i:nth-child(3) { left: 12px; animation-delay: 0.5s; }
+.drops i:nth-child(4) { left: 26px; animation-delay: 0.75s; }
+.drops i:nth-child(5) { left: 2px; animation-delay: 0.9s; }
+.drops i:nth-child(6) { left: 22px; animation-delay: 0.6s; }
+.drops i.off { display: none; }
+@keyframes drip {
+  0% { transform: translateY(0); opacity: 0; }
+  15% { opacity: 1; }
+  100% { transform: translateY(48px); opacity: 0; }
+}
+
+.puddle {
+  position: absolute;
+  top: 102px;
+  height: 14px;
+  margin-left: -40px;
+  width: 80px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, #38BDF8 0%, rgba(56, 189, 248, 0.4) 55%, transparent 72%);
+  transition: transform 0.6s;
+  transform-origin: center;
+  box-shadow: 0 0 16px rgba(56, 189, 248, 0.35);
+}
+.puddle small {
+  position: absolute;
+  top: 11px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-size: 9.5px;
+  font-weight: 800;
+  color: #7DD3FC;
+  letter-spacing: 0.04em;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+}
+
+.patches {
+  position: absolute;
+  top: 12px;
+  height: 48px;
+  width: 60px;
+  margin-left: -30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+.patch {
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #C99A2E, #8A5A00);
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.35);
+  animation: stick 0.45s cubic-bezier(0.2, 1.6, 0.4, 1);
+}
+.patch svg { width: 15px; height: 15px; }
+@keyframes stick {
+  from { transform: scale(2.2) rotate(-30deg); opacity: 0; }
+}
+.patch.fall {
+  animation: fall 1.1s ease-in forwards;
+}
+@keyframes fall {
+  0% { transform: none; }
+  30% { transform: rotate(25deg); }
+  100% { transform: translateY(150px) rotate(140deg); opacity: 0; }
+}
+.clamp {
+  position: absolute;
+  top: -5px;
+  width: 30px;
+  height: 46px;
+  border-radius: 6px;
+  border: 4px solid #6EE7B7;
+  background: rgba(16, 185, 129, 0.25);
+  box-shadow: 0 0 0 2px #059669, 0 0 16px rgba(16, 185, 129, 0.85);
+  animation: stick 0.45s cubic-bezier(0.2, 1.6, 0.4, 1);
+}
+.fixtag, .leaktag {
+  position: absolute;
+  top: -21px;
+  font-size: 9.5px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: #FFFFFF;
+  border-radius: 9999px;
+  padding: 2px 8px;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.35);
+}
+.fixtag {
+  background: linear-gradient(135deg, #10B981, #059669);
+}
+.leaktag {
+  background: linear-gradient(135deg, #F43F5E, #E11D48);
+  animation: pul 1.2s infinite;
+}
+.fixtag svg, .leaktag svg { width: 11px; height: 11px; }
+@keyframes pul {
+  50% { transform: scale(1.08); }
+}
+
+/* Scene Avatars (TL & Candidate) */
+.who {
+  position: absolute;
+  bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: left 0.7s var(--ease-out-expo), bottom 0.7s var(--ease-out-expo), transform 0.7s var(--ease-out-expo), opacity 0.5s;
+  z-index: 3;
+}
+.who::before {
+  content: "";
+  position: absolute;
+  bottom: 14px;
+  width: 48px;
+  height: 12px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(201, 154, 46, 0.28) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: -1;
+}
+.who .av {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #102B63 0%, #0B1D3A 100%);
+  border: 2px solid var(--fare-gold);
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(201, 154, 46, 0.3);
+  position: relative;
+}
+.who .av svg {
+  width: 27px;
+  height: 27px;
+  color: var(--fare-gold-light);
+}
+.who .av .bd {
+  position: absolute;
+  right: -6px;
+  bottom: -4px;
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #C99A2E 0%, #9E7419 100%);
+  border: 1.5px solid #FFFFFF;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
+}
+.who .av .bd svg {
+  width: 13px;
+  height: 13px;
+  color: #FFFFFF;
+}
+.who .nm {
+  font-size: 10px;
+  font-weight: 800;
+  background: rgba(11, 29, 58, 0.94);
+  color: #FFFFFF;
+  border: 1px solid rgba(201, 154, 46, 0.32);
+  border-radius: 9999px;
+  padding: 2.5px 8px;
+  margin-top: 5px;
+  white-space: nowrap;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  letter-spacing: 0.02em;
+}
+#tl { left: 20px; }
+#cand { left: calc(100% - 74px); }
+#cand.enter { animation: walkin 0.55s var(--ease-out-expo); }
+@keyframes walkin {
+  from { transform: translateX(110px); opacity: 0; }
+}
+#cand.out { transform: translateX(160px); opacity: 0; }
+#cand.bob .av { animation: bob 1.4s ease-in-out infinite; }
+@keyframes bob {
+  50% { transform: translateY(-4px); }
+}
+
+/* Scene Side Cards (Problem & Candidate/Idea) */
+.side {
+  position: absolute;
+  top: 124px;
+  width: calc(50% - 14px);
+  max-width: 330px;
+  border-radius: 10px;
+  padding: 12px 14px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45), 0 2px 8px rgba(0, 0, 0, 0.2);
+  z-index: 2;
+  backdrop-filter: blur(16px);
+  box-sizing: border-box;
+}
+.side::after {
+  content: "";
+  position: absolute;
+  bottom: -7px;
+  width: 14px;
+  height: 14px;
+  transform: rotate(45deg);
+}
+.side small {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 9.5px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+.side small svg { width: 12px; height: 12px; flex-shrink: 0; }
+
+#tlCard {
+  left: 10px;
+  background: #FFFDF9;
+  color: #0B1D3A;
+  border: 1px solid rgba(244, 63, 94, 0.25);
+  border-left: 4.5px solid var(--fare-rose);
+}
+#tlCard::after {
+  left: 34px;
+  background: #FFFDF9;
+  border-bottom: 1px solid rgba(244, 63, 94, 0.25);
+  border-right: 1px solid rgba(244, 63, 94, 0.25);
+}
+#tlCard small { color: var(--fare-rose); }
+#tlCard b {
+  display: block;
+  font-size: 13px;
+  line-height: 1.42;
+  font-weight: 700;
+  color: #0B1D3A;
+}
+
+#cCard {
+  right: 10px;
+  background: #FFFFFF;
+  color: #0B1D3A;
+  border: 1px solid rgba(201, 154, 46, 0.28);
+  border-right: 4.5px solid var(--fare-gold);
+  animation: fadeUp 0.35s var(--ease-out-expo);
+}
+#cCard::after {
+  right: 34px;
+  background: #FFFFFF;
+  border-bottom: 1px solid rgba(201, 154, 46, 0.28);
+  border-right: 1px solid rgba(201, 154, 46, 0.28);
+}
+#cCard small { color: var(--fare-gold-dark); }
+#cCard .row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+#cCard .row .c-ic {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: rgba(201, 154, 46, 0.14);
+  color: var(--fare-gold-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+#cCard .row .c-ic svg { width: 17px; height: 17px; }
+#cCard b {
+  font-size: 13.5px;
+  line-height: 1.3;
+  font-weight: 800;
+  color: #0B1D3A;
+}
+#cCard p {
+  font-size: 11.5px;
+  color: #475569;
+  line-height: 1.4;
+  margin-top: 5px;
+  font-weight: 500;
+}
+#cCard.st {
+  background: #F0FDF9;
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  border-right-color: var(--fare-emerald);
+}
+#cCard.st::after {
+  background: #F0FDF9;
+  border-bottom: 1px solid rgba(16, 185, 129, 0.25);
+  border-right: 1px solid rgba(16, 185, 129, 0.25);
+}
+#cCard.st small { color: var(--fare-emerald-dark); }
+#cCard.st .row .c-ic {
+  background: rgba(16, 185, 129, 0.15);
+  color: var(--fare-emerald-dark);
+}
+#cCard.gone {
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: all 0.3s;
+}
+
+/* Reaction Speech Bubble */
+.bub {
+  position: absolute;
+  left: 50%;
+  bottom: 82px;
+  width: 66%;
+  margin-left: -33%;
+  z-index: 4;
+  background: #FFFFFF;
+  color: #0B1D3A;
+  border-radius: 10px;
+  border-top: 3.5px solid var(--fare-gold);
+  text-align: center;
+  padding: 10px 14px;
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1.38;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.5), 0 2px 8px rgba(0, 0, 0, 0.25);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: all 0.3s var(--ease-out-expo);
+}
+.bub.show {
+  opacity: 1;
+  transform: none;
+}
+.bub small {
+  display: block;
+  font-weight: 600;
+  color: #475569;
+  font-size: 11.5px;
+  margin-top: 3px;
+}
+
+/* Team Roster Bar in Scene */
+.team {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  background: rgba(11, 29, 58, 0.78);
+  border: 1px solid rgba(201, 154, 46, 0.25);
+  border-radius: 9999px;
+  padding: 3px 14px 4px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(8px);
+  z-index: 2;
+}
+.team small {
+  font-size: 8.5px;
+  font-weight: 800;
+  color: var(--fare-gold-light);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.team span {
+  display: flex;
+  gap: 4px;
+  min-height: 22px;
+  align-items: center;
+}
+.team-chip {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  background: rgba(16, 185, 129, 0.22);
+  border: 1px solid #10B981;
+  color: #6EE7B7;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+.team-chip svg { width: 12px; height: 12px; }
+
+/* Action Decision Buttons (Reject / Hire / Implement) */
+.acts {
+  display: flex;
+  gap: 12px;
+  position: relative;
+  max-width: 520px;
+  margin: 0 auto;
+  width: 100%;
+}
+.acts button {
+  flex: 1;
+  border-radius: 8px;
+  padding: 13px 16px;
+  font-weight: 800;
+  font-size: 15.5px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: var(--shadow-card);
+  transition: all 0.25s var(--ease-out-expo);
+  cursor: pointer;
+}
+.acts button:active:not(:disabled) {
+  transform: scale(0.98);
+}
+.acts button svg {
+  width: 19px;
+  height: 19px;
+}
+#bNo {
+  background: var(--bg-card-solid);
+  border: 1.5px solid rgba(244, 63, 94, 0.38);
+  color: var(--text-primary);
+}
+#bNo:hover:not(:disabled) {
+  background: rgba(244, 63, 94, 0.1);
+  border-color: var(--fare-rose);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px -4px rgba(244, 63, 94, 0.3);
+}
+#bNo svg { color: var(--fare-rose-light); }
+#bYes {
+  background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #FFFFFF;
+  box-shadow: 0 6px 20px -4px rgba(16, 185, 129, 0.5);
+}
+#bYes:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 26px -4px rgba(16, 185, 129, 0.65);
+}
+.acts button:disabled { opacity: 0.45; cursor: not-allowed; }
+
+.handH {
+  position: absolute;
+  pointer-events: none;
+  animation: hh 1.1s infinite;
+  z-index: 5;
+  color: var(--fare-gold-light);
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));
+}
+.handH svg { width: 32px; height: 32px; }
+@keyframes hh {
+  50% { transform: translate(-6px, 8px) scale(0.92); }
+}
+
+.foot {
+  text-align: center;
+  font-size: 11.5px;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+/* ===== RESULTS SCREEN ===== */
+.rs2 {
+  align-items: center;
+  text-align: center;
+  padding-top: 10px;
+}
+.rs2 .stt {
+  display: inline-flex;
+  gap: 8px;
+  color: var(--fare-gold);
+}
+.rs2 .stt svg {
+  width: 36px;
+  height: 36px;
+  fill: var(--fare-gold);
+  filter: drop-shadow(0 4px 12px rgba(201, 154, 46, 0.4));
+}
+.rs2 .sum {
+  font-size: 15px;
+  color: var(--text-secondary);
+}
+.lv2 {
+  width: 100%;
+  border: 1px solid rgba(16, 185, 129, 0.4);
+  border-radius: 8px;
+  padding: 16px;
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-align: left;
+  box-shadow: 0 10px 28px -6px rgba(16, 185, 129, 0.45);
+}
+.lv2:hover {
+  transform: translateY(-2px);
+}
+.lv2 b { display: block; font-size: 16px; font-weight: 800; }
+.lv2 small { font-size: 12.5px; opacity: 0.92; }
+.rbtn {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+}
+.rbtn .btn { flex: 1; }
+
+/* ===== OVERLAYS & MODALS (Trainer Directory Glass Dialogs) ===== */
+.ov {
+  position: fixed;
+  inset: 0;
+  background: var(--bg-overlay);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  z-index: 40;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 24px 14px;
+  overflow: auto;
+}
+.ov.hide { display: none; }
+
+.panel {
+  background: var(--bg-panel);
+  color: var(--text-primary);
+  border: 1px solid var(--border-strong);
+  border-radius: 8px;
+  padding: 24px 20px;
+  max-width: 470px;
+  width: 100%;
+  margin: auto;
+  text-align: center;
+  box-shadow: var(--shadow-float);
+  position: relative;
+  overflow: hidden;
+  animation: pop 0.4s var(--ease-out-expo);
+}
+.panel::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--fare-indigo), var(--fare-gold), var(--fare-emerald));
+}
+@keyframes pop {
+  from { transform: scale(0.92) translateY(10px); opacity: 0; }
+  to { transform: scale(1) translateY(0); opacity: 1; }
+}
+.panel .big-ic {
+  width: 56px;
+  height: 56px;
+  border-radius: 10px;
+  margin: 0 auto 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(201, 154, 46, 0.18), rgba(201, 154, 46, 0.05));
+  border: 1px solid rgba(201, 154, 46, 0.35);
+  color: var(--fare-gold);
+}
+.panel .big-ic svg { width: 28px; height: 28px; }
+.panel h2 {
+  font-size: 22px;
+  font-weight: 900;
+  line-height: 1.25;
+  margin: 6px 0;
+}
+.panel p {
+  font-size: 13.5px;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+.panel .btn { margin-top: 14px; }
+
+/* Briefing Modal */
+.brief .tg {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  background: linear-gradient(135deg, #F43F5E, #E11D48);
+  border-radius: 9999px;
+  padding: 5px 14px;
+}
+.brief .tg svg { width: 13px; height: 13px; }
+.brief h3 {
+  font-size: 19px;
+  font-weight: 800;
+  line-height: 1.35;
+  margin: 12px 0 8px;
+  color: var(--text-primary);
+}
+.brief .rule {
+  display: flex;
+  gap: 10px;
+  margin: 14px 0;
+}
+.brief .rule div {
+  flex: 1;
+  border-radius: 6px;
+  padding: 12px 8px;
+  font-size: 12.5px;
+  font-weight: 700;
+  line-height: 1.35;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+.brief .rule .y {
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  color: var(--fare-emerald);
+}
+.brief .rule .n {
+  background: rgba(244, 63, 94, 0.1);
+  border: 1px solid rgba(244, 63, 94, 0.28);
+  color: var(--fare-rose-light);
+}
+.brief .rule svg { width: 22px; height: 22px; }
+.brief .btn { width: 100%; margin: 0; }
+
+/* Round End Fit List */
+.fitT {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+  color: var(--fare-gold);
+  text-transform: uppercase;
+  margin-top: 12px;
+}
+.fitL {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 8px;
+  max-height: 42vh;
+  overflow: auto;
+  text-align: left;
+}
+.fr {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--bg-panel-inner);
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+  padding: 10px;
+  border-left: 4px solid var(--fare-indigo);
+}
+.fr.pf { border-left-color: var(--fare-emerald); }
+.fr .tx { flex: 1; min-width: 0; }
+.fr .tx b {
+  display: block;
+  font-size: 13px;
+  color: var(--text-primary);
+  font-weight: 800;
+}
+.fr .tx small {
+  display: block;
+  font-size: 11.5px;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+.fr .tg2 {
+  font-size: 10.5px;
+  font-weight: 800;
+  text-align: right;
+  color: var(--fare-emerald);
+  white-space: nowrap;
+}
+.fr .tg2 i { display: block; font-style: normal; margin-top: 2px; }
+.fr .tg2 i.m { color: var(--text-muted); }
+
+/* ===== REDESIGNED JOIN / REGISTRATION MODAL ===== */
+.joinP {
+  max-width: 420px;
+  width: 100%;
+  padding: 28px 24px 22px;
+  position: relative;
+  overflow: visible;
+  border-radius: 12px;
+  border: 1px solid rgba(201, 154, 46, 0.45);
+  box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.45), 0 0 24px rgba(201, 154, 46, 0.2);
+  animation: modalPopIn 0.35s var(--ease-out-expo);
+}
+@keyframes modalPopIn {
+  from { opacity: 0; transform: scale(0.94) translateY(12px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* Close button (top right) */
+.panel-close-btn {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s var(--ease-out-expo);
+  z-index: 10;
+}
+.panel-close-btn:hover {
+  background: var(--bg-card-hover);
+  color: var(--text-primary);
+  border-color: var(--fare-gold);
+  transform: rotate(90deg) scale(1.08);
+}
+.panel-close-btn svg {
+  width: 15px;
+  height: 15px;
+}
+
+/* Dual-halo avatar badge */
+.join-avatar-wrap {
+  position: relative;
+  width: 68px;
+  height: 68px;
+  margin: 0 auto 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.join-avatar-glow {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(201, 154, 46, 0.3) 0%, transparent 70%);
+  animation: pulseDot 3s ease-in-out infinite;
+}
+.join-avatar-badge {
+  position: relative;
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(201, 154, 46, 0.18) 0%, rgba(201, 154, 46, 0.06) 100%);
+  border: 1.5px solid rgba(201, 154, 46, 0.45);
+  box-shadow: 0 6px 18px rgba(201, 154, 46, 0.22);
+  color: var(--fare-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+html[data-theme="dark"] .join-avatar-badge {
+  background: linear-gradient(135deg, #102B63 0%, #0B1D3A 100%);
+  border-color: rgba(201, 154, 46, 0.6);
+  color: var(--fare-gold-light);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.4), 0 0 14px rgba(201, 154, 46, 0.25);
+}
+.join-avatar-badge svg {
+  width: 26px;
+  height: 26px;
+}
+
+/* Headings */
+.joinP h2 {
+  font-size: 22px;
+  font-weight: 900;
+  letter-spacing: -0.015em;
+  color: var(--text-primary);
+  margin: 0 0 6px;
+  line-height: 1.25;
+}
+.join-sub-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 12px;
+  border-radius: 9999px;
+  background: rgba(201, 154, 46, 0.08);
+  border: 1px solid rgba(201, 154, 46, 0.25);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--fare-gold);
+  margin-bottom: 20px;
+}
+html[data-theme="dark"] .join-sub-badge {
+  background: rgba(201, 154, 46, 0.12);
+  color: var(--fare-gold-light);
+}
+
+/* Form Groups & Inputs */
+.joinP form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  text-align: left;
+}
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.lbl-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11.5px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+}
+.lbl-req {
+  color: var(--fare-rose);
+  font-size: 13px;
+  font-weight: 900;
+}
+
+/* Text Field Wrapper */
+.field-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.field-icon {
+  position: absolute;
+  left: 14px;
+  color: var(--text-muted);
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.25s ease;
+}
+.field-icon svg {
+  width: 17px;
+  height: 17px;
+}
+.joinP input#jName {
+  width: 100%;
+  font: inherit;
+  font-size: 14.5px;
+  font-weight: 600;
+  padding: 12px 14px 12px 42px;
+  border: 1.5px solid var(--border-subtle);
+  border-radius: 8px;
+  background: var(--bg-input);
+  color: var(--text-primary);
+  transition: all 0.25s var(--ease-out-expo);
+}
+.joinP input#jName:focus {
+  outline: none;
+  border-color: var(--fare-gold);
+  box-shadow: 0 0 0 3.5px rgba(201, 154, 46, 0.18);
+  background: var(--bg-card);
+}
+.field-wrap:focus-within .field-icon {
+  color: var(--fare-gold);
+}
+
+/* Unified Phone Input Wrap */
+.phone-wrap {
+  display: flex;
+  align-items: stretch;
+  border: 1.5px solid var(--border-subtle);
+  border-radius: 8px;
+  background: var(--bg-input);
+  overflow: hidden;
+  transition: all 0.25s var(--ease-out-expo);
+}
+.phone-wrap:focus-within {
+  border-color: var(--fare-gold);
+  box-shadow: 0 0 0 3.5px rgba(201, 154, 46, 0.18);
+  background: var(--bg-card);
+}
+.phone-prefix {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 13px;
+  background: rgba(201, 154, 46, 0.08);
+  border-right: 1.5px solid var(--border-subtle);
+  font-size: 13.5px;
+  font-weight: 800;
+  color: var(--fare-gold);
+  user-select: none;
+  flex-shrink: 0;
+}
+html[data-theme="dark"] .phone-prefix {
+  background: rgba(201, 154, 46, 0.14);
+  color: var(--fare-gold-light);
+}
+.phone-flag {
+  font-size: 15px;
+  line-height: 1;
+}
+.joinP input#jMob {
+  flex: 1;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 12px 14px;
+  border: none;
+  background: transparent;
+  color: var(--text-primary);
+  outline: none;
+}
+.joinP input#jMob::placeholder {
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+/* Error State */
+.jerr {
+  color: var(--fare-rose-light);
+  font-size: 12px;
+  font-weight: 700;
+  min-height: 18px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+.jerr:not(:empty)::before {
+  content: "⚠ ";
+  font-size: 13px;
+}
+
+/* Submit Button */
+.join-submit-btn {
+  height: 48px;
+  border-radius: 8px !important;
+  font-size: 15px !important;
+  font-weight: 800 !important;
+  background: linear-gradient(135deg, #C99A2E 0%, #D5AA45 50%, #B48216 100%) !important;
+  color: #FFFFFF !important;
+  border: 1px solid rgba(255, 255, 255, 0.28) !important;
+  box-shadow: 0 8px 24px rgba(201, 154, 46, 0.35) !important;
+  gap: 8px !important;
+}
+.join-submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(201, 154, 46, 0.45) !important;
+}
+.join-submit-btn svg {
+  width: 17px;
+  height: 17px;
+  transition: transform 0.25s ease;
+}
+.join-submit-btn:hover svg {
+  transform: translateX(3px);
+}
+
+/* Skip Link */
+.skipJ {
+  background: none;
+  border: 0;
+  color: var(--text-muted);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  margin: 10px auto 4px;
+  padding: 5px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: inline-block;
+  transition: all 0.2s ease;
+}
+.skipJ:hover {
+  color: var(--text-primary);
+  background: rgba(201, 154, 46, 0.08);
+}
+
+/* Trust Box (Bottom) */
+.trust-box {
+  margin-top: 8px;
+  padding: 9px 12px;
+  border-radius: 8px;
+  background: rgba(201, 154, 46, 0.06);
+  border: 1px dashed rgba(201, 154, 46, 0.28);
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  text-align: left;
+}
+html[data-theme="dark"] .trust-box {
+  background: rgba(201, 154, 46, 0.1);
+  border-color: rgba(201, 154, 46, 0.35);
+}
+.trust-icon {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(201, 154, 46, 0.16);
+  color: var(--fare-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.trust-icon svg {
+  width: 12px;
+  height: 12px;
+}
+.trust-text {
+  font-size: 11px;
+  color: var(--text-secondary);
+  line-height: 1.45;
+  font-weight: 500;
+  margin: 0;
+}
+.jnote svg { width: 13px; height: 13px; color: var(--fare-gold); flex-shrink: 0; }
+
+/* CTA Overlay */
+.ctaP {
+  max-width: 500px;
+  width: 100%;
+  margin: auto;
+  color: var(--text-primary);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+  background: var(--bg-panel);
+  border: 1px solid var(--border-strong);
+  border-radius: 8px;
+  padding: 24px 18px;
+  box-shadow: var(--shadow-float);
+  position: relative;
+}
+.ctaP::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--fare-gold), var(--fare-indigo), var(--fare-emerald));
+}
+.ctaP h2 {
+  font-size: clamp(22px, 6vw, 30px);
+  font-weight: 900;
+  line-height: 1.2;
+}
+.ctaP h2 em {
+  font-style: normal;
+  color: var(--fare-gold);
+}
+.ctaP .sub {
+  font-size: 13.5px;
+  color: var(--text-secondary);
+}
+.cc {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-align: left;
+  text-decoration: none;
+  border-radius: 8px;
+  padding: 13px 14px;
+  background: var(--bg-panel-inner);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+  box-shadow: var(--shadow-card);
+  transition: all 0.35s var(--ease-out-expo);
+}
+.cc:hover {
+  transform: translateY(-3px);
+  border-color: var(--fare-gold);
+}
+.cc b { display: block; font-size: 14.5px; font-weight: 800; line-height: 1.25; }
+.cc small { display: block; font-size: 12px; color: var(--text-muted); font-weight: 600; margin-top: 2px; }
+.cc .go {
+  margin-left: auto;
+  font-weight: 800;
+  font-size: 11.5px;
+  border-radius: 6px;
+  padding: 7px 12px;
+  white-space: nowrap;
+  color: #FFFFFF;
+}
+.cc.t .go { background: linear-gradient(135deg, #C99A2E, #9E7419); }
+.cc.c .go { background: linear-gradient(135deg, #06B6D4, #0891B2); }
+.cc.s .go { background: linear-gradient(135deg, #6366F1, #4F46E5); }
+.cc.w .go { background: linear-gradient(135deg, #10B981, #059669); }
+.free {
+  font-size: 9.5px;
+  font-weight: 800;
+  background: rgba(16, 185, 129, 0.16);
+  border: 1px solid rgba(16, 185, 129, 0.4);
+  color: var(--fare-emerald);
+  border-radius: 4px;
+  padding: 1px 6px;
+  margin-left: 6px;
+  vertical-align: 1px;
+}
+.ctaNav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 6px;
+  width: 100%;
+}
+</style>
+</head>
+<body>
+
+<!-- Reusable Vector FARE Logo Definition -->
+<svg width="0" height="0" style="position:absolute;visibility:hidden" aria-hidden="true">
+  <defs>
+    <symbol id="fare-logo" viewBox="0 0 831 433">
+      <g transform="translate(-124.84, -324.2)">
+        <path fill="#001745" d="M818.83,582.46l-.02,74.36,89.46-.02c10.44,0,19.47-4.24,26.68-11.39,6.62-6.57,11.82-13.94,16.27-22.18.35-.64,1.06-1.46,1.57-1.61.63-.18,1.71,1.36,1.61,2.05l-1.91,14.19-6.36,28.58-3.2,16.51-176.57.02-.05-180.12-1.75-15.1c-2.18-10.11-9.32-17.55-19.56-19.67l-2.15-1.01c-.48-.22.13-1.94.47-2.18l190.98-.06.1,50.46c.03.12-1.01,1.33-1.23,1.08l-1.35-1.57c-1.85-9.61-8.19-16.83-16.9-20.83-4.64-1.53-9.06-2.41-14.06-2.84l-82.02-.02-.03,65.45,78.72-.07c7.95-.98,13.16-3.86,19.34-10.56v50.62c-4.19-4.27-6.25-7.25-10.13-9.77-5.04-2.27-10.13-4.28-15.94-4.29l-71.97-.05Z"/>
+        <path fill="#001745" d="M284.25,582.11l-84.45-.02.06,67.47c.01,16.59,4.58,27.97,21.52,30.91l1.78.56c.37.11,0,1.35-.19,1.91h-97.68c-.19-.67-.45-1.7-.09-1.84l1.78-.68c9.34-1.43,16.14-7.37,18.67-16.43,1.11-5.25,2.11-10.4,2.1-16.08l-.04-144.93c0-7.72-1.26-15.07-4.07-21.92s-9.78-11.14-16.84-13.19l-1.5-.44c-.41-.12-.41-.98-.43-2.27l159.36-.09,52.3-.09-.04,51.32c-1.56-.14-2.27-1.04-2.62-2.26-4.9-16.86-16.75-23.42-34.24-23.24h-99.85s0,65.12,0,65.12h94.92c6.36-.86,11.83-2.79,15.53-7.73l1.06-1.42c.23-.3,1.3.49,1.69.83l-.11,47.62c-4.73-4.59-7.26-8.1-12.42-10.14s-10.45-2.99-16.21-2.99Z"/>
+        <path fill="#001745" d="M651,620.87l-28.43-40.17c-1.3-1.84-1.95-4.58-.73-6.3l13.68.72c9.3.49,18.42-.98,27.01-4.06,11.55-4.14,19.86-12.73,23.14-24.57,3.17-11.42,2.71-23.4-1.2-34.6-3.41-9.77-10.7-16.77-20.27-20.4s-19.65-5.07-30.07-4.83l-34.43.78-20.62-19.28c-.57-.54-.93-2.28-.72-3.01l82.7.21c25.37.06,53.73,9.32,68.88,30.36,8.25,11.46,10.78,25.38,9.41,39.31-2.7,29.77-25.11,47.53-53.88,52.07l34.49,46.6,27.6,37.48c4.74,4.58,10.03,7.04,15.91,11.68l-68.59.11-43.86-62.1Z"/>
+        <path fill="#dcb15a" d="M524.87,592.42l-13.09-105.3-24.36,10.31.02-75.69,56.26-25.42c6.23-2.81,14.02.5,19.04,4.34v268.41c-.76.35-1.77.58-2.54.61l-35.33-77.27Z"/>
+        <path fill="#001041" d="M472.68,414.16l-3.3-.79c-.7-5.74,1.27-11.22-1.96-16.83l-.24,47.32c2.53,1.31,4.76,3.29,5.45,5.37,1.06,3.21.75,6.46-1.29,8.91-1.49,1.79-4.07,3.04-6.16,3.06-2.22.02-5.09-1.4-6.46-3.41-3.41-4.98-1.26-11.08,4.06-13.87l-.11-34.03-37.86-19.93,119.83-65.76,112.46,62.09-51.3,28.08-.03,21.5-27.51,14.71-.09-53.11-33.77-17.7-71.71,34.37Z"/>
+        <polygon fill="#cda34e" points="616.33 682.97 578.15 683.02 578.26 475.17 616.35 519.81 616.33 682.97"/>
+        <path fill="#001745" d="M949.37,700.5l-359.98-.07-123.98-.2-335.29-.29-.14-1.52c-.02-.25.98-.51,1.37-.51l200.39.1,20.68.11,597.65.41,1.18,1.2c.22.07-1.23.75-1.87.75Z"/>
+        <polygon fill="#d7b357" points="504.22 730.46 497.21 751.44 491.96 751.37 485.18 730.46 483.39 754.97 477.15 754.99 479.78 719.42 487.33 719.18 494.71 742.43 502.27 719.48 509.55 719.42 512.1 754.95 505.64 754.97 504.22 730.46"/>
+        <polygon fill="#d7b357" points="419.5 755.06 413.17 755.06 399.71 730.33 399.47 754.94 393.41 754.96 393.39 719.2 399.9 719.1 413.1 743.17 413.34 719.34 419.5 719.33 419.5 755.06"/>
+        <polygon fill="#d7b357" points="322.82 754.82 316.5 755.03 303.01 730.23 302.89 754.9 296.93 754.9 296.9 719.36 303.17 718.97 316.46 743.12 316.61 719.29 322.81 719.19 322.82 754.82"/>
+        <polygon fill="#d7b357" points="569.85 755.05 563.39 754.89 550.06 730.41 549.84 754.96 543.82 755.03 543.8 719.31 550.35 719.25 563.43 743.05 563.57 719.37 569.83 719.36 569.85 755.05"/>
+        <path fill="#d7b357" d="M662.59,728.26c-1.62-6.23-6.77-9.54-13.09-9.31-6.13.22-11.12,3.75-12.31,10.08-1.04,5.54-1.04,11.69.22,17.16,1.39,6.01,6.13,9.6,12.44,9.6s11.06-3.46,12.69-9.24c1.68-5.94,1.59-12.36.05-18.3ZM650.53,750.4c-7.78.67-8.84-12.36-6.44-21.45.78-2.96,3.05-4.65,5.76-4.67,2.53-.01,5.05,1.56,5.95,4.39,2.6,8.2,1.94,21.11-5.27,21.73Z"/>
+        <polygon fill="#d7b357" points="355.46 754.85 349.13 755.03 349.07 739.14 336.76 739.27 336.68 755 330.26 754.99 330.26 719.35 336.69 719.16 336.76 733.84 349.05 733.91 349.12 719.21 355.42 719.19 355.46 754.85"/>
+        <path fill="#d7b357" d="M682.95,740.02c4.91-1.03,6.72-4.87,7.03-9.3.39-5.72-3.05-10.94-9.19-11.01l-12.36-.13-.02,35.64,6.3.1.53-15.65,8.9,15.64,7.09-.13-8.28-15.15ZM674.98,736.08l.02-11.37c2.32-.32,5.41-.33,7.21,1.35,1.52,1.41,1.56,5.51.55,7.36-1.73,3.15-5.03,3.3-7.79,2.66Z"/>
+        <polygon fill="#d7b357" points="177.93 736.13 190.18 754.59 182.8 754.88 171.21 738.01 170.67 754.83 164.23 754.8 164.22 719.21 170.64 719.17 171.05 735.41 182.3 719.31 189.83 719.29 177.93 736.13"/>
+        <path fill="#d7b357" d="M722.57,740.1c5-1.53,6.73-5.52,6.88-10.04.18-5.48-3.12-10.13-8.92-10.24l-12.33-.22v35.66s6.29.05,6.29.05l.59-15.7,8.66,15.62,7-.02-8.18-15.11ZM714.57,736.37l-.11-11.57c1.63-.16,5.13-.27,6.48.82,2.69,2.17,2.77,6.79.2,9.37-1.46,1.45-4.56,1.56-6.56,1.37Z"/>
+        <path fill="#d7b357" d="M377.83,719.19l-7.04.02-11.21,35.65h6.6s2.35-7.8,2.35-7.8l11.38.02,2.11,7.91,6.88-.13-11.07-35.68ZM378.36,741.66l-8.38.26,4.19-14.88,4.19,14.62h-.01Z"/>
+        <path fill="#d7b357" d="M773.45,719.71l-6.82.11-11.01,35.39,6.46.12,2.22-7.82,11.15.02,2.1,7.81,6.63-.18-10.73-35.46ZM765.82,742.4l4.12-14.8,4.12,14.97-8.24-.17Z"/>
+        <path fill="#d7b357" d="M903.82,719.95l-6.84.06-10.79,35.24,6.23.12,2.22-7.71,11.06-.05,2.1,7.74,6.45-.12-10.42-35.27ZM895.96,742.57l4.28-14.96,4.1,14.77-8.38.2Z"/>
+        <polygon fill="#d7b357" points="470.82 738.82 460.12 738.83 460.13 749.79 472.22 749.77 472.18 755.03 453.6 755.08 453.58 719.31 471.93 719.25 471.84 724.24 460.11 724.32 460.14 733.54 470.76 733.64 470.82 738.82"/>
+        <polygon fill="#d7b357" points="751.85 739.41 741.58 739.4 741.5 750.15 753.3 750.21 753.22 755.33 735.12 755.29 735.13 719.69 753.05 719.66 752.87 724.83 741.43 724.89 741.64 734.24 751.73 734.3 751.85 739.41"/>
+        <polygon fill="#d7b357" points="535.97 738.72 525.13 738.85 524.99 749.77 537.43 749.72 537.31 755.03 518.57 755.02 518.58 719.29 537.01 719.26 536.99 724.25 525.07 724.34 525.05 733.54 535.81 733.64 535.97 738.72"/>
+        <polygon fill="#d7b357" points="288.72 738.71 278.12 738.75 278 749.75 290.18 749.64 290.06 754.95 271.74 754.91 271.7 719.24 289.74 719.15 289.95 724.25 278.01 724.27 278.03 733.57 288.57 733.57 288.72 738.71"/>
+        <path fill="#d7b357" d="M153.55,753.49c-5.41,2.64-11.06,2.15-16.39-.36l1.65-5.04c3.13,1,5.28,1.65,8.51,1.73,2.01.05,4.03-1.91,4.46-3.74.37-1.56-.58-4.05-2.2-4.98l-8.08-4.65c-3.77-2.17-4.95-6.56-4.05-10.74,1.54-7.13,11.56-9.34,20.01-5.63l-2.01,5.1c-3.25-1.61-6.95-2.2-9.63-.93-1.17.56-2.16,2.94-2.06,3.99.12,1.18,1.47,3.31,2.55,3.87l6.65,3.43c3.25,1.68,5.46,4.98,5.71,8.18.3,3.85-1.29,7.88-5.14,9.75Z"/>
+        <polygon fill="#d7b357" points="839.16 739.42 828.75 739.6 828.75 750.23 840.53 750.24 840.43 755.36 822.59 755.33 822.59 719.91 840.18 719.89 840.4 724.97 828.83 724.98 828.77 734.3 839.07 734.32 839.16 739.42"/>
+        <polygon fill="#d7b357" points="953.2 739.55 943.39 739.55 943.28 750.24 955.12 750.24 954.93 755.37 937.06 755.34 937.03 720.04 954.59 719.98 954.54 724.98 943.27 725.01 943.35 734.28 953.23 734.3 953.2 739.55"/>
+        <path fill="#d7b357" d="M858.08,755.09c-4.78,1.38-9.53.6-13.55-1.59l1.89-4.78c3.47,1.7,6.59,2.44,9.94,1.29,1.25-.43,2.47-3,2.42-4.21-.06-1.62-1.41-3.56-2.94-4.4l-6.41-3.53c-3.35-1.85-4.88-5.39-4.83-8.85.05-3.43,1.69-6.95,5.26-8.49,4.53-1.95,9.71-1.5,14.03.89l-1.96,5.09c-2.7-1.89-6.27-2.82-9.38-1.06-.95.54-1.75,3.05-1.54,4.1s1.38,2.95,2.38,3.52l6.75,3.85c3.62,2.06,5.41,5.65,5.06,9.53s-2.64,7.32-7.13,8.62Z"/>
+        <path fill="#d7b357" d="M446.18,748.63c.83,1.39,1.53,3.25,2.07,5.18-4.97,2.11-9.86,2.49-14.64.41-8.74-3.82-10.21-17.56-6.65-27.05,3.1-8.24,12.54-10.29,21.34-7.03l-1.81,5.18c-4.15-1.73-9.32-2.25-11.93,1.8-3.27,5.09-3.3,12.02-1.2,17.6,1.9,5.04,7.11,7.18,12.81,3.91Z"/>
+        <polygon fill="#d7b357" points="632.03 734.24 631.83 739.62 621.79 739.61 621.73 755 615.18 755.1 615.18 719.49 633.14 719.43 633.27 724.52 621.67 724.56 621.56 734.33 632.03 734.24"/>
+        <polygon fill="#d7b357" points="589.32 754.68 582.73 754.89 582.77 724.37 574.76 724.29 574.75 719.33 597.44 719.25 597.57 724.25 589.31 724.39 589.32 754.68"/>
+        <polygon fill="#d7b357" points="253.04 749.66 253.03 754.82 234.65 754.82 234.7 719.2 241.35 719.2 241.34 749.69 253.04 749.66"/>
+        <polygon fill="#d7b357" points="881.09 755.19 874.77 755.32 874.79 725.06 866.8 724.96 866.61 719.99 889.15 719.96 889.29 724.94 881.11 724.97 881.09 755.19"/>
+        <polygon fill="#d7b357" points="926.23 755.25 919.97 755.27 919.96 725.02 911.88 725.04 911.96 720.01 934.32 719.96 934.25 724.98 926.21 725.05 926.23 755.25"/>
+        <polygon fill="#d7b357" points="805.87 750.21 805.98 755.32 788.09 755.34 788.13 719.82 794.68 719.83 794.64 750.15 805.87 750.21"/>
+        <polygon fill="#d7b357" points="229.12 749.61 229.04 754.81 210.64 754.83 210.67 719.02 217.27 718.99 217.28 749.62 229.12 749.61"/>
+        <polygon fill="#d7b357" points="202.28 754.66 195.76 754.79 195.81 719.21 202.29 719.19 202.28 754.66"/>
+        <polygon fill="#001745" points="446.11 587.93 446 587.96 409.71 512.66 446.11 587.93"/>
+        <path fill="#001745" d="M477.68,679.21c-2.62,1.09-5.03.28-7.3,3.69l86.94-.05c-7.63-6.1-13.58-10.66-17.65-18.65l-100.63-199.37-47.86.02-89.44,203.99c-3.37,6.48-7.25,11.17-14.94,12.22l.39,1.93,50.48-.06,18.1-42.79,100.67-30.6,27.23,56.43c2.83,5.65-1.13,11.23-6,13.25ZM367.34,612.82l42.37-100.16,36.33,75.29,4.3,8.92-83.01,15.96Z"/>
+      </g>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- Background Mesh & Orbs -->
+<div class="bg-dots"></div>
+<div class="orb o1"></div>
+<div class="orb o2"></div>
+
+<!-- Sticky Top Bar (Trainer Directory Style) -->
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand-group">
+      <div class="logo-box" title="FARE">
+        <svg viewBox="0 0 831 433"><use href="#fare-logo"></use></svg>
+      </div>
+      <div class="verified-pill">
+        <span class="pulse-dot"></span>
+        <span id="navBadgeText">TL HIRING DESK</span>
+      </div>
+    </div>
+    <div class="ctrl-group">
+      <button type="button" class="ctrl-btn" id="langBtn" title="Switch Language (Telugu / English)">
+        <span id="langIcon"></span>
+        <span id="langLabel">EN</span>
+      </button>
+      <button type="button" class="ctrl-btn" id="themeBtn" title="Toggle Light / Dark Theme">
+        <span id="themeIcon"></span>
+        <span id="themeLabel">Light</span>
+      </button>
+      <button type="button" class="ctrl-btn icon-only" id="mute" title="Toggle Sound">
+        <span id="muteIcon"></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="app">
+  <!-- SCREEN 1: HOME -->
+  <section class="scr hm on" id="sHome">
+        <!-- Hero FARE Brand Badge -->
+    <div class="hero-brand-wrap">
+      <div class="hero-brand-badge">
+        <span class="gold-star">✦</span>
+        <span id="heroBadgeSub">ACADEMY HIRING SIMULATOR</span>
+        <span class="gold-star">✦</span>
+      </div>
+    </div>
+
+    <div class="section-eyebrow">
+      <span class="eyebrow-bar"></span>
+      <span id="hEyebrow">PLOTTED DEVELOPMENT TEAM LEADS</span>
+      <span class="eyebrow-bar"></span>
+    </div>
+    <h1 class="ht" id="hTitle">Fix Your <em>Sales Funnel</em></h1>
+
+    <div class="hpipe">
+      <div class="hpp">
+        <span class="cap"></span>
+        <div class="hsg"><span data-stage="0">Leads</span><i></i><i></i></div>
+        <div class="hsg"><span data-stage="1">Followup</span><i></i><i></i></div>
+        <div class="hsg"><span data-stage="2">Site visits</span><i></i><i></i></div>
+        <div class="hsg"><span data-stage="3">Closing</span><i></i><i></i></div>
+        <div class="hsg"><span data-stage="4">Referrals</span><i></i><i></i></div>
+        <div class="htap">
+          <svg viewBox="0 0 70 70">
+            <rect x="0" y="18" width="40" height="22" rx="4" fill="#C99A2E"/>
+            <rect x="0" y="21" width="40" height="5" fill="#E4C46A" opacity=".75"/>
+            <path d="M36 18 h10 a14 14 0 0 1 14 14 v14 h-14 v-10 a4 4 0 0 0 -4 -4 h-6 z" fill="#D5AA45"/>
+            <rect x="44" y="44" width="18" height="6" rx="2" fill="#C99A2E"/>
+            <rect x="26" y="8" width="6" height="12" fill="#C99A2E"/>
+            <rect x="16" y="2" width="26" height="8" rx="4" fill="#E4C46A"/>
+          </svg>
+          <i class="rs">₹</i>
+        </div>
+      </div>
+      <div class="hpn">
+        <span class="hpn-alert" id="hPipeNote"></span>
+        <span>Sales <i class="rs">₹</i></span>
+      </div>
+    </div>
+
+    <div class="story" id="hStory"></div>
+
+    <div class="modes2">
+      <button class="md2 a" id="bPlay" type="button"></button>
+      <button class="md2 b" id="bProc" type="button"></button>
+    </div>
+
+    <p class="hsub" id="hDuration"></p>
+    <a class="shareB" id="shareHome" target="_blank" rel="noopener"></a>
+    <div id="contactH" style="width:100%"></div>
+  </section>
+
+  <!-- SCREEN 2: PLAY -->
+  <section class="scr" id="sPlay">
+    <div class="bar">
+      <div class="pg">
+        <div id="pgT">PROBLEM 1/3 · CANDIDATE 1/8</div>
+        <span id="prog"></span>
+      </div>
+      <div class="sc">
+        <small id="scLbl">SCORE</small>
+        <b id="score">0</b>
+      </div>
+    </div>
+
+    <div class="scene" id="scene">
+      <div class="pipe" id="pipe"></div>
+      <div class="ptap">
+        <svg viewBox="0 0 70 70">
+          <rect x="0" y="18" width="40" height="22" rx="4" fill="#C99A2E"/>
+          <rect x="0" y="21" width="40" height="5" fill="#E4C46A" opacity=".75"/>
+          <path d="M36 18 h10 a14 14 0 0 1 14 14 v14 h-14 v-10 a4 4 0 0 0 -4 -4 h-6 z" fill="#D5AA45"/>
+          <rect x="44" y="44" width="18" height="6" rx="2" fill="#C99A2E"/>
+          <rect x="26" y="8" width="6" height="12" fill="#C99A2E"/>
+          <rect x="16" y="2" width="26" height="8" rx="4" fill="#E4C46A"/>
+        </svg>
+      </div>
+      <div class="coins" id="coins"><i class="rs">₹</i><i class="rs">₹</i><i class="rs">₹</i></div>
+      <div class="drops" id="drops"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="puddle" id="puddle"><small id="puddleLbl">Lost leads</small></div>
+      <div class="patches" id="patches"></div>
+      <div class="who" id="tl">
+        <div class="av" id="tlAv"></div>
+        <div class="nm" id="tlNm">మీరు (TL)</div>
+      </div>
+      <div class="side" id="tlCard"></div>
+      <div class="side" id="cCard"></div>
+      <div class="bub" id="bub"></div>
+      <div class="team"><small id="teamLbl">YOUR TEAM</small><span id="teamRow"></span></div>
+      <div class="who" id="cand">
+        <div class="av"><span id="cAv"></span><span class="bd" id="cBd"></span></div>
+        <div class="nm" id="candNm">Candidate</div>
+      </div>
+    </div>
+
+    <div class="acts">
+      <button id="bNo" type="button"></button>
+      <button id="bYes" type="button"></button>
+    </div>
+    <div class="foot">FARE · www.fare.training · 7674993040</div>
+  </section>
+
+  <!-- SCREEN 3: RESULTS -->
+  <section class="scr rs2" id="sRes">
+    <!-- Result Screen FARE Brand Badge -->
+    <div class="res-brand-wrap">
+      <div class="res-logo-box" title="FARE">
+        <svg viewBox="0 0 831 433"><use href="#fare-logo"></use></svg>
+      </div>
+      <div class="res-laurel-badge">
+        <span class="gold-star">✦</span>
+        <span id="resBadgeText">ACADEMY BENCHMARK COMPLETED</span>
+        <span class="gold-star">✦</span>
+      </div>
+    </div>
+    <div class="stt" id="rStars"></div>
+    <h2 id="rTitle" style="font-size:26px;font-weight:900"></h2>
+    <p class="sum" id="rSum"></p>
+    <button class="lv2" id="bLv2" type="button"></button>
+    <button class="btn" id="bCta" type="button" style="width:100%"></button>
+    <div class="rbtn">
+      <button class="btn ghost" id="bAgain" type="button"></button>
+      <button class="btn ghost" id="bHome" type="button"></button>
+    </div>
+  </section>
+</div>
+
+<!-- OVERLAYS -->
+<div class="ov hide" id="ovBrief"><div class="panel brief" id="briefP"></div></div>
+<div class="ov hide" id="ovRound"><div class="panel" id="roundP"></div></div>
+<div class="ov hide" id="ovJoin">
+  <div class="panel joinP">
+    <button type="button" class="panel-close-btn" id="jCloseBtn" title="Close">
+      <!-- Injected close icon -->
+    </button>
+    
+    <div class="join-avatar-wrap">
+      <div class="join-avatar-glow"></div>
+      <div class="join-avatar-badge" id="joinIcon"></div>
+    </div>
+
+    <h2 id="joinTitle">ముందు మీ details ఇవ్వండి</h2>
+    <div class="join-sub-badge">
+      <span class="gold-star">✦</span>
+      <span id="joinSub">Game ఆడటానికి ఒక్కసారి మాత్రమే</span>
+      <span class="gold-star">✦</span>
+    </div>
+
+    <form id="joinF" novalidate>
+      <div class="form-group">
+        <label for="jName">
+          <span class="lbl-row">
+            <span id="lblName">మీ పేరు</span>
+            <span class="lbl-req">*</span>
+          </span>
+        </label>
+        <div class="field-wrap">
+          <span class="field-icon" id="fieldUserIcon"></span>
+          <input id="jName" autocomplete="name" placeholder="e.g. Ramesh Kumar" maxlength="60" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="jMob">
+          <span class="lbl-row">
+            <span id="lblMob">Mobile number</span>
+            <span class="lbl-req">*</span>
+          </span>
+        </label>
+        <div class="phone-wrap">
+          <div class="phone-prefix">
+            <span class="phone-flag">🇮🇳</span>
+            <span>+91</span>
+          </div>
+          <input id="jMob" inputmode="numeric" autocomplete="tel-national" placeholder="10-digit mobile" maxlength="10" required>
+        </div>
+      </div>
+
+      <div class="jerr" id="jErr"></div>
+      <button class="btn join-submit-btn" type="submit" id="btnJoinStart"></button>
+    </form>
+
+    <button class="skipJ" id="jSkip" type="button">Skip for now (testing) →</button>
+
+    <div class="trust-box">
+      <span class="trust-icon" id="trustLockIcon"></span>
+      <span id="joinNote" class="trust-text"></span>
+    </div>
+  </div>
+</div>
+
+<div class="ov hide" id="ovCta">
+  <div class="ctaP">
+    <div class="logo-box" style="height:42px;padding:6px 12px">
+      <svg viewBox="0 0 831 433" style="height:28px"><use href="#fare-logo"></use></svg>
+    </div>
+    <h2 id="ctaHeading">Want to <em>build your team?</em></h2>
+    <p class="sub" id="ctaSub">సరైన profiles, సరైన skills, సరైన support</p>
+    <a class="cc t" id="ctaT" target="_blank" rel="noopener"></a>
+    <a class="cc c" id="ctaC" target="_blank" rel="noopener"></a>
+    <a class="cc s" id="ctaS" target="_blank" rel="noopener"></a>
+    <a class="cc w" id="ctaW" target="_blank" rel="noopener"></a>
+    <div class="ctaNav" id="ctaNav"></div>
+    <a class="shareB" id="shareCta" target="_blank" rel="noopener"></a>
+    <div id="contactC" style="width:100%"></div>
+  </div>
+</div>
+
+<script>
+/* ===== LUCIDE-STYLE VECTOR SVG ICONS (Trainer Directory Icon System) ===== */
+const svg = (paths, vb = "0 0 24 24") =>
+  `<svg viewBox="${vb}" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${paths}</svg>`;
+
+const IC = {
+  x: svg('<line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>'),
+  globe: svg('<circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/>'),
+  sun: svg('<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2m-7.07-14.93 1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>'),
+  moon: svg('<path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>'),
+  volOn: svg('<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>'),
+  volOff: svg('<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="22" x2="16" y1="9" y2="15"/><line x1="16" x2="22" y1="9" y2="15"/>'),
+  userCheck: svg('<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><polyline points="16 11 18 13 22 9"/>'),
+  users: svg('<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>'),
+  user: svg('<path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>'),
+  settings: svg('<path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/>'),
+  wrench: svg('<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>'),
+  checkCircle: svg('<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>'),
+  xCircle: svg('<circle cx="12" cy="12" r="10"/><line x1="15" x2="9" y1="9" y2="15"/><line x1="9" x2="15" y1="9" y2="15"/>'),
+  alertTriangle: svg('<path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" x2="12" y1="9" y2="13"/><line x1="12" x2="12.01" y1="17" y2="17"/>'),
+  trendDown: svg('<polyline points="22 17 13.5 8.5 8.5 13.5 2 7"/><polyline points="16 17 22 17 22 11"/>'),
+  trendUp: svg('<polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/>'),
+  share: svg('<path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" x2="12" y1="2" y2="15"/>'),
+  play: svg('<polygon points="6 3 20 12 6 21 6 3"/>'),
+  refresh: svg('<path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/>'),
+  home: svg('<path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>'),
+  arrowRight: svg('<line x1="5" x2="19" y1="12" y2="12"/><polyline points="12 5 19 12 12 19"/>'),
+  arrowLeft: svg('<line x1="19" x2="5" y1="12" y2="12"/><polyline points="12 19 5 12 12 5"/>'),
+  trophy: svg('<path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/>'),
+  star: svg('<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>'),
+  lock: svg('<rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>'),
+  phone: svg('<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>'),
+  msg: svg('<path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/>'),
+  ig: svg('<rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>'),
+  grad: svg('<path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/>'),
+  briefcase: svg('<rect width="20" height="14" x="2" y="7" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>'),
+  shield: svg('<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/>'),
+  lightbulb: svg('<path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/>'),
+  target: svg('<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>'),
+  sparkles: svg('<path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/>'),
+  pointer: svg('<path d="M18 11V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v0"/><path d="M14 10V4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v2"/><path d="M10 10.5V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v8"/><path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/>')
+};
+
+/* ===== LANGUAGE & THEME STATE ===== */
+let LANG = localStorage.getItem("fare_game_lang") || "te";
+let THEME = localStorage.getItem("fare_game_theme") || "dark";
+
+const UI_TEXT = {
+  te: {
+    badge: "TL HIRING DESK",
+    heroBadge: "అకాడమీ హైరింగ్ సిమ్యులేటర్",
+    resBadge: "అకాడమీ బెంచ్‌మార్క్ పూర్తయింది",
+    eyebrow: "PLOTTED DEVELOPMENT TEAM LEADS",
+    title: "Fix Your <em>Sales Funnel</em>",
+    stages: ["Leads", "Followup", "Site visits", "Closing", "Referrals"],
+    pipeNote: "ప్రతి stage లో leads చేజారిపోతున్నారు",
+    story1: "<strong>మీరు TL.</strong> Candidates లేదా Ideas ఒక్కొక్కటిగా మీ ముందుకు వస్తాయి",
+    story2: "సరైనది <span class='hl-emerald'>Hire / Implement</span> చేస్తే conversion పెరుగుతుంది",
+    story3: "సరిపోనిది <span class='hl-rose'>Reject</span> చేయండి. Wrong choice = temporary solution, మళ్లీ అదే problem!",
+    mode1Title: "Hire the Right Person",
+    mode1Sub: "Candidates ని interview చేయండి",
+    mode2Title: "Fix the Process",
+    mode2Sub: "సరైన Ideas ని implement చేయండి",
+    duration: "ఒక్కో game: 3 problems · ~3 నిమిషాలు",
+    shareBtn: "Share this game",
+    scoreLbl: "SCORE",
+    puddleLbl: "Lost leads",
+    tlName: "మీరు (TL)",
+    candName: "Candidate",
+    ideaName: "Idea",
+    teamLbl: "YOUR TEAM",
+    rejectBtn: "Reject",
+    hireBtn: "Hire",
+    implBtn: "Implement",
+    probPrefix: "మీ PROBLEM",
+    candTag: "నేను · CANDIDATE",
+    ideaTag: "IDEA · PROCESS STEP",
+    dropping: "DROP-OFF",
+    converting: "CONVERTING",
+    briefTitlePrefix: "PROBLEM",
+    briefDescHire: (nd, st) => `మీ దగ్గరికి <b>${nd} candidates</b> ఒక్కొక్కరిగా వస్తారు. ఈ <b>${st}</b> drop-off ని ఎవరు fix చేస్తారు?`,
+    briefDescProc: (nd, st) => `మీ ముందుకు <b>${nd} Ideas</b> ఒక్కొక్కటిగా వస్తాయి. ఏ Ideas ఈ <b>${st}</b> drop-off ని fix చేస్తాయి?`,
+    briefRuleY: (h) => `${h ? "Hire" : "Implement"}: conversion పెరుగుతుంది`,
+    briefRuleN: "Reject: సరిపోకపోతే",
+    startBtn: "Start",
+    roundFixed: "Drop-off fix అయింది! Sales flowing",
+    roundMid: "చాలావరకు fix అయింది",
+    roundLeak: "Drop-off ఇంకా ఉంది",
+    roundBestPeople: "ఈ problem కి best people",
+    roundBestIdeas: "ఈ problem కి best Ideas",
+    continueBtn: "Continue",
+    seeResultBtn: "Result చూడండి",
+    nextProbBtn: "Next problem",
+    homeBtn: "Home",
+    backBtn: "Back",
+    againBtn: "మళ్లీ ఆడండి",
+    resTitleHigh: "Funnel Expert TL!",
+    resTitleMid: "మంచి TL!",
+    resTitleLow: "ఇంకా నేర్చుకోవచ్చు",
+    resSum: (tot, gd, sc) => `${tot} decisions లో <b>${gd}</b> సరైనవి · Score <b>${sc}</b>`,
+    lv2SwitchProcTitle: "Now: Fix the Process",
+    lv2SwitchProcSub: "సరైన Ideas ని implement చేయండి",
+    lv2SwitchHireTitle: "Now: Hire the Right Person",
+    lv2SwitchHireSub: "Candidates ని interview చేయండి",
+    wantTeamBtn: "Want to build your team?",
+    joinTitle: "ముందు మీ details ఇవ్వండి",
+    joinSub: "Game ఆడటానికి ఒక్కసారి మాత్రమే",
+    lblName: "మీ పేరు",
+    lblMob: "Mobile number",
+    phName: "ఉదా: Ramesh Kumar",
+    phMob: "10-digit mobile",
+    btnJoinStart: "Start game",
+    skipJoin: "Skip for now (testing) →",
+    joinNote: "మీ details FARE దగ్గర మాత్రమే ఉంటాయి. Team building tips & updates కోసం contact చేస్తాం.",
+    errName: "దయచేసి మీ పేరు ఇవ్వండి",
+    errMob: "సరైన 10-digit mobile number ఇవ్వండి",
+    ctaHeading: "Want to <em>build your team?</em>",
+    ctaSub: "సరైన profiles, సరైన skills, సరైన support",
+    cta1Title: "Hire trained profiles",
+    cta1Sub: "FARE Talent Pool · Zero commission",
+    cta1Go: "Hire now",
+    cta2Title: "Learn Team Building skills",
+    cta2Sub: "Open Plot Team Building course",
+    cta2Go: "Start free",
+    cta3Title: "Talk your training need with FARE",
+    cta3Sub: "1:1 session with a FARE expert",
+    cta3Go: "Book session",
+    cta4Title: "Join WhatsApp community",
+    cta4Sub: "Weekly team building tips",
+    cta4Go: "Join"
+  },
+  en: {
+    badge: "TL HIRING DESK",
+    eyebrow: "PLOTTED DEVELOPMENT TEAM LEADS",
+    title: "Fix Your <em>Sales Funnel</em>",
+    stages: ["Leads", "Followup", "Site Visits", "Closing", "Referrals"],
+    pipeNote: "Leads are leaking out at every stage of the funnel",
+    story1: "<strong>You are the TL.</strong> Candidates or Process Ideas will arrive one by one.",
+    story2: "<span class='hl-emerald'>Hire / Implement</span> the right fit to boost funnel conversion.",
+    story3: "<span class='hl-rose'>Reject</span> mismatches. A wrong choice is a temporary patch—the leak returns!",
+    mode1Title: "Hire the Right Person",
+    mode1Sub: "Interview candidates for each stage",
+    mode2Title: "Fix the Process",
+    mode2Sub: "Implement high-impact process ideas",
+    duration: "Each game: 3 problems · ~3 minutes",
+    shareBtn: "Share this game",
+    scoreLbl: "SCORE",
+    puddleLbl: "Lost leads",
+    tlName: "You (TL)",
+    candName: "Candidate",
+    ideaName: "Idea",
+    teamLbl: "YOUR TEAM",
+    rejectBtn: "Reject",
+    hireBtn: "Hire",
+    implBtn: "Implement",
+    probPrefix: "YOUR PROBLEM",
+    candTag: "CANDIDATE PROFILE",
+    ideaTag: "PROCESS IDEA",
+    dropping: "DROP-OFF",
+    converting: "CONVERTING",
+    briefTitlePrefix: "PROBLEM",
+    briefDescHire: (nd, st) => `You will review <b>${nd} candidates</b> one by one. Who can permanently fix this <b>${st}</b> drop-off?`,
+    briefDescProc: (nd, st) => `You will review <b>${nd} process ideas</b> one by one. Which ideas will fix this <b>${st}</b> drop-off?`,
+    briefRuleY: (h) => `${h ? "Hire" : "Implement"}: boosts conversion`,
+    briefRuleN: "Reject: if unsuitable for this stage",
+    startBtn: "Start Round",
+    roundFixed: "Drop-off Fixed! Sales Flowing",
+    roundMid: "Mostly Fixed — Good Progress",
+    roundLeak: "Drop-off Still Persists",
+    roundBestPeople: "Best profiles for this problem",
+    roundBestIdeas: "Best process ideas for this problem",
+    continueBtn: "Continue",
+    seeResultBtn: "View Final Results",
+    nextProbBtn: "Next Problem",
+    homeBtn: "Home",
+    backBtn: "Back",
+    againBtn: "Play Again",
+    resTitleHigh: "Funnel Expert TL!",
+    resTitleMid: "Strong Team Lead!",
+    resTitleLow: "Room to Grow as TL",
+    resSum: (tot, gd, sc) => `<b>${gd}</b> of ${tot} decisions were spot-on · Score <b>${sc}</b>`,
+    lv2SwitchProcTitle: "Now: Fix the Process",
+    lv2SwitchProcSub: "Implement the right operational steps",
+    lv2SwitchHireTitle: "Now: Hire the Right Person",
+    lv2SwitchHireSub: "Interview & select the right candidates",
+    wantTeamBtn: "Want to build your team?",
+    joinTitle: "Enter Your Details to Start",
+    joinSub: "One-time quick registration before playing",
+    lblName: "Your Name",
+    lblMob: "Mobile Number",
+    phName: "e.g. Ramesh Kumar",
+    phMob: "10-digit mobile",
+    btnJoinStart: "Start Game",
+    skipJoin: "Skip for now (testing) →",
+    joinNote: "Your details stay strictly confidential with FARE for team-building tips & updates.",
+    errName: "Please enter your name",
+    errMob: "Please enter a valid 10-digit mobile number",
+    ctaHeading: "Want to <em>build your team?</em>",
+    ctaSub: "Right profiles, right skills, and dedicated FARE support",
+    cta1Title: "Hire trained profiles",
+    cta1Sub: "FARE Talent Pool · Zero commission",
+    cta1Go: "Hire now",
+    cta2Title: "Learn Team Building skills",
+    cta2Sub: "Open Plot Team Building course",
+    cta2Go: "Start free",
+    cta3Title: "Discuss your training need with FARE",
+    cta3Sub: "1:1 session with a FARE expert",
+    cta3Go: "Book session",
+    cta4Title: "Join WhatsApp community",
+    cta4Sub: "Weekly team building tips",
+    cta4Go: "Join"
+  }
+};
+
+/* English translations for dynamic game content */
+const EN_MAP = {
+  /* PLAIN problems */
+  "Agents కి కొత్త leads రావడం లేదు. అందరూ relatives కే మళ్లీ మళ్లీ call చేస్తున్నారు.":
+    "Agents aren't getting fresh leads. Everyone keeps calling the same relatives repeatedly.",
+  "Leads వస్తున్నాయి, కానీ సరైన follow-up లేక interest పోతోంది.":
+    "Leads are coming in, but delayed follow-up is causing buyers to lose interest.",
+  "300 leads వచ్చాయి, కానీ 6 మందే site visit కి వచ్చారు.":
+    "300 leads came in, but only 6 prospects actually showed up for a site visit.",
+  "Team కి mood ఉన్న Sundays లోనే site visits జరుగుతున్నాయి.":
+    "Site visits only happen on Sundays when the team feels like working.",
+  "20 మంది site చూశారు, కానీ 1 booking మాత్రమే.":
+    "20 prospects visited the site, resulting in just 1 booking.",
+  "Customers 'ఇది మంచి investment ఎందుకు?' అంటే team answer చెప్పలేకపోతోంది.":
+    "When buyers ask 'Why is this a strong investment?', the team can't explain the value.",
+  "Plot కొన్నవాళ్లు తర్వాత కనిపించరు, referrals రావడం లేదు.":
+    "Past buyers disappear after registration, generating almost zero referrals.",
+
+  /* HELP candidate summaries */
+  "ఇప్పటికే plots అమ్ముతున్నారు, buyers ని close చేస్తారు": "Already selling open plots and experienced in closing plot buyers",
+  "Apartments అమ్మిన agent, ready buyers ఉంటారు": "Experienced residential CP with an existing buyer network",
+  "Families తో trust, regular follow-up అలవాటు": "Strong family trust and disciplined follow-up habit",
+  "Investment, returns గురించి explain చేస్తారు": "Explains ROI, appreciation, and financial goals clearly",
+  "Local savers network ఉన్న collection agent": "Collection agent with local trust and regular savers network",
+  "Community లో respect, part-time గా పని": "Respected in the community, works part-time",
+  "Shop / business ఉంది, local contacts": "Local business owner with neighborhood contacts",
+  "Women groups లో warm contacts": "Warm network across women's and community groups",
+  "Downline build చేసిన experience": "Experienced in MLM downline recruitment",
+  "College అయిపోయిన youth, experience లేదు": "Recent college graduate, digital-savvy but no sales experience",
+  "Facebook / Google ads తో కొత్త leads తెస్తారు": "Generates fresh inbound leads via Meta & Google campaigns",
+  "Site videos, reels తో trust పెంచుతారు": "Builds organic trust with site reels and location videos",
+  "Calls చేసి customers ని site కి తీసుకొస్తారు": "Qualifies leads rapidly and books weekend site visits",
+  "99acres, MagicBricks లో leads తెస్తారు": "Manages property portal listings for high-intent buyer leads",
+  "పక్క project లో plots అమ్ముతున్న agent": "Currently selling plots in a neighboring competitor venture",
+  "WhatsApp, CRM తో auto reminders & updates": "Sets up WhatsApp automation, CRM tracking & buyer reminders",
+  "Plot loans, EMI doubts clear చేస్తారు": "Clears plot loan, eligibility, and ROI doubts with authority",
+  "Targets, reviews తో team ని నడిపిస్తారు": "Drives weekly targets, reviews, and sales team discipline",
+
+  /* Process Solutions (PSOL) titles & reasons */
+  "Existing agents కి lead generation training": "Train existing agents on self-lead generation",
+  "Personal branding, social media తో ప్రతి agent సొంత leads తెస్తారు": "Personal branding & social media help every agent generate own leads",
+  "Lead-gen experience ఉన్న agents ని onboard చేయండి": "Onboard agents with proven lead-gen skills",
+  "Day 1 నుంచే సొంత leads, team కి example": "Brings self-generated leads from Day 1 and sets a benchmark",
+  "Meta / Google ads: clear target, daily tracking": "Meta / Google ads with clear targeting & daily tracking",
+  "వారాల్లోనే fresh leads, cost per lead తెలుస్తుంది": "Delivers fresh leads within weeks with measurable cost-per-lead",
+  "కొత్త lead agency ని onboard చేయండి": "Onboard an external lead generation agency",
+  "Leads వస్తాయి, కానీ quality, cost control మీ చేతిలో ఉండవు": "Leads arrive, but quality and cost control aren't in your hands",
+  "Lead generation మీద ఎక్కువ spend": "Increase raw ad spend on lead generation",
+  "Leads పెరుగుతాయి, కానీ tracking లేకపోతే budget waste": "Volume rises, but without tracking much of the budget is wasted",
+  "Weekly site reels & content": "Publish weekly site reels & video content",
+  "Trust పెరుగుతుంది, కానీ results slow": "Builds brand trust over time, but lead flow is slow",
+  "Property exhibitions / local events": "Sponsor property exhibitions & local events",
+  "Walk-in leads, కానీ ఒక్కసారికే": "Generates walk-in leads, but only as a one-off spike",
+  "కొత్త agents ని hire చేయండి (lead skills లేకుండా)": "Hire more agents without lead-generation skills",
+  "Leads లేని agents పెరుగుతారు, అదే problem": "Adds more agents waiting for leads—the core bottleneck remains",
+  "Relatives & friends కి మళ్లీ call చేయమనండి": "Push agents to call friends & relatives again",
+  "Network అయిపోయింది, ఇంకా ఒత్తిడి": "Warm circle is already exhausted; creates frustration",
+  "Team size (downline) పెంచండి": "Expand downline headcount rapidly",
+  "ఉన్న company leads ఇంకా ఎక్కువ మంది మధ్య divide అవుతాయి": "Splits limited company leads across even more people",
+  "WhatsApp automation + CRM reminders": "Deploy WhatsApp automation + CRM reminders",
+  "ప్రతి lead కి instant reply, ఏ follow-up miss అవ్వదు": "Instant response to every inquiry; zero missed follow-ups",
+  "5-minute first call rule + daily follow-up review": "5-minute first-call SLA + daily follow-up review",
+  "Lead hot గా ఉన్నప్పుడే call, discipline పెరుగుతుంది": "Connects while buyer intent is hot and enforces daily discipline",
+  "Telecalling & sales pitch training": "Telecalling & qualification pitch training",
+  "Qualify చేసి, interest create చేసే pitch": "Equips callers to qualify leads and spark curiosity",
+  "Excel sheet లో leads track చేయండి": "Track leads manually in an Excel sheet",
+  "ఏమీ లేకపోవడం కంటే better, కానీ update చేయరు": "Better than nothing, but agents rarely update it on time",
+  "Weekly project updates అన్ని leads కి పంపండి": "Send weekly project broadcasts to all leads",
+  "Leads ని warm గా ఉంచుతుంది, కానీ personal touch లేదు": "Keeps leads mildly warm, but lacks personal discovery",
+  "Phone లోనే discount offer": "Offer a price discount on the very first call",
+  "Interest కాదు, price bargaining మొదలవుతుంది": "Triggers price bargaining instead of genuine project interest",
+  "ఇంకా ఎక్కువ leads కొనండి": "Buy even more raw leads",
+  "Cold leads ఇంకా పెరుగుతాయి": "Piles up more uncalled cold leads",
+  "Bulk SMS blast": "Send bulk promotional SMS blasts",
+  "ఎవరూ చదవరు, brand cheap గా కనిపిస్తుంది": "Rarely read and dilutes brand perception",
+  "Interest ఉంటే వాళ్లే call చేస్తారు": "Wait for interested buyers to call back themselves",
+  "Competitor ముందే call చేస్తారు": "Competitors will call and book them first",
+  "రోజూ అదే script తో pressure calls": "Make daily high-pressure calls with the same script",
+  "Spam అని block చేస్తారు, lead పోతుంది": "Buyers block the number as spam and the lead is lost",
+  "Telecalling & pitch training: visit book చేయడం": "Telecalling pitch training focused on booking site visits",
+  "Call ని visit గా మార్చే pitch": " sharpens the pitch that converts phone inquiries into site visits",
+  "Weekly visit targets + Monday review": "Weekly site-visit targets + Monday review rhythm",
+  "ప్రతి Sunday visits plan అవుతాయి": "Ensures every weekend's visits are planned and tracked",
+  "Fixed Sunday slots + free pickup": "Fixed Sunday visit slots + organized cab pickup",
+  "Customer కి easy, no-shows తగ్గుతాయి": "Makes visiting effortless for families and cuts no-shows",
+  "Visit ముందు రోజు & ఆ రోజు reminders": "Day-before & morning-of visit confirmation reminders",
+  "Booked visits నిజంగా జరుగుతాయి": "Converts scheduled visits into actual site turnouts",
+  "Site video reels leads కి పంపండి": "Send site walkthrough reels to prospects",
+  "Interest పెరుగుతుంది, కానీ visit guarantee కాదు": "Builds interest, but doesn't lock in a confirmed visit slot",
+  "Site visit కి gift": "Offer free gifts for attending a site visit",
+  "కొంత మంది వస్తారు, కానీ serious buyers కాకపోవచ్చు": "Attracts freebie seekers rather than serious plot buyers",
+  "Monthly visit contest": "Run a monthly site-visit contest for agents",
+  "Short-term energy, system కాదు": "Creates a brief spike, not a repeatable weekly system",
+  "ఎక్కువ leads, అదే visit leak": "More leads entering the same broken visit conversion stage",
+  "ఇంకా agents ని add చేయండి": "Add more uncoached agents to the team",
+  "Pitch, planning లేకపోతే visits పెరగవు": "Without pitch quality and planning, site visits won't rise",
+  "Visit ముందే phone లో best price చెప్పండి": "Quote your lowest bottom price over the phone before the visit",
+  "Price తెలిసిపోయింది, site కి రావాల్సిన అవసరం లేదు": "Buyer shops your price around without ever visiting the layout",
+  "Objection handling training (role plays)": "Objection-handling role-play training",
+  "'ఇంట్లో discuss చేస్తాం' కి సరైన answer": "Equips team to handle 'We will discuss at home' effectively",
+  "Value selling: location growth, investment case": "Value selling: corridor growth & investment case",
+  "Price కాదు, future value చూపిస్తారు": "Shifts conversation from per-sq-yd price to long-term appreciation",
+  "Product & investment knowledge sessions": "Deep product, approval & investment knowledge sessions",
+  "Approvals, location, loans: ప్రతి doubt clear": "Clears every buyer doubt on LP/RERA approvals, connectivity & loans",
+  "Bank tie-up: site లోనే loan eligibility": "On-site bank loan desk for instant eligibility checks",
+  "Money doubt అక్కడే solve, booking వెంటనే": "Resolves financing doubts on the spot to lock in bookings",
+  "Brochure & FAQ sheet": "Hand out printed brochures & FAQ sheets",
+  "Help అవుతుంది, కానీ conversation replace చేయదు": "Helpful reference, but cannot replace persuasive closing dialogue",
+  "Limited-time offer": "Announce a limited-time booking offer",
+  "కొంత urgency, ఎక్కువ వాడితే trust పోతుంది": "Creates mild urgency, but overuse erodes credibility",
+  "Final meeting లో senior join అవ్వడం": "Have a senior closer join every final meeting",
+  "Trust పెరుగుతుంది, కానీ team skill పెరగదు": "Helps close a few deals, but team members never learn to close",
+  "ఇంకా ఎక్కువ site visits తేండి": "Push for more site visits without fixing closing",
+  "అదే conversion, ఎక్కువ effort waste": "Same low conversion rate with higher transport & time cost",
+  "'Today only' hard pressure closing": "'Book today or lose it' high-pressure tactics",
+  "Customer దూరం అవుతారు": "Pushes serious family buyers away",
+  "పెద్ద discounts ఇవ్వండి": "Offer heavy blanket price discounts",
+  "Margin పోతుంది, project value తగ్గినట్టు కనిపిస్తుంది": "Destroys margin and signals desperation to buyers",
+  "Post-sale relationship plan": "Structured post-sale buyer relationship plan",
+  "Registration, development updates: buyer తో regular touch": "Keeps buyers engaged through registration & layout development milestones",
+  "Automated updates + festival wishes": "Automated layout progress updates & milestone greetings",
+  "ప్రతి buyer కి personal touch, effort లేకుండా": "Maintains warm touch with every plot owner effortlessly",
+  "Buyers కి referral reward program": "Launch a structured buyer referral reward program",
+  "Happy buyers కొత్త buyers ని తెస్తారు": "Incentivizes delighted plot owners to introduce friends & colleagues",
+  "Plot owners meet / site day": "Host an annual Plot Owners Meet / Site Progress Day",
+  "Community feeling, referrals natural గా వస్తాయి": "Builds pride of ownership so referrals flow naturally",
+  "Buyers WhatsApp group": "Create a common WhatsApp group for all buyers",
+  "Connect అవుతుంది, కానీ manage చేయకపోతే complaints board": "Connects buyers, but can turn into an unmanaged complaint forum",
+  "Registration రోజు మాత్రమే referral అడగండి": "Ask for referrals only once on registration day",
+  "కొంత help, relationship లేకుండా ఒక్కసారికే": "Works occasionally, but misses long-term repeat referrals",
+  "Referrals బదులు ఇంకా ads": "Ignore referrals and spend more on paid ads",
+  "Leads వస్తాయి, కానీ cheapest source ని వదిలేశారు": "Brings paid leads while abandoning your highest-trust, lowest-cost channel",
+  "Referrals కోసం ఇంకా agents": "Hire more agents to ask for referrals",
+  "Relationship system లేకపోతే అదే result": "Without post-sale trust, extra agents still get zero referrals",
+  "Registration తర్వాత follow-up అవసరం లేదు": "Stop contacting buyers once registration is done",
+  "Buyer మర్చిపోతారు, referral రాదు": "Buyers feel forgotten and never recommend you",
+  "Buyers కి కొత్త project offers spam": "Spam existing buyers with aggressive new-project blasts",
+  "Irritation, negative word of mouth": "Triggers irritation and negative word-of-mouth"
+};
+
+function tr(str) {
+  if (LANG === "te" || !str) return str;
+  if (EN_MAP[str]) return EN_MAP[str];
+  return str
+    .replace(/వారాల్లోనే fresh leads/g, "Delivers fresh leads within weeks")
+    .replace(/నిరంతరం వచ్చే organic leads, long run లో/g, "Steady organic leads over the long run")
+    .replace(/Community లో warm leads, కానీ త్వరగా అయిపోతాయి/g, "Warm community leads, but limited volume")
+    .replace(/Followup, Site visits లో 🎯\. ఇక్కడ call చేయడానికి leads లేవు/g, "Great for Follow-up & Visits, but there are no leads to call yet")
+    .replace(/Network లేదు, contacts లేవు/g, "No existing buyer network or contacts")
+    .replace(/Instant replies, auto reminders/g, "Instant automated replies & follow-up reminders")
+    .replace(/Daily follow-up reviews, కానీ calls చేసేది team/g, "Enforces daily reviews, though the team still makes the calls")
+    .replace(/Leads ని warm గా ఉంచుతారు, system కావాలి/g, "Keeps leads warm, but still needs a follow-up system")
+    .replace(/Leads stage లో 🎯\. ఇక్కడ ఇంకా ఎక్కువ leads cold/g, "Great for Lead Gen, but adds more leads that go cold")
+    .replace(/Part-time, follow-up కి time లేదు/g, "Part-time availability; lacks time for rapid follow-up")
+    .replace(/బాగా pitch చేసి, visits book చేస్తారు/g, "Strong phone pitch that converts inquiries into site visits")
+    .replace(/Site visits చేయించిన experience, కానీ సొంత clients కే priority/g, "Experienced with visits, but prioritizes own direct buyers")
+    .replace(/Site reels తో interest, కానీ slow/g, "Sparks interest via site reels, but slow conversion")
+    .replace(/Leads stage లో 🎯\. ఎక్కువ leads, అదే leak/g, "Great at Lead Gen, but doesn't fix the site-visit bottleneck")
+    .replace(/ఇంకా pitch skills లేవు/g, "Lacks phone pitching skills to secure site visits")
+    .replace(/Weekly targets, Monday reviews/g, "Enforces weekly visit targets & Monday review cadence")
+    .replace(/Weekly visit routine తెలుసు, buyers తీసుకొస్తారు/g, "Knows the weekend visit routine and brings buyers")
+    .replace(/Reminders తో no-shows తగ్గుతాయి, discipline కాదు/g, "Reduces no-shows via reminders, but doesn't manage team discipline")
+    .replace(/Closing, Referrals లో 👍\. Site visits నడపరు/g, "Good at Closing & Referrals, does not drive weekly site visits")
+    .replace(/Downline కి focus, visits కి కాదు/g, "Focused on downline recruitment rather than site visits")
+    .replace(/Plot buyers objections handle చేసి close చేస్తారు/g, "Handles plot buyer objections and closes bookings")
+    .replace(/Closing experience ఉంది, plots కి కొంచెం adjust కావాలి/g, "Strong closing background; needs minor adaptation to open plots")
+    .replace(/Trust ఉంది, కానీ product knowledge తక్కువ/g, "High family trust, but limited plotted-development knowledge")
+    .replace(/Leads లో 🎯\. ఎక్కువ visits, అదే result/g, "Great at Lead Gen, but doesn't solve on-site closing")
+    .replace(/Negotiation లో discount ఇచ్చేసి deal పాడు చేస్తారు/g, "Caves in during negotiation and spoils deals with heavy discounts")
+    .replace(/Loans, returns, credibility/g, "Explains loan eligibility, ROI & financial credibility")
+    .replace(/Value selling, investment language తెలుసు/g, "Fluent in value selling and investment comparisons")
+    .replace(/Savings mindset తెలుసు, big-ticket experience తక్కువ/g, "Understands savers, but limited high-ticket plot closing experience")
+    .replace(/Followup లో 🎯\. Investment questions కి answer కాదు/g, "Great at Follow-up, but cannot answer deep investment questions")
+    .replace(/'Double అవుతుంది sir' లాంటి over-promises, trust పోతుంది/g, "Makes unrealistic 'money-doubling' claims that destroy buyer trust")
+    .replace(/Regular updates తో buyers తో relationship, referrals అడుగుతారు/g, "Maintains regular buyer updates & systematically prompts referrals")
+    .replace(/Families తో long relationships/g, "Builds long-term multi-year relationships with families")
+    .replace(/Team ని referrals అడగమని push, కానీ system కాదు/g, "Pushes team to ask for referrals, but isn't an automated system")
+    .replace(/Leads, Closing లో 👍\. Old buyers తో connect ఉండదు/g, "Good at Leads & Closing, but rarely stays in touch with past buyers")
+    .replace(/Leads లో 🎯\. Happy customers ని ignore చేస్తారు/g, "Focused on new paid ads while ignoring past happy customers")
+    .replace(/వేరే projects కూడా అమ్ముతారు, loyalty తక్కువ/g, "Sells multiple competing projects; lower loyalty")
+    .replace(/Apartments కి priority, plots కి focus తక్కువ/g, "Prioritizes apartments over plotted developments")
+    .replace(/Part-time, plots knowledge తక్కువ/g, "Works part-time with limited plot-specific knowledge")
+    .replace(/Site, layout knowledge తక్కువ/g, "Limited on-ground site and layout knowledge")
+    .replace(/Big-ticket selling experience తక్కువ/g, "Limited high-ticket real estate closing experience")
+    .replace(/Community లో trust, patience/g, "High community respect and patience")
+    .replace(/Speed, volume తక్కువ/g, "Lower speed and call volume")
+    .replace(/Part-time, business busy అయితే drop/g, "Part-time; drops off when own shop gets busy")
+    .replace(/Women groups లో warm referrals/g, "Warm referrals across women's community groups")
+    .replace(/Site visits, negotiation కి support కావాలి/g, "Needs team support for site visits and price negotiation")
+    .replace(/Selling కంటే downline కి focus/g, "Focuses on downline recruiting over actual plot sales")
+    .replace(/Trainable, social media తెలుసు/g, "Trainable and comfortable with social media")
+    .replace(/Credibility, pitch skills లేవు/g, "Lacks buyer credibility and pitching skills")
+    .replace(/Leads తెస్తారు, ఈ problem fix చేయరు/g, "Generates leads, but doesn't fix this stage's bottleneck")
+    .replace(/Trust పెంచే videos, organic leads/g, "Builds trust through videos and organic leads")
+    .replace(/Results slow, direct selling చేయరు/g, "Slow ramp-up and does not do direct selling")
+    .replace(/Fast follow-up, visits book చేస్తారు/g, "Rapid follow-up and books weekend site visits")
+    .replace(/Calls చేస్తారు, closing \/ relationships కాదు/g, "Handles calls, not on-site closing or post-sale relationships")
+    .replace(/Portals నుంచి high-intent leads/g, "Brings high-intent leads from property portals")
+    .replace(/Plotted buyers, competitor objections తెలుసు/g, "Knows plot buyers and competitor objections well")
+    .replace(/Loyalty తక్కువ, మళ్లీ వెళ్లిపోవచ్చు/g, "Low loyalty; may switch back to competitors")
+    .replace(/Auto reminders, ఏ lead miss అవ్వదు/g, "Automated reminders so no lead slips through")
+    .replace(/System ఇస్తారు, calls \/ meetings చేయరు/g, "Builds automation systems, doesn't make sales calls")
+    .replace(/Loans, EMI doubts clear, credibility/g, "Clears loan & EMI doubts with high credibility")
+    .replace(/Leads, site experience తక్కువ/g, "Limited lead generation and site visit experience")
+    .replace(/Salary ఎక్కువ, సొంతంగా ఈ పని చేయరు/g, "Higher cost and manages rather than executing solo")
+    .replace(/, కానీ /g, ", but ")
+    .replace(/ఇక్కడ కాదు/g, "not suited for this stage")
+    .replace(/ లో /g, " in ");
+}
+
+var GAME_OVERRIDE={name:"Fix Your Sales Funnel",share:"Fix Your Sales Funnel: మీరు TL. Sales drop-off ని fix చేయడానికి సరైన person ని hire చేయండి! FARE game",url:"https://claude.ai/artifact/3MLSLamonqmFbgj9RYMiVJ"};
+const ST={lead:["LEADS","#6366F1"],follow:["FOLLOWUP","#3B82F6"],visit:["SITE VISITS","#10B981"],close:["CLOSING","#C99A2E"],ref:["REFERRALS","#8B5CF6"]};
+const F=["Leads","Followup","Site visits","Closing","Referrals"], R=F;
+const POOL=[
+ {g:"field",e:"🤝",n:"Existing plot agent",who:"ఇప్పటికే వేరే projects లో plots అమ్ముతున్న agent",plus:"Plot buyers network, site visit & closing experience",minus:"ఒకేసారి చాలా projects అమ్ముతారు, loyalty తక్కువ, commission ఎక్కువ అడుగుతారు",model:"Commission",fit:[6,4,6,10,4]},
+ {g:"field",e:"🏢",n:"Residential CP / agent",who:"Apartments, villas అమ్మిన experience ఉన్న CP లేదా CP firm",plus:"Ready buyer network, closing experience",minus:"Plots కంటే apartments కి priority ఇవ్వొచ్చు, commission ఎక్కువ అడుగుతారు",model:"Commission",fit:[6,4,4,6,4]},
+ {g:"field",e:"🛡️",n:"LIC / insurance agent",who:"Telugu states లో చాలా common. Families తో long relationships",plus:"Follow-up discipline, trust, family network",minus:"Real estate product knowledge తక్కువ, part-time గా ఉంటారు",model:"Commission",fit:[6,6,1,4,6]},
+ {g:"field",e:"📈",n:"Mutual fund distributor / financial advisor",who:"Investment, returns, goals గురించి మాట్లాడే advisor",plus:"Value selling, investor clients",minus:"Site, layout knowledge తక్కువ",model:"Commission",fit:[4,4,1,6,6]},
+ {g:"field",e:"💰",n:"Chit fund / finance agent",who:"Towns, mandals లో monthly collections చేసే agent",plus:"Local trust, regular-saver network",minus:"Big-ticket selling experience తక్కువ",model:"Commission",fit:[6,4,1,4,4]},
+ {g:"field",e:"🧓",n:"Retired govt employee",who:"Retired, time ఉంది, community లో respect",plus:"Trust, patience, senior buyers తో బాగా connect",minus:"Volume, speed తక్కువ, digital tools కష్టం",model:"Part-time / commission",fit:[4,1,1,4,4]},
+ {g:"field",e:"🏪",n:"Small business owner",who:"Shop, contractor, local business నడిపేవాళ్లు",plus:"Local customers network",minus:"Part-time, business busy అయితే drop",model:"Commission",fit:[4,1,1,1,4]},
+ {g:"field",e:"🏠",n:"Homemaker network (kitty / SHG groups)",who:"Women groups, apartment associations లో active",plus:"Warm referrals, family decision-makers కి reach",minus:"Site visits, negotiation కి support కావాలి",model:"Part-time / commission",fit:[4,1,1,1,6]},
+ {g:"field",e:"🔁",n:"Network marketing (MLM) background",who:"Downline building experience ఉన్నవాళ్లు",plus:"Recruitment energy, presentation skills",minus:"Selling కంటే downline కి focus. Over-promising risk",model:"Commission",fit:[4,1,1,0,1]},
+ {g:"field",e:"🎓",n:"Fresher / graduate",who:"College అయిపోయిన youth, digital-savvy",plus:"Trainable, తక్కువ salary, social media తెలుసు",minus:"Credibility, pitch skills లేవు. Training must",model:"Salary + incentive",fit:[1,4,1,0,1]},
+ {g:"digital",e:"📣",n:"Digital ads expert (Meta / Google)",who:"Paid campaigns, lead forms, landing pages",plus:"వారాల్లోనే fresh leads, measurable",minus:"Ad budget కావాలి. Leads తర్వాత follow-up team లేకపోతే waste",model:"Salary / agency fee",fit:[10,1,1,1,1]},
+ {g:"digital",e:"🎬",n:"Content creator / real estate YouTuber",who:"Site videos, reels, location explainers, testimonials",plus:"Trust, organic leads long run లో",minus:"Results slow, direct selling చేయరు",model:"Salary / per-video",fit:[6,4,4,1,6]},
+ {g:"digital",e:"📞",n:"Tele-caller (2–5 yrs exp)",who:"BPO లేదా real estate calling experience",plus:"Fast follow-up, visits book చేస్తారు",minus:"Leads లేకపోతే idle. Closing చేయరు",model:"Salary + incentive",fit:[1,10,10,1,4]},
+ {g:"digital",e:"🖥️",n:"Online ad expert",who:"Property portals (99acres, MagicBricks, Housing.com) లో listings, paid leads manage చేస్తారు",plus:"High-intent buyers, త్వరగా leads",minus:"Portal cost ఎక్కువ, అదే lead చాలా agents కి వెళ్తుంది, fast follow-up కావాలి",model:"Salary / per-lead",fit:[10,1,1,1,1]},
+ {g:"field",e:"🕵️",n:"Competitor agent",who:"పక్క plotted project (competitor) కి పని చేస్తున్న agent",plus:"Plotted buyers, competitor pricing & objections తెలుసు",minus:"Loyalty తక్కువ, మళ్లీ వెళ్లిపోవచ్చు; competitor తో conflict రావచ్చు",model:"Commission / salary + incentive",fit:[6,4,6,6,1]},
+ {g:"digital",e:"⚙️",n:"Lead automation expert",who:"WhatsApp automation, CRM, lead assignment, reminders, post-sale updates setup",plus:"Instant response, ఏ lead miss అవ్వదు. Buyers తో regular touch వల్ల relationships, referrals",minus:"Calls, meetings చేయరు; setup కి time, team use చేయాలి",model:"Salary / agency fee",fit:[4,10,4,1,10]},
+ {g:"site",e:"🏦",n:"Bank loan DSA / ex-banker",who:"Home / plot loans, eligibility, EMI planning తెలుసు",plus:"Loan, investment doubts clear, credibility",minus:"Lead generation, site experience తక్కువ",model:"Salary / per-loan",fit:[1,4,1,10,4]},
+ {g:"lead",e:"🧑‍✈️",n:"Experienced team lead / sales manager",who:"Team ని targets, reviews తో నడిపించిన experience",plus:"Discipline, consistency, coaching",minus:"Salary ఎక్కువ, సరైన team కావాలి",model:"Salary + override",fit:[4,6,10,6,4]}
+];
+const PP=n=>{const p=POOL.find(x=>x.n===n); if(!p) throw new Error("not in pool: "+n); return p;};
+const mk=(st,t,q,leak,opts)=>({st,t,q,leak,p:opts.map(([n,c,r])=>[PP(n).e,n,c,r])});
+const CASES=[
+ mk("lead","Team కి regular leads రావడం లేదు","Agents మళ్లీ మళ్లీ relatives కే call చేస్తున్నారు.",0,[
+  ["Digital ads expert (Meta / Google)",10,"వారాల్లోనే fresh leads"],
+  ["Content creator / real estate YouTuber",6,"నిరంతరం వచ్చే organic leads, long run లో"],
+  ["Retired govt employee",4,"Community లో warm leads, కానీ త్వరగా అయిపోతాయి"],
+  ["Tele-caller (2–5 yrs exp)",2,"Followup, Site visits లో 🎯. ఇక్కడ call చేయడానికి leads లేవు"],
+  ["Fresher / graduate",1,"Network లేదు, contacts లేవు"]]),
+ mk("follow","Leads ఉన్నాయి, కానీ ఎక్కువ leads interest చూపించడం లేదు","Friday lead. Tuesday call. అప్పటికే late.",1,[
+  ["Lead automation expert",10,"Instant replies, auto reminders"],
+  ["Experienced team lead / sales manager",6,"Daily follow-up reviews, కానీ calls చేసేది team"],
+  ["Content creator / real estate YouTuber",4,"Leads ని warm గా ఉంచుతారు, system కావాలి"],
+  ["Digital ads expert (Meta / Google)",2,"Leads stage లో 🎯. ఇక్కడ ఇంకా ఎక్కువ leads cold"],
+  ["Small business owner",1,"Part-time, follow-up కి time లేదు"]]),
+ mk("visit","300 leads, కేవలం 6 site visits","Enquiries బాగానే వస్తున్నాయి. Sunday ఎవరూ రావడం లేదు.",2,[
+  ["Tele-caller (2–5 yrs exp)",10,"బాగా pitch చేసి, visits book చేస్తారు"],
+  ["Existing plot agent",6,"Site visits చేయించిన experience, కానీ సొంత clients కే priority"],
+  ["Content creator / real estate YouTuber",4,"Site reels తో interest, కానీ slow"],
+  ["Online ad expert",2,"Leads stage లో 🎯. ఎక్కువ leads, అదే leak"],
+  ["Fresher / graduate",1,"ఇంకా pitch skills లేవు"]]),
+ mk("visit","కొన్ని Sundays లోనే site visits","ఎవరికి mood ఉంటే అప్పుడే పని.",2,[
+  ["Experienced team lead / sales manager",10,"Weekly targets, Monday reviews"],
+  ["Competitor agent",6,"Weekly visit routine తెలుసు, buyers తీసుకొస్తారు"],
+  ["Lead automation expert",4,"Reminders తో no-shows తగ్గుతాయి, discipline కాదు"],
+  ["Mutual fund distributor / financial advisor",2,"Closing, Referrals లో 👍. Site visits నడపరు"],
+  ["Network marketing (MLM) background",1,"Downline కి focus, visits కి కాదు"]]),
+ mk("close","20 visits, 1 booking","అందరూ 'ఇంట్లో discuss చేసి చెప్తాం' అంటున్నారు.",3,[
+  ["Existing plot agent",10,"Plot buyers objections handle చేసి close చేస్తారు"],
+  ["Residential CP / agent",6,"Closing experience ఉంది, plots కి కొంచెం adjust కావాలి"],
+  ["LIC / insurance agent",4,"Trust ఉంది, కానీ product knowledge తక్కువ"],
+  ["Digital ads expert (Meta / Google)",2,"Leads లో 🎯. ఎక్కువ visits, అదే result"],
+  ["Fresher / graduate",0,"Negotiation లో discount ఇచ్చేసి deal పాడు చేస్తారు"]]),
+ mk("close","Investment value ని team explain చేయలేకపోతోంది","'Rates పెరుగుతాయి sir.' అంతే.",3,[
+  ["Bank loan DSA / ex-banker",10,"Loans, returns, credibility"],
+  ["Mutual fund distributor / financial advisor",6,"Value selling, investment language తెలుసు"],
+  ["Chit fund / finance agent",4,"Savings mindset తెలుసు, big-ticket experience తక్కువ"],
+  ["Tele-caller (2–5 yrs exp)",2,"Followup లో 🎯. Investment questions కి answer కాదు"],
+  ["Network marketing (MLM) background",0,"'Double అవుతుంది sir' లాంటి over-promises, trust పోతుంది"]]),
+ mk("ref","కొన్న తర్వాత customers కనిపించరు","సంవత్సరానికి ఒక referral, అదీ కష్టమే.",4,[
+  ["Lead automation expert",10,"Regular updates తో buyers తో relationship, referrals అడుగుతారు"],
+  ["LIC / insurance agent",6,"Families తో long relationships"],
+  ["Experienced team lead / sales manager",4,"Team ని referrals అడగమని push, కానీ system కాదు"],
+  ["Competitor agent",2,"Leads, Closing లో 👍. Old buyers తో connect ఉండదు"],
+  ["Digital ads expert (Meta / Google)",2,"Leads లో 🎯. Happy customers ని ignore చేస్తారు"]])
+];
+
+const SHORT={
+ "Existing plot agent":["Plot buyers network, closing experience","వేరే projects కూడా అమ్ముతారు, loyalty తక్కువ"],
+ "Residential CP / agent":["Ready buyer network, closing experience","Apartments కి priority, plots కి focus తక్కువ"],
+ "LIC / insurance agent":["Follow-up discipline, family trust","Part-time, plots knowledge తక్కువ"],
+ "Mutual fund distributor / financial advisor":["Investment language, investor clients","Site, layout knowledge తక్కువ"],
+ "Chit fund / finance agent":["Local trust, regular savers network","Big-ticket selling experience తక్కువ"],
+ "Retired govt employee":["Community లో trust, patience","Speed, volume తక్కువ"],
+ "Small business owner":["Local customers network","Part-time, business busy అయితే drop"],
+ "Homemaker network (kitty / SHG groups)":["Women groups లో warm referrals","Site visits, negotiation కి support కావాలి"],
+ "Network marketing (MLM) background":["Presentation energy","Selling కంటే downline కి focus"],
+ "Fresher / graduate":["Trainable, social media తెలుసు","Credibility, pitch skills లేవు"],
+ "Digital ads expert (Meta / Google)":["వారాల్లోనే fresh leads","Leads తెస్తారు, ఈ problem fix చేయరు"],
+ "Content creator / real estate YouTuber":["Trust పెంచే videos, organic leads","Results slow, direct selling చేయరు"],
+ "Tele-caller (2–5 yrs exp)":["Fast follow-up, visits book చేస్తారు","Calls చేస్తారు, closing / relationships కాదు"],
+ "Online ad expert":["Portals నుంచి high-intent leads","Leads తెస్తారు, ఈ problem fix చేయరు"],
+ "Competitor agent":["Plotted buyers, competitor objections తెలుసు","Loyalty తక్కువ, మళ్లీ వెళ్లిపోవచ్చు"],
+ "Lead automation expert":["Auto reminders, ఏ lead miss అవ్వదు","System ఇస్తారు, calls / meetings చేయరు"],
+ "Bank loan DSA / ex-banker":["Loans, EMI doubts clear, credibility","Leads, site experience తక్కువ"],
+ "Experienced team lead / sales manager":["Targets, reviews, coaching","Salary ఎక్కువ, సొంతంగా ఈ పని చేయరు"]};
+
+const OVR=[["Investment value ని team explain చేయలేకపోతోంది","Existing plot agent",6]];
+(function(){
+  const SN=["Leads","Followup","Site visits","Closing","Referrals"], IC_M={10:"🎯",6:"👍"};
+  CASES.forEach(c=>{
+    const s=c.leak, have=new Set(c.p.map(x=>x[1]));
+    const ex=POOL.filter(p=>!have.has(p.n)).map(p=>{
+      const f=p.fit[s], good=p.fit.map((v,i)=>v>=6?SN[i]+" లో "+IC_M[v]:null).filter(Boolean);
+      let code=(f<=1&&good.length)?2:f; const o=OVR.find(x=>x[0]===c.t&&x[1]===p.n); if(o) code=o[2];
+      const [pos,neg]=SHORT[p.n];
+      const r=code>=6?pos: code===4?pos.split(",")[0]+", కానీ "+neg: code===2?good.slice(0,2).join(", ")+". ఇక్కడ కాదు": neg;
+      return [p.e,p.n,code,r];
+    }).sort((a,b)=>b[2]-a[2]);
+    const pick=ex.length<=7?ex:[...ex.slice(0,4),...ex.slice(-3)];
+    c.p.push(...pick);
+  });
+})();
+
+const $=id=>document.getElementById(id);
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+let SOUND=true, AC;
+function beep(f,d=.12,type="sine",v=.12){ if(!SOUND) return; try{AC=AC||new (window.AudioContext||window.webkitAudioContext)(); const o=AC.createOscillator(),g=AC.createGain(); o.type=type;o.frequency.value=f;g.gain.value=v;o.connect(g);g.connect(AC.destination);o.start();g.gain.exponentialRampToValueAtTime(.0001,AC.currentTime+d);o.stop(AC.currentTime+d);}catch(e){} }
+const sfx={good:()=>{beep(660,.1);setTimeout(()=>beep(990,.15),80);}, bad:()=>beep(200,.28,"sawtooth",.07), soft:()=>beep(420,.08,"triangle",.12),
+  win:()=>[523,659,784,1047].forEach((f,i)=>setTimeout(()=>beep(f,.16),i*110))};
+
+const FARE_LINKS={
+  talent:"https://www.fare.training",
+  course:"https://www.fare.training",
+  session:"https://wa.me/917674993040?text="+encodeURIComponent("Hi FARE, I would like a FREE session to discuss my team training needs"),
+  share:"",
+  leads:"",
+  whatsapp:"https://wa.me/917674993040?text="+encodeURIComponent("Hi FARE, please add me to the team building tips WhatsApp community")
+};
+
+const GAME_CFG=Object.assign({name:"Fix Your Sales Funnel",share:"Fix Your Sales Funnel: మీ sales funnel ఎక్కడ leak అవుతోంది? ఈ FARE game ఆడి చూడండి",url:"https://claude.ai/artifact/Vy9uw1ifg49P5nhSsp6ARf"},(typeof GAME_OVERRIDE!=="undefined")?GAME_OVERRIDE:{});
+const SHARE_TEXT=GAME_CFG.share;
+function shareURL(){ if(FARE_LINKS.share) return FARE_LINKS.share; return /claudeusercontent|claude\.ai/.test(location.hostname)?GAME_CFG.url:location.href.split("#")[0]; }
+function wireShare(){ document.querySelectorAll(".shareB").forEach(a=>{
+  a.href="https://wa.me/?text="+encodeURIComponent(SHARE_TEXT+"\n"+shareURL());
+  a.onclick=async e=>{ if(!navigator.share) return; e.preventDefault();
+    try{ await navigator.share({title:GAME_CFG.name+" · FARE",text:SHARE_TEXT,url:shareURL()}); }
+    catch(err){ if(!err||err.name!=="AbortError") location.href=a.href; } }; }); }
+
+const PLAYER_KEY="fare_game_player";
+function getPlayer(){ try{ return JSON.parse(localStorage.getItem(PLAYER_KEY)||"null"); }catch(e){ return null; } }
+function savePlayer(p){ try{ localStorage.setItem(PLAYER_KEY,JSON.stringify(p)); }catch(e){} }
+function sendLead(p,extra={}){ if(!FARE_LINKS.leads) return;
+  const body=new URLSearchParams({name:p.name,mobile:p.mobile,game:GAME_CFG.name,page:location.href.split("#")[0],...extra});
+  try{ fetch(FARE_LINKS.leads,{method:"POST",mode:"no-cors",body}).catch(()=>{}); }catch(e){} }
+
+const CONTACT_HTML=`<div class="contact">
+  <div class="contact-header">
+    <span class="contact-line"></span>
+    <div class="contact-badge">
+      <span class="gold-star">✦</span>
+      <span class="contact-title">FARE · FINISHING ACADEMY FOR REAL ESTATE</span>
+      <span class="gold-star">✦</span>
+    </div>
+    <span class="contact-line"></span>
+  </div>
+  <div class="cl">
+    <a href="tel:+917674993040" class="cl-item phone" title="Call Career Desk: +91 7674993040">
+      <span class="cl-ic">${IC.phone}</span>
+      <span class="cl-label">7674993040</span>
+    </a>
+    <a href="https://wa.me/917674993040" target="_blank" rel="noopener" class="cl-item wa" title="Chat on WhatsApp">
+      <span class="cl-ic">${IC.msg}</span>
+      <span class="cl-label">WhatsApp</span>
+    </a>
+    <a href="https://www.fare.training" target="_blank" rel="noopener" class="cl-item web" title="Visit FARE Portal">
+      <span class="cl-ic">${IC.globe}</span>
+      <span class="cl-label">www.fare.training</span>
+    </a>
+    <a href="https://www.instagram.com/fare.training" target="_blank" rel="noopener" class="cl-item ig" title="Follow on Instagram">
+      <span class="cl-ic">${IC.ig}</span>
+      <span class="cl-label">@fare.training</span>
+    </a>
+  </div>
+</div>`;
+
+const PSOL=[
+ /* 0 · LEADS */ [
+  ["🎓","Existing agents కి lead generation training",10,"Personal branding, social media తో ప్రతి agent సొంత leads తెస్తారు"],
+  ["🧲","Lead-gen experience ఉన్న agents ని onboard చేయండి",10,"Day 1 నుంచే సొంత leads, team కి example"],
+  ["📣","Meta / Google ads: clear target, daily tracking",10,"వారాల్లోనే fresh leads, cost per lead తెలుస్తుంది"],
+  ["🏢","కొత్త lead agency ని onboard చేయండి",4,"Leads వస్తాయి, కానీ quality, cost control మీ చేతిలో ఉండవు"],
+  ["💸","Lead generation మీద ఎక్కువ spend",4,"Leads పెరుగుతాయి, కానీ tracking లేకపోతే budget waste"],
+  ["🎥","Weekly site reels & content",4,"Trust పెరుగుతుంది, కానీ results slow"],
+  ["🎪","Property exhibitions / local events",4,"Walk-in leads, కానీ ఒక్కసారికే"],
+  ["👥","కొత్త agents ని hire చేయండి (lead skills లేకుండా)",1,"Leads లేని agents పెరుగుతారు, అదే problem"],
+  ["📞","Relatives & friends కి మళ్లీ call చేయమనండి",1,"Network అయిపోయింది, ఇంకా ఒత్తిడి"],
+  ["📈","Team size (downline) పెంచండి",0,"ఉన్న company leads ఇంకా ఎక్కువ మంది మధ్య divide అవుతాయి"]],
+ /* 1 · FOLLOWUP */ [
+  ["⚙️","WhatsApp automation + CRM reminders",10,"ప్రతి lead కి instant reply, ఏ follow-up miss అవ్వదు"],
+  ["⏱️","5-minute first call rule + daily follow-up review",10,"Lead hot గా ఉన్నప్పుడే call, discipline పెరుగుతుంది"],
+  ["🗣️","Telecalling & sales pitch training",10,"Qualify చేసి, interest create చేసే pitch"],
+  ["📋","Excel sheet లో leads track చేయండి",4,"ఏమీ లేకపోవడం కంటే better, కానీ update చేయరు"],
+  ["📲","Weekly project updates అన్ని leads కి పంపండి",4,"Leads ని warm గా ఉంచుతుంది, కానీ personal touch లేదు"],
+  ["🎁","Phone లోనే discount offer",1,"Interest కాదు, price bargaining మొదలవుతుంది"],
+  ["💸","ఇంకా ఎక్కువ leads కొనండి",1,"Cold leads ఇంకా పెరుగుతాయి"],
+  ["📢","Bulk SMS blast",1,"ఎవరూ చదవరు, brand cheap గా కనిపిస్తుంది"],
+  ["🤞","Interest ఉంటే వాళ్లే call చేస్తారు",1,"Competitor ముందే call చేస్తారు"],
+  ["😤","రోజూ అదే script తో pressure calls",0,"Spam అని block చేస్తారు, lead పోతుంది"]],
+ /* 2 · SITE VISITS */ [
+  ["🗣️","Telecalling & pitch training: visit book చేయడం",10,"Call ని visit గా మార్చే pitch"],
+  ["📅","Weekly visit targets + Monday review",10,"ప్రతి Sunday visits plan అవుతాయి"],
+  ["🚐","Fixed Sunday slots + free pickup",10,"Customer కి easy, no-shows తగ్గుతాయి"],
+  ["🔔","Visit ముందు రోజు & ఆ రోజు reminders",10,"Booked visits నిజంగా జరుగుతాయి"],
+  ["🎬","Site video reels leads కి పంపండి",4,"Interest పెరుగుతుంది, కానీ visit guarantee కాదు"],
+  ["🎁","Site visit కి gift",4,"కొంత మంది వస్తారు, కానీ serious buyers కాకపోవచ్చు"],
+  ["🏆","Monthly visit contest",4,"Short-term energy, system కాదు"],
+  ["💸","ఇంకా ఎక్కువ leads కొనండి",1,"ఎక్కువ leads, అదే visit leak"],
+  ["👥","ఇంకా agents ని add చేయండి",1,"Pitch, planning లేకపోతే visits పెరగవు"],
+  ["🏷️","Visit ముందే phone లో best price చెప్పండి",0,"Price తెలిసిపోయింది, site కి రావాల్సిన అవసరం లేదు"]],
+ /* 3 · CLOSING */ [
+  ["🛡️","Objection handling training (role plays)",10,"'ఇంట్లో discuss చేస్తాం' కి సరైన answer"],
+  ["💎","Value selling: location growth, investment case",10,"Price కాదు, future value చూపిస్తారు"],
+  ["📚","Product & investment knowledge sessions",10,"Approvals, location, loans: ప్రతి doubt clear"],
+  ["🏦","Bank tie-up: site లోనే loan eligibility",10,"Money doubt అక్కడే solve, booking వెంటనే"],
+  ["🧾","Brochure & FAQ sheet",4,"Help అవుతుంది, కానీ conversation replace చేయదు"],
+  ["⏳","Limited-time offer",4,"కొంత urgency, ఎక్కువ వాడితే trust పోతుంది"],
+  ["🧑‍✈️","Final meeting లో senior join అవ్వడం",4,"Trust పెరుగుతుంది, కానీ team skill పెరగదు"],
+  ["👥","ఇంకా ఎక్కువ site visits తేండి",1,"అదే conversion, ఎక్కువ effort waste"],
+  ["😤","'Today only' hard pressure closing",1,"Customer దూరం అవుతారు"],
+  ["💸","పెద్ద discounts ఇవ్వండి",0,"Margin పోతుంది, project value తగ్గినట్టు కనిపిస్తుంది"]],
+ /* 4 · REFERRALS */ [
+  ["🤝","Post-sale relationship plan",10,"Registration, development updates: buyer తో regular touch"],
+  ["⚙️","Automated updates + festival wishes",10,"ప్రతి buyer కి personal touch, effort లేకుండా"],
+  ["🎁","Buyers కి referral reward program",10,"Happy buyers కొత్త buyers ని తెస్తారు"],
+  ["🏡","Plot owners meet / site day",10,"Community feeling, referrals natural గా వస్తాయి"],
+  ["📱","Buyers WhatsApp group",4,"Connect అవుతుంది, కానీ manage చేయకపోతే complaints board"],
+  ["🙏","Registration రోజు మాత్రమే referral అడగండి",4,"కొంత help, relationship లేకుండా ఒక్కసారికే"],
+  ["💸","Referrals బదులు ఇంకా ads",1,"Leads వస్తాయి, కానీ cheapest source ని వదిలేశారు"],
+  ["👥","Referrals కోసం ఇంకా agents",1,"Relationship system లేకపోతే అదే result"],
+  ["🚪","Registration తర్వాత follow-up అవసరం లేదు",1,"Buyer మర్చిపోతారు, referral రాదు"],
+  ["📢","Buyers కి కొత్త project offers spam",0,"Irritation, negative word of mouth"]]
+];
+
+const HELP={"Existing plot agent":"ఇప్పటికే plots అమ్ముతున్నారు, buyers ని close చేస్తారు","Residential CP / agent":"Apartments అమ్మిన agent, ready buyers ఉంటారు","LIC / insurance agent":"Families తో trust, regular follow-up అలవాటు","Mutual fund distributor / financial advisor":"Investment, returns గురించి explain చేస్తారు","Chit fund / finance agent":"Local savers network ఉన్న collection agent","Retired govt employee":"Community లో respect, part-time గా పని","Small business owner":"Shop / business ఉంది, local contacts","Homemaker network (kitty / SHG groups)":"Women groups లో warm contacts","Network marketing (MLM) background":"Downline build చేసిన experience","Fresher / graduate":"College అయిపోయిన youth, experience లేదు","Digital ads expert (Meta / Google)":"Facebook / Google ads తో కొత్త leads తెస్తారు","Content creator / real estate YouTuber":"Site videos, reels తో trust పెంచుతారు","Tele-caller (2–5 yrs exp)":"Calls చేసి customers ని site కి తీసుకొస్తారు","Online ad expert":"99acres, MagicBricks లో leads తెస్తారు","Competitor agent":"పక్క project లో plots అమ్ముతున్న agent","Lead automation expert":"WhatsApp, CRM తో auto reminders & updates","Bank loan DSA / ex-banker":"Plot loans, EMI doubts clear చేస్తారు","Experienced team lead / sales manager":"Targets, reviews తో team ని నడిపిస్తారు"};
+const PLAIN=["Agents కి కొత్త leads రావడం లేదు. అందరూ relatives కే మళ్లీ మళ్లీ call చేస్తున్నారు.",
+ "Leads వస్తున్నాయి, కానీ సరైన follow-up లేక interest పోతోంది.",
+ "300 leads వచ్చాయి, కానీ 6 మందే site visit కి వచ్చారు.",
+ "Team కి mood ఉన్న Sundays లోనే site visits జరుగుతున్నాయి.",
+ "20 మంది site చూశారు, కానీ 1 booking మాత్రమే.",
+ "Customers 'ఇది మంచి investment ఎందుకు?' అంటే team answer చెప్పలేకపోతోంది.",
+ "Plot కొన్నవాళ్లు తర్వాత కనిపించరు, referrals రావడం లేదు."];
+
+const SN=["Leads","Followup","Site visits","Closing","Referrals"];
+
+const RX_Y_MAP = {
+  te: {
+    10:["Perfect hire! Permanent solution, conversion పెరిగింది","clamp",.55,10],
+    6:["మంచి hire, conversion కొంత పెరిగింది","band",.32,6],
+    4:["Temporary solution మాత్రమే, కొంచెం help","tape",.15,3],
+    2:["ఈ stage కి కాదు, result లేదు","fall",0,-3],
+    1:["Wrong hire! Temporary solution, problem అలాగే ఉంది","fall",-.1,-5],
+    0:["Drop-off ఇంకా పెరిగింది!","crack",-.25,-8]
+  },
+  en: {
+    10:["Perfect hire! Permanent solution—conversion jumped!","clamp",.55,10],
+    6:["Strong hire! Conversion improved noticeably.","band",.32,6],
+    4:["Moderate fit—only a partial, temporary boost.","tape",.15,3],
+    2:["Right skill, wrong funnel stage—no impact here.","fall",0,-3],
+    1:["Wrong hire! Temporary patch—the leak continues.","fall",-.1,-5],
+    0:["Drop-off worsened! That hurt buyer trust.","crack",-.25,-8]
+  }
+};
+const RX_N_MAP = {
+  te: {
+    10:["Best person ని వదిలేశారు!",-5],
+    6:["మంచి option miss అయింది",0],
+    4:["OK, పర్వాలేదు",1],
+    2:["సరైన reject: వేరే stage person",3],
+    1:["సరైన reject!",5],
+    0:["Risk తప్పించారు!",5]
+  },
+  en: {
+    10:["Missed the best candidate for this stage!",-5],
+    6:["Passed on a strong option.",0],
+    4:["Fair pass—only a moderate fit.",1],
+    2:["Smart reject: suited for a different stage!",3],
+    1:["Good reject! Saved time & budget.",5],
+    0:["Dodged a major risk!",5]
+  }
+};
+const PY_MAP = {
+  te: {
+    10:["Great Idea! Permanent solution, conversion పెరిగింది","clamp",.4,10],
+    4:["Temporary solution, కొంచెం help","tape",.12,3],
+    1:["Bad Idea, problem అలాగే ఉంది","fall",-.1,-5],
+    0:["Drop-off ఇంకా పెరిగింది!","crack",-.25,-8]
+  },
+  en: {
+    10:["High-Impact Fix! Conversion permanently improved.","clamp",.4,10],
+    4:["Partial fix—helps slightly, but not a full system.","tape",.12,3],
+    1:["Ineffective step—the core problem remains.","fall",-.1,-5],
+    0:["Counterproductive! Funnel drop-off got worse.","crack",-.25,-8]
+  }
+};
+const PN_MAP = {
+  te: {
+    10:["మంచి Idea ని reject చేశారు!",-5],
+    4:["OK, పర్వాలేదు",1],
+    1:["సరైన reject!",5],
+    0:["Risk తప్పించారు!",5]
+  },
+  en: {
+    10:["You skipped a high-impact solution!",-5],
+    4:["Fair pass—only a partial fix.",1],
+    1:["Smart reject! Avoided wasted effort.",5],
+    0:["Great call—avoided hurting the funnel!",5]
+  }
+};
+
+/* ===== GAME STATE ===== */
+let LV=1, order=[], qi=0, deck=[], di=0, L=1, score=0, busy=false, hist=[], good=0, total=0;
+const NQ=3, ND=8;
+
+function applyStaticUI(){
+  const t = UI_TEXT[LANG];
+  document.documentElement.lang = LANG;
+  $("navBadgeText").textContent = t.badge;
+  if ($("heroBadgeSub")) $("heroBadgeSub").textContent = t.heroBadge;
+  if ($("resBadgeText")) $("resBadgeText").textContent = t.resBadge;
+  $("langIcon").innerHTML = IC.globe;
+  $("langLabel").textContent = LANG === "te" ? "EN" : "తెలుగు";
+  $("themeIcon").innerHTML = THEME === "dark" ? IC.sun : IC.moon;
+  $("themeLabel").textContent = THEME === "dark" ? "Light" : "Dark";
+  $("muteIcon").innerHTML = SOUND ? IC.volOn : IC.volOff;
+
+  $("hEyebrow").textContent = t.eyebrow;
+  $("hTitle").innerHTML = t.title;
+  document.querySelectorAll(".hsg span[data-stage]").forEach(el => {
+    const idx = Number(el.getAttribute("data-stage"));
+    el.textContent = t.stages[idx];
+  });
+  $("hPipeNote").innerHTML = `${IC.trendDown}<span>${t.pipeNote}</span>`;
+
+  $("hStory").innerHTML = `
+    <div class="story-row"><span class="ic-badge indigo">${IC.briefcase}</span><span>${t.story1}</span></div>
+    <div class="story-row"><span class="ic-badge emerald">${IC.checkCircle}</span><span>${t.story2}</span></div>
+    <div class="story-row"><span class="ic-badge rose">${IC.xCircle}</span><span>${t.story3}</span></div>
+  `;
+
+  $("bPlay").innerHTML = `<span class="mi">${IC.userCheck}</span><b>${t.mode1Title}</b><small>${t.mode1Sub}</small>`;
+  $("bProc").innerHTML = `<span class="mi">${IC.settings}</span><b>${t.mode2Title}</b><small>${t.mode2Sub}</small>`;
+  $("hDuration").textContent = t.duration;
+
+  $("shareHome").innerHTML = `${IC.share}<span>${t.shareBtn}</span>`;
+  $("shareCta").innerHTML = `${IC.share}<span>${t.shareBtn}</span>`;
+
+  $("scLbl").textContent = t.scoreLbl;
+  $("puddleLbl").textContent = t.puddleLbl;
+  $("tlAv").innerHTML = IC.briefcase;
+  $("tlNm").textContent = t.tlName;
+  $("teamLbl").textContent = t.teamLbl;
+
+  if ($("jCloseBtn")) $("jCloseBtn").innerHTML = IC.x;
+  $("joinIcon").innerHTML = IC.userCheck;
+  if ($("fieldUserIcon")) $("fieldUserIcon").innerHTML = IC.user;
+  if ($("trustLockIcon")) $("trustLockIcon").innerHTML = IC.lock;
+  $("joinTitle").textContent = t.joinTitle;
+  $("joinSub").textContent = t.joinSub;
+  $("lblName").textContent = t.lblName;
+  $("lblMob").textContent = t.lblMob;
+  $("jName").placeholder = t.phName;
+  $("jMob").placeholder = t.phMob;
+  $("btnJoinStart").innerHTML = `<span>${t.btnJoinStart}</span>${IC.arrowRight}`;
+  $("jSkip").textContent = t.skipJoin;
+  $("joinNote").textContent = t.joinNote;
+
+  $("ctaHeading").innerHTML = t.ctaHeading;
+  $("ctaSub").textContent = t.ctaSub;
+  $("ctaT").innerHTML = `<span class="ic-badge gold">${IC.users}</span><span><b>${t.cta1Title}</b><small>${t.cta1Sub}</small></span><span class="go">${t.cta1Go}</span>`;
+  $("ctaC").innerHTML = `<span class="ic-badge cyan">${IC.grad}</span><span><b>${t.cta2Title}<span class="free">FREE</span></b><small>${t.cta2Sub}</small></span><span class="go">${t.cta2Go}</span>`;
+  $("ctaS").innerHTML = `<span class="ic-badge indigo">${IC.phone}</span><span><b>${t.cta3Title}<span class="free">FREE</span></b><small>${t.cta3Sub}</small></span><span class="go">${t.cta3Go}</span>`;
+  $("ctaW").innerHTML = `<span class="ic-badge emerald">${IC.msg}</span><span><b>${t.cta4Title}<span class="free">FREE</span></b><small>${t.cta4Sub}</small></span><span class="go">${t.cta4Go}</span>`;
+
+  $("bCta").innerHTML = `${IC.sparkles}<span>${t.wantTeamBtn}</span>`;
+  $("bAgain").innerHTML = `${IC.refresh}<span>${t.againBtn}</span>`;
+  $("bHome").innerHTML = `${IC.home}<span>${t.homeBtn}</span>`;
+
+  /* Refresh active gameplay/modals if currently open */
+  if ($("sPlay").classList.contains("on") && order.length) {
+    renderPlayCards();
+    paint();
+  }
+  if (!$("ovBrief").classList.contains("hide") && order.length) {
+    brief(CASES[order[qi]]);
+  }
+  if (!$("ovRound").classList.contains("hide") && order.length) {
+    roundEnd();
+  }
+  if ($("sRes").classList.contains("on") && total > 0) {
+    renderResultText();
+  }
+}
+
+function setTheme(nextTheme){
+  THEME = nextTheme;
+  document.documentElement.setAttribute("data-theme", THEME);
+  try { localStorage.setItem("fare_game_theme", THEME); } catch(e){}
+  applyStaticUI();
+}
+
+function setLang(nextLang){
+  LANG = nextLang;
+  try { localStorage.setItem("fare_game_lang", LANG); } catch(e){}
+  applyStaticUI();
+}
+
+$("themeBtn").onclick = () => setTheme(THEME === "dark" ? "light" : "dark");
+$("langBtn").onclick = () => setLang(LANG === "te" ? "en" : "te");
+$("mute").onclick = () => {
+  SOUND = !SOUND;
+  $("muteIcon").innerHTML = SOUND ? IC.volOn : IC.volOff;
+};
+
+function show(id){
+  document.querySelectorAll(".scr").forEach(s=>s.classList.toggle("on",s.id===id));
+  scrollTo(0,0);
+}
+function buildDeck(c){
+  if(LV===1){ const g=c.p.filter(x=>x[2]>=6), o=shuffle(c.p.filter(x=>x[2]<6)); return shuffle([...g.slice(0,3),...o.slice(0,ND-Math.min(3,g.length))]); }
+  const S=PSOL[c.leak], g=shuffle(S.filter(x=>x[2]===10)).slice(0,3), o=shuffle(S.filter(x=>x[2]!==10)).slice(0,ND-3); return shuffle([...g,...o]);
+}
+function startGame(lv){
+  LV=lv; order=shuffle([...CASES.keys()]).slice(0,NQ); qi=0; score=0; good=0; total=0; hist=[];
+  show("sPlay"); problem();
+}
+function leakX(){
+  const c=CASES[order[qi]], sc=$("scene").clientWidth, left=sc*.03, w=sc*.82;
+  return left+w*(c.leak+.5)/5;
+}
+function renderPlayCards(){
+  const t = UI_TEXT[LANG];
+  const c = CASES[order[qi]];
+  $("tlCard").innerHTML = `<small>${IC.alertTriangle}<span>${t.probPrefix} · ${t.stages[c.leak].toUpperCase()}</span></small><b>${tr(PLAIN[order[qi]])}</b>`;
+  $("pipe").innerHTML = t.stages.map((s,i)=>`<div class="sg ${i===c.leak?'lk':''}" id="sg${i}"><span>${s}</span></div>`).join("");
+  if (di < deck.length) {
+    const p = deck[di], isP = LV === 1;
+    $("pgT").textContent = `${t.briefTitlePrefix} ${qi+1}/${NQ} · ${isP ? t.candName.toUpperCase() : t.ideaName.toUpperCase()} ${di+1}/${deck.length}`;
+    $("cAv").innerHTML = isP ? IC.user : IC.lightbulb;
+    $("cBd").innerHTML = isP ? IC.briefcase : IC.wrench;
+    $("candNm").textContent = isP ? t.candName : t.ideaName;
+    const cc = $("cCard");
+    cc.className = "side" + (isP ? "" : " st");
+    cc.innerHTML = `<small>${isP ? IC.userCheck : IC.lightbulb}<span>${isP ? t.candTag : t.ideaTag}</span></small><div class="row"><span class="c-ic">${isP ? IC.user : IC.wrench}</span><b>${tr(p[1])}</b></div>${isP && HELP[p[1]] ? `<p>${tr(HELP[p[1]])}</p>` : ""}`;
+    $("bYes").innerHTML = `${IC.checkCircle}<span>${isP ? t.hireBtn : t.implBtn}</span>`;
+    $("bNo").innerHTML = `${IC.xCircle}<span>${t.rejectBtn}</span>`;
+  }
+}
+function problem(){
+  const c=CASES[order[qi]]; deck=buildDeck(c); di=0; L=1;
+  renderPlayCards();
+  const x=leakX(); ["drops","puddle","patches"].forEach(id=>$(id).style.left=x+"px");
+  $("patches").innerHTML=`<span class="leaktag" id="ltag">${IC.trendDown}<span>${UI_TEXT[LANG].dropping}</span></span>`;
+  $("teamRow").innerHTML="";
+  paint(); brief(c);
+}
+function brief(c){
+  const h = LV===1, t = UI_TEXT[LANG];
+  $("briefP").innerHTML=`<span class="tg">${IC.alertTriangle}<span>${t.briefTitlePrefix} ${qi+1} / ${NQ}</span></span>
+   <h3>${tr(PLAIN[order[qi]])}</h3>
+   <p>${h ? t.briefDescHire(ND, t.stages[c.leak]) : t.briefDescProc(ND, t.stages[c.leak])}</p>
+   <div class="rule">
+     <div class="y">${IC.checkCircle}<span>${t.briefRuleY(h)}</span></div>
+     <div class="n">${IC.xCircle}<span>${t.briefRuleN}</span></div>
+   </div>
+   <button class="btn" id="bGo" type="button">${IC.play}<span>${t.startBtn}</span></button>`;
+  $("ovBrief").classList.remove("hide");
+  $("bGo").onclick=()=>{ $("ovBrief").classList.add("hide"); nextCand(); };
+}
+function paint(){
+  const t = UI_TEXT[LANG];
+  const n=Math.max(0,Math.min(6,Math.ceil(L*6)));
+  $("drops").querySelectorAll("i").forEach((d,k)=>d.classList.toggle("off",k>=n));
+  $("puddle").style.transform=`scale(${.4+Math.min(1.6,Math.max(0,L))*0.8},1)`;
+  const fixed=L<=.08, c=CASES[order[qi]];
+  const sg=$("sg"+c.leak);
+  if(sg){ sg.classList.toggle("lk",!fixed); sg.classList.toggle("fx",fixed); }
+  const lt=$("ltag");
+  if(lt){
+    lt.className=fixed?"fixtag":"leaktag";
+    lt.innerHTML=fixed?`${IC.checkCircle}<span>${t.converting}</span>`:`${IC.trendDown}<span>${t.dropping}</span>`;
+  }
+  const cn=fixed?3:L<.5?2:L<.85?1:0;
+  $("coins").querySelectorAll("i").forEach((d,k)=>d.classList.toggle("off",k>=cn));
+}
+function nextCand(){
+  if(di>=deck.length){ setTimeout(roundEnd,500); return; }
+  busy=false;
+  $("prog").innerHTML=deck.map((_,i)=>`<i class="${i<di?'d':i===di?'c':''}"></i>`).join("");
+  $("score").textContent=score;
+  const cd=$("cand"); cd.style.transition="none"; cd.className="who"; cd.style.left=""; cd.style.bottom=""; cd.style.opacity=""; cd.style.transform="";
+  renderPlayCards();
+  void cd.offsetWidth; cd.style.transition=""; cd.classList.add("enter","bob");
+  $("bYes").disabled=$("bNo").disabled=false;
+  $("bub").className="bub";
+  if(qi===0&&di===0&&!seenHand()){
+    const h=document.createElement("div"); h.className="handH"; h.id="hand"; h.innerHTML=IC.pointer;
+    h.style.right="22%"; h.style.top="38px"; document.querySelector(".acts").appendChild(h);
+  }
+}
+function seenHand(){ try{return !!localStorage.getItem("fare_i_hand");}catch(e){return true;} }
+function say(t,sub){ const b=$("bub"); b.innerHTML=t+(sub?`<small>${tr(sub)}</small>`:""); b.classList.add("show"); }
+
+/* ===== INTERACTIVE POLISH & EFFECTS ===== */
+function showScorePop(pts, targetElem) {
+  const pop = document.createElement("div");
+  const isPos = pts > 0;
+  const isNeg = pts < 0;
+  pop.className = "score-popup " + (isPos ? "pos" : isNeg ? "neg" : "neu");
+  pop.innerHTML = (isPos ? "+ " : isNeg ? "- " : "") + Math.abs(pts) + " " + (LANG === "te" ? "pts" : "pts");
+  
+  let x = window.innerWidth / 2;
+  let y = window.innerHeight / 2;
+  if (targetElem) {
+    const rect = targetElem.getBoundingClientRect();
+    x = rect.left + rect.width / 2;
+    y = rect.top;
+  }
+  pop.style.left = x + "px";
+  pop.style.top = (y - 10) + "px";
+  document.body.appendChild(pop);
+  setTimeout(() => pop.remove(), 900);
+}
+
+function sparkleAt(x, y) {
+  const container = $("scene");
+  if (!container) return;
+  for (let i = 0; i < 6; i++) {
+    const s = document.createElement("div");
+    s.className = "sparkle-burst";
+    const dx = (Math.random() - 0.5) * 40;
+    const dy = (Math.random() - 0.5) * 40;
+    s.style.left = (x + dx) + "px";
+    s.style.top = (y + dy) + "px";
+    container.appendChild(s);
+    setTimeout(() => s.remove(), 600);
+  }
+}
+
+/* Confetti Particle Engine */
+let confettiReq = null;
+function launchConfetti(duration = 2200) {
+  const canvas = $("confettiCanvas");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  const w = canvas.width = window.innerWidth;
+  const h = canvas.height = window.innerHeight;
+  const colors = ["#C99A2E", "#D5AA45", "#E4C46A", "#10B981", "#6366F1", "#06B6D4", "#FFFFFF"];
+  const pieces = [];
+  const numPieces = Math.min(120, Math.floor(w / 10));
+
+  for (let i = 0; i < numPieces; i++) {
+    pieces.push({
+      x: w / 2 + (Math.random() - 0.5) * (w * 0.6),
+      y: h * 0.4 + (Math.random() - 0.5) * 100,
+      vx: (Math.random() - 0.5) * 10,
+      vy: Math.random() * -12 - 4,
+      size: Math.random() * 8 + 5,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      rotation: Math.random() * 360,
+      rotSpeed: (Math.random() - 0.5) * 12,
+      opacity: 1
+    });
+  }
+
+  const startTime = performance.now();
+  if (confettiReq) cancelAnimationFrame(confettiReq);
+
+  function loop(now) {
+    const elapsed = now - startTime;
+    ctx.clearRect(0, 0, w, h);
+
+    for (let p of pieces) {
+      p.x += p.vx;
+      p.y += p.vy;
+      p.vy += 0.38; // gravity
+      p.vx *= 0.985;
+      p.rotation += p.rotSpeed;
+      if (elapsed > duration * 0.6) {
+        p.opacity = Math.max(0, 1 - (elapsed - duration * 0.6) / (duration * 0.4));
+      }
+
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate((p.rotation * Math.PI) / 180);
+      ctx.globalAlpha = p.opacity;
+      ctx.fillStyle = p.color;
+      ctx.fillRect(-p.size / 2, -p.size / 4, p.size, p.size * 0.6);
+      ctx.restore();
+    }
+
+    if (elapsed < duration) {
+      confettiReq = requestAnimationFrame(loop);
+    } else {
+      ctx.clearRect(0, 0, w, h);
+    }
+  }
+  confettiReq = requestAnimationFrame(loop);
+}
+
+function decide(yes){
+  if(busy) return; busy=true; $("bYes").disabled=$("bNo").disabled=true;
+  const hd=$("hand"); if(hd){ hd.remove(); try{localStorage.setItem("fare_i_hand","1");}catch(e){} }
+  const p=deck[di], s=p[2], isP=LV===1, cd=$("cand"); cd.classList.remove("bob","enter"); total++; $("cCard").classList.add("gone");
+  const rxY = RX_Y_MAP[LANG], rxN = RX_N_MAP[LANG], py = PY_MAP[LANG], pn = PN_MAP[LANG];
+  if(yes){
+    const [t,kind,d,pts]=(isP?rxY:py)[s]; score+=pts; if(pts>0) good++; hist.push({p,yes}); showScorePop(pts, $("bYes"));
+    const x=leakX(); cd.style.left=(x-28)+"px"; cd.style.bottom="135px";
+    setTimeout(()=>{
+      addPatch(kind); L=Math.max(0,Math.min(1.6,L-d)); paint(); say(t,p[3]); (pts>0?sfx.good:sfx.bad)();
+      cd.style.opacity="0"; cd.style.transform="scale(.4)";
+      if(pts>0) $("teamRow").insertAdjacentHTML("beforeend",`<span class="team-chip" title="${tr(p[1])}">${isP?IC.userCheck:IC.wrench}</span>`);
+    },650);
+  } else {
+    const [t,pts]=(isP?rxN:pn)[s]; score+=pts; if(pts>0) good++; hist.push({p,yes}); showScorePop(pts, $("bNo"));
+    cd.classList.add("out"); say(t,s>=6||(s===4&&!isP)?p[3]:""); (pts>0?sfx.soft:sfx.bad)();
+  }
+  $("score").textContent=score;
+  setTimeout(()=>{ di++; nextCand(); },2300);
+}
+function addPatch(kind){
+  const P=$("patches"), o=(Math.random()*16-8); sparkleAt(leakX(), 52);
+  if(kind==="clamp") P.insertAdjacentHTML("beforeend",`<span class="clamp" style="left:${15+o/2}px"></span>`);
+  else if(kind==="band") P.insertAdjacentHTML("beforeend",`<span class="patch" style="left:${14+o}px;transform:rotate(${o*3}deg)">${IC.wrench}</span>`);
+  else if(kind==="tape") P.insertAdjacentHTML("beforeend",`<span class="patch" style="left:${18+o}px;transform:scale(.85) rotate(${o*4}deg)">${IC.wrench}</span>`);
+  else if(kind==="fall") P.insertAdjacentHTML("beforeend",`<span class="patch fall" style="left:${16+o}px">${IC.wrench}</span>`);
+  else P.insertAdjacentHTML("beforeend",`<span class="patch" style="left:${16+o}px;background:linear-gradient(135deg,#F43F5E,#E11D48)">${IC.alertTriangle}</span>`);
+}
+$("bYes").onclick=()=>decide(true); $("bNo").onclick=()=>decide(false);
+
+function roundEnd(){
+  const c=CASES[order[qi]], fixed=L<=.08, isP=LV===1, t=UI_TEXT[LANG];
+  const best=(isP?c.p.filter(x=>x[2]>=6):PSOL[c.leak].filter(x=>x[2]===10)).sort((a,b)=>b[2]-a[2]);
+  $("roundP").innerHTML=`<div class="big-ic">${fixed?IC.trophy:L<.5?IC.checkCircle:IC.alertTriangle}</div>
+   <h2>${fixed?t.roundFixed:L<.5?t.roundMid:t.roundLeak}</h2>
+   <div class="fitT">${isP?t.roundBestPeople:t.roundBestIdeas}</div>
+   <div class="fitL">${best.map(x=>{
+     const h=hist.some(r=>r.p===x&&r.yes), inDeck=deck.includes(x);
+     return `<div class="fr ${x[2]===10?'pf':''}">
+       <span class="ic-badge ${x[2]===10?'emerald':'indigo'}">${isP?IC.userCheck:IC.lightbulb}</span>
+       <span class="tx"><b>${tr(x[1])}</b><small>${tr(x[3])}</small></span>
+       <span class="tg2">${isP?(x[2]===10?'Perfect':'Near perfect'):'Good Idea'}${inDeck?(h?'<i>✓ '+(isP?'Hired':'Done')+'</i>':'<i class="m">Missed</i>'):''}</span>
+     </div>`;
+   }).join("")}</div>
+   <button class="btn" id="rNext" type="button" style="width:100%"><span>${t.continueBtn}</span>${IC.arrowRight}</button>`;
+  $("ovRound").classList.remove("hide");
+  if(fixed) { sfx.win(); launchConfetti(2600); }
+  $("rNext").onclick=()=>{ $("ovRound").classList.add("hide"); ctaAfter(); };
+}
+function ctaAfter(){
+  const t = UI_TEXT[LANG];
+  $("ctaT").href=FARE_LINKS.talent; $("ctaC").href=FARE_LINKS.course; $("ctaW").href=FARE_LINKS.whatsapp; $("ctaS").href=FARE_LINKS.session;
+  const last=qi>=NQ-1;
+  $("ctaNav").innerHTML=`<button class="btn" id="cNext" type="button"><span>${last?t.seeResultBtn:t.nextProbBtn}</span>${IC.arrowRight}</button><button class="btn ghost" id="cHome" type="button">${IC.home}<span>${t.homeBtn}</span></button>`;
+  $("ovCta").classList.remove("hide"); $("ovCta").scrollTop=0;
+  $("cNext").onclick=()=>{ $("ovCta").classList.add("hide"); qi++; if(qi<NQ) problem(); else result(); };
+  $("cHome").onclick=()=>{ $("ovCta").classList.add("hide"); show("sHome"); };
+}
+function renderResultText(){
+  const pct=total?good/total:0, t=UI_TEXT[LANG];
+  const starCount = pct>=.8 ? 3 : pct>=.6 ? 2 : 1;
+  $("rStars").innerHTML = Array.from({length: starCount}, () => IC.star).join("");
+  $("rTitle").textContent = pct>=.8 ? t.resTitleHigh : pct>=.6 ? t.resTitleMid : t.resTitleLow;
+  $("rSum").innerHTML = t.resSum(total, good, score);
+  $("bLv2").innerHTML = LV===1
+    ? `<span class="ic-badge gold">${IC.settings}</span><span><b>${t.lv2SwitchProcTitle}</b><small>${t.lv2SwitchProcSub}</small></span><span style="margin-left:auto">${IC.arrowRight}</span>`
+    : `<span class="ic-badge gold">${IC.userCheck}</span><span><b>${t.lv2SwitchHireTitle}</b><small>${t.lv2SwitchHireSub}</small></span><span style="margin-left:auto">${IC.arrowRight}</span>`;
+}
+function result(){
+  show("sRes"); launchConfetti(3200);
+  renderResultText();
+  sfx.win();
+}
+$("bLv2").onclick=()=>startGame(LV===1?2:1);
+$("bAgain").onclick=()=>startGame(LV);
+$("bHome").onclick=()=>show("sHome");
+$("bCta").onclick=()=>{
+  const t = UI_TEXT[LANG];
+  $("ctaT").href=FARE_LINKS.talent; $("ctaC").href=FARE_LINKS.course; $("ctaW").href=FARE_LINKS.whatsapp; $("ctaS").href=FARE_LINKS.session;
+  $("ctaNav").innerHTML=`<button class="btn ghost" id="cBack" type="button">${IC.arrowLeft}<span>${t.backBtn}</span></button>`;
+  $("ovCta").classList.remove("hide"); $("ovCta").scrollTop=0;
+  $("cBack").onclick=()=>$("ovCta").classList.add("hide");
+};
+
+let PENDING=null;
+function go(lv){
+  const p=getPlayer();
+  if(p){ sendLead(p,{event:"play",mode:lv===1?"hire":"process"}); startGame(lv); return; }
+  PENDING=()=>startGame(lv);
+  $("ovJoin").classList.remove("hide");
+  setTimeout(()=>$("jName").focus(),50);
+}
+$("bPlay").onclick=()=>go(1);
+$("bProc").onclick=()=>go(2);
+if ($("jCloseBtn")) $("jCloseBtn").onclick = () => $("jSkip").click();
+$("jSkip").onclick=()=>{ $("ovJoin").classList.add("hide"); const f=PENDING; PENDING=null; f&&f(); };
+$("jMob").addEventListener("input",e=>{ e.target.value=e.target.value.replace(/\D/g,"").slice(0,10); });
+$("joinF").addEventListener("submit",e=>{
+  e.preventDefault();
+  const t = UI_TEXT[LANG];
+  const name=$("jName").value.trim().replace(/\s+/g," "), mobile=$("jMob").value.trim();
+  if(name.length<2){ $("jErr").textContent=t.errName; return; }
+  if(!/^[6-9]\d{9}$/.test(mobile)){ $("jErr").textContent=t.errMob; return; }
+  const p={name,mobile,at:new Date().toISOString()}; savePlayer(p); sendLead(p,{event:"signup",mode:"interview"});
+  $("ovJoin").classList.add("hide"); const f=PENDING; PENDING=null; f&&f();
+});
+
+$("contactH").innerHTML=$("contactC").innerHTML=CONTACT_HTML;
+setTheme(THEME);
+applyStaticUI();
+wireShare();
+</script>
+<canvas id="confettiCanvas"></canvas>
+</body>
+</html>
