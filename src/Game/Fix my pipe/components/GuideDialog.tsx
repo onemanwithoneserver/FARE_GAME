@@ -38,7 +38,7 @@ export default function GuideDialog({ open, onClose, lang }: GuideDialogProps) {
     {
       step: '03',
       icon: <LockIcon sx={{ fontSize: 13, color: '#FFFFFF' }} />,
-      iconBg: 'bg-[#C99A2E]',
+      iconBg: 'bg-[#16A34A]',
       title: en ? 'Seal & Bank' : 'లీక్ ఆపండి',
       desc: en ? 'Route to vault' : 'ఆదాయాన్ని భద్రపరచండి',
     },
@@ -46,7 +46,7 @@ export default function GuideDialog({ open, onClose, lang }: GuideDialogProps) {
 
   const actions = [
     {
-      icon: <CheckIcon sx={{ fontSize: 14, color: '#FFFFFF' }} />,
+      icon: <CheckIcon sx={{ fontSize: 15, color: '#FFFFFF' }} />,
       bg: 'bg-[#16A34A]',
       title: en ? 'Hire / Implement' : 'నియమించు / అమలు',
       badge: '+10 / +3',
@@ -60,7 +60,7 @@ export default function GuideDialog({ open, onClose, lang }: GuideDialogProps) {
       controlColor: 'text-emerald-700 dark:text-emerald-400',
     },
     {
-      icon: <CloseIcon sx={{ fontSize: 14, color: '#FFFFFF' }} />,
+      icon: <CloseIcon sx={{ fontSize: 15, color: '#FFFFFF' }} />,
       bg: 'bg-[#DC2626]',
       title: en ? 'Avoid / Reject' : 'వద్దు / నివారించండి',
       badge: en ? 'Avoids −5' : '−5 నివారణ',
@@ -115,7 +115,7 @@ export default function GuideDialog({ open, onClose, lang }: GuideDialogProps) {
       slotProps={{
         paper: {
           className:
-            'fare-card-3d !rounded-[14px] border border-[#DBE4FA] dark:border-white/15 !bg-[#F8FAFC] dark:!bg-[#0A162D] text-[#0B1D3A] dark:text-white shadow-2xl',
+            'fare-card-3d !rounded-[18px] border border-[#DBE4FA] dark:border-white/15 !bg-[#F8FAFC] dark:!bg-[#0A162D] text-[#0B1D3A] dark:text-white shadow-2xl',
           sx: {
             backgroundImage: 'none',
             m: { xs: 1.5, sm: 2.5 },
@@ -125,10 +125,10 @@ export default function GuideDialog({ open, onClose, lang }: GuideDialogProps) {
       }}
     >
       {/* Dialog Header */}
-      <div className="flex items-center justify-between border-b border-[#DBE4FA] bg-gradient-to-r from-white via-[#F8FAFD] to-white px-4 py-2.5 dark:border-white/10 dark:from-[#0D1E3C] dark:via-[#0B1730] dark:to-[#0D1E3C]">
-        <div className="flex items-center gap-2">
-          <div className="relative grid h-7 w-7 place-items-center rounded-[6px] bg-gradient-to-br from-[#0B1D3A] to-[#1E3A8A] text-white shadow-sm dark:from-[#1E3A8A] dark:to-[#2563EB]">
-            <MenuBookIcon sx={{ fontSize: 15, color: '#FFFFFF' }} />
+      <div className="flex items-center justify-between border-b border-[#DBE4FA] bg-gradient-to-r from-white via-[#F8FAFD] to-white px-5 py-3 dark:border-white/10 dark:from-[#0D1E3C] dark:via-[#0B1730] dark:to-[#0D1E3C]">
+        <div className="flex items-center gap-2.5">
+          <div className="relative grid h-8 w-8 place-items-center rounded-[8px] bg-gradient-to-br from-[#0B1D3A] to-[#1E3A8A] text-white shadow-sm dark:from-[#1E3A8A] dark:to-[#2563EB]">
+            <MenuBookIcon sx={{ fontSize: 16, color: '#FFFFFF' }} />
           </div>
           <div>
             <h3 id="guide-dialog-title" className="text-sm font-black leading-tight tracking-tight text-[#0B1D3A] dark:text-white">
@@ -150,15 +150,15 @@ export default function GuideDialog({ open, onClose, lang }: GuideDialogProps) {
         </button>
       </div>
 
-      {/* Dialog Content: Clean layout with NO nested boxes */}
-      <DialogContent sx={{ p: { xs: '12px 14px', sm: '14px 18px' } }}>
-        <div className="space-y-3">
+      {/* Dialog Content */}
+      <DialogContent sx={{ p: { xs: '14px 16px', sm: '16px 20px' } }}>
+        <div className="space-y-3.5">
           {/* Section 1: Single Unified 3-Step Flow Strip */}
-          <div className="grid grid-cols-3 divide-x divide-slate-200/80 rounded-[9px] border border-[#DBE4FA] bg-white p-2 shadow-sm dark:divide-white/10 dark:border-white/10 dark:bg-white/[0.03]">
+          <div className="grid grid-cols-3 divide-x divide-slate-200/80 rounded-[14px] border border-[#DBE4FA] bg-white p-2.5 shadow-sm dark:divide-white/10 dark:border-white/10 dark:bg-white/[0.03]">
             {steps.map((st) => (
               <div key={st.step} className="flex flex-col items-center justify-center px-1 text-center">
                 <div className="mb-1 flex items-center gap-1.5">
-                  <span className={`grid h-5 w-5 place-items-center rounded-[4px] text-white shadow-sm ${st.iconBg}`}>
+                  <span className={`grid h-5 w-5 place-items-center rounded-[6px] text-white shadow-sm ${st.iconBg}`}>
                     {st.icon}
                   </span>
                   <span className="text-[9px] font-black uppercase tracking-wider text-[#C99A2E]">
@@ -175,7 +175,7 @@ export default function GuideDialog({ open, onClose, lang }: GuideDialogProps) {
             ))}
           </div>
 
-          {/* Section 2: Direct Action Cards (NO outer wrapper box) */}
+          {/* Section 2: Direct Action Cards */}
           <div className="space-y-2">
             <div className="flex items-center gap-2">
               <span className="text-[10px] font-extrabold uppercase tracking-wider text-[#64748B] dark:text-slate-400">
@@ -188,11 +188,11 @@ export default function GuideDialog({ open, onClose, lang }: GuideDialogProps) {
               {actions.map((act) => (
                 <div
                   key={act.title}
-                  className={`rounded-[9px] border p-2.5 shadow-sm transition-all ${act.containerStyle}`}
+                  className={`rounded-[14px] border p-3 shadow-sm transition-all ${act.containerStyle}`}
                 >
                   <div className="flex items-center justify-between gap-2">
                     <div className="flex items-center gap-2">
-                      <span className={`grid h-6 w-6 shrink-0 place-items-center rounded-[5px] text-white shadow-sm ${act.bg}`}>
+                      <span className={`grid h-6 w-6 shrink-0 place-items-center rounded-[8px] text-white shadow-sm ${act.bg}`}>
                         {act.icon}
                       </span>
                       <span className="text-xs font-black text-[#0B1D3A] dark:text-white">
@@ -200,7 +200,7 @@ export default function GuideDialog({ open, onClose, lang }: GuideDialogProps) {
                       </span>
                     </div>
 
-                    <span className={`rounded-full border px-2 py-0.5 text-[9px] font-black ${act.badgeStyle}`}>
+                    <span className={`rounded-full border px-2.5 py-0.5 text-[9px] font-black ${act.badgeStyle}`}>
                       {act.badge}
                     </span>
                   </div>
@@ -217,7 +217,7 @@ export default function GuideDialog({ open, onClose, lang }: GuideDialogProps) {
             </div>
           </div>
 
-          {/* Section 3: Direct Scoring Tiles (NO outer wrapper box) */}
+          {/* Section 3: Direct Scoring Tiles */}
           <div className="space-y-2">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
@@ -237,10 +237,10 @@ export default function GuideDialog({ open, onClose, lang }: GuideDialogProps) {
               {scoringRules.map((r) => (
                 <div
                   key={r.score}
-                  className={`flex flex-col items-center justify-center rounded-[8px] border p-2 text-center shadow-sm ${r.bg}`}
+                  className={`flex flex-col items-center justify-center rounded-[12px] border p-2 text-center shadow-sm ${r.bg}`}
                 >
                   <div className="flex items-center gap-1.5">
-                    <span className={`grid h-4 w-4 place-items-center rounded-[3px] text-white shadow-sm ${r.iconBg}`}>
+                    <span className={`grid h-5 w-5 place-items-center rounded-[6px] text-white shadow-sm ${r.iconBg}`}>
                       {r.icon}
                     </span>
                     <span className={`text-xs font-black tabular-nums ${r.color}`}>
@@ -261,14 +261,14 @@ export default function GuideDialog({ open, onClose, lang }: GuideDialogProps) {
       </DialogContent>
 
       {/* Dialog Footer */}
-      <div className="flex items-center justify-between border-t border-[#DBE4FA] bg-gradient-to-r from-white/90 via-[#F8FAFD] to-white/90 px-4 py-2 dark:border-white/10 dark:from-[#0B1730] dark:via-[#0D1E3C] dark:to-[#0B1730]">
+      <div className="flex items-center justify-between border-t border-[#DBE4FA] bg-gradient-to-r from-white/90 via-[#F8FAFD] to-white/90 px-5 py-2.5 dark:border-white/10 dark:from-[#0B1730] dark:via-[#0D1E3C] dark:to-[#0B1730]">
         <span className="text-[10px] font-semibold text-[#64748B] dark:text-slate-400">
           {en ? '💡 String correct picks to multiply score' : '💡 సరైన ఎంపికలతో స్కోర్ పెంచుకోండి'}
         </span>
         <button
           type="button"
           onClick={onClose}
-          className="group relative cursor-pointer overflow-hidden rounded-full bg-gradient-to-r from-[#0B1D3A] to-[#1A3463] px-4 py-1 text-xs font-black text-white shadow-[0_2px_8px_rgba(11,29,58,0.25)] transition-all hover:scale-105 active:scale-95 dark:from-[#1E3A8A] dark:to-[#2563EB]"
+          className="group relative cursor-pointer overflow-hidden rounded-full bg-gradient-to-r from-[#0B1D3A] to-[#1A3463] px-4 py-1.5 text-xs font-black text-white shadow-[0_2px_8px_rgba(11,29,58,0.25)] transition-all hover:scale-105 active:scale-95 dark:from-[#1E3A8A] dark:to-[#2563EB]"
         >
           <span className="pointer-events-none absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-white/25 to-transparent" />
           <span>{en ? 'Got it' : 'అర్థమైంది'}</span>

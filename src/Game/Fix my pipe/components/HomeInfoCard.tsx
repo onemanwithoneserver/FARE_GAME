@@ -33,16 +33,16 @@ export default function HomeInfoCard() {
   ];
 
   return (
-    <div className="fare-card-3d w-full max-w-[295px] rounded-[12px] p-2.5 transition-all duration-300">
+    <div className="fare-card-3d w-full max-w-[295px] rounded-[14px] p-2.5 transition-all duration-300">
       {/* 2x2 Balanced Grid: 3 Stats + Guide Action Tile */}
       <div className="grid grid-cols-2 gap-2">
         {stats.map((it) => (
           <div
             key={it.label}
-            className="flex flex-col justify-between rounded-[9px] border border-[#DBE4FA] bg-gradient-to-b from-white to-[#F4F7FF] p-2.5 shadow-[inset_0_1px_0_#ffffff] transition-all duration-200 hover:-translate-y-0.5 hover:border-[#C99A2E]/50 hover:shadow-sm dark:border-white/10 dark:bg-gradient-to-b dark:from-[#15284B] dark:to-[#0B1730] dark:shadow-none dark:hover:border-amber-400/50"
+            className="flex flex-col justify-between rounded-[12px] border border-[#DBE4FA] bg-gradient-to-b from-white to-[#F4F7FF] p-2.5 shadow-[inset_0_1px_0_#ffffff] transition-all duration-200 hover:-translate-y-0.5 hover:border-[#C99A2E]/50 hover:shadow-sm dark:border-white/10 dark:bg-gradient-to-b dark:from-[#15284B] dark:to-[#0B1730] dark:shadow-none dark:hover:border-amber-400/50"
           >
             <div className="flex items-center justify-between gap-1.5">
-              <span className={`fare-icon-3d grid h-7 w-7 shrink-0 place-items-center rounded-[6px] text-white shadow-sm ${it.bg}`}>
+              <span className={`fare-icon-3d grid h-7 w-7 shrink-0 place-items-center rounded-[8px] text-white shadow-sm ${it.bg}`}>
                 {it.icon}
               </span>
               <span className="text-base font-black tabular-nums tracking-tight text-[#0B1D3A] dark:text-white">
@@ -59,12 +59,12 @@ export default function HomeInfoCard() {
         <button
           type="button"
           onClick={() => setGuideOpen(true)}
-          className="group relative flex cursor-pointer flex-col justify-between overflow-hidden rounded-[9px] border border-[#2563EB]/40 bg-gradient-to-br from-[#0B1D3A] via-[#142A54] to-[#1E3A8A] p-2.5 text-left text-white shadow-[0_2px_8px_rgba(11,29,58,0.2)] transition-all duration-200 hover:-translate-y-0.5 hover:border-[#3B82F6] hover:shadow-[0_4px_14px_rgba(37,99,235,0.3)] active:scale-95 dark:from-[#1E3A8A] dark:to-[#2563EB]"
+          className="group relative flex cursor-pointer flex-col justify-between overflow-hidden rounded-[12px] border border-[#2563EB]/40 bg-gradient-to-br from-[#0B1D3A] via-[#142A54] to-[#1E3A8A] p-2.5 text-left text-white shadow-[0_2px_8px_rgba(11,29,58,0.2)] transition-all duration-200 hover:-translate-y-0.5 hover:border-[#3B82F6] hover:shadow-[0_4px_14px_rgba(37,99,235,0.3)] active:scale-95 dark:from-[#1E3A8A] dark:to-[#2563EB]"
           aria-label={en ? 'Open Game Guide' : 'గేమ్ సూచనలు'}
         >
           <span className="pointer-events-none absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-white/20 to-transparent" />
           <div className="flex items-center justify-between gap-1.5">
-            <span className="fare-icon-3d grid h-7 w-7 shrink-0 place-items-center rounded-[6px] bg-white/20 text-white shadow-inner transition-transform duration-200 group-hover:scale-110">
+            <span className="fare-icon-3d grid h-7 w-7 shrink-0 place-items-center rounded-[8px] bg-white/20 text-white shadow-inner transition-transform duration-200 group-hover:scale-110">
               <MenuBookIcon sx={{ fontSize: 16, color: '#FFFFFF' }} />
             </span>
             <span className="rounded-full bg-white/20 px-2 py-0.5 text-[9px] font-black uppercase tracking-wider text-white">
