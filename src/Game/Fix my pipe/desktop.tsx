@@ -129,7 +129,7 @@ export default function DesktopView() {
 
         {screen === 'home' && (
           <div className={`flex flex-col ${isShortLandscape ? 'gap-1.5 pb-0.5 pt-0.5 justify-around flex-1' : 'gap-5 pb-4 pt-1'}`}>
-            <div className={`relative mx-auto w-full ${isShortLandscape ? 'h-[22dvh] max-w-5xl' : 'h-[300px] max-w-[1376px]'}`}>
+            <div className={`relative mx-auto w-full ${isShortLandscape ? 'h-[22dvh] max-w-5xl' : 'h-[300px] max-w-5xl xl:max-w-6xl'}`}>
               <Pipe3D activeLeakStage="all" leakLevel={0.65} isFixed={false} lang={lang} flow={0.25} />
             </div>
 
@@ -168,7 +168,7 @@ export default function DesktopView() {
 
         {screen === 'play' && currentCase && currentCard && (
           <div className={`flex flex-1 flex-col justify-start ${isShortLandscape ? 'gap-0.5 pb-0.5 pt-0 -mt-0.5' : 'gap-2.5 pb-3 pt-0'}`}>
-            <div className={`relative mx-auto w-full ${isShortLandscape ? 'h-[22dvh] max-w-5xl' : 'h-[280px] lg:h-[300px] max-w-[1376px]'}`}>
+            <div className={`relative mx-auto w-full ${isShortLandscape ? 'h-[22dvh] max-w-5xl' : 'h-[280px] lg:h-[300px] max-w-5xl xl:max-w-6xl'}`}>
               <FeedbackToast />
               <Pipe3D
                 activeLeakStage={currentCase.leak as StageId}
