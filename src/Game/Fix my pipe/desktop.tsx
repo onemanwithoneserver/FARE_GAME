@@ -146,7 +146,7 @@ export default function DesktopView() {
 
         {screen === 'play' && currentCase && currentCard && (
           <div className="flex flex-1 flex-col justify-start gap-1 pb-2 pt-0 -mt-1">
-            <div className="relative h-[135px] w-full xl:h-[155px]">
+            <div className="relative h-[155px] w-full xl:h-[180px]">
               <FeedbackToast />
               <Pipe3D
                 activeLeakStage={currentCase.leak as StageId}
