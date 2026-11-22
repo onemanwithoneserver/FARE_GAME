@@ -1,4 +1,5 @@
 import { ReactNode, useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import PersonIcon from '@mui/icons-material/Person';
 import VolumeUpIcon from '@mui/icons-material/VolumeUp';
 import VolumeOffIcon from '@mui/icons-material/VolumeOff';
@@ -119,6 +120,16 @@ export default function Hud({ center, compact = false }: { center?: ReactNode; c
     else quitGame();
   };
 
+  const navigate = useNavigate();
+
+  const handleThemeToggle = () => {
+    const nextTheme = isDark ? 'light' : 'dark';
+    setTheme(nextTheme);
+    try {
+      navigate(`/fix-my-pipe/${nextTheme}`);
+    } catch (_) {}
+  };
+
   const scorePill = (
     <div className={`flex items-center rounded-[8px] ${surface} ${compact ? 'gap-2 px-2.5 py-1.5' : 'gap-3 px-3.5 py-2'}`}>
       <div className={`fare-icon-3d grid place-items-center rounded-[6px] bg-[#0B1D3A] text-white dark:bg-[#1A3463] ${compact ? 'h-7 w-7' : 'h-10 w-10'}`}>
@@ -222,7 +233,7 @@ export default function Hud({ center, compact = false }: { center?: ReactNode; c
       )}
       <IconButton
         compact={compact}
-        onClick={() => setTheme(isDark ? 'light' : 'dark')}
+        onClick={handleThemeToggle}
         label={isDark ? (lang === 'en' ? 'Light theme' : 'లైట్ థీమ్') : lang === 'en' ? 'Dark theme' : 'డార్క్ థీమ్'}
       >
         {isDark ? <LightModeIcon sx={{ fontSize: iconPx, color: '#FFFFFF' }} /> : <DarkModeIcon sx={{ fontSize: iconPx, color: '#FFFFFF' }} />}

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Fix Your Sales Funnel · FARE</title>
+    <script>
+      (function() {
+        var l = window.location;
+        var pathname = l.pathname;
+        // Check if repo name is in pathname (e.g., /FARE_GAME/...)
+        var repoMatch = pathname.match(/^\/([^\/]+)(\/.*)?$/);
+        var repoPrefix = '';
+        var subRoute = pathname;
+        if (repoMatch && repoMatch[1].toLowerCase() === 'fare_game') {
+          repoPrefix = '/' + repoMatch[1];
+          subRoute = repoMatch[2] || '/';
+        }
+        var target = repoPrefix + '/#' + (subRoute.startsWith('/') ? subRoute : '/' + subRoute) + l.search + l.hash;
+        l.replace(target);
+      })();
+    </script>
+  </head>
+  <body>
+  </body>
+</html>

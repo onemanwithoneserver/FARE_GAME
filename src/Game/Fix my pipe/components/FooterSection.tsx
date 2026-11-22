@@ -5,7 +5,6 @@ import { usePipeGameStore } from '../store';
 
 const TWITTER_URL = 'https://twitter.com/fare_training';
 
-// Authentic Official Brand SVG Icons
 function PhoneBrandIcon() {
   return (
     <svg viewBox="0 0 24 24" className="h-3.5 w-3.5 fill-white" aria-hidden="true">
@@ -163,7 +162,6 @@ export default function FooterSection({ compact = false }: { compact?: boolean }
   return (
     <footer className={`w-full select-none ${compact ? 'pt-2 pb-1' : 'mt-4 pt-2'}`}>
       <div className="fare-card-3d mx-auto flex w-full max-w-2xl flex-col items-center gap-3.5 rounded-[10px] px-4 py-3.5 text-center">
-        {/* Share Button (Centered, Tactile 3D Feedback) */}
         <div className="flex w-full justify-center">
           <button
             type="button"
@@ -174,7 +172,6 @@ export default function FooterSection({ compact = false }: { compact?: boolean }
                 : 'fare-share-btn shadow-[0_4px_18px_rgba(22,163,74,0.4)]'
             }`}
           >
-            {/* Top specular reflection */}
             <span className="pointer-events-none absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-white/25 to-transparent" />
 
             <span className="relative grid h-6 w-6 shrink-0 place-items-center rounded-full bg-white/20 shadow-inner">
@@ -197,13 +194,7 @@ export default function FooterSection({ compact = false }: { compact?: boolean }
           </button>
         </div>
 
-        {/* Divider & FARE Branding */}
         <div className="w-full border-t border-[#DBE4FA] pt-2.5 dark:border-white/10">
-         {/*  <div className="mb-2.5 text-xs font-extrabold tracking-wide text-[#0B1D3A] dark:text-white">
-            <span className="text-[#C99A2E]">FARE</span> · Finishing Academy for Real Estate
-          </div> */}
-
-          {/* Social Media & Contact Chips: Perfectly Equal Spacing Between All Items */}
           <div className="flex w-full flex-wrap items-center justify-center gap-2.5 sm:gap-3">
             {socialLinks.map((item) => (
               <a
@@ -214,7 +205,6 @@ export default function FooterSection({ compact = false }: { compact?: boolean }
                 style={{ '--chip-a': item.chipA, '--chip-b': item.chipB } as React.CSSProperties}
                 className="fare-chip fare-card-3d group inline-flex shrink-0 items-center gap-2 rounded-full px-3.5 py-1.5 text-xs font-bold text-[#0B1D3A] transition-all duration-200 hover:scale-105 active:scale-95 dark:text-slate-100"
               >
-                {/* Real-time Authentic Brand Icon Badge */}
                 <span
                   style={{
                     background: item.brandGradient,
@@ -226,7 +216,6 @@ export default function FooterSection({ compact = false }: { compact?: boolean }
                   {item.icon}
                 </span>
 
-                {/* Brand Name */}
                 <span className="leading-tight text-slate-800 transition-colors group-hover:text-black dark:text-slate-100 dark:group-hover:text-white">
                   {item.name}
                 </span>
