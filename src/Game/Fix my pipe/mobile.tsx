@@ -107,7 +107,7 @@ export default function MobileView() {
             </div>
 
             <div className="space-y-1.5">
-              <div className="relative mx-auto h-[105px] sm:h-[115px] w-full max-w-sm">
+              <div className="relative mx-auto h-[16dvh] min-h-[90px] max-h-[140px] w-full max-w-sm">
                 <Pipe3D activeLeakStage="all" leakLevel={0.65} isFixed={false} lang={lang} flow={0.25} />
               </div>
               <StageStrip lang={lang} leakStage="all" fixed={false} />
@@ -123,7 +123,7 @@ export default function MobileView() {
         {screen === 'play' && currentCase && currentCard && (
           <div className="flex flex-col gap-2 pb-2">
             <div className="space-y-1">
-              <div className="relative h-[155px] sm:h-[175px] w-full">
+              <div className="relative h-[22dvh] min-h-[130px] max-h-[200px] w-full">
                 <FeedbackToast />
                 <Pipe3D
                   activeLeakStage={currentCase.leak as StageId}
