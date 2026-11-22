@@ -24,39 +24,90 @@
 
 :root {
   --radius: 0.5rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
+  --background: #f8f9fc;
+  --foreground: #0b1d3a;
+  --fare-navy: #0B1D3A;
+  --fare-navy-light: #1A3463;
+  --fare-gold: #C99A2E;
+  --fare-gold-warm: #E2C068;
+  --fare-bg: #F8F9FC;
+  --fare-border: #E2E8F0;
 }
 
-.dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
+* {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
+*::-webkit-scrollbar {
+  display: none;
+}
+
+html,
 body {
-  @apply bg-background text-foreground m-0;
+  margin: 0;
+  background-color: #f8f9fc;
+  color: #0b1d3a;
+  font-family: 'Outfit', 'Noto Sans Telugu', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  overflow-x: hidden;
+  overflow-y: auto;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+html.dark,
+html.dark body {
+  background-color: #071124;
+  color: #f8fafc;
+}
+
+.fare-surface-light {
+  background: linear-gradient(180deg, #f4f7ff 0%, #e9effd 100%);
+}
+
+.fare-surface-dark {
+  background: linear-gradient(180deg, #09142b 0%, #050c1c 100%);
+}
+
+.fare-card-3d {
+  background: linear-gradient(160deg, #ffffff 0%, #f1f5ff 100%);
+  border: 1px solid #dbe4fa;
+  box-shadow:
+    0 10px 26px -10px rgba(29, 78, 216, 0.14),
+    0 3px 0 #d5dff6,
+    inset 0 1.5px 0 #ffffff;
+}
+
+html.dark .fare-card-3d {
+  background: linear-gradient(160deg, #132548 0%, #0b1730 100%);
+  border: 1px solid rgba(147, 197, 253, 0.14);
+  box-shadow:
+    0 12px 28px -10px rgba(0, 0, 0, 0.55),
+    0 3px 0 #050c1b,
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.fare-icon-3d {
+  box-shadow:
+    inset 0 1.5px 0 rgba(255, 255, 255, 0.36),
+    inset 0 -2px 0 rgba(0, 0, 0, 0.24),
+    0 4px 10px -3px rgba(11, 29, 58, 0.3);
+}
+
+.fare-floor {
+  background: linear-gradient(180deg, #e5ecfc 0%, #f4f7ff 100%);
+}
+
+html.dark .fare-floor {
+  background: linear-gradient(180deg, #0b1933 0%, #050c1c 100%);
+}
+
+.fare-guest-btn:hover,
+html.dark .fare-guest-btn:hover {
+  background: linear-gradient(180deg, #22c55e 0%, #16a34a 100%);
+  border-color: #15803d;
+  color: #ffffff;
+  box-shadow:
+    0 10px 22px -8px rgba(22, 163, 74, 0.45),
+    0 3px 0 #14532d,
+    inset 0 1.5px 0 rgba(255, 255, 255, 0.28);
 }
