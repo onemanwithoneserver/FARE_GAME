@@ -411,7 +411,7 @@ export default function Advisor({ name, role, message, messageKey, tone = 'neutr
 
   return (
     <div
-      className={`flex w-full ${compact ? 'max-w-[200px] sm:max-w-[230px]' : 'max-w-[295px]'} flex-col items-start`}
+      className={`flex w-full ${compact ? 'max-w-[200px] sm:max-w-[230px]' : 'max-w-[245px] xl:max-w-[265px]'} flex-col items-start`}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
@@ -422,7 +422,7 @@ export default function Advisor({ name, role, message, messageKey, tone = 'neutr
           animate={{ opacity: 1, y: hovered ? -2 : 0, scale: 1 }}
           exit={{ opacity: 0, y: -5, scale: 0.98 }}
           transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
-          className={`relative ${compact ? 'ml-2 sm:ml-3 p-2 sm:p-2.5 pl-2.5 sm:pl-3 text-[10px] sm:text-xs leading-snug rounded-[8px]' : 'ml-4 sm:ml-6 p-3 sm:p-3.5 pl-3.5 sm:pl-4 text-xs sm:text-sm leading-snug rounded-[10px]'} overflow-hidden border bg-white text-[#0B1D3A] shadow-[0_8px_24px_rgba(11,29,58,0.08)] dark:bg-[#0D1B35] dark:text-slate-100 dark:shadow-[0_10px_28px_rgba(0,0,0,0.4)] ${TONE_ACCENT[tone]}`}
+          className={`relative ${compact ? 'ml-2 sm:ml-3 p-2 sm:p-2.5 pl-2.5 sm:pl-3 text-[10px] sm:text-xs leading-snug rounded-[8px]' : 'ml-3 sm:ml-4 p-2.5 sm:p-3 pl-3 sm:pl-3.5 text-xs leading-snug rounded-[8px]'} overflow-hidden border bg-white text-[#0B1D3A] shadow-[0_8px_24px_rgba(11,29,58,0.08)] dark:bg-[#0D1B35] dark:text-slate-100 dark:shadow-[0_10px_28px_rgba(0,0,0,0.4)] ${TONE_ACCENT[tone]}`}
         >
           <span className={`absolute inset-y-0 left-0 w-1 ${TONE_BAR[tone]}`} />
           <div className="mb-1 flex items-center justify-between gap-1.5">

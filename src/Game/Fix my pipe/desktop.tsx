@@ -110,10 +110,10 @@ export default function DesktopView() {
       <Backdrop />
 
       <div
-        className={`relative z-10 mx-auto flex w-full max-w-[1440px] flex-col ${
+        className={`relative z-10 mx-auto flex w-full max-w-[1160px] xl:max-w-[1220px] flex-col ${
           isShortLandscape
             ? 'h-dvh max-h-dvh justify-between px-2.5 py-1 sm:px-4 sm:py-1.5 overflow-hidden'
-            : 'min-h-screen px-6 py-3 lg:px-8 ' + (screen === 'result' ? 'justify-between' : 'justify-start')
+            : 'min-h-screen px-4 py-1.5 lg:px-6 lg:py-2 ' + (screen === 'result' ? 'justify-between' : 'justify-start')
         }`}
       >
         <Hud
@@ -128,8 +128,8 @@ export default function DesktopView() {
         />
 
         {screen === 'home' && (
-          <div className={`flex flex-col ${isShortLandscape ? 'gap-1.5 pb-0.5 pt-0.5 justify-around flex-1' : 'gap-5 pb-4 pt-1'}`}>
-            <div className={`relative mx-auto w-full ${isShortLandscape ? 'h-[22dvh] max-w-5xl' : 'h-[300px] max-w-5xl xl:max-w-6xl'}`}>
+          <div className={`flex flex-col ${isShortLandscape ? 'gap-1.5 pb-0.5 pt-0.5 justify-around flex-1' : 'gap-2.5 pb-2 pt-0.5'}`}>
+            <div className={`relative mx-auto w-full ${isShortLandscape ? 'h-[22dvh] max-w-5xl' : 'h-[210px] sm:h-[225px] lg:h-[235px] max-w-4xl xl:max-w-5xl'}`}>
               <Pipe3D activeLeakStage="all" leakLevel={0.65} isFixed={false} lang={lang} flow={0.25} />
             </div>
 
@@ -137,7 +137,7 @@ export default function DesktopView() {
               className={`grid ${
                 isShortLandscape
                   ? 'grid-cols-[180px_minmax(0,1fr)_180px] sm:grid-cols-[200px_minmax(0,1fr)_200px] gap-2.5 items-center'
-                  : 'grid-cols-1 lg:grid-cols-[270px_minmax(0,1fr)_315px] xl:grid-cols-[290px_minmax(0,1fr)_335px] gap-5 lg:gap-6 items-start'
+                  : 'grid-cols-1 lg:grid-cols-[240px_minmax(0,1fr)_280px] xl:grid-cols-[255px_minmax(0,1fr)_295px] gap-3.5 lg:gap-4 xl:gap-5 items-start'
               }`}
             >
               <div className="justify-self-center lg:justify-self-start w-full max-w-md lg:max-w-none">
@@ -155,9 +155,9 @@ export default function DesktopView() {
                 />
               </div>
 
-              <div className="mx-auto flex w-full max-w-2xl flex-col gap-4 md:gap-5 order-first lg:order-none">
+              <div className="mx-auto flex w-full max-w-xl flex-col gap-2.5 md:gap-3 order-first lg:order-none">
                 <ModeButtons compact={isShortLandscape} />
-                {!isShortLandscape && <FooterSection className="!mt-1 !pt-0" />}
+                {!isShortLandscape && <FooterSection className="!mt-0.5 !pt-0" />}
               </div>
 
               <div className="justify-self-center lg:justify-self-end w-full max-w-md lg:max-w-none">
@@ -168,8 +168,8 @@ export default function DesktopView() {
         )}
 
         {screen === 'play' && currentCase && currentCard && (
-          <div className={`flex flex-1 flex-col justify-start ${isShortLandscape ? 'gap-0.5 pb-0.5 pt-0 -mt-0.5' : 'gap-2.5 pb-3 pt-0'}`}>
-            <div className={`relative mx-auto w-full ${isShortLandscape ? 'h-[22dvh] max-w-5xl' : 'h-[280px] lg:h-[300px] max-w-5xl xl:max-w-6xl'}`}>
+          <div className={`flex flex-1 flex-col justify-start ${isShortLandscape ? 'gap-0.5 pb-0.5 pt-0 -mt-0.5' : 'gap-2 pb-2 pt-0'}`}>
+            <div className={`relative mx-auto w-full ${isShortLandscape ? 'h-[22dvh] max-w-5xl' : 'h-[195px] sm:h-[210px] lg:h-[225px] max-w-4xl xl:max-w-5xl'}`}>
               <FeedbackToast />
               <Pipe3D
                 activeLeakStage={currentCase.leak as StageId}
@@ -183,7 +183,7 @@ export default function DesktopView() {
               className={`grid ${
                 isShortLandscape
                   ? 'grid-cols-[165px_minmax(0,1fr)_165px] sm:grid-cols-[185px_minmax(0,1fr)_185px] gap-2 items-end'
-                  : 'grid-cols-[200px_minmax(0,1fr)_200px] lg:gap-5 xl:grid-cols-[220px_minmax(0,1fr)_220px] gap-4 items-end'
+                  : 'grid-cols-[190px_minmax(0,1fr)_190px] lg:gap-3.5 xl:grid-cols-[210px_minmax(0,1fr)_210px] gap-2.5 items-end'
               }`}
             >
               <div className="justify-self-start w-full">
@@ -198,7 +198,7 @@ export default function DesktopView() {
                 />
               </div>
 
-              <div className="mx-auto w-full max-w-3xl xl:max-w-4xl">
+              <div className="mx-auto w-full max-w-2xl xl:max-w-[700px]">
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={currentCard.id}
@@ -218,7 +218,7 @@ export default function DesktopView() {
                 </AnimatePresence>
               </div>
 
-              <div className={`flex flex-col items-center ${isShortLandscape ? 'gap-1.5' : 'gap-2.5'} justify-self-end w-full`}>
+              <div className={`flex flex-col items-center ${isShortLandscape ? 'gap-1' : 'gap-2'} justify-self-end w-full`}>
                 <PressureGauge leakLevel={leak} score={score} combo={combo} lang={lang} compact={isShortLandscape} />
                 <CandidateCharacter
                   item={currentCard}

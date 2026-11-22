@@ -38,24 +38,24 @@ export default function HomeInfoCard({ compact = false }: { compact?: boolean })
   return (
     <div
       className={`fare-card-3d w-full ${
-        compact ? 'max-w-[240px] p-2 rounded-[2px]' : 'max-w-[335px] p-3 rounded-[4px]'
+        compact ? 'max-w-[240px] p-2 rounded-[2px]' : 'max-w-[280px] xl:max-w-[300px] p-2.5 rounded-[4px]'
       } transition-all duration-300`}
       style={{ borderRadius: compact ? '2px' : '4px' }}
     >
       {/* 2x2 Balanced Grid: 3 Stats + Guide Action Tile */}
-      <div className={`grid grid-cols-2 ${compact ? 'gap-1.5' : 'gap-2.5'}`}>
+      <div className={`grid grid-cols-2 ${compact ? 'gap-1.5' : 'gap-2'}`}>
         {stats.map((it) => (
           <div
             key={it.label}
             className={`group flex flex-col justify-between border border-[#DBE4FA] bg-gradient-to-b from-white to-[#F6F9FF] ${
-              compact ? 'p-2 rounded-[2px]' : 'p-3 rounded-[2px]'
+              compact ? 'p-2 rounded-[2px]' : 'p-2.5 rounded-[2px]'
             } shadow-[inset_0_1px_0_#ffffff] transition-all duration-200 hover:-translate-y-0.5 hover:border-[#C99A2E]/70 hover:shadow-sm dark:border-white/10 dark:bg-gradient-to-b dark:from-[#15284B] dark:to-[#0B1730] dark:shadow-none dark:hover:border-amber-400/60`}
             style={{ borderRadius: '2px' }}
           >
             <div className="flex items-center justify-between gap-1.5">
               <span
                 className={`grid ${
-                  compact ? 'h-6 w-6 rounded-[2px]' : 'h-8 w-8 rounded-[2px]'
+                  compact ? 'h-6 w-6 rounded-[2px]' : 'h-7 w-7 rounded-[2px]'
                 } shrink-0 place-items-center text-white shadow-sm ${it.bg}`}
                 style={{ borderRadius: '2px' }}
               >
@@ -63,15 +63,15 @@ export default function HomeInfoCard({ compact = false }: { compact?: boolean })
               </span>
               <span
                 className={`${
-                  compact ? 'text-sm' : 'text-lg sm:text-xl'
+                  compact ? 'text-sm' : 'text-base sm:text-lg'
                 } font-black tabular-nums tracking-tight text-[#0B1D3A] dark:text-white`}
               >
                 {it.value}
               </span>
             </div>
             <div
-              className={`mt-2 truncate ${
-                compact ? 'text-[9.5px]' : 'text-[11.5px] sm:text-[12px]'
+              className={`mt-1.5 truncate ${
+                compact ? 'text-[9.5px]' : 'text-[10.5px] sm:text-[11px]'
               } font-bold tracking-tight text-[#475569] dark:text-slate-300`}
             >
               {it.label}
@@ -84,7 +84,7 @@ export default function HomeInfoCard({ compact = false }: { compact?: boolean })
           type="button"
           onClick={() => setGuideOpen(true)}
           className={`group relative flex cursor-pointer flex-col justify-between overflow-hidden border border-[#2563EB]/40 bg-gradient-to-br from-[#0B1D3A] via-[#142A54] to-[#1E3A8A] ${
-            compact ? 'p-2 rounded-[2px]' : 'p-3 rounded-[2px]'
+            compact ? 'p-2 rounded-[2px]' : 'p-2.5 rounded-[2px]'
           } text-left text-white shadow-[0_2px_8px_rgba(11,29,58,0.2)] transition-all duration-200 hover:-translate-y-0.5 hover:border-[#C99A2E] hover:shadow-[0_4px_14px_rgba(37,99,235,0.3)] active:scale-95 dark:from-[#142A54] dark:to-[#1E3A8A]`}
           style={{ borderRadius: '2px' }}
           aria-label={en ? 'Open Game Guide' : 'గేమ్ సూచనలు'}
@@ -93,11 +93,11 @@ export default function HomeInfoCard({ compact = false }: { compact?: boolean })
           <div className="flex items-center justify-between gap-1.5">
             <span
               className={`grid ${
-                compact ? 'h-6 w-6 rounded-[2px]' : 'h-8 w-8 rounded-[2px]'
+                compact ? 'h-6 w-6 rounded-[2px]' : 'h-7 w-7 rounded-[2px]'
               } shrink-0 place-items-center bg-white/20 text-white shadow-inner transition-transform duration-200 group-hover:scale-105`}
               style={{ borderRadius: '2px' }}
             >
-              <MenuBookIcon sx={{ fontSize: compact ? 14 : 19, color: '#FFFFFF' }} />
+              <MenuBookIcon sx={{ fontSize: compact ? 14 : 16, color: '#FFFFFF' }} />
             </span>
             <span
               className={`bg-gradient-to-r from-amber-400 to-amber-500 px-2 py-0.5 ${

@@ -166,13 +166,13 @@ export default function FooterSection({
   ];
 
   return (
-    <footer className={`w-full select-none ${compact ? 'pt-2 pb-1' : 'mt-4 pt-2'} ${className}`}>
-      <div className="fare-card-3d mx-auto flex w-full max-w-2xl flex-col items-center gap-3.5 rounded-[10px] px-4 py-3.5 text-center">
+    <footer className={`w-full select-none ${compact ? 'pt-2 pb-1' : 'mt-2 pt-1'} ${className}`}>
+      <div className="fare-card-3d mx-auto flex w-full max-w-xl flex-col items-center gap-2 rounded-[8px] px-3.5 py-2.5 text-center">
         <div className="flex w-full justify-center">
           <button
             type="button"
             onClick={handleShare}
-            className={`group relative inline-flex cursor-pointer items-center justify-center gap-2.5 overflow-hidden rounded-full px-6 py-2.5 text-sm font-extrabold text-white transition-all duration-300 hover:scale-105 active:scale-95 ${
+            className={`group relative inline-flex cursor-pointer items-center justify-center gap-2 overflow-hidden rounded-full px-4 py-1.5 text-xs font-extrabold text-white transition-all duration-300 hover:scale-105 active:scale-95 ${
               copied
                 ? 'bg-gradient-to-r from-emerald-500 via-green-500 to-teal-500 shadow-[0_4px_16px_rgba(16,185,129,0.45)]'
                 : 'fare-share-btn shadow-[0_4px_18px_rgba(22,163,74,0.4)]'
@@ -180,9 +180,9 @@ export default function FooterSection({
           >
             <span className="pointer-events-none absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-white/25 to-transparent" />
 
-            <span className="relative grid h-6 w-6 shrink-0 place-items-center rounded-full bg-white/20 shadow-inner">
+            <span className="relative grid h-5 w-5 shrink-0 place-items-center rounded-full bg-white/20 shadow-inner">
               {copied ? (
-                <CheckIcon sx={{ fontSize: 15, color: '#FFFFFF' }} />
+                <CheckIcon sx={{ fontSize: 13, color: '#FFFFFF' }} />
               ) : (
                 <ModernShareGlyph />
               )}
@@ -200,8 +200,8 @@ export default function FooterSection({
           </button>
         </div>
 
-        <div className="w-full border-t border-[#DBE4FA] pt-2.5 dark:border-white/10">
-          <div className="flex w-full flex-wrap items-center justify-center gap-2.5 sm:gap-3">
+        <div className="w-full border-t border-[#DBE4FA] pt-1.5 dark:border-white/10">
+          <div className="flex w-full flex-wrap items-center justify-center gap-2">
             {socialLinks.map((item) => (
               <a
                 key={item.id}
@@ -209,14 +209,14 @@ export default function FooterSection({
                 target={item.external ? '_blank' : undefined}
                 rel={item.external ? 'noopener noreferrer' : undefined}
                 style={{ '--chip-a': item.chipA, '--chip-b': item.chipB } as React.CSSProperties}
-                className="fare-chip fare-card-3d group inline-flex shrink-0 items-center gap-2 rounded-full px-3.5 py-1.5 text-xs font-bold text-[#0B1D3A] transition-all duration-200 hover:scale-105 active:scale-95 dark:text-slate-100"
+                className="fare-chip fare-card-3d group inline-flex shrink-0 items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-bold text-[#0B1D3A] transition-all duration-200 hover:scale-105 active:scale-95 dark:text-slate-100"
               >
                 <span
                   style={{
                     background: item.brandGradient,
                     boxShadow: item.brandShadow,
                   }}
-                  className="relative grid h-5 w-5 shrink-0 place-items-center rounded-full transition-transform duration-200 group-hover:scale-110"
+                  className="relative grid h-4 w-4 shrink-0 place-items-center rounded-full transition-transform duration-200 group-hover:scale-110"
                 >
                   <span className="pointer-events-none absolute inset-0 rounded-full shadow-[inset_0_1px_1px_rgba(255,255,255,0.45),inset_0_-1px_1px_rgba(0,0,0,0.25)]" />
                   {item.icon}

@@ -153,7 +153,7 @@ export function CoachCharacter({ name, tone = 'neutral', reactionKey, compact = 
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      <div className={`relative ${compact ? 'h-[105px] w-[84px] sm:h-[120px] sm:w-[96px]' : 'h-[165px] w-[130px] sm:h-[185px] sm:w-[145px]'}`}>
+      <div className={`relative ${compact ? 'h-[105px] w-[84px] sm:h-[120px] sm:w-[96px]' : 'h-[140px] w-[110px] sm:h-[155px] sm:w-[122px]'}`}>
         <div className="absolute inset-x-3 bottom-1 h-5 rounded-full bg-[#EAB308]/25 blur-md" />
 
         <svg
@@ -444,7 +444,7 @@ export function TlCharacter({ name, tone = 'neutral', reactionKey, compact = fal
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      <div className={`relative ${compact ? 'h-[105px] w-[84px] sm:h-[120px] sm:w-[96px]' : 'h-[165px] w-[130px] sm:h-[185px] sm:w-[145px]'}`}>
+      <div className={`relative ${compact ? 'h-[105px] w-[84px] sm:h-[120px] sm:w-[96px]' : 'h-[140px] w-[110px] sm:h-[155px] sm:w-[122px]'}`}>
         {/* Soft golden aura beneath character */}
         <div className="absolute inset-x-3 bottom-1 h-5 rounded-full bg-[#C99A2E]/25 blur-md" />
 
@@ -697,7 +697,7 @@ export function CandidateCharacter({ item, isPerson, lang, reactionKey, compact 
       transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
       className="relative flex flex-col items-center select-none"
     >
-      <div className={`relative ${compact ? 'h-[105px] w-[84px] sm:h-[120px] sm:w-[96px]' : 'h-[165px] w-[130px] sm:h-[185px] sm:w-[145px]'}`}>
+      <div className={`relative ${compact ? 'h-[105px] w-[84px] sm:h-[120px] sm:w-[96px]' : 'h-[140px] w-[110px] sm:h-[155px] sm:w-[122px]'}`}>
         {/* Soft violet/emerald ground glow */}
         <div
           className={`absolute inset-x-3 bottom-1 h-5 rounded-full blur-md ${

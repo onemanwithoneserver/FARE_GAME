@@ -5,24 +5,24 @@ import { usePipeGameStore } from '../store';
 export default function ModeButtons({ stacked = false, compact = false }: { stacked?: boolean; compact?: boolean }) {
   const { lang, startOrPrompt } = usePipeGameStore();
   return (
-    <div className={`grid ${compact ? 'gap-2' : 'gap-3'} ${stacked ? 'grid-cols-1' : 'grid-cols-1 sm:grid-cols-2 md:gap-4'}`}>
+    <div className={`grid ${compact ? 'gap-2' : 'gap-2.5'} ${stacked ? 'grid-cols-1' : 'grid-cols-1 sm:grid-cols-2 md:gap-3'}`}>
       <BigButton
         tone="navy"
-        size={compact ? 'sm' : 'lg'}
-        iconNode={<Users3DIcon size={compact ? 18 : 24} />}
+        size={compact ? 'sm' : 'md'}
+        iconNode={<Users3DIcon size={compact ? 18 : 20} />}
         title={lang === 'en' ? 'Hire The Right Person' : 'సరైన వ్యక్తిని నియమించండి'}
         subtitle={lang === 'en' ? 'Candidates to interview' : 'ఇంటర్వ్యూ చేయాల్సిన అభ్యర్థులు'}
         onClick={() => startOrPrompt(1)}
-        className={compact ? '!py-2' : ''}
+        className={compact ? '!py-2' : '!py-2.5'}
       />
       <BigButton
         tone="green"
-        size={compact ? 'sm' : 'lg'}
-        iconNode={<Gear3DIcon size={compact ? 18 : 24} />}
+        size={compact ? 'sm' : 'md'}
+        iconNode={<Gear3DIcon size={compact ? 18 : 20} />}
         title={lang === 'en' ? 'Fix The Process' : 'ప్రాసెస్‌ను సరిచేయండి'}
         subtitle={lang === 'en' ? 'Ideas to implement' : 'అమలు చేయాల్సిన ఐడియాలు'}
         onClick={() => startOrPrompt(2)}
-        className={compact ? '!py-2' : ''}
+        className={compact ? '!py-2' : '!py-2.5'}
       />
     </div>
   );

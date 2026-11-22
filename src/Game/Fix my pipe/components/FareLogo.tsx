@@ -25,13 +25,13 @@ export default function FareLogo({ compact = false, className = '' }: FareLogoPr
       aria-label="FARE · Finishing Academy for Real Estate"
       title="FARE · Finishing Academy for Real Estate"
       className={`fare-card-3d group flex items-center justify-center rounded-[8px] transition-all duration-200 hover:scale-105 active:scale-95 ${
-        compact ? 'h-[38px] px-2' : 'h-[50px] px-3'
+        compact ? 'h-[36px] px-2' : 'h-[40px] px-2.5'
       } ${className}`}
     >
       <svg
         viewBox="120 318 840 444"
         className={`w-auto shrink-0 transition-colors duration-250 ${
-          compact ? 'h-[22px]' : 'h-[30px]'
+          compact ? 'h-[20px]' : 'h-[24px]'
         }`}
         aria-hidden="true"
       >
