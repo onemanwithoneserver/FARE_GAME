@@ -6,7 +6,6 @@ import StageStrip from './components/StageStrip';
 import InterviewArena from './components/InterviewArena';
 import RulesCard from './components/RulesCard';
 import ModeButtons from './components/ModeButtons';
-import CaseBanner from './components/CaseBanner';
 import FeedbackToast from './components/FeedbackToast';
 import DossierCard from './components/DossierCard';
 import BigButton from './components/BigButton';

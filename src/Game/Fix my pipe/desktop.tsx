@@ -6,7 +6,6 @@ import TitleBanner from './components/TitleBanner';
 import ModeButtons from './components/ModeButtons';
 import Advisor from './components/Advisor';
 import HomeInfoCard from './components/HomeInfoCard';
-import CaseBanner from './components/CaseBanner';
 import FeedbackToast from './components/FeedbackToast';
 import DossierCard from './components/DossierCard';
 import { CandidateCharacter } from './components/CharacterAvatars';
@@ -122,21 +121,9 @@ export default function DesktopView() {
           center={
             screen === 'home' ? (
               <TitleBanner compact={isShortLandscape} />
-            ) : screen === 'play' && currentCase ? (
-              <CaseBanner
-                title={currentCase.t}
-                quote={currentCase.q}
-                leak={currentCase.leak}
-                caseIndex={caseIndex}
-                totalCases={caseOrder.length || 3}
-                deckLength={deck.length}
-                cardIndex={cardIndex}
-                lang={lang}
-                compact={isShortLandscape}
-              />
-            ) : (
+            ) : screen === 'result' ? (
               <TitleBanner compact={isShortLandscape} subtitle={en ? 'Performance Report' : 'మీ ఫలితాలు'} />
-            )
+            ) : null
           }
         />
 

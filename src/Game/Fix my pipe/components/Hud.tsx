@@ -254,26 +254,27 @@ export default function Hud({ center, compact = false }: { center?: ReactNode; c
     </div>
   );
 
-  if (compact) {
-    if (center) {
-      return (
-        <div className="grid grid-cols-[auto_1fr_auto] items-center gap-2">
-          <div className="flex shrink-0 items-center gap-1.5">
-            <FareLogo compact={true} />
-            {scorePill}
-          </div>
-          <div className="flex justify-center px-1">{center}</div>
-          <div className="justify-self-end">{controls}</div>
-        </div>
-      );
-    }
+  if (!center) {
     return (
-      <div className="flex items-center justify-between gap-1.5">
+      <div className={`flex items-center justify-between ${compact ? 'gap-1.5' : 'gap-4'}`}>
+        <div className={`flex items-center ${compact ? 'gap-1.5' : 'gap-2.5 lg:gap-3'}`}>
+          <FareLogo compact={compact} />
+          {scorePill}
+        </div>
+        {controls}
+      </div>
+    );
+  }
+
+  if (compact) {
+    return (
+      <div className="grid grid-cols-[auto_1fr_auto] items-center gap-2">
         <div className="flex shrink-0 items-center gap-1.5">
           <FareLogo compact={true} />
           {scorePill}
         </div>
-        {controls}
+        <div className="flex justify-center px-1">{center}</div>
+        <div className="justify-self-end">{controls}</div>
       </div>
     );
   }
