@@ -9,7 +9,7 @@ import HomeInfoCard from './components/HomeInfoCard';
 import CaseBanner from './components/CaseBanner';
 import FeedbackToast from './components/FeedbackToast';
 import DossierCard from './components/DossierCard';
-import InterviewArena from './components/InterviewArena';
+import { CandidateCharacter } from './components/CharacterAvatars';
 import PressureGauge from './components/PressureGauge';
 import ResultScreen from './components/ResultScreen';
 import GameModals from './components/GameModals';
@@ -145,8 +145,8 @@ export default function DesktopView() {
         )}
 
         {screen === 'play' && currentCase && currentCard && (
-          <div className="flex flex-1 flex-col justify-end gap-4 pb-2 pt-2">
-            <div className="relative h-[220px] w-full xl:h-[260px]">
+          <div className="flex flex-1 flex-col justify-start gap-2.5 pb-2 pt-1">
+            <div className="relative h-[180px] w-full xl:h-[210px]">
               <FeedbackToast />
               <Pipe3D
                 activeLeakStage={currentCase.leak as StageId}
@@ -156,28 +156,44 @@ export default function DesktopView() {
               />
             </div>
 
-            <div className="grid grid-cols-[1fr_260px] items-start gap-6 xl:grid-cols-[1fr_280px]">
-              <div className="w-full">
-                <InterviewArena
-                  currentCase={currentCase}
-                  item={currentCard}
-                  lang={lang}
-                  isPerson={isPerson}
-                  playerName={player?.name}
-                  hiredTeam={hiredTeam}
-                  onAccept={() => decide(true)}
-                  onReject={() => decide(false)}
-                />
-              </div>
-
-              <div className="space-y-3 justify-self-end w-full">
-                <PressureGauge leakLevel={leak} score={score} combo={combo} lang={lang} />
+            <div className="grid grid-cols-[230px_minmax(0,1fr)_230px] items-end gap-3 lg:gap-4 xl:grid-cols-[250px_minmax(0,1fr)_250px]">
+              <div className="justify-self-start w-full">
                 <Advisor
-                  name={player?.name || (en ? 'FARE Coach' : 'FARE కోచ్')}
+                  name={player?.name || (en ? 'FARE TL' : 'FARE TL')}
                   role={STAGES[currentCase.leak]?.name[lang]}
                   message={advisorMessage}
                   messageKey={lastFeedback ? `fb-${totalDecisions}-${lang}` : `case-${caseIndex}-${lang}`}
                   tone={advisorTone}
+                />
+              </div>
+
+              <div className="mx-auto w-full max-w-xl">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={currentCard.id}
+                    initial={{ opacity: 0, y: 10, scale: 0.98 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: -10, scale: 0.98 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <DossierCard
+                      item={currentCard}
+                      lang={lang}
+                      onAccept={() => decide(true)}
+                      onReject={() => decide(false)}
+                      dense={false}
+                    />
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+
+              <div className="flex flex-col items-center gap-2.5 justify-self-end w-full">
+                <PressureGauge leakLevel={leak} score={score} combo={combo} lang={lang} />
+                <CandidateCharacter
+                  item={currentCard}
+                  isPerson={isPerson}
+                  lang={lang}
+                  reactionKey={totalDecisions}
                 />
               </div>
             </div>

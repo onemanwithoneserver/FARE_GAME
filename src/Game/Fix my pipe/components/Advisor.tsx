@@ -1,6 +1,7 @@
 import { ReactNode, useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import gsap from 'gsap';
+import { TlCharacter } from './CharacterAvatars';
 
 interface AdvisorProps {
   name: string;
@@ -8,6 +9,7 @@ interface AdvisorProps {
   message: ReactNode;
   messageKey: string | number;
   tone?: 'neutral' | 'good' | 'bad';
+  customCharacter?: ReactNode;
 }
 
 const TONE_ACCENT = {
@@ -402,7 +404,7 @@ function ExecutiveCoachSvg({
   );
 }
 
-export default function Advisor({ name, role, message, messageKey, tone = 'neutral' }: AdvisorProps) {
+export default function Advisor({ name, role, message, messageKey, tone = 'neutral', customCharacter }: AdvisorProps) {
   const [hovered, setHovered] = useState(false);
 
   return (
@@ -418,7 +420,7 @@ export default function Advisor({ name, role, message, messageKey, tone = 'neutr
           animate={{ opacity: 1, y: hovered ? -2 : 0, scale: 1 }}
           exit={{ opacity: 0, y: -5, scale: 0.98 }}
           transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
-          className={`relative ml-6 overflow-hidden rounded-[10px] border bg-white p-3.5 pl-4 text-sm leading-snug text-[#0B1D3A] shadow-[0_8px_24px_rgba(11,29,58,0.08)] dark:bg-[#0D1B35] dark:text-slate-100 dark:shadow-[0_10px_28px_rgba(0,0,0,0.4)] ${TONE_ACCENT[tone]}`}
+          className={`relative ml-4 sm:ml-6 overflow-hidden rounded-[10px] border bg-white p-3 sm:p-3.5 pl-3.5 sm:pl-4 text-xs sm:text-sm leading-snug text-[#0B1D3A] shadow-[0_8px_24px_rgba(11,29,58,0.08)] dark:bg-[#0D1B35] dark:text-slate-100 dark:shadow-[0_10px_28px_rgba(0,0,0,0.4)] ${TONE_ACCENT[tone]}`}
         >
           <span className={`absolute inset-y-0 left-0 w-1 ${TONE_BAR[tone]}`} />
           <div className="mb-1 flex items-center justify-between gap-2">
@@ -448,18 +450,25 @@ export default function Advisor({ name, role, message, messageKey, tone = 'neutr
       </AnimatePresence>
 
       {/* Pointer stem connecting speech card to coach */}
-      <div className="ml-14 h-2.5 w-3.5 overflow-hidden">
+      <div className="ml-10 sm:ml-14 h-2 w-3.5 overflow-hidden">
         <div
           className={`mx-auto h-2.5 w-2.5 -translate-y-1.5 rotate-45 border-b border-r bg-white dark:bg-[#0D1B35] ${TONE_ACCENT[tone]}`}
         />
       </div>
 
       <motion.div
-        className="relative -mt-1 h-[185px] w-[155px] cursor-pointer"
-        whileHover={{ scale: 1.03 }}
+        className="relative -mt-1 cursor-pointer"
+        whileHover={{ scale: 1.02 }}
         transition={{ type: 'spring', stiffness: 260, damping: 20 }}
       >
-        <ExecutiveCoachSvg tone={tone} reactionKey={messageKey} hovered={hovered} />
+        {customCharacter ?? (
+          <TlCharacter
+            name={name}
+            role={role}
+            tone={tone}
+            reactionKey={messageKey}
+          />
+        )}
       </motion.div>
     </div>
   );
