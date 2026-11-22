@@ -51,8 +51,8 @@ function FitCamera({ onPpu }: { onPpu: (v: number) => void }) {
     const t = Math.tan(THREE.MathUtils.degToRad(cam.fov / 2));
     const dist = Math.max(halfH / t, halfW / (t * aspect));
     const cx = (SCENE_MAX_X + SCENE_MIN_X) / 2;
-    const cy = (SCENE_TOP + SCENE_BOTTOM) / 2 + 0.02;
-    cam.position.set(cx, cy + dist * (isNarrow ? 0.06 : 0.08), dist);
+    const cy = (SCENE_TOP + SCENE_BOTTOM) / 2 + 0.01;
+    cam.position.set(cx, cy + dist * (isNarrow ? 0.015 : 0.02), dist);
     cam.lookAt(cx, cy, 0);
     cam.updateProjectionMatrix();
     onPpu(size.height / (2 * t * dist));
@@ -64,8 +64,8 @@ function Parallax({ children }: { children: React.ReactNode }) {
   const ref = useRef<THREE.Group>(null);
   useFrame((state) => {
     if (!ref.current) return;
-    ref.current.rotation.y = THREE.MathUtils.lerp(ref.current.rotation.y, state.pointer.x * 0.05, 0.05);
-    ref.current.rotation.x = THREE.MathUtils.lerp(ref.current.rotation.x, -state.pointer.y * 0.025, 0.05);
+    ref.current.rotation.y = THREE.MathUtils.lerp(ref.current.rotation.y, state.pointer.x * 0.015, 0.05);
+    ref.current.rotation.x = THREE.MathUtils.lerp(ref.current.rotation.x, -state.pointer.y * 0.008, 0.05);
   });
   return <group ref={ref}>{children}</group>;
 }
@@ -332,12 +332,13 @@ function Inlet() {
   });
   return (
     <group>
-      <mesh position={[FIRST_EDGE - 0.05, PIPE_Y, 0]} rotation={[0, 0, Math.PI / 2]}>
-        <cylinderGeometry args={[R + 0.12, R + 0.12, 0.26, 48]} />
-        <meshStandardMaterial color="#CBD5E1" metalness={0.85} roughness={0.25} />
+      {/* Sleek connector matching intermediate connectors */}
+      <mesh position={[FIRST_EDGE - 0.15, PIPE_Y, 0]} rotation={[0, 0, Math.PI / 2]}>
+        <cylinderGeometry args={[0.45, 0.45, 0.32, 32]} />
+        <meshStandardMaterial color="#1E293B" metalness={0.85} roughness={0.3} />
       </mesh>
-      <mesh position={[FIRST_EDGE - 0.19, PIPE_Y, 0]} rotation={[0, -Math.PI / 2, 0]}>
-        <circleGeometry args={[R, 40]} />
+      <mesh position={[FIRST_EDGE - 0.31, PIPE_Y, 0]} rotation={[0, -Math.PI / 2, 0]}>
+        <circleGeometry args={[0.45, 40]} />
         <meshStandardMaterial color="#3B82F6" roughness={0.4} metalness={0.1} />
       </mesh>
       <instancedMesh ref={ref} args={[undefined, undefined, count]} frustumCulled={false}>
@@ -387,20 +388,14 @@ function GoldenTap({ flow }: { flow: number }) {
 
   return (
     <group>
-      {/* Brass adapter collar on last stage */}
-      <mesh position={[LAST_EDGE + 0.04, PIPE_Y, 0]} rotation={[0, 0, Math.PI / 2]}>
-        <cylinderGeometry args={[R + 0.05, R + 0.05, 0.14, 40]} />
+      {/* Clean connector matching intermediate connectors */}
+      <mesh position={[(LAST_EDGE + TAP_X) / 2, PIPE_Y, 0]} rotation={[0, 0, Math.PI / 2]}>
+        <cylinderGeometry args={[0.45, 0.45, TAP_X - LAST_EDGE + 0.08, 32]} />
+        <meshStandardMaterial {...GOLD} />
+      </mesh>
+      <mesh position={[LAST_EDGE + 0.12, PIPE_Y, 0]} rotation={[0, 0, Math.PI / 2]}>
+        <cylinderGeometry args={[0.49, 0.49, 0.08, 32]} />
         <meshStandardMaterial {...GOLD} color="#D5AA45" />
-      </mesh>
-      <mesh position={[LAST_EDGE + 0.16, PIPE_Y, 0]} rotation={[0, 0, Math.PI / 2]}>
-        <cylinderGeometry args={[0.42, 0.5, 0.14, 32]} />
-        <meshStandardMaterial {...GOLD} />
-      </mesh>
-
-      {/* Horizontal brass feeder pipe */}
-      <mesh position={[(LAST_EDGE + 0.16 + TAP_X) / 2, PIPE_Y, 0]} rotation={[0, 0, Math.PI / 2]}>
-        <cylinderGeometry args={[0.33, 0.33, TAP_X - (LAST_EDGE + 0.16), 32]} />
-        <meshStandardMaterial {...GOLD} />
       </mesh>
 
       {/* Machined elbow valve housing */}
@@ -605,7 +600,7 @@ export default function Pipe3D({ activeLeakStage, leakLevel, isFixed, lang, flow
   const resolvedFlow = flow ?? (activeLeakStage === null || isFixed ? 1 : Math.max(0.12, 1 - leakLevel * 0.88));
   return (
     <div className="absolute inset-0">
-      <Canvas dpr={[1, 1.75]} gl={{ alpha: true, antialias: true, powerPreference: 'high-performance' }} camera={{ fov: 34, near: 0.1, far: 100 }}>
+      <Canvas dpr={[1, 1.75]} gl={{ alpha: true, antialias: true, powerPreference: 'high-performance' }} camera={{ fov: 16, near: 0.1, far: 100 }}>
         <FitCamera onPpu={handlePpu} />
         <ambientLight intensity={isDark ? 0.55 : 0.75} />
         <hemisphereLight args={[isDark ? '#BFDBFE' : '#FFFFFF', isDark ? '#0B1D3A' : '#CBD5E1', isDark ? 0.65 : 0.8]} />
