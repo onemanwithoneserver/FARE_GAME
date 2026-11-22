@@ -3,6 +3,7 @@ import WarningAmberIcon from '@mui/icons-material/WarningAmber';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import CloseIcon from '@mui/icons-material/Close';
 import LogoutIcon from '@mui/icons-material/Logout';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import BigButton from './BigButton';
 import { Check3DIcon, Cross3DIcon } from './Icons3D';
 import RoundEndModal from './RoundEndModal';
@@ -73,21 +74,35 @@ function BriefingModal() {
                 <span>{en ? "Reject anything that doesn't address this bottleneck." : 'ఈ సమస్యకు సరిపోని వాటిని తిరస్కరించండి.'}</span>
               </div>
             </div>
-            <div className="space-y-2.5">
+            <div className="grid grid-cols-2 gap-2.5 sm:gap-3">
+              <motion.button
+                type="button"
+                whileHover={{ y: -1.5 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={quitGame}
+                className="group relative flex cursor-pointer items-center gap-2 rounded-[8px] border border-[#DBE4FA] bg-gradient-to-b from-white to-[#F8FAFC] px-3 py-2.5 text-left shadow-[0_6px_16px_-6px_rgba(29,78,216,0.1),0_2px_0_#D5DFF6] transition-all hover:border-rose-300 hover:from-white hover:to-rose-50/60 hover:text-rose-700 dark:border-white/10 dark:from-[#0E1E38] dark:to-[#091528] dark:hover:border-rose-500/40 dark:hover:from-[#0E1E38] dark:hover:to-rose-950/25 sm:gap-2.5"
+              >
+                <span className="fare-icon-3d grid h-8 w-8 shrink-0 place-items-center rounded-[6px] bg-[#F1F5F9] text-[#64748B] transition-colors group-hover:bg-[#DC2626] group-hover:text-white dark:bg-[#1A2C4B] dark:text-slate-300 dark:group-hover:bg-[#DC2626]">
+                  <ArrowBackIcon sx={{ fontSize: 18 }} />
+                </span>
+                <span className="min-w-0 flex-1">
+                  <span className="block truncate text-sm font-bold text-[#0B1D3A] transition-colors group-hover:text-rose-700 dark:text-white dark:group-hover:text-rose-300">
+                    {en ? 'Cancel & Return' : 'రద్దు చేయండి'}
+                  </span>
+                  <span className="block truncate text-[11px] text-[#64748B] dark:text-slate-400">
+                    {en ? 'Back to lobby' : 'హోమ్‌కి వెళ్లండి'}
+                  </span>
+                </span>
+              </motion.button>
+
               <BigButton
                 tone="navy"
+                size="md"
                 icon={PlayArrowIcon}
                 title={en ? 'Begin Round' : 'రౌండ్ ప్రారంభించండి'}
                 subtitle={`${deck.length} ${isPerson ? (en ? 'candidates to interview' : 'అభ్యర్థులు') : en ? 'ideas to evaluate' : 'ఐడియాలు'}`}
                 onClick={dismissBriefing}
               />
-              <button
-                type="button"
-                onClick={quitGame}
-                className="fare-card-3d flex w-full cursor-pointer items-center justify-center gap-1.5 rounded-[8px] py-2.5 text-xs font-semibold text-[#475569] transition hover:border-rose-300 hover:text-rose-700 dark:text-slate-300 dark:hover:border-rose-500/40 dark:hover:text-rose-300"
-              >
-                {en ? 'Cancel & Return to Lobby' : 'రద్దు చేసి హోమ్‌కి వెళ్లండి'}
-              </button>
             </div>
           </motion.div>
         </motion.div>
