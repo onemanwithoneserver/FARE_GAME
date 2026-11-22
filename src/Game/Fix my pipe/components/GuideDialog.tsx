@@ -24,7 +24,7 @@ export default function GuideDialog({ open, onClose, lang }: GuideDialogProps) {
     {
       step: '01',
       icon: <LayersIcon sx={{ fontSize: 13, color: '#FFFFFF' }} />,
-      iconBg: 'bg-[#0B1D3A] dark:bg-[#1A3463]',
+      iconBg: 'bg-[#D97706]',
       title: en ? '3 Funnel Cases' : '3 కేసులు',
       desc: en ? 'Identify the leak' : 'లీక్‌ను గుర్తించండి',
     },

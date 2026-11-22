@@ -14,7 +14,7 @@ export default function HomeInfoCard() {
   const stats = [
     {
       icon: <FolderCopyIcon sx={{ fontSize: 16, color: '#FFFFFF' }} />,
-      bg: 'bg-gradient-to-br from-[#1E3A8A] to-[#0B1D3A]',
+      bg: 'bg-gradient-to-br from-[#F59E0B] via-[#D97706] to-[#92400E]',
       label: en ? 'Cases' : 'కేసులు',
       value: '3',
     },
