@@ -13,6 +13,7 @@ import DossierCard from './components/DossierCard';
 import PressureGauge from './components/PressureGauge';
 import ResultScreen from './components/ResultScreen';
 import GameModals from './components/GameModals';
+import FooterSection from './components/FooterSection';
 import Pipe3D from './Pipe3D';
 import { usePipeGameStore } from './store';
 import { RAW_CASES, STAGES, translateText } from './data';
@@ -217,6 +218,8 @@ export default function DesktopView() {
             />
           </div>
         )}
+
+        <FooterSection />
       </div>
 
       <GameModals />

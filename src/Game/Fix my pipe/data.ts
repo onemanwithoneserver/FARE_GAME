@@ -996,7 +996,7 @@ export const FARE_LINKS = {
   "talent": "https://www.fare.training",
   "course": "https://www.fare.training",
   "session": "https://wa.me/917674993040?text=Hi%20FARE%2C%20I%20would%20like%20a%20FREE%20session%20to%20discuss%20my%20team%20training%20needs",
-  "share": "",
+  "share": "https://onemanwithoneserver.github.io/FARE_GAME/",
   "leads": "",
   "whatsapp": "https://wa.me/917674993040?text=Hi%20FARE%2C%20please%20add%20me%20to%20the%20team%20building%20tips%20WhatsApp%20community"
 };

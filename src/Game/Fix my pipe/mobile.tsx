@@ -12,6 +12,7 @@ import BigButton from './components/BigButton';
 import { Check3DIcon, Cross3DIcon } from './components/Icons3D';
 import ResultScreen from './components/ResultScreen';
 import GameModals from './components/GameModals';
+import FooterSection from './components/FooterSection';
 import Pipe3D from './Pipe3D';
 import { usePipeGameStore } from './store';
 import { RAW_CASES, translateText } from './data';
@@ -211,6 +212,8 @@ export default function MobileView() {
             />
           </div>
         )}
+
+        <FooterSection compact={true} />
       </div>
 
       <GameModals />

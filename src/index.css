@@ -111,3 +111,39 @@ html.dark .fare-guest-btn:hover {
     0 3px 0 #14532d,
     inset 0 1.5px 0 rgba(255, 255, 255, 0.28);
 }
+
+@keyframes fare-flow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+@keyframes fare-pulse-ring {
+  0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.55); }
+  70%, 100% { box-shadow: 0 0 0 12px rgba(34, 197, 94, 0); }
+}
+.fare-share-btn {
+  background-image: linear-gradient(110deg, #16a34a, #0ea5e9, #8b5cf6, #ec4899, #f59e0b, #16a34a);
+  background-size: 300% 300%;
+  animation: fare-flow 6s ease infinite, fare-pulse-ring 2.2s ease-out infinite;
+}
+.fare-chip {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.fare-chip::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, var(--chip-a), var(--chip-b), var(--chip-a));
+  background-size: 250% 250%;
+  animation: fare-flow 5s ease infinite;
+  opacity: 0.14;
+  transition: opacity 0.2s ease;
+}
+.fare-chip:hover { transform: translateY(-3px) scale(1.04); }
+.fare-chip:hover::before { opacity: 0.4; }
+.fare-chip > * { position: relative; }
+@media (prefers-reduced-motion: reduce) {
+  .fare-share-btn, .fare-chip::before { animation: none; }
+}
