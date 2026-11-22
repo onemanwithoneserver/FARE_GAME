@@ -9,6 +9,7 @@ import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { Target3DIcon, Star3DIcon, Timer3DIcon } from './Icons3D';
+import FareLogo from './FareLogo';
 import { usePipeGameStore } from '../store';
 
 function useCountUp(value: number) {
@@ -245,7 +246,10 @@ export default function Hud({ center, compact = false }: { center?: ReactNode; c
   if (compact) {
     return (
       <div className="flex items-center justify-between gap-1.5">
-        {scorePill}
+        <div className="flex shrink-0 items-center gap-1.5">
+          <FareLogo compact={true} />
+          {scorePill}
+        </div>
         {controls}
       </div>
     );
@@ -253,7 +257,12 @@ export default function Hud({ center, compact = false }: { center?: ReactNode; c
 
   return (
     <div className="grid grid-cols-[1fr_auto_1fr] items-start gap-4">
-      <div className="justify-self-start">{scorePill}</div>
+      <div className="justify-self-start">
+        <div className="flex items-center gap-2.5 lg:gap-3">
+          <FareLogo />
+          {scorePill}
+        </div>
+      </div>
       <div className="justify-self-center">{center}</div>
       <div className="justify-self-end">{controls}</div>
     </div>
