@@ -3,7 +3,6 @@ import { AnimatePresence, motion } from 'framer-motion';
 import Backdrop from './components/Backdrop';
 import Hud from './components/Hud';
 import TitleBanner from './components/TitleBanner';
-import RulesCard from './components/RulesCard';
 import ModeButtons from './components/ModeButtons';
 import Advisor from './components/Advisor';
 import HomeInfoCard from './components/HomeInfoCard';
@@ -90,7 +89,7 @@ export default function DesktopView() {
     <div className="relative min-h-screen w-full overflow-x-hidden font-sans text-[#0B1D3A] dark:text-slate-100 selection:bg-amber-500 selection:text-slate-950">
       <Backdrop />
 
-      <div className="relative z-10 mx-auto flex min-h-screen w-full max-w-[1440px] flex-col justify-between px-6 py-5 lg:px-8">
+      <div className={`relative z-10 mx-auto flex min-h-screen w-full max-w-[1440px] flex-col px-6 py-5 lg:px-8 ${screen === 'home' ? 'justify-start' : 'justify-between'}`}>
         <Hud
           center={
             screen === 'home' ? (
@@ -113,7 +112,7 @@ export default function DesktopView() {
         />
 
         {screen === 'home' && (
-          <div className="flex flex-1 flex-col justify-end gap-4 pb-2 pt-2">
+          <div className="flex flex-col gap-4 pb-2 pt-2">
             <div className="relative h-[240px] w-full xl:h-[300px]">
               <Pipe3D activeLeakStage={null} leakLevel={0} isFixed={false} lang={lang} flow={1} />
             </div>
@@ -133,7 +132,6 @@ export default function DesktopView() {
               </div>
 
               <div className="mx-auto w-full max-w-2xl space-y-4">
-                <RulesCard />
                 <ModeButtons />
               </div>
 

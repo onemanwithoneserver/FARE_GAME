@@ -58,13 +58,13 @@ function slides(lang: Language): Row[][] {
   ];
 }
 
-export default function RulesCard({ compact = false }: { compact?: boolean }) {
+export default function RulesCard({ compact = false, autoPlay = false }: { compact?: boolean; autoPlay?: boolean }) {
   const lang = usePipeGameStore((s) => s.lang);
   const [idx, setIdx] = useState(0);
   const [hovered, setHovered] = useState(false);
-  const [userPaused, setUserPaused] = useState(false);
+  const [userPaused, setUserPaused] = useState(!autoPlay);
   const data = slides(lang);
-  const paused = hovered || userPaused;
+  const paused = !autoPlay || hovered || userPaused;
 
   useEffect(() => {
     if (paused) return;

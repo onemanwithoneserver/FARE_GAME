@@ -1,11 +1,15 @@
+import { useState } from 'react';
+import MenuBookIcon from '@mui/icons-material/MenuBook';
 import FolderCopyIcon from '@mui/icons-material/FolderCopy';
 import FactCheckIcon from '@mui/icons-material/FactCheck';
 import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
 import { Timer3DIcon, Trophy3DIcon, Vault3DIcon } from './Icons3D';
+import GuideDialog from './GuideDialog';
 import { usePipeGameStore } from '../store';
 
 export default function HomeInfoCard() {
   const { lang, bestScore } = usePipeGameStore();
+  const [guideOpen, setGuideOpen] = useState(false);
   const en = lang === 'en';
   const items = [
     {
@@ -46,6 +50,14 @@ export default function HomeInfoCard() {
             {en ? 'Session Overview' : 'గేమ్ వివరాలు'}
           </div>
         </div>
+        <button
+          type="button"
+          onClick={() => setGuideOpen(true)}
+          className="flex shrink-0 cursor-pointer items-center gap-1 rounded-[6px] bg-[#0B1D3A] px-2 py-1.5 text-[11px] font-bold text-white transition hover:bg-[#1A3463] active:scale-95 dark:bg-[#1A3463] dark:hover:bg-[#25447B]"
+        >
+          <MenuBookIcon sx={{ fontSize: 15 }} />
+          {en ? 'Guide' : 'సూచనలు'}
+        </button>
       </div>
 
       <div className="grid grid-cols-2 gap-2">
@@ -73,6 +85,8 @@ export default function HomeInfoCard() {
           {en ? 'Seal every leak to keep gold flowing into your vault.' : 'ప్రతి లీక్‌ను ఆపి, బంగారాన్ని వాల్ట్‌లోకి ప్రవహించేలా చేయండి.'}
         </p>
       </div>
+
+      <GuideDialog open={guideOpen} onClose={() => setGuideOpen(false)} lang={lang} />
     </div>
   );
 }
