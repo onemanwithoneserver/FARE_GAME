@@ -6,6 +6,7 @@ import StageStrip from './components/StageStrip';
 import InterviewArena from './components/InterviewArena';
 import RulesCard from './components/RulesCard';
 import ModeButtons from './components/ModeButtons';
+import HomeInfoCard from './components/HomeInfoCard';
 import FeedbackToast from './components/FeedbackToast';
 import DossierCard from './components/DossierCard';
 import BigButton from './components/BigButton';
@@ -101,21 +102,30 @@ export default function MobileView() {
         <Hud compact={true} />
 
         {screen === 'home' && (
-          <div className="flex flex-col gap-2.5 pb-2">
+          <div className="flex flex-col gap-3 pb-2">
             <div>
               <TitleBanner compact={true} />
             </div>
 
+            {/* Pipeline Section — Increased height & prominence on mobile */}
             <div className="space-y-1.5">
-              <div className="relative mx-auto h-[16dvh] min-h-[90px] max-h-[140px] w-full max-w-sm">
+              <div className="relative mx-auto h-[25dvh] min-h-[185px] max-h-[255px] w-full max-w-md">
                 <Pipe3D activeLeakStage="all" leakLevel={0.65} isFixed={false} lang={lang} flow={0.25} />
               </div>
               <StageStrip lang={lang} leakStage="all" fixed={false} />
             </div>
 
+            {/* Mode Buttons — Stacked Top & Bottom directly below Pipeline */}
+            <div className="w-full">
+              <ModeButtons stacked={true} compact={false} />
+            </div>
+
+            {/* Quick Stats Grid & Rules Card */}
             <div className="space-y-2.5">
+              <div className="flex justify-center">
+                <HomeInfoCard compact={true} />
+              </div>
               <RulesCard compact={true} />
-              <ModeButtons stacked={true} />
             </div>
           </div>
         )}
@@ -123,7 +133,7 @@ export default function MobileView() {
         {screen === 'play' && currentCase && currentCard && (
           <div className="flex flex-col gap-2 pb-2">
             <div className="space-y-1">
-              <div className="relative h-[22dvh] min-h-[130px] max-h-[200px] w-full">
+              <div className="relative h-[24dvh] min-h-[160px] max-h-[235px] w-full">
                 <FeedbackToast />
                 <Pipe3D
                   activeLeakStage={currentCase.leak as StageId}

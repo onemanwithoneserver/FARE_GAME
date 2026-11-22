@@ -137,10 +137,10 @@ export default function DesktopView() {
               className={`grid ${
                 isShortLandscape
                   ? 'grid-cols-[180px_minmax(0,1fr)_180px] sm:grid-cols-[200px_minmax(0,1fr)_200px] gap-2.5 items-center'
-                  : 'grid-cols-[270px_minmax(0,1fr)_315px] xl:grid-cols-[290px_minmax(0,1fr)_335px] gap-6 items-start'
+                  : 'grid-cols-1 lg:grid-cols-[270px_minmax(0,1fr)_315px] xl:grid-cols-[290px_minmax(0,1fr)_335px] gap-5 lg:gap-6 items-start'
               }`}
             >
-              <div className="justify-self-start">
+              <div className="justify-self-center lg:justify-self-start w-full max-w-md lg:max-w-none">
                 <Advisor
                   characterType="coach"
                   name={en ? 'FARE Coach' : 'FARE కోచ్'}
@@ -155,12 +155,12 @@ export default function DesktopView() {
                 />
               </div>
 
-              <div className="mx-auto flex w-full max-w-2xl flex-col gap-4 md:gap-5">
+              <div className="mx-auto flex w-full max-w-2xl flex-col gap-4 md:gap-5 order-first lg:order-none">
                 <ModeButtons compact={isShortLandscape} />
                 {!isShortLandscape && <FooterSection className="!mt-1 !pt-0" />}
               </div>
 
-              <div className="justify-self-end">
+              <div className="justify-self-center lg:justify-self-end w-full max-w-md lg:max-w-none">
                 <HomeInfoCard compact={isShortLandscape} />
               </div>
             </div>
