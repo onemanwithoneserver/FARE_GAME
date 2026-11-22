@@ -25,51 +25,53 @@ export default function GuideDialog({ open, onClose, lang }: GuideDialogProps) {
       step: '01',
       icon: <LayersIcon sx={{ fontSize: 13, color: '#FFFFFF' }} />,
       iconBg: 'bg-[#0B1D3A] dark:bg-[#1A3463]',
-      title: en ? '3 Funnel Cases' : '3 ఫన్నెల్ కేసులు',
-      desc: en ? 'Find the leak' : 'లీక్‌ను గుర్తించండి',
+      title: en ? '3 Funnel Cases' : '3 కేసులు',
+      desc: en ? 'Identify the leak' : 'లీక్‌ను గుర్తించండి',
     },
     {
       step: '02',
       icon: <AccessTimeFilledIcon sx={{ fontSize: 13, color: '#FFFFFF' }} />,
       iconBg: 'bg-[#2563EB]',
-      title: en ? '8 Cards / Case' : 'కేసుకు 8 కార్డులు',
+      title: en ? '8 Cards / Case' : '8 కార్డులు',
       desc: en ? 'Evaluate options' : 'ఎంపికలను పరిశీలించండి',
     },
     {
       step: '03',
       icon: <LockIcon sx={{ fontSize: 13, color: '#FFFFFF' }} />,
       iconBg: 'bg-[#C99A2E]',
-      title: en ? 'Seal & Bank' : 'లీక్ ఆపి నిల్వ చేయండి',
-      desc: en ? 'Save revenue' : 'ఆదాయాన్ని వాల్ట్‌కు చేర్చండి',
+      title: en ? 'Seal & Bank' : 'లీక్ ఆపండి',
+      desc: en ? 'Route to vault' : 'ఆదాయాన్ని భద్రపరచండి',
     },
   ];
 
   const actions = [
     {
-      tone: 'green',
       icon: <CheckIcon sx={{ fontSize: 14, color: '#FFFFFF' }} />,
       bg: 'bg-[#16A34A]',
       title: en ? 'Hire / Implement' : 'నియమించు / అమలు',
       badge: '+10 / +3',
-      badgeColor:
-        'text-emerald-700 bg-emerald-500/15 border-emerald-500/30 dark:text-emerald-300 dark:bg-emerald-400/15',
+      badgeStyle: 'border-emerald-500/30 bg-emerald-500/15 text-emerald-700 dark:text-emerald-300',
+      containerStyle:
+        'border-emerald-500/30 bg-emerald-50/40 dark:border-emerald-500/20 dark:bg-emerald-950/15',
       desc: en
         ? 'Accept talent or tools that fix the leak.'
         : 'లీక్‌ను పరిష్కరించే సరైన టీమ్ లేదా టూల్స్‌ను ఎంచుకోండి.',
-      controls: en ? 'Swipe Right 👉 or Press [→] / Enter' : 'కుడివైపు స్వైప్ 👉 లేదా [→] / Enter',
+      controls: en ? '👉 Swipe Right or Press [→] / Enter' : '👉 కుడివైపు స్వైప్ లేదా [→] / Enter',
+      controlColor: 'text-emerald-700 dark:text-emerald-400',
     },
     {
-      tone: 'red',
       icon: <CloseIcon sx={{ fontSize: 14, color: '#FFFFFF' }} />,
       bg: 'bg-[#DC2626]',
       title: en ? 'Avoid / Reject' : 'వద్దు / నివారించండి',
       badge: en ? 'Avoids −5' : '−5 నివారణ',
-      badgeColor:
-        'text-rose-700 bg-rose-500/15 border-rose-500/30 dark:text-rose-300 dark:bg-rose-400/15',
+      badgeStyle: 'border-rose-500/30 bg-rose-500/15 text-rose-700 dark:text-rose-300',
+      containerStyle:
+        'border-rose-500/30 bg-rose-50/40 dark:border-rose-500/20 dark:bg-rose-950/15',
       desc: en
         ? 'Reject mismatches to avoid revenue loss.'
         : 'పైప్‌లైన్ ఒత్తిడి తగ్గకుండా సరిపోని వాటిని తిరస్కరించండి.',
-      controls: en ? 'Swipe Left 👈 or Press [←] / Esc' : 'ఎడమవైపు స్వైప్ 👈 లేదా [←] / Esc',
+      controls: en ? '👈 Swipe Left or Press [←] / Esc' : '👈 ఎడమవైపు స్వైప్ లేదా [←] / Esc',
+      controlColor: 'text-rose-700 dark:text-rose-400',
     },
   ];
 
@@ -81,7 +83,7 @@ export default function GuideDialog({ open, onClose, lang }: GuideDialogProps) {
       color: 'text-emerald-600 dark:text-emerald-400',
       icon: <CheckIcon sx={{ fontSize: 12, color: '#FFFFFF' }} />,
       iconBg: 'bg-[#16A34A]',
-      bg: 'bg-emerald-50/70 border-emerald-200/80 dark:bg-emerald-950/20 dark:border-emerald-500/20',
+      bg: 'bg-emerald-50/60 border-emerald-300/60 dark:bg-emerald-950/20 dark:border-emerald-500/20',
     },
     {
       score: '+3',
@@ -90,7 +92,7 @@ export default function GuideDialog({ open, onClose, lang }: GuideDialogProps) {
       color: 'text-sky-600 dark:text-sky-400',
       icon: <BoltIcon sx={{ fontSize: 12, color: '#FFFFFF' }} />,
       iconBg: 'bg-[#2563EB]',
-      bg: 'bg-sky-50/70 border-sky-200/80 dark:bg-sky-950/20 dark:border-sky-500/20',
+      bg: 'bg-sky-50/60 border-sky-300/60 dark:bg-sky-950/20 dark:border-sky-500/20',
     },
     {
       score: '−5 / −8',
@@ -99,7 +101,7 @@ export default function GuideDialog({ open, onClose, lang }: GuideDialogProps) {
       color: 'text-rose-600 dark:text-rose-400',
       icon: <TrendingDownIcon sx={{ fontSize: 12, color: '#FFFFFF' }} />,
       iconBg: 'bg-[#DC2626]',
-      bg: 'bg-rose-50/70 border-rose-200/80 dark:bg-rose-950/20 dark:border-rose-500/20',
+      bg: 'bg-rose-50/60 border-rose-300/60 dark:bg-rose-950/20 dark:border-rose-500/20',
     },
   ];
 
@@ -148,22 +150,19 @@ export default function GuideDialog({ open, onClose, lang }: GuideDialogProps) {
         </button>
       </div>
 
-      {/* Dialog Content */}
-      <DialogContent sx={{ p: { xs: '12px 14px', sm: '12px 16px' } }}>
-        <div className="space-y-2.5">
-          {/* Section 1: 3-Step Game Flow */}
-          <div className="grid grid-cols-3 gap-2">
+      {/* Dialog Content: Clean layout with NO nested boxes */}
+      <DialogContent sx={{ p: { xs: '12px 14px', sm: '14px 18px' } }}>
+        <div className="space-y-3">
+          {/* Section 1: Single Unified 3-Step Flow Strip */}
+          <div className="grid grid-cols-3 divide-x divide-slate-200/80 rounded-[9px] border border-[#DBE4FA] bg-white p-2 shadow-sm dark:divide-white/10 dark:border-white/10 dark:bg-white/[0.03]">
             {steps.map((st) => (
-              <div
-                key={st.step}
-                className="flex flex-col items-center justify-center rounded-[8px] border border-[#DBE4FA] bg-white p-2 text-center shadow-[inset_0_1px_0_#ffffff] dark:border-white/10 dark:bg-white/[0.03] dark:shadow-none"
-              >
-                <div className="mb-1 flex w-full items-center justify-between px-0.5">
+              <div key={st.step} className="flex flex-col items-center justify-center px-1 text-center">
+                <div className="mb-1 flex items-center gap-1.5">
+                  <span className={`grid h-5 w-5 place-items-center rounded-[4px] text-white shadow-sm ${st.iconBg}`}>
+                    {st.icon}
+                  </span>
                   <span className="text-[9px] font-black uppercase tracking-wider text-[#C99A2E]">
                     {st.step}
-                  </span>
-                  <span className={`grid h-5 w-5 place-items-center rounded-[4px] text-white ${st.iconBg}`}>
-                    {st.icon}
                   </span>
                 </div>
                 <div className="text-[11px] font-black leading-tight text-[#0B1D3A] dark:text-white">
@@ -176,20 +175,24 @@ export default function GuideDialog({ open, onClose, lang }: GuideDialogProps) {
             ))}
           </div>
 
-          {/* Section 2: Interactive Actions (Hire vs Avoid) */}
-          <div className="space-y-1.5 rounded-[9px] border border-[#DBE4FA] bg-white/70 p-2 dark:border-white/10 dark:bg-white/[0.02]">
-            <div className="text-[10px] font-extrabold uppercase tracking-wider text-[#64748B] dark:text-slate-400">
-              {en ? 'Actions' : 'నిర్ణయాలు'}
+          {/* Section 2: Direct Action Cards (NO outer wrapper box) */}
+          <div className="space-y-2">
+            <div className="flex items-center gap-2">
+              <span className="text-[10px] font-extrabold uppercase tracking-wider text-[#64748B] dark:text-slate-400">
+                {en ? 'Interactive Actions' : 'నిర్ణయాలు'}
+              </span>
+              <div className="h-px flex-1 bg-slate-200/80 dark:bg-white/10" />
             </div>
-            <div className="space-y-1.5">
+
+            <div className="space-y-2">
               {actions.map((act) => (
                 <div
                   key={act.title}
-                  className="rounded-[7px] border border-slate-200/80 bg-white p-2 shadow-sm dark:border-white/10 dark:bg-[#071124]/60"
+                  className={`rounded-[9px] border p-2.5 shadow-sm transition-all ${act.containerStyle}`}
                 >
                   <div className="flex items-center justify-between gap-2">
-                    <div className="flex items-center gap-1.5">
-                      <span className={`grid h-5 w-5 shrink-0 place-items-center rounded-[5px] text-white ${act.bg}`}>
+                    <div className="flex items-center gap-2">
+                      <span className={`grid h-6 w-6 shrink-0 place-items-center rounded-[5px] text-white shadow-sm ${act.bg}`}>
                         {act.icon}
                       </span>
                       <span className="text-xs font-black text-[#0B1D3A] dark:text-white">
@@ -197,7 +200,7 @@ export default function GuideDialog({ open, onClose, lang }: GuideDialogProps) {
                       </span>
                     </div>
 
-                    <span className={`rounded-full border px-2 py-0.2 text-[9px] font-extrabold ${act.badgeColor}`}>
+                    <span className={`rounded-full border px-2 py-0.5 text-[9px] font-black ${act.badgeStyle}`}>
                       {act.badge}
                     </span>
                   </div>
@@ -206,7 +209,7 @@ export default function GuideDialog({ open, onClose, lang }: GuideDialogProps) {
                     {act.desc}
                   </p>
 
-                  <div className="mt-1 text-[10px] font-semibold text-[#64748B] dark:text-slate-400">
+                  <div className={`mt-1.5 text-[10px] font-bold ${act.controlColor}`}>
                     {act.controls}
                   </div>
                 </div>
@@ -214,36 +217,40 @@ export default function GuideDialog({ open, onClose, lang }: GuideDialogProps) {
             </div>
           </div>
 
-          {/* Section 3: Scoring & Multipliers */}
-          <div className="rounded-[9px] border border-[#DBE4FA] bg-white/70 p-2 dark:border-white/10 dark:bg-white/[0.02]">
-            <div className="mb-1.5 flex items-center justify-between">
-              <span className="text-[10px] font-extrabold uppercase tracking-wider text-[#64748B] dark:text-slate-400">
-                {en ? 'Scoring' : 'స్కోరింగ్'}
-              </span>
+          {/* Section 3: Direct Scoring Tiles (NO outer wrapper box) */}
+          <div className="space-y-2">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <span className="text-[10px] font-extrabold uppercase tracking-wider text-[#64748B] dark:text-slate-400">
+                  {en ? 'Scoring Impact' : 'స్కోరింగ్'}
+                </span>
+                <div className="h-px w-12 bg-slate-200/80 dark:bg-white/10" />
+              </div>
+
               <span className="inline-flex items-center gap-1 text-[10px] font-bold text-[#D97706] dark:text-[#FBBF24]">
                 <WhatshotIcon sx={{ fontSize: 13, color: '#D97706' }} />
-                {en ? 'Combo Boost' : 'కాంబో'}
+                {en ? 'Combo Multiplier' : 'కాంబో'}
               </span>
             </div>
 
-            <div className="grid grid-cols-3 gap-1.5">
+            <div className="grid grid-cols-3 gap-2">
               {scoringRules.map((r) => (
                 <div
                   key={r.score}
-                  className={`flex flex-col items-center justify-center rounded-[6px] border p-1 text-center ${r.bg}`}
+                  className={`flex flex-col items-center justify-center rounded-[8px] border p-2 text-center shadow-sm ${r.bg}`}
                 >
-                  <div className="flex items-center gap-1">
-                    <span className={`grid h-4 w-4 place-items-center rounded-[3px] text-white ${r.iconBg}`}>
+                  <div className="flex items-center gap-1.5">
+                    <span className={`grid h-4 w-4 place-items-center rounded-[3px] text-white shadow-sm ${r.iconBg}`}>
                       {r.icon}
                     </span>
                     <span className={`text-xs font-black tabular-nums ${r.color}`}>
                       {r.score}
                     </span>
                   </div>
-                  <span className="mt-0.5 text-[10px] font-bold leading-tight text-[#0B1D3A] dark:text-white">
+                  <span className="mt-1 text-[10px] font-bold leading-tight text-[#0B1D3A] dark:text-white">
                     {r.label}
                   </span>
-                  <span className="text-[9px] text-[#64748B] dark:text-slate-400">
+                  <span className="text-[9px] font-medium text-[#64748B] dark:text-slate-400">
                     {r.desc}
                   </span>
                 </div>
