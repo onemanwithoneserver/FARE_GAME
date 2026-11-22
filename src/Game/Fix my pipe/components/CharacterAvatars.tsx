@@ -24,7 +24,7 @@ interface CandidateCharacterProps {
  * Features blonde styled hair, friendly executive expression, tailored navy suit,
  * live animated blinking, breathing, tablet metrics, and pointing gesture towards center card.
  */
-export function TlCharacter({ tone = 'neutral', reactionKey, compact = false }: TlCharacterProps) {
+export function TlCharacter({ name, tone = 'neutral', reactionKey, compact = false }: TlCharacterProps) {
   const rootRef = useRef<SVGSVGElement>(null);
   const torsoRef = useRef<SVGGElement>(null);
   const headRef = useRef<SVGGElement>(null);
@@ -293,9 +293,9 @@ export function TlCharacter({ tone = 'neutral', reactionKey, compact = false }: 
       </div>
 
       {/* Identity Pill */}
-      <div className={`fare-card-3d flex items-center gap-1 rounded-full border border-[#C99A2E]/50 bg-[#0B1D3A]/95 text-white shadow-md ${compact ? '-mt-0.5 px-2 py-0.5 text-[9px]' : '-mt-1 px-3 py-0.5 text-[11px]'} font-extrabold`}>
+      <div className={`flex items-center gap-1.5 rounded-full border border-[#C99A2E]/60 bg-[#0B1D3A] text-white shadow-md ${compact ? '-mt-0.5 px-2.5 py-0.5 text-[9px]' : '-mt-1 px-3.5 py-1 text-[11px]'} font-extrabold`}>
         <span className="h-1.5 w-1.5 rounded-full bg-[#10B981] animate-pulse" />
-        <span>FARE TL</span>
+        <span className="tracking-wide text-white">{name || 'FARE TL'}</span>
       </div>
     </div>
   );
@@ -539,9 +539,9 @@ export function CandidateCharacter({ item, isPerson, lang, reactionKey, compact 
       </div>
 
       {/* Identity Pill */}
-      <div className={`fare-card-3d flex items-center gap-1 rounded-full border border-[#C99A2E]/50 bg-[#0B1D3A]/95 text-white shadow-md ${compact ? '-mt-0.5 px-2 py-0.5 text-[9px]' : '-mt-1 px-3 py-0.5 text-[11px]'} font-extrabold`}>
+      <div className={`flex items-center gap-1.5 rounded-full border border-[#38BDF8]/60 bg-[#0B1D3A] text-white shadow-md ${compact ? '-mt-0.5 px-2.5 py-0.5 text-[9px]' : '-mt-1 px-3.5 py-1 text-[11px]'} font-extrabold`}>
         <span className="h-1.5 w-1.5 rounded-full bg-[#38BDF8] animate-pulse" />
-        <span className="max-w-[100px] truncate">{isPerson ? (lang === 'en' ? 'Candidate' : 'అభ్యర్థి') : lang === 'en' ? 'Idea' : 'ఐడియా'}</span>
+        <span className="max-w-[100px] truncate tracking-wide text-white">{isPerson ? (lang === 'en' ? 'Candidate' : 'అభ్యర్థి') : lang === 'en' ? 'Idea' : 'ఐడియా'}</span>
       </div>
     </motion.div>
   );

@@ -425,8 +425,8 @@ export default function Advisor({ name, role, message, messageKey, tone = 'neutr
         >
           <span className={`absolute inset-y-0 left-0 w-1 ${TONE_BAR[tone]}`} />
           <div className="mb-1 flex items-center justify-between gap-1.5">
-            <div className={`${compact ? 'text-[9px]' : 'text-[10px]'} font-bold uppercase tracking-[0.14em] text-[#C99A2E]`}>
-              {name} · <span className="text-[#64748B] dark:text-slate-400">{role}</span>
+            <div className={`${compact ? 'text-[9px]' : 'text-[10px]'} font-bold uppercase tracking-[0.14em]`}>
+              <span className="text-[#B45309] dark:text-amber-400">{name}</span> · <span className="text-[#0B1D3A] dark:text-slate-200">{role}</span>
             </div>
             {/* Live speaking equalizer bars */}
             <div className="flex h-2.5 items-end gap-0.5" aria-hidden>

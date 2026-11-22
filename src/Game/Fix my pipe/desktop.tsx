@@ -128,8 +128,8 @@ export default function DesktopView() {
         />
 
         {screen === 'home' && (
-          <div className={`flex flex-col ${isShortLandscape ? 'gap-1.5 pb-0.5 pt-0.5 justify-around flex-1' : 'gap-3 pb-2 pt-1'}`}>
-            <div className={`relative mx-auto w-full ${isShortLandscape ? 'h-[22dvh] max-w-5xl' : 'h-[30dvh] min-h-[180px] max-h-[380px] max-w-7xl'}`}>
+          <div className={`flex flex-col ${isShortLandscape ? 'gap-1.5 pb-0.5 pt-0.5 justify-around flex-1' : 'gap-5 pb-4 pt-1'}`}>
+            <div className={`relative mx-auto w-full ${isShortLandscape ? 'h-[22dvh] max-w-5xl' : 'h-[300px] max-w-[1376px]'}`}>
               <Pipe3D activeLeakStage="all" leakLevel={0.65} isFixed={false} lang={lang} flow={0.25} />
             </div>
 
@@ -154,9 +154,9 @@ export default function DesktopView() {
                 />
               </div>
 
-              <div className="mx-auto flex w-full max-w-2xl flex-col gap-2 md:gap-4">
+              <div className="mx-auto flex w-full max-w-2xl flex-col gap-4 md:gap-5">
                 <ModeButtons compact={isShortLandscape} />
-                {!isShortLandscape && <FooterSection className="!mt-0 !pt-0" />}
+                {!isShortLandscape && <FooterSection className="!mt-1 !pt-0" />}
               </div>
 
               <div className="justify-self-end">
@@ -167,8 +167,8 @@ export default function DesktopView() {
         )}
 
         {screen === 'play' && currentCase && currentCard && (
-          <div className={`flex flex-1 flex-col justify-start ${isShortLandscape ? 'gap-0.5 pb-0.5 pt-0 -mt-0.5' : 'gap-1 pb-2 pt-0 -mt-1'}`}>
-            <div className={`relative mx-auto w-full ${isShortLandscape ? 'h-[22dvh] max-w-5xl' : 'h-[28dvh] min-h-[170px] max-h-[350px] max-w-7xl'}`}>
+          <div className={`flex flex-1 flex-col justify-start ${isShortLandscape ? 'gap-0.5 pb-0.5 pt-0 -mt-0.5' : 'gap-2.5 pb-3 pt-0'}`}>
+            <div className={`relative mx-auto w-full ${isShortLandscape ? 'h-[22dvh] max-w-5xl' : 'h-[280px] lg:h-[300px] max-w-[1376px]'}`}>
               <FeedbackToast />
               <Pipe3D
                 activeLeakStage={currentCase.leak as StageId}
@@ -182,7 +182,7 @@ export default function DesktopView() {
               className={`grid ${
                 isShortLandscape
                   ? 'grid-cols-[165px_minmax(0,1fr)_165px] sm:grid-cols-[185px_minmax(0,1fr)_185px] gap-2 items-end'
-                  : 'grid-cols-[200px_minmax(0,1fr)_200px] lg:gap-4 xl:grid-cols-[220px_minmax(0,1fr)_220px] gap-3 items-end'
+                  : 'grid-cols-[200px_minmax(0,1fr)_200px] lg:gap-5 xl:grid-cols-[220px_minmax(0,1fr)_220px] gap-4 items-end'
               }`}
             >
               <div className="justify-self-start w-full">
