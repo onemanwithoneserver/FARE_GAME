@@ -156,7 +156,7 @@ export default function DesktopView() {
               />
             </div>
 
-            <div className="grid grid-cols-[230px_minmax(0,1fr)_230px] items-end gap-3 lg:gap-4 xl:grid-cols-[250px_minmax(0,1fr)_250px]">
+            <div className="grid grid-cols-[200px_minmax(0,1fr)_200px] items-end gap-3 lg:gap-4 xl:grid-cols-[220px_minmax(0,1fr)_220px]">
               <div className="justify-self-start w-full">
                 <Advisor
                   name={player?.name || (en ? 'FARE TL' : 'FARE TL')}
@@ -167,7 +167,7 @@ export default function DesktopView() {
                 />
               </div>
 
-              <div className="mx-auto w-full max-w-xl">
+              <div className="mx-auto w-full max-w-3xl xl:max-w-4xl">
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={currentCard.id}

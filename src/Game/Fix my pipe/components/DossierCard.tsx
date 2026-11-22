@@ -5,7 +5,7 @@ import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import ThumbDownIcon from '@mui/icons-material/ThumbDown';
 import { Check3DIcon, Cross3DIcon } from './Icons3D';
 import BigButton from './BigButton';
-import { STAGES, translateText } from '../data';
+import { translateText } from '../data';
 import type { CardItem, Language } from '../types';
 
 interface DossierCardProps {
@@ -86,25 +86,6 @@ export default function DossierCard({ item, lang, onAccept, onReject, disabled =
         </div>
       )}
 
-      {item.fit && !dense && (
-        <div className="mb-4 rounded-[8px] border border-[#E2E8F0] bg-[#F8F9FC] p-3 dark:border-white/10 dark:bg-[#071124]/60">
-          <div className="mb-2 text-[10px] font-bold uppercase tracking-wider text-[#64748B] dark:text-slate-400">{en ? 'Funnel stage fit' : 'స్టేజ్ సరిపోలిక'}</div>
-          <div className="grid grid-cols-5 gap-2">
-            {STAGES.map((st, i) => {
-              const v = item.fit![i] ?? 0;
-              return (
-                <div key={st.id} className="text-center">
-                  <div className="mb-1 h-1.5 overflow-hidden rounded-full bg-[#E2E8F0] dark:bg-white/10">
-                    <div className="h-full rounded-full transition-all duration-500" style={{ width: `${Math.min(100, v * 10)}%`, background: st.color }} />
-                  </div>
-                  <span className="block truncate text-[10px] text-[#64748B] dark:text-slate-400">{st.name[lang]}</span>
-                  <span className={`text-[11px] font-bold ${v >= 6 ? 'text-[#0B1D3A] dark:text-white' : 'text-[#94A3B8] dark:text-slate-500'}`}>{v}</span>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      )}
 
       {showActions && (
         <div className="flex items-center justify-end gap-2.5 pt-1">
