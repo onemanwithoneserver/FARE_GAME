@@ -128,8 +128,8 @@ export default function DesktopView() {
         />
 
         {screen === 'home' && (
-          <div className={`flex flex-col ${isShortLandscape ? 'gap-1.5 pb-0.5 pt-0.5 justify-around flex-1' : 'gap-4 pb-2 pt-2'}`}>
-            <div className={`relative w-full ${isShortLandscape ? 'h-[90px] sm:h-[110px]' : 'h-[240px] xl:h-[300px]'}`}>
+          <div className={`flex flex-col ${isShortLandscape ? 'gap-1.5 pb-0.5 pt-0.5 justify-around flex-1' : 'gap-3 pb-2 pt-1'}`}>
+            <div className={`relative mx-auto w-full max-w-4xl lg:max-w-5xl ${isShortLandscape ? 'h-[75px] sm:h-[85px]' : 'h-[150px] md:h-[175px] xl:h-[195px]'}`}>
               <Pipe3D activeLeakStage="all" leakLevel={0.65} isFixed={false} lang={lang} flow={0.25} />
             </div>
 
