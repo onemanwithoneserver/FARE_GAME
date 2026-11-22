@@ -107,9 +107,9 @@ export default function MobileView() {
 
             <div className="space-y-1.5">
               <div className="relative h-[128px] w-full">
-                <Pipe3D activeLeakStage={null} leakLevel={0} isFixed={false} lang={lang} flow={1} />
+                <Pipe3D activeLeakStage="all" leakLevel={0.65} isFixed={false} lang={lang} flow={0.25} />
               </div>
-              <StageStrip lang={lang} leakStage={null} fixed={false} />
+              <StageStrip lang={lang} leakStage="all" fixed={false} />
             </div>
 
             <div className="space-y-2.5">

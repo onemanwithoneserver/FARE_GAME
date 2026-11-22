@@ -33,7 +33,7 @@ const SCENE_BOTTOM = FLOOR_Y - 0.18;
 type SegmentState = 'normal' | 'leak' | 'fixed' | 'starved';
 
 interface Pipe3DProps {
-  activeLeakStage: StageId | null;
+  activeLeakStage: StageId | 'all' | null;
   leakLevel: number;
   isFixed: boolean;
   lang: Language;
@@ -197,7 +197,7 @@ function Puddle({ x, leakLevel }: { x: number; leakLevel: number }) {
   const ref = useRef<THREE.Mesh>(null);
   useFrame(({ clock }) => {
     if (!ref.current) return;
-    const s = 0.35 + leakLevel * 0.9 + Math.sin(clock.getElapsedTime() * 3) * 0.04;
+    const s = 0.35 + leakLevel * 0.9 + Math.sin(clock.getElapsedTime() * 3 + x) * 0.04;
     ref.current.scale.set(s * 1.4, s, 1);
   });
   return (
@@ -253,7 +253,7 @@ function Segment({ i, state, leakLevel }: { i: number; state: SegmentState; leak
     if (!m) return;
     if (state === 'leak') {
       m.emissive.set('#DC2626');
-      m.emissiveIntensity = (0.06 + (Math.sin(clock.getElapsedTime() * 5) * 0.5 + 0.5) * 0.16) * Math.max(0.3, leakLevel);
+      m.emissiveIntensity = (0.06 + (Math.sin(clock.getElapsedTime() * 5 + i * 1.2) * 0.5 + 0.5) * 0.16) * Math.max(0.3, leakLevel);
     } else if (state === 'fixed') {
       m.emissive.set('#16A34A');
       m.emissiveIntensity = 0.05;
@@ -565,6 +565,7 @@ function Floor({ isDark }: { isDark: boolean }) {
 
 function PipelineScene({ activeLeakStage, leakLevel, isFixed, flow, ppu, lang, isDark }: Pipe3DProps & { flow: number; ppu: number; isDark: boolean }) {
   const states: SegmentState[] = STAGES.map((_, i) => {
+    if (activeLeakStage === 'all') return isFixed ? 'fixed' : 'leak';
     if (activeLeakStage === null) return 'normal';
     if (i === activeLeakStage) return isFixed ? 'fixed' : 'leak';
     if (i > activeLeakStage && !isFixed) return 'starved';
@@ -583,8 +584,13 @@ function PipelineScene({ activeLeakStage, leakLevel, isFixed, flow, ppu, lang, i
           {ppu > 0 && <StageLabel i={i} ppu={ppu} lang={lang} />}
         </group>
       ))}
-      {activeLeakStage !== null && ppu > 0 && (
+      {typeof activeLeakStage === 'number' && ppu > 0 && (
         <StatusBadge x={segX(activeLeakStage)} ppu={ppu} fixed={isFixed} lang={lang} />
+      )}
+      {activeLeakStage === 'all' && ppu >= 46 && (
+        STAGES.map((_, i) => (
+          <StatusBadge key={i} x={segX(i)} ppu={ppu} fixed={isFixed} lang={lang} />
+        ))
       )}
       <GoldenTap flow={flow} />
       <TreasureVault flow={flow} isDark={isDark} />

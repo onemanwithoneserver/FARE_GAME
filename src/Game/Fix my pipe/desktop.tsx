@@ -114,7 +114,7 @@ export default function DesktopView() {
         {screen === 'home' && (
           <div className="flex flex-col gap-4 pb-2 pt-2">
             <div className="relative h-[240px] w-full xl:h-[300px]">
-              <Pipe3D activeLeakStage={null} leakLevel={0} isFixed={false} lang={lang} flow={1} />
+              <Pipe3D activeLeakStage="all" leakLevel={0.65} isFixed={false} lang={lang} flow={0.25} />
             </div>
 
             <div className="grid grid-cols-[260px_minmax(0,1fr)_260px] items-start gap-6 xl:grid-cols-[280px_minmax(0,1fr)_280px]">
