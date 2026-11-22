@@ -9,6 +9,7 @@ import HomeInfoCard from './components/HomeInfoCard';
 import CaseBanner from './components/CaseBanner';
 import FeedbackToast from './components/FeedbackToast';
 import DossierCard from './components/DossierCard';
+import InterviewArena from './components/InterviewArena';
 import PressureGauge from './components/PressureGauge';
 import ResultScreen from './components/ResultScreen';
 import GameModals from './components/GameModals';
@@ -145,7 +146,7 @@ export default function DesktopView() {
 
         {screen === 'play' && currentCase && currentCard && (
           <div className="flex flex-1 flex-col justify-end gap-4 pb-2 pt-2">
-            <div className="relative h-[230px] w-full xl:h-[280px]">
+            <div className="relative h-[220px] w-full xl:h-[260px]">
               <FeedbackToast />
               <Pipe3D
                 activeLeakStage={currentCase.leak as StageId}
@@ -155,8 +156,22 @@ export default function DesktopView() {
               />
             </div>
 
-            <div className="grid grid-cols-[260px_minmax(0,1fr)_280px] items-end gap-6">
-              <div className="justify-self-start">
+            <div className="grid grid-cols-[1fr_260px] items-start gap-6 xl:grid-cols-[1fr_280px]">
+              <div className="w-full">
+                <InterviewArena
+                  currentCase={currentCase}
+                  item={currentCard}
+                  lang={lang}
+                  isPerson={isPerson}
+                  playerName={player?.name}
+                  hiredTeam={hiredTeam}
+                  onAccept={() => decide(true)}
+                  onReject={() => decide(false)}
+                />
+              </div>
+
+              <div className="space-y-3 justify-self-end w-full">
+                <PressureGauge leakLevel={leak} score={score} combo={combo} lang={lang} />
                 <Advisor
                   name={player?.name || (en ? 'FARE Coach' : 'FARE కోచ్')}
                   role={STAGES[currentCase.leak]?.name[lang]}
@@ -164,37 +179,6 @@ export default function DesktopView() {
                   messageKey={lastFeedback ? `fb-${totalDecisions}-${lang}` : `case-${caseIndex}-${lang}`}
                   tone={advisorTone}
                 />
-              </div>
-
-              <div className="mx-auto w-full max-w-2xl">
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={currentCard.id}
-                    initial={{ opacity: 0, y: 14, scale: 0.98 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: -12, scale: 0.98 }}
-                    transition={{ duration: 0.22 }}
-                  >
-                    <DossierCard
-                      item={currentCard}
-                      lang={lang}
-                      onAccept={() => decide(true)}
-                      onReject={() => decide(false)}
-                    />
-                  </motion.div>
-                </AnimatePresence>
-              </div>
-
-              <div className="space-y-3 justify-self-end w-full">
-                <PressureGauge leakLevel={leak} score={score} combo={combo} lang={lang} />
-                <div className="fare-card-3d rounded-[10px] p-4 text-xs">
-                  <div className="mb-1 text-[10px] font-bold uppercase tracking-[0.14em] text-[#C99A2E]">
-                    {isPerson ? (en ? 'Mode 1 · Hiring' : 'మోడ్ 1 · హైరింగ్') : en ? 'Mode 2 · Systems' : 'మోడ్ 2 · సిస్టమ్స్'}
-                  </div>
-                  <p className="leading-relaxed text-[#475569] dark:text-slate-300">
-                    {STAGES[currentCase.leak]?.desc[lang]}
-                  </p>
-                </div>
               </div>
             </div>
           </div>

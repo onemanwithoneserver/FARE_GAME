@@ -3,6 +3,7 @@ import Backdrop from './components/Backdrop';
 import Hud from './components/Hud';
 import TitleBanner from './components/TitleBanner';
 import StageStrip from './components/StageStrip';
+import InterviewArena from './components/InterviewArena';
 import RulesCard from './components/RulesCard';
 import ModeButtons from './components/ModeButtons';
 import CaseBanner from './components/CaseBanner';
@@ -81,6 +82,7 @@ export default function MobileView() {
     totalDecisions,
     lastFeedback,
     hiredTeam,
+    player,
     startGame,
     decide,
     openCta,
@@ -134,64 +136,25 @@ export default function MobileView() {
               <StageStrip lang={lang} leakStage={currentCase.leak} fixed={leak <= 0.08} />
             </div>
 
-            <CaseBanner
-              title={currentCase.t}
-              quote={currentCase.q}
-              leak={currentCase.leak}
-              caseIndex={caseIndex}
-              totalCases={caseOrder.length || 3}
-              deckLength={deck.length}
-              cardIndex={cardIndex}
+            <InterviewArena
+              currentCase={currentCase}
+              item={currentCard}
               lang={lang}
-              compact={true}
+              isPerson={isPerson}
+              playerName={player?.name}
+              hiredTeam={hiredTeam}
+              onAccept={() => decide(true)}
+              onReject={() => decide(false)}
             />
 
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={currentCard.id}
-                initial={{ opacity: 0, y: 12, scale: 0.97 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.2 }}
-              >
-                <SwipeableCard
-                  item={currentCard}
-                  lang={lang}
-                  onSwipeRight={() => decide(true)}
-                  onSwipeLeft={() => decide(false)}
-                />
-              </motion.div>
-            </AnimatePresence>
-
-            <div className="space-y-2">
-              {lastFeedback && (
-                <div className="fare-card-3d rounded-[8px] px-3 py-1.5 text-center text-[11px]">
-                  <span className={`mr-1.5 font-bold ${lastFeedback.scoreDelta >= 0 ? 'text-[#16A34A]' : 'text-[#DC2626]'}`}>
-                    {lastFeedback.scoreDelta >= 0 ? `+${lastFeedback.scoreDelta}` : lastFeedback.scoreDelta}
-                  </span>
-                  <span className="text-[#0B1D3A] dark:text-slate-200">{translateText(lastFeedback.text, lang)}</span>
-                </div>
-              )}
-
-              <div className="grid grid-cols-2 gap-2.5">
-                <BigButton
-                  tone="red"
-                  size="sm"
-                  trailing={false}
-                  iconNode={<Cross3DIcon size={16} />}
-                  title={isPerson ? (en ? 'Reject' : 'వద్దు') : en ? 'Pass' : 'వద్దు'}
-                  onClick={() => decide(false)}
-                />
-                <BigButton
-                  tone="green"
-                  size="sm"
-                  trailing={false}
-                  iconNode={<Check3DIcon size={16} />}
-                  title={isPerson ? (en ? 'Hire' : 'నియమించు') : en ? 'Implement' : 'అమలు'}
-                  onClick={() => decide(true)}
-                />
+            {lastFeedback && (
+              <div className="fare-card-3d rounded-[8px] px-3 py-1.5 text-center text-[11px]">
+                <span className={`mr-1.5 font-bold ${lastFeedback.scoreDelta >= 0 ? 'text-[#16A34A]' : 'text-[#DC2626]'}`}>
+                  {lastFeedback.scoreDelta >= 0 ? `+${lastFeedback.scoreDelta}` : lastFeedback.scoreDelta}
+                </span>
+                <span className="text-[#0B1D3A] dark:text-slate-200">{translateText(lastFeedback.text, lang)}</span>
               </div>
-            </div>
+            )}
           </div>
         )}
 
