@@ -444,7 +444,7 @@ export function TlCharacter({ name, tone = 'neutral', reactionKey, compact = fal
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      <div className={`relative ${compact ? 'h-[105px] w-[84px] sm:h-[120px] sm:w-[96px]' : 'h-[140px] w-[110px] sm:h-[155px] sm:w-[122px]'}`}>
+      <div className={`relative ${compact ? 'h-[76px] w-[60px] sm:h-[86px] sm:w-[68px]' : 'h-[140px] w-[110px] sm:h-[155px] sm:w-[122px]'}`}>
         {/* Soft golden aura beneath character */}
         <div className="absolute inset-x-3 bottom-1 h-5 rounded-full bg-[#C99A2E]/25 blur-md" />
 
@@ -599,7 +599,7 @@ export function TlCharacter({ name, tone = 'neutral', reactionKey, compact = fal
       </div>
 
       {/* Identity Pill: PIPELINE TL */}
-      <div className={`flex items-center gap-1.5 rounded-full border border-[#10B981]/70 bg-[#0B1D3A] text-white shadow-md ${compact ? '-mt-0.5 px-2.5 py-0.5 text-[9px]' : '-mt-1 px-3.5 py-1 text-[11px]'} font-extrabold`}>
+      <div className={`flex items-center gap-1 rounded-full border border-[#10B981]/70 bg-[#0B1D3A] text-white shadow-md ${compact ? '-mt-1 px-2 py-0.5 text-[8px]' : '-mt-1 px-3.5 py-1 text-[11px]'} font-extrabold`}>
         <span className="h-1.5 w-1.5 rounded-full bg-[#10B981] animate-pulse" />
         <span className="tracking-wide text-white">{name || 'PIPELINE TL'}</span>
       </div>
@@ -697,7 +697,7 @@ export function CandidateCharacter({ item, isPerson, lang, reactionKey, compact 
       transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
       className="relative flex flex-col items-center select-none"
     >
-      <div className={`relative ${compact ? 'h-[105px] w-[84px] sm:h-[120px] sm:w-[96px]' : 'h-[140px] w-[110px] sm:h-[155px] sm:w-[122px]'}`}>
+      <div className={`relative ${compact ? 'h-[76px] w-[60px] sm:h-[86px] sm:w-[68px]' : 'h-[140px] w-[110px] sm:h-[155px] sm:w-[122px]'}`}>
         {/* Soft violet/emerald ground glow */}
         <div
           className={`absolute inset-x-3 bottom-1 h-5 rounded-full blur-md ${

@@ -19,14 +19,14 @@ export default function TeamRosterModal({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#0B1D3A]/55 p-4 backdrop-blur-sm dark:bg-black/70">
-      <div className="fare-card-3d relative flex max-h-[85vh] w-full max-w-lg flex-col rounded-[10px] p-6">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#0B1D3A]/55 p-3 sm:p-4 backdrop-blur-sm dark:bg-black/70">
+      <div className="fare-card-3d relative flex max-h-[85vh] w-full max-w-[400px] sm:max-w-[420px] flex-col rounded-[10px] p-4 sm:p-5">
         <button
           onClick={onClose}
           aria-label={lang === 'en' ? 'Close' : 'మూసివేయండి'}
-          className="fare-icon-3d absolute right-4 top-4 flex h-8 w-8 cursor-pointer items-center justify-center rounded-[6px] bg-[#0B1D3A] text-white transition-colors hover:bg-[#DC2626] dark:bg-[#1A3463] dark:hover:bg-[#DC2626]"
+          className="fare-icon-3d absolute right-3.5 top-3.5 flex h-7 w-7 cursor-pointer items-center justify-center rounded-[6px] bg-[#0B1D3A] text-white transition-colors hover:bg-[#DC2626] dark:bg-[#1A3463] dark:hover:bg-[#DC2626]"
         >
-          <CloseIcon sx={{ fontSize: 17, color: '#FFFFFF' }} />
+          <CloseIcon sx={{ fontSize: 16, color: '#FFFFFF' }} />
         </button>
 
         <div className="mb-4 flex items-center gap-3 border-b border-[#E2E8F0] pb-3 dark:border-white/10">

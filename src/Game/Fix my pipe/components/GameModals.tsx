@@ -33,7 +33,7 @@ function BriefingModal() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 8, scale: 0.98 }}
             transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="fare-card-3d relative max-h-[94vh] w-full max-w-lg overflow-y-auto rounded-[10px] p-4 sm:p-6 md:p-7"
+            className="fare-card-3d relative max-h-[92vh] w-full max-w-[325px] xs:max-w-[350px] sm:max-w-[420px] overflow-y-auto rounded-[10px] p-3 sm:p-5 md:p-6"
           >
             <span className="absolute inset-x-0 top-0 h-1" style={{ background: STAGES[currentCase.leak].color }} />
             <button
@@ -80,17 +80,14 @@ function BriefingModal() {
                 whileHover={{ y: -1.5 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={quitGame}
-                className="group relative flex cursor-pointer items-center gap-1.5 sm:gap-2 rounded-[8px] border border-[#DBE4FA] bg-gradient-to-b from-white to-[#F8FAFC] px-2.5 py-2 text-left shadow-[0_6px_16px_-6px_rgba(29,78,216,0.1),0_2px_0_#D5DFF6] transition-all hover:border-rose-300 hover:from-white hover:to-rose-50/60 hover:text-rose-700 dark:border-white/10 dark:from-[#0E1E38] dark:to-[#091528] dark:hover:border-rose-500/40 dark:hover:from-[#0E1E38] dark:hover:to-rose-950/25 sm:px-3 sm:py-2.5"
+                className="group relative flex cursor-pointer items-center gap-1.5 sm:gap-2 rounded-[8px] border border-[#DBE4FA] bg-gradient-to-b from-white to-[#F8FAFC] px-2 py-1.5 sm:px-3 sm:py-2 text-left shadow-[0_4px_12px_-4px_rgba(29,78,216,0.1),0_2px_0_#D5DFF6] transition-all hover:border-rose-300 hover:from-white hover:to-rose-50/60 hover:text-rose-700 dark:border-white/10 dark:from-[#0E1E38] dark:to-[#091528] dark:hover:border-rose-500/40 dark:hover:from-[#0E1E38] dark:hover:to-rose-950/25"
               >
-                <span className="fare-icon-3d grid h-7 w-7 sm:h-8 sm:w-8 shrink-0 place-items-center rounded-[6px] bg-[#F1F5F9] text-[#64748B] transition-colors group-hover:bg-[#DC2626] group-hover:text-white dark:bg-[#1A2C4B] dark:text-slate-300 dark:group-hover:bg-[#DC2626]">
-                  <ArrowBackIcon sx={{ fontSize: 16 }} />
+                <span className="fare-icon-3d grid h-6 w-6 sm:h-7 sm:w-7 shrink-0 place-items-center rounded-[5px] bg-[#F1F5F9] text-[#64748B] transition-colors group-hover:bg-[#DC2626] group-hover:text-white dark:bg-[#1A2C4B] dark:text-slate-300 dark:group-hover:bg-[#DC2626]">
+                  <ArrowBackIcon sx={{ fontSize: { xs: 13, sm: 16 } }} />
                 </span>
                 <span className="min-w-0 flex-1">
-                  <span className="block truncate text-xs sm:text-sm font-bold text-[#0B1D3A] transition-colors group-hover:text-rose-700 dark:text-white dark:group-hover:text-rose-300">
+                  <span className="block truncate text-[11.5px] sm:text-xs md:text-sm font-bold text-[#0B1D3A] transition-colors group-hover:text-rose-700 dark:text-white dark:group-hover:text-rose-300">
                     {en ? 'Cancel & Return' : 'రద్దు చేయండి'}
-                  </span>
-                  <span className="block truncate text-[10px] sm:text-[11px] text-[#64748B] dark:text-slate-400">
-                    {en ? 'Back to lobby' : 'హోమ్‌కి వెళ్లండి'}
                   </span>
                 </span>
               </motion.button>
@@ -100,9 +97,9 @@ function BriefingModal() {
                 size="sm"
                 icon={PlayArrowIcon}
                 title={en ? 'Begin Round' : 'రౌండ్ ప్రారంభించండి'}
-                subtitle={`${deck.length} ${isPerson ? (en ? 'candidates to interview' : 'అభ్యర్థులు') : en ? 'ideas to evaluate' : 'ఐడియాలు'}`}
+                trailing={false}
                 onClick={dismissBriefing}
-                className="!py-2"
+                className="!py-1.5 sm:!py-2 !px-2 sm:!px-3"
               />
             </div>
           </motion.div>
@@ -130,7 +127,7 @@ function QuitConfirmModal() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 8, scale: 0.98 }}
             transition={{ duration: 0.18 }}
-            className="fare-card-3d relative max-h-[88vh] w-full max-w-sm overflow-y-auto rounded-[10px] p-6 text-center"
+            className="fare-card-3d relative max-h-[88vh] w-full max-w-[320px] sm:max-w-[340px] overflow-y-auto rounded-[10px] p-4 sm:p-5 text-center"
           >
             <button
               type="button"

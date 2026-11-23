@@ -24,6 +24,7 @@ interface BigButtonProps {
   iconNode?: ReactNode;
   title: ReactNode;
   subtitle?: ReactNode;
+  hideSubtitleOnMobile?: boolean;
   onClick: () => void;
   disabled?: boolean;
   size?: 'lg' | 'md' | 'sm';
@@ -38,6 +39,7 @@ export default function BigButton({
   iconNode,
   title,
   subtitle,
+  hideSubtitleOnMobile = false,
   onClick,
   disabled,
   size = 'lg',
@@ -86,7 +88,7 @@ export default function BigButton({
         </span>
         {subtitle && (
           <span
-            className={`block truncate opacity-75 ${
+            className={`${hideSubtitleOnMobile ? 'hidden sm:block' : 'block'} truncate opacity-75 ${
               lg ? 'text-xs' : sm ? 'text-[9.5px] sm:text-[10px]' : 'text-[11px]'
             }`}
           >

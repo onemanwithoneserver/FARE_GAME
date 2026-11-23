@@ -52,24 +52,24 @@ export default function CtaModal({ isOpen, lang, onClose }: CtaModalProps) {
   ];
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#0B1D3A]/55 p-4 backdrop-blur-sm dark:bg-black/70">
-      <div className="fare-card-3d relative max-h-[88vh] w-full max-w-lg overflow-y-auto rounded-[10px] p-6 md:p-7">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#0B1D3A]/55 p-3 sm:p-4 backdrop-blur-sm dark:bg-black/70">
+      <div className="fare-card-3d relative max-h-[90vh] w-full max-w-[390px] sm:max-w-[420px] overflow-y-auto rounded-[10px] p-4 sm:p-5 md:p-6">
         <button
           onClick={onClose}
           aria-label={lang === 'en' ? 'Close' : 'మూసివేయండి'}
-          className="fare-icon-3d absolute right-4 top-4 flex h-8 w-8 cursor-pointer items-center justify-center rounded-[6px] bg-[#0B1D3A] text-white transition-colors hover:bg-[#DC2626] dark:bg-[#1A3463] dark:hover:bg-[#DC2626]"
+          className="fare-icon-3d absolute right-3.5 top-3.5 flex h-7 w-7 cursor-pointer items-center justify-center rounded-[6px] bg-[#0B1D3A] text-white transition-colors hover:bg-[#DC2626] dark:bg-[#1A3463] dark:hover:bg-[#DC2626]"
         >
-          <CloseIcon sx={{ fontSize: 17, color: '#FFFFFF' }} />
+          <CloseIcon sx={{ fontSize: 16, color: '#FFFFFF' }} />
         </button>
 
-        <div className="mb-6 text-center">
-          <div className="fare-icon-3d mx-auto mb-3 flex h-11 w-11 items-center justify-center rounded-[8px] bg-[#C99A2E] text-white">
-            <Trophy3DIcon size={24} />
+        <div className="mb-4 text-center">
+          <div className="fare-icon-3d mx-auto mb-2 flex h-9 w-9 items-center justify-center rounded-[8px] bg-[#C99A2E] text-white">
+            <Trophy3DIcon size={20} />
           </div>
-          <h3 className="text-xl font-bold tracking-tight text-[#0B1D3A] dark:text-white md:text-2xl">
+          <h3 className="text-lg font-bold tracking-tight text-[#0B1D3A] dark:text-white sm:text-xl">
             {lang === 'en' ? 'Scale Your Sales Pipeline with FARE' : 'FARE తో మీ సేల్స్ పెంచుకోండి'}
           </h3>
-          <p className="mt-1 text-xs text-[#64748B] dark:text-slate-400">
+          <p className="mt-1 text-[11px] text-[#64748B] dark:text-slate-400">
             {lang === 'en'
               ? 'Proven executive solutions to scale real estate project sales and hire high-converting teams.'
               : 'రియల్ ఎస్టేట్ ప్రాజెక్ట్ సేల్స్ పెంచడానికి మరియు సమర్థవంతమైన టీమ్‌ని నిర్మించడానికి పరిష్కారాలు.'}

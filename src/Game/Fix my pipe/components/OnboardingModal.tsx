@@ -46,57 +46,57 @@ export default function OnboardingModal({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#0B1D3A]/55 p-4 backdrop-blur-sm dark:bg-black/70">
-      <div className="fare-card-3d relative max-h-[88vh] w-full max-w-md overflow-y-auto rounded-[10px] p-6 md:p-7">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#0B1D3A]/55 p-3 sm:p-4 backdrop-blur-sm dark:bg-black/70">
+      <div className="fare-card-3d relative max-h-[92vh] w-full max-w-[305px] xs:max-w-[325px] sm:max-w-[370px] overflow-y-auto rounded-[10px] p-3.5 sm:p-5 md:p-6">
         <button
           type="button"
           onClick={onCancel}
           aria-label={lang === 'en' ? 'Cancel' : 'రద్దు చేయండి'}
-          className="fare-icon-3d absolute right-4 top-4 flex h-8 w-8 cursor-pointer items-center justify-center rounded-[6px] bg-[#0B1D3A] text-white transition-colors hover:bg-[#DC2626] dark:bg-[#1A3463] dark:hover:bg-[#DC2626]"
+          className="fare-icon-3d absolute right-2.5 top-2.5 sm:right-3.5 sm:top-3.5 flex h-6 w-6 sm:h-7 sm:w-7 cursor-pointer items-center justify-center rounded-[5px] sm:rounded-[6px] bg-[#0B1D3A] text-white transition-colors hover:bg-[#DC2626] dark:bg-[#1A3463] dark:hover:bg-[#DC2626]"
         >
-          <CloseIcon sx={{ fontSize: 17, color: '#FFFFFF' }} />
+          <CloseIcon sx={{ fontSize: { xs: 13, sm: 16 }, color: '#FFFFFF' }} />
         </button>
 
-        <div className="mb-6 text-center">
-          <div className="fare-icon-3d mx-auto mb-3 flex h-11 w-11 items-center justify-center rounded-[8px] bg-[#0B1D3A] text-white dark:bg-[#1A3463]">
-            <PersonIcon sx={{ fontSize: 22, color: '#FFFFFF' }} />
+        <div className="mb-2.5 sm:mb-4 text-center">
+          <div className="fare-icon-3d mx-auto mb-1.5 sm:mb-2 flex h-7 w-7 sm:h-9 sm:w-9 items-center justify-center rounded-[6px] sm:rounded-[8px] bg-[#0B1D3A] text-white dark:bg-[#1A3463]">
+            <PersonIcon sx={{ fontSize: { xs: 14, sm: 18 }, color: '#FFFFFF' }} />
           </div>
-          <h3 className="text-xl font-bold tracking-tight text-[#0B1D3A] dark:text-white md:text-2xl">
+          <h3 className="text-[14px] sm:text-lg md:text-xl font-bold tracking-tight text-[#0B1D3A] dark:text-white">
             {lang === 'en' ? 'Executive Desk Sign-In' : 'FARE TL హైరింగ్ డెస్క్'}
           </h3>
-          <p className="mt-1 text-xs text-[#64748B] dark:text-slate-400">
+          <p className="mt-0.5 sm:mt-1 text-[9.5px] sm:text-[11px] leading-tight text-[#64748B] dark:text-slate-400">
             {lang === 'en'
               ? 'Enter your profile to log game score and unlock sales leadership insights.'
               : 'మీ లీడర్‌బోర్డ్ స్కోరు మరియు ఇన్సైట్స్ సేవ్ చేయడానికి వివరాలు నమోదు చేయండి.'}
           </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-2 sm:space-y-3.5">
           <div>
-            <label className="mb-1.5 block text-[11px] font-bold uppercase tracking-wider text-[#64748B] dark:text-slate-400">
+            <label className="mb-0.5 sm:mb-1 block text-[9px] sm:text-[10.5px] font-bold uppercase tracking-wider text-[#64748B] dark:text-slate-400">
               {lang === 'en' ? 'Full Name' : 'మీ పూర్తి పేరు'}
             </label>
             <div className="relative">
-              <span className="absolute left-2.5 top-2 grid h-6 w-6 place-items-center rounded-[4px] bg-[#0B1D3A] text-white dark:bg-[#1A3463]">
-                <PersonIcon sx={{ fontSize: 14, color: '#FFFFFF' }} />
+              <span className="absolute left-2 top-1.5 sm:left-2.5 sm:top-2 grid h-4.5 w-4.5 sm:h-5 sm:w-5 place-items-center rounded-[3px] sm:rounded-[4px] bg-[#0B1D3A] text-white dark:bg-[#1A3463]">
+                <PersonIcon sx={{ fontSize: { xs: 11, sm: 13 }, color: '#FFFFFF' }} />
               </span>
               <input
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder={lang === 'en' ? 'e.g. Rahul Sharma' : 'ఉదా: రాజు వర్మ'}
-                className="w-full rounded-[8px] border border-[#E2E8F0] bg-[#F8F9FC] py-2.5 pl-11 pr-3 text-sm text-[#0B1D3A] placeholder:text-[#94A3B8] focus:border-[#0B1D3A] focus:outline-none dark:border-white/10 dark:bg-[#071124] dark:text-white dark:placeholder:text-slate-500 dark:focus:border-[#C99A2E]"
+                className="w-full rounded-[6px] sm:rounded-[8px] border border-[#E2E8F0] bg-[#F8F9FC] py-1.5 sm:py-2 pl-7.5 sm:pl-9 pr-2.5 sm:pr-3 text-[11px] sm:text-xs md:text-sm text-[#0B1D3A] placeholder:text-[#94A3B8] focus:border-[#0B1D3A] focus:outline-none dark:border-white/10 dark:bg-[#071124] dark:text-white dark:placeholder:text-slate-500 dark:focus:border-[#C99A2E]"
               />
             </div>
           </div>
 
           <div>
-            <label className="mb-1.5 block text-[11px] font-bold uppercase tracking-wider text-[#64748B] dark:text-slate-400">
+            <label className="mb-0.5 sm:mb-1 block text-[9px] sm:text-[10.5px] font-bold uppercase tracking-wider text-[#64748B] dark:text-slate-400">
               {lang === 'en' ? 'Mobile Number' : 'మొబైల్ నంబర్'}
             </label>
             <div className="relative">
-              <span className="absolute left-2.5 top-2 grid h-6 w-6 place-items-center rounded-[4px] bg-[#0B1D3A] text-white dark:bg-[#1A3463]">
-                <PhoneIcon sx={{ fontSize: 14, color: '#FFFFFF' }} />
+              <span className="absolute left-2 top-1.5 sm:left-2.5 sm:top-2 grid h-4.5 w-4.5 sm:h-5 sm:w-5 place-items-center rounded-[3px] sm:rounded-[4px] bg-[#0B1D3A] text-white dark:bg-[#1A3463]">
+                <PhoneIcon sx={{ fontSize: { xs: 11, sm: 13 }, color: '#FFFFFF' }} />
               </span>
               <input
                 type="tel"
@@ -104,33 +104,33 @@ export default function OnboardingModal({
                 value={mobile}
                 onChange={(e) => setMobile(e.target.value.replace(/\D/g, ''))}
                 placeholder="9876543210"
-                className="w-full rounded-[8px] border border-[#E2E8F0] bg-[#F8F9FC] py-2.5 pl-11 pr-3 text-sm text-[#0B1D3A] placeholder:text-[#94A3B8] focus:border-[#0B1D3A] focus:outline-none dark:border-white/10 dark:bg-[#071124] dark:text-white dark:placeholder:text-slate-500 dark:focus:border-[#C99A2E]"
+                className="w-full rounded-[6px] sm:rounded-[8px] border border-[#E2E8F0] bg-[#F8F9FC] py-1.5 sm:py-2 pl-7.5 sm:pl-9 pr-2.5 sm:pr-3 text-[11px] sm:text-xs md:text-sm text-[#0B1D3A] placeholder:text-[#94A3B8] focus:border-[#0B1D3A] focus:outline-none dark:border-white/10 dark:bg-[#071124] dark:text-white dark:placeholder:text-slate-500 dark:focus:border-[#C99A2E]"
               />
             </div>
           </div>
 
-          {error && <p className="rounded-[6px] border border-rose-200 bg-rose-50 p-2.5 text-xs text-rose-700 dark:border-rose-500/20 dark:bg-rose-950/30 dark:text-rose-400">{error}</p>}
+          {error && <p className="rounded-[5px] sm:rounded-[6px] border border-rose-200 bg-rose-50 p-1.5 sm:p-2 text-[10px] sm:text-xs text-rose-700 dark:border-rose-500/20 dark:bg-rose-950/30 dark:text-rose-400">{error}</p>}
 
           <button
             type="submit"
-            className="flex w-full cursor-pointer items-center justify-center gap-2.5 rounded-[8px] bg-gradient-to-br from-[#0B1D3A] to-[#1A3463] px-5 py-4 text-base font-bold text-white shadow-[0_3px_0_#071429] transition hover:brightness-110 active:scale-[0.99]"
+            className="flex w-full cursor-pointer items-center justify-center gap-1.5 sm:gap-2 rounded-[6px] sm:rounded-[8px] bg-gradient-to-br from-[#0B1D3A] to-[#1A3463] px-3 py-2 sm:px-4 sm:py-3 text-[11.5px] sm:text-sm md:text-base font-bold text-white shadow-[0_2px_0_#071429] sm:shadow-[0_3px_0_#071429] transition hover:brightness-110 active:scale-[0.99]"
           >
             <span>{lang === 'en' ? 'Start Pipeline Simulation' : 'ఆట ప్రారంభించండి'}</span>
-            <ArrowForwardIcon sx={{ fontSize: 20, color: '#FFFFFF' }} />
+            <ArrowForwardIcon sx={{ fontSize: { xs: 14, sm: 18 }, color: '#FFFFFF' }} />
           </button>
 
           <button
             type="button"
             onClick={onSkip}
-            className="fare-card-3d fare-guest-btn w-full cursor-pointer rounded-[8px] py-2.5 text-[13px] font-semibold text-[#0B1D3A] transition-all dark:text-white"
+            className="fare-card-3d fare-guest-btn w-full cursor-pointer rounded-[6px] sm:rounded-[8px] py-1.5 sm:py-2 text-[10.5px] sm:text-[13px] font-semibold text-[#0B1D3A] transition-all dark:text-white"
           >
             {lang === 'en' ? 'Guest Mode' : 'నేరుగా ఆడండి'}
           </button>
         </form>
 
-        <div className="mt-4 flex items-center justify-center gap-2 border-t border-[#E2E8F0] pt-4 text-[11px] text-[#64748B] dark:border-white/10 dark:text-slate-400">
-          <span className="fare-icon-3d grid h-4 w-4 place-items-center rounded-[4px] bg-[#16A34A] text-white">
-            <VerifiedUserIcon sx={{ fontSize: 11, color: '#FFFFFF' }} />
+        <div className="mt-2 sm:mt-3 flex items-center justify-center gap-1 sm:gap-1.5 border-t border-[#E2E8F0] pt-2 sm:pt-3 text-[9px] sm:text-[10.5px] text-[#64748B] dark:border-white/10 dark:text-slate-400">
+          <span className="fare-icon-3d grid h-3 w-3 sm:h-3.5 sm:w-3.5 place-items-center rounded-[2px] sm:rounded-[3px] bg-[#16A34A] text-white">
+            <VerifiedUserIcon sx={{ fontSize: { xs: 8, sm: 10 }, color: '#FFFFFF' }} />
           </span>
           <span>{lang === 'en' ? 'Privacy guaranteed. Zero spam.' : 'మీ సమాచారం సురక్షితం.'}</span>
         </div>

@@ -110,7 +110,7 @@ export default function MobileView() {
       <div className="relative h-dvh max-h-dvh w-full overflow-hidden font-sans text-[#0B1D3A] dark:text-slate-100 selection:bg-amber-500 selection:text-slate-950">
         <Backdrop compact={true} />
 
-        <div className="relative z-10 mx-auto flex h-dvh max-h-dvh w-full max-w-[960px] flex-col justify-between px-2.5 py-1 sm:px-3.5 sm:py-1.5">
+        <div className="relative z-10 mx-auto flex h-dvh max-h-dvh w-full max-w-[800px] sm:max-w-[860px] flex-col justify-between px-2 py-0.5 sm:px-3 sm:py-1">
           {/* Compact Top HUD with Centered Title */}
           <Hud
             compact={true}
@@ -127,13 +127,13 @@ export default function MobileView() {
           {screen === 'home' && (
             <div className="my-auto flex flex-1 flex-col justify-evenly gap-1 py-0.5">
               {/* Prominent 3D Pipeline Canvas — Sized so LEAK badges never collide */}
-              <div className="relative mx-auto h-[130px] sm:h-[145px] max-h-[42dvh] w-full max-w-4xl">
+              <div className="relative mx-auto h-[82px] sm:h-[92px] max-h-[26dvh] w-full max-w-4xl">
                 <Pipe3D activeLeakStage="all" leakLevel={0.65} isFixed={false} lang={lang} flow={0.25} />
               </div>
 
-              {/* Lower Interactive Console: Coach (Left, Horizontal) + ModeButtons (Right, Aligned to the End) */}
-              <div className="mx-auto grid w-full max-w-4xl grid-cols-[225px_minmax(0,1fr)] sm:grid-cols-[240px_minmax(0,1fr)] items-center gap-3 sm:gap-4">
-                <div className="w-full">
+              {/* Lower Interactive Console: Coach (Left) + ModeButtons (Right, Reduced Width & Anchored to the Right Edge) */}
+              <div className="mx-auto flex w-full max-w-4xl items-center justify-between gap-3 sm:gap-4">
+                <div className="w-[230px] sm:w-[250px] shrink-0">
                   <Advisor
                     characterType="coach"
                     layout="horizontal"
@@ -149,10 +149,8 @@ export default function MobileView() {
                   />
                 </div>
 
-                <div className="flex w-full justify-end">
-                  <div className="w-full max-w-[280px] sm:max-w-[310px]">
-                    <ModeButtons stacked={true} compact={true} />
-                  </div>
+                <div className="ml-auto w-[220px] sm:w-[235px] shrink-0">
+                  <ModeButtons stacked={true} compact={true} />
                 </div>
               </div>
             </div>
@@ -161,7 +159,7 @@ export default function MobileView() {
           {/* PLAY SCREEN — Mobile Landscape */}
           {screen === 'play' && currentCase && currentCard && (
             <div className="my-auto flex flex-1 flex-col justify-between gap-1 py-0.5">
-              <div className="relative mx-auto h-[110px] sm:h-[125px] max-h-[34dvh] w-full max-w-4xl">
+              <div className="relative mx-auto h-[68px] sm:h-[76px] max-h-[22dvh] w-full max-w-4xl">
                 <FeedbackToast />
                 <Pipe3D
                   activeLeakStage={currentCase.leak as StageId}
@@ -171,7 +169,7 @@ export default function MobileView() {
                 />
               </div>
 
-              <div className="mx-auto grid w-full max-w-4xl grid-cols-[160px_minmax(0,1fr)_160px] sm:grid-cols-[180px_minmax(0,1fr)_180px] items-end gap-2">
+              <div className="mx-auto grid w-full max-w-4xl grid-cols-[135px_minmax(0,1fr)_135px] sm:grid-cols-[145px_minmax(0,1fr)_145px] items-end gap-2">
                 <div className="justify-self-start w-full">
                   <Advisor
                     characterType="tl"
@@ -184,7 +182,7 @@ export default function MobileView() {
                   />
                 </div>
 
-                <div className="mx-auto w-full">
+                <div className="mx-auto w-full max-w-[360px] sm:max-w-[400px]">
                   <AnimatePresence mode="wait">
                     <motion.div
                       key={currentCard.id}

@@ -17,7 +17,7 @@ export default function PressureGauge({ leakLevel, score, combo, lang, compact =
 
   if (compact) {
     return (
-      <div className="fare-card-3d flex w-full items-center justify-between gap-2 rounded-[8px] px-2.5 py-1 text-xs">
+      <div className="fare-card-3d flex w-full items-center justify-between gap-1.5 rounded-[6px] px-2 py-0.5 text-xs">
         <div className="flex items-center gap-1.5">
           <span
             className={`fare-icon-3d grid h-5 w-5 place-items-center rounded-full text-white ${

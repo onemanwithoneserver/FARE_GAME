@@ -31,7 +31,7 @@ export default function ModeButtons({
         title={lang === 'en' ? 'Hire The Right Person' : 'సరైన వ్యక్తిని నియమించండి'}
         subtitle={lang === 'en' ? 'Candidates to interview' : 'ఇంటర్వ్యూ చేయాల్సిన అభ్యర్థులు'}
         onClick={() => startOrPrompt(1)}
-        className={compact ? '!py-1.5 !px-2.5' : '!py-2.5'}
+        className={compact ? '!py-1.5 !px-2' : '!py-2.5'}
       />
       <BigButton
         tone="green"
@@ -40,7 +40,7 @@ export default function ModeButtons({
         title={lang === 'en' ? 'Fix The Process' : 'ప్రాసెస్‌ను సరిచేయండి'}
         subtitle={lang === 'en' ? 'Ideas to implement' : 'అమలు చేయాల్సిన ఐడియాలు'}
         onClick={() => startOrPrompt(2)}
-        className={compact ? '!py-1.5 !px-2.5' : '!py-2.5'}
+        className={compact ? '!py-1.5 !px-2' : '!py-2.5'}
       />
     </div>
   );

@@ -57,28 +57,28 @@ export default function RoundEndModal({
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#0B1D3A]/55 p-4 backdrop-blur-sm dark:bg-black/70">
-      <div className="fare-card-3d relative max-h-[88vh] w-full max-w-xl overflow-y-auto rounded-[10px] p-6 md:p-7">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#0B1D3A]/55 p-3 sm:p-4 backdrop-blur-sm dark:bg-black/70">
+      <div className="fare-card-3d relative max-h-[90vh] w-full max-w-[420px] sm:max-w-[450px] overflow-y-auto rounded-[10px] p-4 sm:p-5 md:p-6">
         <div className={`absolute inset-x-0 top-0 h-1 ${isFixed ? 'bg-[#16A34A]' : 'bg-[#C99A2E]'}`} />
 
         <button
           type="button"
           onClick={onQuit}
           aria-label={lang === 'en' ? 'Quit game' : 'గేమ్ ఆపండి'}
-          className="fare-icon-3d absolute right-4 top-4 grid h-8 w-8 cursor-pointer place-items-center rounded-[6px] bg-[#0B1D3A] text-white transition hover:bg-[#DC2626] dark:bg-[#1A3463] dark:hover:bg-[#DC2626]"
+          className="fare-icon-3d absolute right-3.5 top-3.5 grid h-7 w-7 cursor-pointer place-items-center rounded-[6px] bg-[#0B1D3A] text-white transition hover:bg-[#DC2626] dark:bg-[#1A3463] dark:hover:bg-[#DC2626]"
         >
-          <CloseIcon sx={{ fontSize: 17, color: '#FFFFFF' }} />
+          <CloseIcon sx={{ fontSize: 16, color: '#FFFFFF' }} />
         </button>
 
-        <div className="mb-5 text-center">
+        <div className="mb-4 text-center">
           <div
-            className={`fare-icon-3d mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-[8px] text-white ${
+            className={`fare-icon-3d mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-[8px] text-white ${
               isFixed ? 'bg-[#16A34A]' : 'bg-[#C99A2E]'
             }`}
           >
-            {isFixed ? <Trophy3DIcon size={26} /> : <WarningAmberIcon sx={{ fontSize: 24, color: '#FFFFFF' }} />}
+            {isFixed ? <Trophy3DIcon size={22} /> : <WarningAmberIcon sx={{ fontSize: 20, color: '#FFFFFF' }} />}
           </div>
-          <h2 className="text-xl font-bold tracking-tight text-[#0B1D3A] dark:text-white md:text-2xl">
+          <h2 className="text-lg font-bold tracking-tight text-[#0B1D3A] dark:text-white sm:text-xl">
             {isFixed
               ? lang === 'en' ? 'Pipeline Leak Completely Sealed!' : 'పైప్‌లైన్ లీక్ విజయవంతంగా పరిష్కరించబడింది!'
               : lang === 'en' ? 'Round Evaluation Complete' : 'రౌండ్ ముగిసింది'}
