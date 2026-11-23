@@ -89,6 +89,63 @@ export function Users3DIcon({ size = 28, className = '' }: Icon3DProps) {
   );
 }
 
+export function Wrench3DIcon({ size = 28, className = '' }: Icon3DProps) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 40 40" className={className} aria-hidden>
+      <defs>
+        <linearGradient id="w3d-metal" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stopColor="#FFFFFF" />
+          <stop offset="35%" stopColor="#F8FAFC" />
+          <stop offset="70%" stopColor="#CBD5E1" />
+          <stop offset="100%" stopColor="#94A3B8" />
+        </linearGradient>
+      </defs>
+      {/* 3D Depth Layer */}
+      <g transform="translate(2.8, 3.6) scale(1.48)" fill="#064E3B" opacity="0.4">
+        <path d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z" />
+      </g>
+      {/* Main 3D Metallic Tool */}
+      <g transform="translate(2, 2.2) scale(1.48)">
+        <path
+          d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z"
+          fill="url(#w3d-metal)"
+        />
+        {/* Specular Ridge / Highlight Along Shank */}
+        <line x1="10.8" y1="12.2" x2="19.5" y2="20.8" stroke="#FFFFFF" strokeWidth="0.9" strokeLinecap="round" opacity="0.9" />
+        <line x1="11.6" y1="13.2" x2="18.8" y2="20.2" stroke="#94A3B8" strokeWidth="0.7" strokeLinecap="round" opacity="0.5" />
+      </g>
+    </svg>
+  );
+}
+
+export function Lightbulb3DIcon({ size = 28, className = '' }: Icon3DProps) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 40 40" className={className} aria-hidden>
+      <defs>
+        <radialGradient id="lb-glow" cx="40%" cy="35%" r="65%">
+          <stop offset="0%" stopColor="#FFFFFF" />
+          <stop offset="50%" stopColor="#FEF08A" />
+          <stop offset="100%" stopColor="#EAB308" />
+        </radialGradient>
+      </defs>
+      {/* 3D Drop Shadow */}
+      <g transform="translate(0.8, 1.6)" fill="#064E3B" opacity="0.35">
+        <path d="M20 5 C13.4 5 8 10.4 8 17 C8 21.1 10.2 24.6 13.5 26.6 V30 C13.5 30.8 14.2 31.5 15 31.5 H25 C25.8 31.5 26.5 30.8 26.5 30 V26.6 C29.8 24.6 32 21.1 32 17 C32 10.4 26.6 5 20 5 Z" />
+      </g>
+      {/* Glass Bulb */}
+      <path
+        d="M20 5 C13.4 5 8 10.4 8 17 C8 21.1 10.2 24.6 13.5 26.6 V30 C13.5 30.8 14.2 31.5 15 31.5 H25 C25.8 31.5 26.5 30.8 26.5 30 V26.6 C29.8 24.6 32 21.1 32 17 C32 10.4 26.6 5 20 5 Z"
+        fill="url(#lb-glow)"
+      />
+      {/* Screw Base */}
+      <rect x="15" y="32" width="10" height="2" rx="0.8" fill="#CBD5E1" />
+      <rect x="16.5" y="34.5" width="7" height="1.8" rx="0.8" fill="#94A3B8" />
+      {/* Filament Accent */}
+      <path d="M17 19 L19 13 H21 L23 19" fill="none" stroke="#FFFFFF" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
 export function Gear3DIcon({ size = 28, className = '' }: Icon3DProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 40 40" className={className} aria-hidden>

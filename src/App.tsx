@@ -21,6 +21,11 @@ function FixMyPipeRoute() {
 
   // Synchronize route & query parameter with store theme
   useEffect(() => {
+    // 0. Dedicated view route (desktop / mobile)
+    if (themeParam === 'desktop' || themeParam === 'mobile') {
+      return;
+    }
+
     // 1. Path parameter: /fix-my-pipe/dark or /fix-my-pipe/light
     if (themeParam === 'dark' || themeParam === 'light') {
       if (theme !== themeParam) {

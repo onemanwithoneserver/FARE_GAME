@@ -1,55 +1,61 @@
 import { useState, useEffect } from 'react';
-import DesktopView from './desktop';
-import MobileView from './mobile';
+import { useSearchParams, useLocation } from 'react-router-dom';
+import DesktopView from './desktop/index';
+import MobileView from './mobile/index';
 import RotatePrompt from './components/RotatePrompt';
 
 export { SoundEngine, soundEngine, encodeWav, renderSongWav, exportSongWav } from './sound';
 export { usePipeGameStore } from './store';
+export { default as DesktopView } from './desktop/index';
+export { default as MobileView } from './mobile/index';
+
+function detectMobileViewport(): boolean {
+  if (typeof window === 'undefined') return false;
+  const w = window.innerWidth;
+  const h = window.innerHeight;
+  // Mobile portrait (narrow width) OR mobile landscape (short height on phone/phablet)
+  const isMobilePortrait = w < 768;
+  const isMobileLandscape = h <= 520 && w <= 1024;
+  return isMobilePortrait || isMobileLandscape;
+}
 
 export default function FixMyPipeGame() {
-  const [isPortraitMobile, setIsPortraitMobile] = useState(() => {
-    if (typeof window === 'undefined') return false;
-    const isPortrait = window.innerHeight > window.innerWidth;
-    const isSmallOrTouch =
-      window.innerWidth < 900 ||
-      ('ontouchstart' in window && (window.innerWidth < 1024 || window.innerHeight < 1024));
-    return isPortrait && isSmallOrTouch;
-  });
-  const [allowPortrait, setAllowPortrait] = useState(false);
+  const [searchParams] = useSearchParams();
+  const location = useLocation();
+
+  const viewParam = searchParams.get('view')?.toLowerCase();
+  const isDesktopRoute = location.pathname.includes('/desktop') || viewParam === 'desktop';
+  const isMobileRoute = location.pathname.includes('/mobile') || viewParam === 'mobile';
+
+  const [isMobileDevice, setIsMobileDevice] = useState<boolean>(detectMobileViewport);
 
   useEffect(() => {
-    const checkOrientation = () => {
-      if (typeof window === 'undefined') return;
-      const isPortrait = window.innerHeight > window.innerWidth;
-      const isSmallOrTouch =
-        window.innerWidth < 900 ||
-        ('ontouchstart' in window && (window.innerWidth < 1024 || window.innerHeight < 1024));
-
-      const portraitDevice = isPortrait && isSmallOrTouch;
-      setIsPortraitMobile(portraitDevice);
-
-      // Reset allowPortrait if user rotates to landscape
-      if (!isPortrait) {
-        setAllowPortrait(false);
-      }
+    const handleResize = () => {
+      setIsMobileDevice(detectMobileViewport());
     };
 
-    checkOrientation();
-    window.addEventListener('resize', checkOrientation);
-    window.addEventListener('orientationchange', checkOrientation);
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    window.addEventListener('orientationchange', handleResize);
 
     return () => {
-      window.removeEventListener('resize', checkOrientation);
-      window.removeEventListener('orientationchange', checkOrientation);
+      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('orientationchange', handleResize);
     };
   }, []);
 
-  const showPortraitMobile = isPortraitMobile && allowPortrait;
+  // Explicit route/query override takes priority
+  if (isDesktopRoute) {
+    return <DesktopView />;
+  }
+  if (isMobileRoute) {
+    return <MobileView />;
+  }
 
   return (
     <>
-      <RotatePrompt onDismiss={() => setAllowPortrait(true)} />
-      {showPortraitMobile ? <MobileView /> : <DesktopView />}
+      <RotatePrompt />
+      {isMobileDevice ? <MobileView /> : <DesktopView />}
     </>
   );
 }

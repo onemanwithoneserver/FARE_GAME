@@ -72,12 +72,12 @@ function Parallax({ children }: { children: React.ReactNode }) {
 
 function StageLabel({ i, ppu, lang }: { i: number; ppu: number; lang: Language }) {
   const Icon = STAGE_ICONS[i];
-  const iconPx = Math.round(Math.max(14, Math.min(44, 0.44 * ppu)));
-  const fontPx = Math.round(Math.max(10, Math.min(18, 0.19 * ppu)));
-  const showText = ppu >= 46;
+  const iconPx = Math.round(Math.max(12, Math.min(40, 0.42 * ppu)));
+  const fontPx = Math.round(Math.max(8, Math.min(16, 0.18 * ppu)));
+  const showText = ppu >= 30;
   return (
     <Html position={[segX(i), PIPE_Y - 0.02, R + 0.02]} center zIndexRange={[12, 0]} style={{ pointerEvents: 'none' }}>
-      <div className="flex select-none flex-col items-center" style={{ gap: Math.round(fontPx * 0.25) }}>
+      <div className="flex select-none flex-col items-center" style={{ gap: Math.round(fontPx * 0.2) }}>
         <Icon sx={{ fontSize: iconPx, color: '#FFFFFF', filter: 'drop-shadow(0 2px 4px rgba(0,0,0,.45))' }} />
         {showText && (
           <span
@@ -93,21 +93,32 @@ function StageLabel({ i, ppu, lang }: { i: number; ppu: number; lang: Language }
 }
 
 function StatusBadge({ x, ppu, fixed, lang }: { x: number; ppu: number; fixed: boolean; lang: Language }) {
-  const fontPx = Math.round(Math.max(9, Math.min(13, 0.14 * ppu)));
+  const fontPx = Math.round(Math.max(7, Math.min(12, 0.145 * ppu)));
+  const iconPx = Math.round(Math.max(9, Math.min(15, 0.175 * ppu)));
+  const padX = Math.round(Math.max(4, Math.min(9, 0.135 * ppu)));
+  const padY = Math.round(Math.max(1, Math.min(3.5, 0.05 * ppu)));
+  const gapPx = Math.round(Math.max(2, Math.min(4, 0.055 * ppu)));
   return (
     <Html position={[x, PIPE_Y + R + 0.42, 0]} center zIndexRange={[12, 0]} style={{ pointerEvents: 'none' }}>
       <div
-        className={`flex items-center gap-1 whitespace-nowrap rounded-[6px] border px-2.5 py-1 font-bold uppercase tracking-wider text-white shadow-sm ${
+        className={`flex items-center whitespace-nowrap rounded-[5px] border font-bold uppercase tracking-wider text-white shadow-sm ${
           fixed
             ? 'border-emerald-700 bg-[#16A34A]'
             : 'border-rose-800 bg-[#DC2626]'
         }`}
-        style={{ fontSize: fontPx }}
+        style={{
+          fontSize: fontPx,
+          paddingLeft: padX,
+          paddingRight: padX,
+          paddingTop: padY,
+          paddingBottom: padY,
+          gap: gapPx,
+        }}
       >
         {fixed ? (
-          <VerifiedUserIcon sx={{ fontSize: fontPx + 3, color: '#FFFFFF' }} />
+          <VerifiedUserIcon sx={{ fontSize: iconPx, color: '#FFFFFF' }} />
         ) : (
-          <WaterDropIcon sx={{ fontSize: fontPx + 3, color: '#FFFFFF' }} />
+          <WaterDropIcon sx={{ fontSize: iconPx, color: '#FFFFFF' }} />
         )}
         <span>
           {fixed

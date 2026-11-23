@@ -3,8 +3,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import WarningAmberIcon from '@mui/icons-material/WarningAmber';
 import CheckIcon from '@mui/icons-material/Check';
 import CloseIcon from '@mui/icons-material/Close';
-import ThumbUpIcon from '@mui/icons-material/ThumbUp';
-import ThumbDownIcon from '@mui/icons-material/ThumbDown';
 import GroupsIcon from '@mui/icons-material/Groups';
 import { TlHumanAvatar, CandidateHumanAvatar } from './HumanAvatars';
 import { RAW_CASES, STAGES, translateText } from '../data';
@@ -114,24 +112,6 @@ export default function InterviewArena({
                 <p className="mb-2 text-xs italic text-[#475569] dark:text-slate-300">
                   “{translateText(item.detail, lang)}”
                 </p>
-              )}
-
-              {/* Strengths & Trade-offs tags */}
-              {isPerson && (item.pros || item.cons) && (
-                <div className="grid grid-cols-1 gap-1.5 sm:grid-cols-2">
-                  {item.pros && (
-                    <div className="flex items-start gap-1 rounded-[6px] bg-emerald-50 px-2 py-1 text-[11px] text-[#065F46] dark:bg-emerald-950/40 dark:text-emerald-300">
-                      <ThumbUpIcon sx={{ fontSize: 11, color: '#16A34A', mt: '2px', shrink: 0 }} />
-                      <span className="truncate">{translateText(item.pros, lang)}</span>
-                    </div>
-                  )}
-                  {item.cons && (
-                    <div className="flex items-start gap-1 rounded-[6px] bg-rose-50 px-2 py-1 text-[11px] text-[#9F1239] dark:bg-rose-950/40 dark:text-rose-300">
-                      <ThumbDownIcon sx={{ fontSize: 11, color: '#DC2626', mt: '2px', shrink: 0 }} />
-                      <span className="truncate">{translateText(item.cons, lang)}</span>
-                    </div>
-                  )}
-                </div>
               )}
             </div>
 

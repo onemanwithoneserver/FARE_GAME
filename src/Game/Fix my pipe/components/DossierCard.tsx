@@ -1,8 +1,6 @@
 import PersonIcon from '@mui/icons-material/Person';
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
-import ThumbUpIcon from '@mui/icons-material/ThumbUp';
-import ThumbDownIcon from '@mui/icons-material/ThumbDown';
 import { Check3DIcon, Cross3DIcon } from './Icons3D';
 import BigButton from './BigButton';
 import { translateText } from '../data';
@@ -54,36 +52,9 @@ export default function DossierCard({ item, lang, onAccept, onReject, disabled =
       </div>
 
       {item.detail && (
-        <p className={`rounded-[8px] border border-[#E2E8F0] bg-[#F8F9FC] italic leading-snug text-[#475569] dark:border-white/10 dark:bg-[#071124]/60 dark:text-slate-300 ${dense ? 'p-1.5 sm:p-2 text-[11px] sm:text-xs mb-1.5' : 'p-2 sm:p-2.5 text-xs sm:text-[13px] mb-2'}`}>
+        <p className={`rounded-[8px] border border-[#E2E8F0] bg-[#F8F9FC] italic leading-snug text-[#475569] dark:border-white/10 dark:bg-[#071124]/60 dark:text-slate-300 ${dense ? 'p-2 sm:p-2.5 text-xs sm:text-[13px] mb-2' : 'p-2.5 sm:p-3 text-xs sm:text-sm mb-2.5'}`}>
           “{translateText(item.detail, lang)}”
         </p>
-      )}
-
-      {isPerson && (item.pros || item.cons) && (
-        <div className={`grid grid-cols-2 gap-2 ${dense ? 'mb-1.5' : 'mb-2'}`}>
-          {item.pros && (
-            <div className={`rounded-[8px] border border-emerald-200 bg-emerald-50/70 text-[#0B1D3A] dark:border-emerald-500/20 dark:bg-emerald-500/10 dark:text-slate-200 ${dense ? 'p-1.5 text-[10px] sm:text-[11px] leading-tight' : 'p-2 text-xs leading-snug'}`}>
-              <div className="mb-0.5 flex items-center gap-1 text-[9px] font-bold uppercase tracking-wider text-emerald-700 dark:text-emerald-400">
-                <span className="grid h-3.5 w-3.5 place-items-center rounded-[3px] bg-[#16A34A] text-white">
-                  <ThumbUpIcon sx={{ fontSize: 9, color: '#FFFFFF' }} />
-                </span>
-                {en ? 'Strengths' : 'లాభాలు'}
-              </div>
-              <div className="line-clamp-2">{translateText(item.pros, lang)}</div>
-            </div>
-          )}
-          {item.cons && (
-            <div className={`rounded-[8px] border border-rose-200 bg-rose-50/70 text-[#0B1D3A] dark:border-rose-500/20 dark:bg-rose-500/10 dark:text-slate-200 ${dense ? 'p-1.5 text-[10px] sm:text-[11px] leading-tight' : 'p-2 text-xs leading-snug'}`}>
-              <div className="mb-0.5 flex items-center gap-1 text-[9px] font-bold uppercase tracking-wider text-rose-700 dark:text-rose-400">
-                <span className="grid h-3.5 w-3.5 place-items-center rounded-[3px] bg-[#DC2626] text-white">
-                  <ThumbDownIcon sx={{ fontSize: 9, color: '#FFFFFF' }} />
-                </span>
-                {en ? 'Trade-offs' : 'పరిమితులు'}
-              </div>
-              <div className="line-clamp-2">{translateText(item.cons, lang)}</div>
-            </div>
-          )}
-        </div>
       )}
 
       {showActions && (

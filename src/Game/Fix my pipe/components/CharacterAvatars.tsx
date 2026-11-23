@@ -149,11 +149,11 @@ export function CoachCharacter({ name, tone = 'neutral', reactionKey, compact = 
 
   return (
     <div
-      className="relative flex flex-col items-center cursor-pointer select-none"
+      className="relative flex flex-col items-center cursor-pointer select-none shrink-0"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      <div className={`relative ${compact ? 'h-[105px] w-[84px] sm:h-[120px] sm:w-[96px]' : 'h-[140px] w-[110px] sm:h-[155px] sm:w-[122px]'}`}>
+      <div className={`relative ${compact ? 'h-[88px] w-[70px] sm:h-[98px] sm:w-[78px]' : 'h-[122px] w-[96px] sm:h-[134px] sm:w-[106px]'}`}>
         <div className="absolute inset-x-3 bottom-1 h-5 rounded-full bg-[#EAB308]/25 blur-md" />
 
         <svg

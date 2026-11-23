@@ -55,28 +55,52 @@ export default function BigButton({
       whileTap={disabled ? undefined : { scale: 0.98 }}
       onClick={onClick}
       disabled={disabled}
-      className={`group relative flex cursor-pointer items-center gap-2.5 rounded-[8px] border text-left transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-50 ${
+      className={`group relative flex cursor-pointer items-center ${
+        sm ? 'gap-1.5 sm:gap-2' : 'gap-2.5'
+      } rounded-[8px] border text-left transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-50 ${
         compactWidth ? 'w-auto' : 'w-full'
       } ${TONES[resolvedTone]} ${
-        lg ? 'px-3.5 py-3 md:px-4 md:py-3.5' : sm ? 'px-3.5 py-2' : 'px-3 py-2.5'
+        lg ? 'px-3.5 py-3 md:px-4 md:py-3.5' : sm ? 'px-2.5 py-1.5 sm:px-3 sm:py-2' : 'px-3 py-2.5'
       } ${className}`}
     >
       {(Icon || iconNode) && (
         <span
           className={`grid shrink-0 place-items-center rounded-[6px] text-white transition-colors duration-200 ${ICON_BG[resolvedTone]} ${
-            lg ? 'h-10 w-10 md:h-11 md:w-11' : sm ? 'h-7 w-7' : 'h-8 w-8'
+            lg ? 'h-10 w-10 md:h-11 md:w-11' : sm ? 'h-6 w-6 sm:h-7 sm:w-7' : 'h-8 w-8'
           }`}
         >
-          {iconNode ?? (Icon && <Icon sx={{ fontSize: lg ? 22 : sm ? 16 : 18, color: '#FFFFFF' }} />)}
+          {iconNode ?? (Icon && <Icon sx={{ fontSize: lg ? 22 : sm ? 15 : 18, color: '#FFFFFF' }} />)}
         </span>
       )}
       <span className="min-w-0 flex-1">
-        <span className={`block truncate font-bold ${lg ? 'text-[15px] md:text-base' : 'text-sm'}`}>{title}</span>
-        {subtitle && <span className={`block truncate opacity-75 ${lg ? 'text-xs' : 'text-[11px]'}`}>{subtitle}</span>}
+        <span
+          className={`block font-bold leading-tight ${
+            lg
+              ? 'text-[15px] md:text-base truncate'
+              : sm
+              ? 'text-[11.5px] sm:text-xs tracking-tight'
+              : 'text-xs sm:text-sm truncate'
+          }`}
+        >
+          {title}
+        </span>
+        {subtitle && (
+          <span
+            className={`block truncate opacity-75 ${
+              lg ? 'text-xs' : sm ? 'text-[9.5px] sm:text-[10px]' : 'text-[11px]'
+            }`}
+          >
+            {subtitle}
+          </span>
+        )}
       </span>
       {trailing && (
-        <span className={`grid h-6 w-6 shrink-0 place-items-center rounded-[4px] transition-transform group-hover:translate-x-0.5 ${ICON_BG[resolvedTone]}`}>
-          <ChevronRightIcon sx={{ fontSize: 17, color: '#FFFFFF' }} />
+        <span
+          className={`grid ${
+            sm ? 'h-5 w-5' : 'h-6 w-6'
+          } shrink-0 place-items-center rounded-[4px] transition-transform group-hover:translate-x-0.5 ${ICON_BG[resolvedTone]}`}
+        >
+          <ChevronRightIcon sx={{ fontSize: sm ? 14 : 17, color: '#FFFFFF' }} />
         </span>
       )}
     </motion.button>
