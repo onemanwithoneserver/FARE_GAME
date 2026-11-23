@@ -375,22 +375,6 @@ export default function GuideDialog({ open, onClose, lang }: GuideDialogProps) {
           <span>{en ? 'Got It' : 'అర్థమైంది'}</span>
         </button>
       </div>
-        <div className="flex items-center gap-1.5 text-[#64748B] dark:text-slate-300">
-          <LightbulbIcon sx={{ fontSize: 15, color: '#F59E0B' }} />
-          <span className="text-[10.5px] font-bold">
-            {en ? 'String correct picks in a row to maximize revenue flow.' : 'వరుసగా సరైన ఎంపికలతో కాంబో పెంచుకోండి.'}
-          </span>
-        </div>
-        <button
-          type="button"
-          onClick={onClose}
-          className="group relative cursor-pointer overflow-hidden border border-[#1E3A8A]/50 bg-gradient-to-r from-[#0B1D3A] via-[#142A54] to-[#1E3A8A] px-5 py-2 text-xs font-black tracking-wide text-white shadow-[0_2px_8px_rgba(11,29,58,0.25)] transition-all hover:brightness-110 active:scale-95 dark:border-white/20 dark:from-[#1E3A8A] dark:to-[#2563EB]"
-          style={{ borderRadius: '3px' }}
-        >
-          <span className="pointer-events-none absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-white/20 to-transparent" />
-          <span>{en ? 'Got It' : 'అర్థమైంది'}</span>
-        </button>
-      </div>
     </Dialog>
   );
 }

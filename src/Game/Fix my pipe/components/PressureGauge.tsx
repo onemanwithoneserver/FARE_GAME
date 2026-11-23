@@ -17,29 +17,34 @@ export default function PressureGauge({ leakLevel, score, combo, lang, compact =
 
   if (compact) {
     return (
-      <div className="fare-card-3d flex w-full items-center justify-between gap-1.5 rounded-[6px] px-2 py-0.5 text-xs">
+      <div className="fare-card-3d relative overflow-hidden flex w-full items-center justify-between gap-1.5 rounded-[8px] border border-[#DBE4FA] dark:border-white/10 bg-white/95 dark:bg-[#0D1B35]/95 px-2.5 py-1.5 shadow-[0_4px_14px_rgba(11,29,58,0.08)]">
+        <span
+          className={`absolute inset-x-0 top-0 h-0.5 ${
+            isHealthy ? 'bg-[#16A34A]' : isCritical ? 'bg-[#DC2626]' : 'bg-[#C99A2E]'
+          }`}
+        />
         <div className="flex items-center gap-1.5">
           <span
-            className={`fare-icon-3d grid h-5 w-5 place-items-center rounded-full text-white ${
+            className={`fare-icon-3d grid h-5 w-5 shrink-0 place-items-center rounded-full text-white ${
               isHealthy ? 'bg-[#16A34A]' : isCritical ? 'bg-[#DC2626]' : 'bg-[#0B1D3A] dark:bg-[#1A3463]'
             }`}
           >
             <SpeedIcon sx={{ fontSize: 13, color: '#FFFFFF' }} />
           </span>
           <div className="leading-tight">
-            <span className="block text-[9px] font-bold uppercase tracking-wider text-[#C99A2E]">
+            <span className="block text-[8.5px] font-bold uppercase tracking-wider text-[#C99A2E]">
               {lang === 'en' ? 'Pressure' : 'ప్రెషర్'}
             </span>
-            <span className="block text-[10px] font-semibold text-[#0B1D3A] dark:text-slate-200">
+            <span className="block text-[10.5px] font-extrabold text-[#0B1D3A] dark:text-slate-100">
               {pressurePct}%
             </span>
           </div>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1.5">
           {combo > 1 && (
-            <div className="fare-icon-3d flex items-center gap-0.5 rounded-[4px] bg-[#C99A2E] px-1 py-0.5 text-[9px] font-bold text-white">
-              <Bolt3DIcon size={10} />
+            <div className="fare-icon-3d flex items-center gap-0.5 rounded-[4px] bg-gradient-to-r from-amber-500 to-amber-600 px-1 py-0.5 text-[8.5px] font-black text-white shadow-xs">
+              <Bolt3DIcon size={9} />
               <span>{combo}x</span>
             </div>
           )}
@@ -47,7 +52,7 @@ export default function PressureGauge({ leakLevel, score, combo, lang, compact =
             <span className="block text-[8px] font-bold uppercase tracking-wider text-[#64748B] dark:text-slate-400">
               {lang === 'en' ? 'SCORE' : 'స్కోరు'}
             </span>
-            <span className="font-mono text-xs font-black text-[#0B1D3A] dark:text-white tabular-nums sm:text-sm">
+            <span className="font-mono text-xs font-black text-[#0B1D3A] dark:text-white tabular-nums sm:text-[13px]">
               {score.toLocaleString()}
             </span>
           </div>

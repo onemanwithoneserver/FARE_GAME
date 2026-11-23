@@ -58,17 +58,17 @@ export default function BigButton({
       onClick={onClick}
       disabled={disabled}
       className={`group relative flex cursor-pointer items-center ${
-        sm ? 'gap-1.5 sm:gap-2' : 'gap-2.5'
+        sm ? 'gap-1.5 sm:gap-2' : 'gap-2 sm:gap-2.5'
       } rounded-[8px] border text-left transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-50 ${
         compactWidth ? 'w-auto' : 'w-full'
       } ${TONES[resolvedTone]} ${
-        lg ? 'px-3.5 py-3 md:px-4 md:py-3.5' : sm ? 'px-2.5 py-1.5 sm:px-3 sm:py-2' : 'px-3 py-2.5'
+        lg ? 'px-3.5 py-3 md:px-4 md:py-3.5' : sm ? 'px-2.5 py-1.5 sm:px-3 sm:py-2' : 'px-2.5 sm:px-3 py-2.5'
       } ${className}`}
     >
       {(Icon || iconNode) && (
         <span
           className={`grid shrink-0 place-items-center rounded-[6px] text-white transition-colors duration-200 ${ICON_BG[resolvedTone]} ${
-            lg ? 'h-10 w-10 md:h-11 md:w-11' : sm ? 'h-6 w-6 sm:h-7 sm:w-7' : 'h-8 w-8'
+            lg ? 'h-10 w-10 md:h-11 md:w-11' : sm ? 'h-6 w-6 sm:h-7 sm:w-7' : 'h-7.5 w-7.5 sm:h-8 sm:w-8'
           }`}
         >
           {iconNode ?? (Icon && <Icon sx={{ fontSize: lg ? 22 : sm ? 15 : 18, color: '#FFFFFF' }} />)}
@@ -81,7 +81,7 @@ export default function BigButton({
               ? 'text-[15px] md:text-base truncate'
               : sm
               ? 'text-[11.5px] sm:text-xs tracking-tight'
-              : 'text-xs sm:text-sm truncate'
+              : 'text-[12.5px] sm:text-[13px] lg:text-[13.5px] tracking-tight whitespace-nowrap'
           }`}
         >
           {title}
@@ -89,7 +89,7 @@ export default function BigButton({
         {subtitle && (
           <span
             className={`${hideSubtitleOnMobile ? 'hidden sm:block' : 'block'} truncate opacity-75 ${
-              lg ? 'text-xs' : sm ? 'text-[9.5px] sm:text-[10px]' : 'text-[11px]'
+              lg ? 'text-xs' : sm ? 'text-[9.5px] sm:text-[10px]' : 'text-[10.5px] sm:text-[11px]'
             }`}
           >
             {subtitle}

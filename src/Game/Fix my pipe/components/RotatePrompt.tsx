@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ScreenRotationIcon from '@mui/icons-material/ScreenRotation';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
@@ -9,22 +9,30 @@ interface RotatePromptProps {
 }
 
 export default function RotatePrompt({ onDismiss }: RotatePromptProps) {
-  const { lang } = usePipeGameStore();
+  const { lang, screen, showSectionCta, showCta } = usePipeGameStore();
   const en = lang === 'en';
-  const [isPortraitMobile, setIsPortraitMobile] = useState(false);
+  const [shouldPrompt, setShouldPrompt] = useState(false);
   const [dismissed, setDismissed] = useState(false);
 
   useEffect(() => {
     const checkOrientation = () => {
       if (typeof window === 'undefined') return;
-      // Detect if device is a phone/tablet in portrait orientation
       const isPortrait = window.innerHeight > window.innerWidth;
       const isSmallOrTouch =
         window.innerWidth < 900 ||
         ('ontouchstart' in window && (window.innerWidth < 1024 || window.innerHeight < 1024));
 
-      const shouldPrompt = isPortrait && isSmallOrTouch;
-      setIsPortraitMobile(shouldPrompt);
+      // EXCEPTION: Mobile Score screen (screen === 'result') and "Want to build your team?" dialog
+      // are allowed to display in portrait! Rotate prompt is bypassed for these.
+      const isException = screen === 'result' || showSectionCta || showCta;
+
+      if (!isSmallOrTouch || isException) {
+        setShouldPrompt(false);
+        return;
+      }
+
+      // For Home and active Play gameplay on mobile, landscape is required
+      setShouldPrompt(isPortrait);
 
       // If user rotates to landscape, reset dismissed state so it prompts next time they go back to portrait
       if (!isPortrait) {
@@ -40,9 +48,9 @@ export default function RotatePrompt({ onDismiss }: RotatePromptProps) {
       window.removeEventListener('resize', checkOrientation);
       window.removeEventListener('orientationchange', checkOrientation);
     };
-  }, []);
+  }, [screen, showSectionCta, showCta]);
 
-  if (!isPortraitMobile || dismissed) {
+  if (!shouldPrompt || dismissed) {
     return null;
   }
 
@@ -86,7 +94,7 @@ export default function RotatePrompt({ onDismiss }: RotatePromptProps) {
             >
               {/* Phone notch */}
               <div className="mx-auto mt-1 h-1 w-3 rounded-full bg-white/40" />
-              {/* Phone display with pipeline bars */}
+              {/* Phone display */}
               <div className="mx-auto mt-1.5 flex h-9 w-6 flex-col justify-center gap-1 rounded-[4px] bg-[#0B1D3A] p-1 sm:h-10 sm:w-7">
                 <div className="h-1.5 w-full rounded-full bg-[#3B82F6]" />
                 <div className="h-1.5 w-4/5 rounded-full bg-[#10B981]" />
@@ -112,7 +120,7 @@ export default function RotatePrompt({ onDismiss }: RotatePromptProps) {
               : 'మొత్తం సేల్స్ ఫన్నెల్, పైప్‌లైన్ మరియు టీమ్ స్పష్టంగా కనిపించడానికి దయచేసి మీ ఫోన్‌ను ల్యాండ్‌స్కేప్ (Landscape) మోడ్‌కు తిప్పండి.'}
           </p>
 
-          {/* Fallback button: Continue in Portrait */}
+          {/* Fallback dismiss button */}
           <button
             type="button"
             onClick={handleDismiss}

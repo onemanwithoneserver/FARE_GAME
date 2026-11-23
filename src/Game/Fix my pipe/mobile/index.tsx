@@ -26,6 +26,7 @@ export default function MobileView() {
     showOnboarding,
     showBriefing,
     showRoundEnd,
+    showSectionCta,
     showCta,
     showRoster,
     showQuitConfirm,
@@ -69,7 +70,7 @@ export default function MobileView() {
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (screen !== 'play' || showBriefing || showRoundEnd || showCta || showRoster || showOnboarding || showQuitConfirm) {
+      if (screen !== 'play' || showBriefing || showRoundEnd || showSectionCta || showCta || showRoster || showOnboarding || showQuitConfirm) {
         return;
       }
       if (e.key === 'ArrowRight' || e.key === 'Enter') {
@@ -85,7 +86,7 @@ export default function MobileView() {
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [screen, showBriefing, showRoundEnd, showCta, showRoster, showOnboarding, showQuitConfirm, decide]);
+  }, [screen, showBriefing, showRoundEnd, showSectionCta, showCta, showRoster, showOnboarding, showQuitConfirm, decide]);
 
   const currentCase = caseOrder.length > 0 ? RAW_CASES[caseOrder[caseIndex]] : null;
   const currentCard = deck.length > 0 && cardIndex < deck.length ? deck[cardIndex] : null;
@@ -126,8 +127,8 @@ export default function MobileView() {
           {/* HOME SCREEN — Mobile Landscape (800x360) */}
           {screen === 'home' && (
             <div className="my-auto flex flex-1 flex-col justify-evenly gap-1 py-0.5">
-              {/* Prominent 3D Pipeline Canvas — Sized so LEAK badges never collide */}
-              <div className="relative mx-auto h-[82px] sm:h-[92px] max-h-[26dvh] w-full max-w-4xl">
+              {/* Prominent Hero 3D Pipeline Canvas — Sized tall for home opening with visible stage names */}
+              <div className="relative mx-auto h-[125px] sm:h-[145px] max-h-[38dvh] w-full max-w-4xl">
                 <Pipe3D activeLeakStage="all" leakLevel={0.65} isFixed={false} lang={lang} flow={0.25} />
               </div>
 
@@ -159,7 +160,8 @@ export default function MobileView() {
           {/* PLAY SCREEN — Mobile Landscape */}
           {screen === 'play' && currentCase && currentCard && (
             <div className="my-auto flex flex-1 flex-col justify-between gap-1 py-0.5">
-              <div className="relative mx-auto h-[68px] sm:h-[76px] max-h-[22dvh] w-full max-w-4xl">
+              {/* Increased pipeline canvas height for mobile */}
+              <div className="relative mx-auto h-[84px] sm:h-[94px] max-h-[26dvh] w-full max-w-4xl">
                 <FeedbackToast />
                 <Pipe3D
                   activeLeakStage={currentCase.leak as StageId}
@@ -202,7 +204,7 @@ export default function MobileView() {
                   </AnimatePresence>
                 </div>
 
-                <div className="flex flex-col items-center gap-1 justify-self-end w-full">
+                <div className="flex flex-col items-center gap-1.5 justify-self-end w-full">
                   <PressureGauge leakLevel={leak} score={score} combo={combo} lang={lang} compact={true} />
                   <CandidateCharacter
                     item={currentCard}
@@ -255,7 +257,7 @@ export default function MobileView() {
 
             {/* Pipeline Section — Prominent 3D View */}
             <div className="space-y-1">
-              <div className="relative mx-auto h-[22dvh] min-h-[170px] max-h-[225px] w-full max-w-md">
+              <div className="relative mx-auto h-[25dvh] min-h-[190px] max-h-[245px] w-full max-w-md">
                 <Pipe3D activeLeakStage="all" leakLevel={0.65} isFixed={false} lang={lang} flow={0.25} />
               </div>
               <StageStrip lang={lang} leakStage="all" fixed={false} />
@@ -289,7 +291,8 @@ export default function MobileView() {
         {screen === 'play' && currentCase && currentCard && (
           <div className="my-auto flex flex-col gap-2 py-1">
             <div className="space-y-1">
-              <div className="relative h-[22dvh] min-h-[155px] max-h-[215px] w-full">
+              {/* Increased pipeline canvas height for mobile */}
+              <div className="relative h-[22dvh] min-h-[160px] max-h-[220px] w-full">
                 <FeedbackToast />
                 <Pipe3D
                   activeLeakStage={currentCase.leak as StageId}

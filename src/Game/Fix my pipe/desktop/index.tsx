@@ -6,7 +6,6 @@ import TitleBanner from '../components/TitleBanner';
 import ModeButtons from '../components/ModeButtons';
 import Advisor from '../components/Advisor';
 import FooterSection from '../components/FooterSection';
-import HomeInfoCard from '../components/HomeInfoCard';
 import FeedbackToast from '../components/FeedbackToast';
 import DossierCard from '../components/DossierCard';
 import { CandidateCharacter } from '../components/CharacterAvatars';
@@ -26,6 +25,7 @@ export default function DesktopView() {
     showOnboarding,
     showBriefing,
     showRoundEnd,
+    showSectionCta,
     showCta,
     showRoster,
     showQuitConfirm,
@@ -55,7 +55,7 @@ export default function DesktopView() {
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (screen !== 'play' || showBriefing || showRoundEnd || showCta || showRoster || showOnboarding || showQuitConfirm) {
+      if (screen !== 'play' || showBriefing || showRoundEnd || showSectionCta || showCta || showRoster || showOnboarding || showQuitConfirm) {
         return;
       }
       if (e.key === 'ArrowRight' || e.key === 'Enter') {
@@ -71,7 +71,7 @@ export default function DesktopView() {
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [screen, showBriefing, showRoundEnd, showCta, showRoster, showOnboarding, showQuitConfirm, decide]);
+  }, [screen, showBriefing, showRoundEnd, showSectionCta, showCta, showRoster, showOnboarding, showQuitConfirm, decide]);
 
   const advisorTone: 'neutral' | 'good' | 'bad' = !lastFeedback
     ? 'neutral'
@@ -114,10 +114,10 @@ export default function DesktopView() {
               <Pipe3D activeLeakStage="all" leakLevel={0.65} isFixed={false} lang={lang} flow={0.25} />
             </div>
 
-            {/* Unified Lower Console — 3-Column Layout: Coach (Left), Actions & Share (Center), Stats & Guide (Right) */}
-            <div className="mx-auto grid w-full max-w-4xl xl:max-w-5xl grid-cols-1 lg:grid-cols-[235px_minmax(0,1fr)_260px] xl:grid-cols-[255px_minmax(0,1fr)_280px] items-center gap-3 lg:gap-4">
+            {/* Unified Lower Console: FARE Coach (Left) & Mode Actions with Social Dock (Right) */}
+            <div className="mx-auto flex w-full max-w-4xl xl:max-w-5xl flex-col lg:flex-row items-center justify-between gap-4 lg:gap-6">
               {/* Left Column: FARE Coach Mentor */}
-              <div className="w-full">
+              <div className="w-full lg:max-w-[390px] xl:max-w-[410px] shrink-0">
                 <Advisor
                   characterType="coach"
                   layout="horizontal"
@@ -133,15 +133,10 @@ export default function DesktopView() {
                 />
               </div>
 
-              {/* Center Column: Mode Buttons + Single Row Footer with Share at Start */}
-              <div className="flex w-full flex-col gap-2">
+              {/* Right Column: Mode Buttons + Single Row Footer with Share at Start */}
+              <div className="flex w-full lg:max-w-[530px] xl:max-w-[560px] flex-col gap-2">
                 <ModeButtons compact={false} />
                 <FooterSection compact={true} className="!mt-0 !pt-0" />
-              </div>
-
-              {/* Right Column: Game Stats & How to Play Guide */}
-              <div className="w-full flex justify-center lg:justify-end">
-                <HomeInfoCard compact={false} />
               </div>
             </div>
           </div>
@@ -150,7 +145,8 @@ export default function DesktopView() {
         {/* PLAY SCREEN — Balanced 3-Column Arena */}
         {screen === 'play' && currentCase && currentCard && (
           <div className="my-auto flex flex-1 flex-col justify-center gap-2 lg:gap-3 py-1">
-            <div className="relative mx-auto h-[195px] sm:h-[210px] lg:h-[225px] max-h-[27vh] w-full max-w-4xl xl:max-w-5xl">
+            {/* Reduced pipeline canvas height when question card appears */}
+            <div className="relative mx-auto h-[165px] sm:h-[180px] lg:h-[195px] max-h-[24vh] w-full max-w-4xl xl:max-w-5xl">
               <FeedbackToast />
               <Pipe3D
                 activeLeakStage={currentCase.leak as StageId}

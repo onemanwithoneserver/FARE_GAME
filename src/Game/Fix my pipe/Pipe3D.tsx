@@ -72,19 +72,26 @@ function Parallax({ children }: { children: React.ReactNode }) {
 
 function StageLabel({ i, ppu, lang }: { i: number; ppu: number; lang: Language }) {
   const Icon = STAGE_ICONS[i];
-  const iconPx = Math.round(Math.max(12, Math.min(40, 0.42 * ppu)));
-  const fontPx = Math.round(Math.max(8, Math.min(16, 0.18 * ppu)));
-  const showText = ppu >= 30;
+  const iconPx = Math.round(Math.max(11, Math.min(40, 0.38 * ppu)));
+  const fontPx = Math.round(Math.max(8, Math.min(15, 0.17 * ppu)));
+
+  const showText = ppu >= 16;
+  const name = STAGES[i].name[lang];
+
   return (
     <Html position={[segX(i), PIPE_Y - 0.02, R + 0.02]} center zIndexRange={[12, 0]} style={{ pointerEvents: 'none' }}>
-      <div className="flex select-none flex-col items-center" style={{ gap: Math.round(fontPx * 0.2) }}>
+      <div className="flex select-none flex-col items-center text-center" style={{ gap: Math.max(1, Math.round(fontPx * 0.15)) }}>
         <Icon sx={{ fontSize: iconPx, color: '#FFFFFF', filter: 'drop-shadow(0 2px 4px rgba(0,0,0,.45))' }} />
         {showText && (
           <span
-            className="whitespace-nowrap font-extrabold tracking-wide text-white"
-            style={{ fontSize: fontPx, textShadow: '0 2px 6px rgba(0,0,0,.55)' }}
+            className="text-center font-extrabold tracking-tight text-white leading-[1.05] break-words"
+            style={{
+              fontSize: fontPx,
+              maxWidth: Math.round(Math.max(34, Math.min(84, 1.35 * ppu))),
+              textShadow: '0 2px 6px rgba(0,0,0,.75)',
+            }}
           >
-            {STAGES[i].name[lang]}
+            {name}
           </span>
         )}
       </div>

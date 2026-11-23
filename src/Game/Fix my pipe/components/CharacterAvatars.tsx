@@ -745,15 +745,15 @@ export function CandidateCharacter({ item, isPerson, lang, reactionKey, compact 
           <g ref={torsoRef}>
             {/* Left Arm gesturing towards center card */}
             <path
-              d="M32 62 Q18 54 8 40"
+              d="M32 62 Q18 56 6 50"
               stroke={isPerson ? 'url(#candSuitGrad)' : 'url(#procSuitGrad)'}
               strokeWidth="11"
               strokeLinecap="round"
               fill="none"
             />
-            <path d="M11 44 L6 38" stroke="#FFFFFF" strokeWidth="7" strokeLinecap="round" />
-            <circle cx="5" cy="36" r="4.5" fill="url(#candSkinGrad)" />
-            <path d="M4 33 L-3 24" stroke="url(#candSkinGrad)" strokeWidth="3" strokeLinecap="round" />
+            <path d="M11 52 L6 48" stroke="#FFFFFF" strokeWidth="7" strokeLinecap="round" />
+            <circle cx="5" cy="46" r="4.5" fill="url(#candSkinGrad)" />
+            <path d="M4 44 L-4 38" stroke="url(#candSkinGrad)" strokeWidth="3" strokeLinecap="round" />
 
             {/* Suit Torso */}
             <path
@@ -845,7 +845,7 @@ export function CandidateCharacter({ item, isPerson, lang, reactionKey, compact 
       </div>
 
       {/* Identity Pill */}
-      <div className={`flex items-center gap-1.5 rounded-full border border-[#38BDF8]/60 bg-[#0B1D3A] text-white shadow-md ${compact ? '-mt-0.5 px-2.5 py-0.5 text-[9px]' : '-mt-1 px-3.5 py-1 text-[11px]'} font-extrabold`}>
+      <div className={`flex items-center gap-1.5 rounded-full border border-[#38BDF8]/60 bg-[#0B1D3A] text-white shadow-md ${compact ? 'mt-0.5 px-2.5 py-0.5 text-[8.5px]' : '-mt-1 px-3.5 py-1 text-[11px]'} font-extrabold`}>
         <span className="h-1.5 w-1.5 rounded-full bg-[#38BDF8] animate-pulse" />
         <span className="max-w-[100px] truncate tracking-wide text-white">{isPerson ? (lang === 'en' ? 'Candidate' : 'అభ్యర్థి') : lang === 'en' ? 'Idea' : 'ఐడియా'}</span>
       </div>

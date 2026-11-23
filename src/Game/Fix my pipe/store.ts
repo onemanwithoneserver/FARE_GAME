@@ -50,6 +50,7 @@ export interface PipeGameState {
   showOnboarding: boolean;
   showBriefing: boolean;
   showRoundEnd: boolean;
+  showSectionCta: boolean;
   showCta: boolean;
   showRoster: boolean;
   showQuitConfirm: boolean;
@@ -86,6 +87,9 @@ export interface PipeGameState {
   dismissBriefing: () => void;
   decide: (accepted: boolean) => void;
   nextCase: () => void;
+  openSectionCta: () => void;
+  closeSectionCta: () => void;
+  proceedFromSectionCta: () => void;
   openCta: () => void;
   closeCta: () => void;
   openRoster: () => void;
@@ -183,6 +187,7 @@ export const usePipeGameStore = create<PipeGameState>((set, get) => {
     showOnboarding: false,
     showBriefing: false,
     showRoundEnd: false,
+    showSectionCta: false,
     showCta: false,
     showRoster: false,
     showQuitConfirm: false,
@@ -278,6 +283,7 @@ export const usePipeGameStore = create<PipeGameState>((set, get) => {
         history: [],
         hiredTeam: [],
         showRoundEnd: false,
+        showSectionCta: false,
         showCta: false,
         showRoster: false,
         showOnboarding: false,
@@ -299,6 +305,7 @@ export const usePipeGameStore = create<PipeGameState>((set, get) => {
         busy: false,
         showBriefing: true,
         showRoundEnd: false,
+        showSectionCta: false,
         lastFeedback: null,
       });
     },
@@ -434,17 +441,29 @@ export const usePipeGameStore = create<PipeGameState>((set, get) => {
     },
 
     nextCase: () => {
+      // Transition from round end evaluation to the section CTA card ("the above card")
+      soundEngine.playClick();
+      set({
+        showRoundEnd: false,
+        showSectionCta: true,
+      });
+    },
+
+    openSectionCta: () => set({ showRoundEnd: false, showSectionCta: true }),
+    closeSectionCta: () => set({ showSectionCta: false }),
+
+    proceedFromSectionCta: () => {
       const { caseIndex, caseOrder } = get();
       soundEngine.playClick();
       if (caseIndex + 1 < caseOrder.length) {
         set({
           caseIndex: caseIndex + 1,
+          showSectionCta: false,
           showRoundEnd: false,
           showCta: false,
         });
         get().startRound();
       } else {
-        
         soundEngine.playWin();
         const { score, bestScore } = get();
         const best = Math.max(score, bestScore);
@@ -455,6 +474,7 @@ export const usePipeGameStore = create<PipeGameState>((set, get) => {
           bestScore: best,
           finishedAt: Date.now(),
           screen: 'result',
+          showSectionCta: false,
           showRoundEnd: false,
           showCta: false,
         });
@@ -484,6 +504,7 @@ export const usePipeGameStore = create<PipeGameState>((set, get) => {
         showOnboarding: false,
         showBriefing: false,
         showRoundEnd: false,
+        showSectionCta: false,
         showCta: false,
         showRoster: false,
         showQuitConfirm: false,
@@ -511,6 +532,7 @@ export const usePipeGameStore = create<PipeGameState>((set, get) => {
       set({
         screen: 'home',
         showRoundEnd: false,
+        showSectionCta: false,
         showCta: false,
         showRoster: false,
         showBriefing: false,

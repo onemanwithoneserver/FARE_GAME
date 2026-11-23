@@ -7,6 +7,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import BigButton from './BigButton';
 import { Check3DIcon, Cross3DIcon } from './Icons3D';
 import RoundEndModal from './RoundEndModal';
+import SectionCtaModal from './SectionCtaModal';
 import OnboardingModal from './OnboardingModal';
 import CtaModal from './CtaModal';
 import TeamRosterModal from './TeamRosterModal';
@@ -175,6 +176,7 @@ function QuitConfirmModal() {
 export default function GameModals() {
   const {
     showRoundEnd,
+    showSectionCta,
     caseIndex,
     caseOrder,
     mode,
@@ -182,6 +184,7 @@ export default function GameModals() {
     leak,
     history,
     nextCase,
+    proceedFromSectionCta,
     showOnboarding,
     savePlayer,
     startGame,
@@ -208,6 +211,15 @@ export default function GameModals() {
         history={history}
         onContinue={nextCase}
         onQuit={quitGame}
+      />
+      <SectionCtaModal
+        isOpen={showSectionCta}
+        caseIndex={caseIndex}
+        totalCases={caseOrder.length}
+        lang={lang}
+        onNext={proceedFromSectionCta}
+        onHome={quitGame}
+        onClose={proceedFromSectionCta}
       />
       <OnboardingModal
         isOpen={showOnboarding}
