@@ -131,8 +131,8 @@ export default function MobileView() {
                 <Pipe3D activeLeakStage="all" leakLevel={0.65} isFixed={false} lang={lang} flow={0.25} />
               </div>
 
-              {/* Lower Interactive Console: Coach (Left, Horizontal) + ModeButtons (Right) */}
-              <div className="mx-auto grid w-full max-w-4xl grid-cols-[235px_minmax(0,1fr)] sm:grid-cols-[265px_minmax(0,1fr)] items-center gap-2 sm:gap-3">
+              {/* Lower Interactive Console: Coach (Left, Horizontal) + ModeButtons (Right, Aligned to the End) */}
+              <div className="mx-auto grid w-full max-w-4xl grid-cols-[225px_minmax(0,1fr)] sm:grid-cols-[240px_minmax(0,1fr)] items-center gap-3 sm:gap-4">
                 <div className="w-full">
                   <Advisor
                     characterType="coach"
@@ -149,8 +149,10 @@ export default function MobileView() {
                   />
                 </div>
 
-                <div className="flex w-full flex-col gap-1.5">
-                  <ModeButtons compact={true} />
+                <div className="flex w-full justify-end">
+                  <div className="w-full max-w-[280px] sm:max-w-[310px]">
+                    <ModeButtons stacked={true} compact={true} />
+                  </div>
                 </div>
               </div>
             </div>
@@ -278,8 +280,8 @@ export default function MobileView() {
               />
             </div>
 
-            {/* Mode Buttons — Stacked Top & Bottom */}
-            <div className="w-full">
+            {/* Mode Buttons — Stacked Top & Bottom with balanced width & spacing */}
+            <div className="w-full max-w-[320px] mx-auto">
               <ModeButtons stacked={true} compact={false} />
             </div>
 

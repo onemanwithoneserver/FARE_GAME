@@ -166,69 +166,64 @@ export default function FooterSection({
   ];
 
   return (
-    <footer className={`w-full select-none ${compact ? 'pt-2 pb-1' : 'mt-2 pt-1'} ${className}`}>
-      <div className="fare-card-3d mx-auto flex w-full max-w-xl flex-col items-center gap-2 rounded-[8px] px-3.5 py-2.5 text-center">
-        <div className="flex w-full justify-center">
-          <button
-            type="button"
-            onClick={handleShare}
-            className={`group relative inline-flex cursor-pointer items-center justify-center gap-2 overflow-hidden rounded-full px-4 py-1.5 text-xs font-extrabold text-white transition-all duration-300 hover:scale-105 active:scale-95 ${
-              copied
-                ? 'bg-gradient-to-r from-emerald-500 via-green-500 to-teal-500 shadow-[0_4px_16px_rgba(16,185,129,0.45)]'
-                : 'fare-share-btn shadow-[0_4px_18px_rgba(22,163,74,0.4)]'
-            }`}
+    <footer className={`w-full select-none ${compact ? 'pt-1 pb-0.5' : 'mt-1.5 pt-0.5'} ${className}`}>
+      <div className="fare-card-3d mx-auto flex w-full max-w-xl flex-wrap items-center justify-center gap-1.5 sm:gap-2 rounded-[8px] px-2.5 py-1.5 sm:px-3 sm:py-2 text-center">
+        {/* Share Action Pill placed right at the START */}
+        <button
+          type="button"
+          onClick={handleShare}
+          className={`fare-chip fare-card-3d group inline-flex shrink-0 cursor-pointer items-center gap-1.5 rounded-full px-3 py-1 text-[11px] font-extrabold text-white transition-all duration-200 hover:scale-105 active:scale-95 ${
+            copied
+              ? 'bg-gradient-to-r from-emerald-500 via-green-500 to-teal-500 shadow-[0_2px_10px_rgba(16,185,129,0.5)]'
+              : 'fare-share-btn shadow-[0_2px_10px_rgba(22,163,74,0.4)]'
+          }`}
+          title={en ? 'Share this game' : 'ఈ గేమ్‌ను షేర్ చేయండి'}
+        >
+          <span className="relative grid h-4 w-4 shrink-0 place-items-center rounded-full bg-white/20 shadow-inner">
+            {copied ? (
+              <CheckIcon sx={{ fontSize: 12, color: '#FFFFFF' }} />
+            ) : (
+              <ModernShareGlyph />
+            )}
+          </span>
+
+          <span className="leading-tight drop-shadow-[0_1px_1px_rgba(0,0,0,0.3)]">
+            {copied
+              ? en
+                ? 'Link Copied!'
+                : 'కాపీ అయింది!'
+              : en
+                ? 'Share'
+                : 'షేర్'}
+          </span>
+        </button>
+
+        {/* Social and Contact Link Pills */}
+        {socialLinks.map((item) => (
+          <a
+            key={item.id}
+            href={item.href}
+            target={item.external ? '_blank' : undefined}
+            rel={item.external ? 'noopener noreferrer' : undefined}
+            style={{ '--chip-a': item.chipA, '--chip-b': item.chipB } as React.CSSProperties}
+            className="fare-chip fare-card-3d group inline-flex shrink-0 items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-bold text-[#0B1D3A] transition-all duration-200 hover:scale-105 active:scale-95 dark:text-slate-100"
           >
-            <span className="pointer-events-none absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-white/25 to-transparent" />
-
-            <span className="relative grid h-5 w-5 shrink-0 place-items-center rounded-full bg-white/20 shadow-inner">
-              {copied ? (
-                <CheckIcon sx={{ fontSize: 13, color: '#FFFFFF' }} />
-              ) : (
-                <ModernShareGlyph />
-              )}
+            <span
+              style={{
+                background: item.brandGradient,
+                boxShadow: item.brandShadow,
+              }}
+              className="relative grid h-4 w-4 shrink-0 place-items-center rounded-full transition-transform duration-200 group-hover:scale-110"
+            >
+              <span className="pointer-events-none absolute inset-0 rounded-full shadow-[inset_0_1px_1px_rgba(255,255,255,0.45),inset_0_-1px_1px_rgba(0,0,0,0.25)]" />
+              {item.icon}
             </span>
 
-            <span className="relative tracking-wide drop-shadow-[0_1px_2px_rgba(0,0,0,0.3)]">
-              {copied
-                ? en
-                  ? 'Link Copied!'
-                  : 'లింక్ కాపీ అయింది!'
-                : en
-                  ? 'Share this game'
-                  : 'ఈ గేమ్‌ను షేర్ చేయండి'}
+            <span className="leading-tight text-slate-800 transition-colors group-hover:text-black dark:text-slate-100 dark:group-hover:text-white">
+              {item.name}
             </span>
-          </button>
-        </div>
-
-        <div className="w-full border-t border-[#DBE4FA] pt-1.5 dark:border-white/10">
-          <div className="flex w-full flex-wrap items-center justify-center gap-2">
-            {socialLinks.map((item) => (
-              <a
-                key={item.id}
-                href={item.href}
-                target={item.external ? '_blank' : undefined}
-                rel={item.external ? 'noopener noreferrer' : undefined}
-                style={{ '--chip-a': item.chipA, '--chip-b': item.chipB } as React.CSSProperties}
-                className="fare-chip fare-card-3d group inline-flex shrink-0 items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-bold text-[#0B1D3A] transition-all duration-200 hover:scale-105 active:scale-95 dark:text-slate-100"
-              >
-                <span
-                  style={{
-                    background: item.brandGradient,
-                    boxShadow: item.brandShadow,
-                  }}
-                  className="relative grid h-4 w-4 shrink-0 place-items-center rounded-full transition-transform duration-200 group-hover:scale-110"
-                >
-                  <span className="pointer-events-none absolute inset-0 rounded-full shadow-[inset_0_1px_1px_rgba(255,255,255,0.45),inset_0_-1px_1px_rgba(0,0,0,0.25)]" />
-                  {item.icon}
-                </span>
-
-                <span className="leading-tight text-slate-800 transition-colors group-hover:text-black dark:text-slate-100 dark:group-hover:text-white">
-                  {item.name}
-                </span>
-              </a>
-            ))}
-          </div>
-        </div>
+          </a>
+        ))}
       </div>
     </footer>
   );

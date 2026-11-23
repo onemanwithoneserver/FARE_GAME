@@ -471,10 +471,14 @@ export default function Advisor({
             >
               <span className={`absolute inset-y-0 left-0 w-1 ${TONE_BAR[tone]}`} />
               <div className="mb-1 flex items-center justify-between gap-1.5">
-                <div className={`truncate ${compact ? 'text-[8.5px]' : 'text-[9.5px] sm:text-[10px]'} font-extrabold uppercase tracking-[0.12em]`}>
-                  <span className="text-[#B45309] dark:text-amber-400">{name}</span>
-                  <span className="mx-1 text-slate-400">·</span>
-                  <span className="text-[#0B1D3A] dark:text-slate-200">{role}</span>
+                <div className={`flex items-baseline gap-1 min-w-0 ${compact ? 'text-[9px]' : 'text-[10px] sm:text-[11px]'} font-extrabold uppercase tracking-wider`}>
+                  <span className="text-[#B45309] dark:text-amber-400 whitespace-nowrap shrink-0">{name}</span>
+                  {role && (
+                    <>
+                      <span className="text-slate-300 dark:text-slate-600">·</span>
+                      <span className="truncate text-slate-500 dark:text-slate-300 font-semibold text-[8px] sm:text-[9px] lowercase tracking-normal first-letter:uppercase">{role}</span>
+                    </>
+                  )}
                 </div>
                 {/* Live speaking equalizer bars */}
                 <div className="flex h-2.5 shrink-0 items-end gap-0.5" aria-hidden>
@@ -519,8 +523,14 @@ export default function Advisor({
         >
           <span className={`absolute inset-y-0 left-0 w-1 ${TONE_BAR[tone]}`} />
           <div className="mb-1 flex items-center justify-between gap-1.5">
-            <div className={`${compact ? 'text-[8.5px]' : 'text-[9.5px]'} font-bold uppercase tracking-[0.13em]`}>
-              <span className="text-[#B45309] dark:text-amber-400">{name}</span> · <span className="text-[#0B1D3A] dark:text-slate-200">{role}</span>
+            <div className={`flex items-baseline gap-1 min-w-0 ${compact ? 'text-[9px]' : 'text-[10px]'} font-bold uppercase tracking-wider`}>
+              <span className="text-[#B45309] dark:text-amber-400 whitespace-nowrap shrink-0">{name}</span>
+              {role && (
+                <>
+                  <span className="text-slate-300 dark:text-slate-600">·</span>
+                  <span className="truncate text-slate-500 dark:text-slate-300 font-semibold text-[8px] lowercase tracking-normal first-letter:uppercase">{role}</span>
+                </>
+              )}
             </div>
             {/* Live speaking equalizer bars */}
             <div className="flex h-2.5 items-end gap-0.5" aria-hidden>

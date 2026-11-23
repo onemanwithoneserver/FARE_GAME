@@ -5,6 +5,8 @@ import Hud from '../components/Hud';
 import TitleBanner from '../components/TitleBanner';
 import ModeButtons from '../components/ModeButtons';
 import Advisor from '../components/Advisor';
+import FooterSection from '../components/FooterSection';
+import HomeInfoCard from '../components/HomeInfoCard';
 import FeedbackToast from '../components/FeedbackToast';
 import DossierCard from '../components/DossierCard';
 import { CandidateCharacter } from '../components/CharacterAvatars';
@@ -112,9 +114,9 @@ export default function DesktopView() {
               <Pipe3D activeLeakStage="all" leakLevel={0.65} isFixed={false} lang={lang} flow={0.25} />
             </div>
 
-            {/* Unified Lower Console — Aligned directly with the 3D Pipeline width */}
-            <div className="mx-auto grid w-full max-w-4xl xl:max-w-5xl grid-cols-1 lg:grid-cols-[340px_minmax(0,1fr)] xl:grid-cols-[365px_minmax(0,1fr)] items-center gap-3.5 lg:gap-5">
-              {/* Left Column: FARE Coach Mentor (Horizontal Layout for Balanced Height) */}
+            {/* Unified Lower Console — 3-Column Layout: Coach (Left), Actions & Share (Center), Stats & Guide (Right) */}
+            <div className="mx-auto grid w-full max-w-4xl xl:max-w-5xl grid-cols-1 lg:grid-cols-[235px_minmax(0,1fr)_260px] xl:grid-cols-[255px_minmax(0,1fr)_280px] items-center gap-3 lg:gap-4">
+              {/* Left Column: FARE Coach Mentor */}
               <div className="w-full">
                 <Advisor
                   characterType="coach"
@@ -131,9 +133,15 @@ export default function DesktopView() {
                 />
               </div>
 
-              {/* Right Column: Action Console */}
-              <div className="flex w-full flex-col gap-2.5">
+              {/* Center Column: Mode Buttons + Single Row Footer with Share at Start */}
+              <div className="flex w-full flex-col gap-2">
                 <ModeButtons compact={false} />
+                <FooterSection compact={true} className="!mt-0 !pt-0" />
+              </div>
+
+              {/* Right Column: Game Stats & How to Play Guide */}
+              <div className="w-full flex justify-center lg:justify-end">
+                <HomeInfoCard compact={false} />
               </div>
             </div>
           </div>

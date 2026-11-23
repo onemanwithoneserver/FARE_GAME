@@ -2,10 +2,28 @@ import { Users3DIcon, Wrench3DIcon } from './Icons3D';
 import BigButton from './BigButton';
 import { usePipeGameStore } from '../store';
 
-export default function ModeButtons({ stacked = false, compact = false }: { stacked?: boolean; compact?: boolean }) {
+export default function ModeButtons({
+  stacked = false,
+  compact = false,
+  className = '',
+}: {
+  stacked?: boolean;
+  compact?: boolean;
+  className?: string;
+}) {
   const { lang, startOrPrompt } = usePipeGameStore();
   return (
-    <div className={`grid ${compact ? 'gap-2' : 'gap-2.5'} ${stacked ? 'grid-cols-1' : 'grid-cols-1 sm:grid-cols-2 md:gap-3'}`}>
+    <div
+      className={`grid ${
+        stacked
+          ? compact
+            ? 'grid-cols-1 gap-2 sm:gap-2.5'
+            : 'grid-cols-1 gap-2.5 sm:gap-3'
+          : compact
+          ? 'grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3'
+          : 'grid-cols-1 sm:grid-cols-2 gap-2.5 md:gap-3'
+      } ${className}`}
+    >
       <BigButton
         tone="navy"
         size={compact ? 'sm' : 'md'}
