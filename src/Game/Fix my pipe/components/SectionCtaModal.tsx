@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import HomeIcon from '@mui/icons-material/Home';
@@ -6,8 +6,11 @@ import CloseIcon from '@mui/icons-material/Close';
 import SchoolIcon from '@mui/icons-material/School';
 import PhoneIcon from '@mui/icons-material/Phone';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import LanguageIcon from '@mui/icons-material/Language';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import IosShareIcon from '@mui/icons-material/IosShare';
+import CheckIcon from '@mui/icons-material/Check';
 import FareLogo from './FareLogo';
-import FooterSection from './FooterSection';
 import { Users3DIcon } from './Icons3D';
 import { Language } from '../types';
 import { FARE_LINKS } from '../data';
@@ -33,8 +36,27 @@ export default function SectionCtaModal({
 }: SectionCtaModalProps) {
   const en = lang === 'en';
   const isLast = caseIndex + 1 >= totalCases;
+  const [copied, setCopied] = useState(false);
 
   if (!isOpen) return null;
+
+  const handleShare = async () => {
+    const text = 'Check out FARE Funnel Simulator!';
+    const url = window.location.href;
+    if (navigator.share) {
+      try {
+        await navigator.share({ title: 'FARE Funnel Simulator', text, url });
+        return;
+      } catch {
+        // Fall back to clipboard if user cancels or share is rejected
+      }
+    }
+    if (navigator.clipboard) {
+      await navigator.clipboard.writeText(url);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2200);
+    }
+  };
 
   const actionCards = [
     {
@@ -92,7 +114,7 @@ export default function SectionCtaModal({
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 8 }}
           transition={{ duration: 0.2, ease: 'easeOut' }}
-          className="fare-card-3d relative w-full max-w-[480px] max-h-[92vh] overflow-y-auto rounded-[12px] border border-[#DBE4FA] bg-white/98 p-3.5 sm:p-5 text-[#0B1D3A] shadow-2xl dark:border-white/10 dark:bg-[#071328]/98 dark:text-white"
+          className="fare-card-3d relative w-full max-w-[480px] max-h-[94vh] overflow-y-auto rounded-[12px] border border-[#DBE4FA] bg-white/98 p-3.5 sm:p-5 text-[#0B1D3A] shadow-2xl dark:border-white/10 dark:bg-[#071328]/98 dark:text-white"
         >
           {/* Top Brand Stripe */}
           <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-[#0B1D3A] via-[#C99A2E] to-[#16A34A]" />
@@ -177,8 +199,8 @@ export default function SectionCtaModal({
             ))}
           </div>
 
-          {/* Navigation Action Buttons from Screenshot */}
-          <div className="mb-2 space-y-2">
+          {/* Navigation Action Buttons (Next Problem & Home) */}
+          <div className="mb-2.5 space-y-2">
             <div className="grid grid-cols-2 gap-2 sm:gap-2.5">
               <button
                 type="button"
@@ -204,9 +226,72 @@ export default function SectionCtaModal({
             </div>
           </div>
 
-          {/* ── FOOTER SOCIAL & CONTACT DOCK (FROM IMAGE 2) ── */}
-          <div className="border-t border-[#E2E8F0] dark:border-white/10 pt-2 text-center">
-            <FooterSection compact={true} />
+          {/* ── SHARE THIS GAME BUTTON (FROM SCREENSHOT IMAGE 7) ── */}
+          <div className="mb-2.5">
+            <button
+              type="button"
+              onClick={handleShare}
+              className="flex w-full cursor-pointer items-center justify-center gap-1.5 rounded-[8px] border border-[#A7F3D0] bg-[#DCFCE7]/80 hover:bg-[#D1FAE5] dark:border-emerald-700/60 dark:bg-emerald-950/40 dark:hover:bg-emerald-900/50 px-3.5 py-2 text-xs sm:text-[13px] font-bold text-[#065F46] dark:text-emerald-200 shadow-sm transition active:scale-98"
+            >
+              {copied ? (
+                <CheckIcon sx={{ fontSize: 16, color: '#059669' }} />
+              ) : (
+                <IosShareIcon sx={{ fontSize: 16, color: '#065F46' }} />
+              )}
+              <span>
+                {copied
+                  ? en ? 'Link Copied!' : 'లింక్ కాపీ చేయబడింది!'
+                  : en ? 'Share this game' : 'ఈ గేమ్‌ను షేర్ చేయండి'}
+              </span>
+            </button>
+          </div>
+
+          {/* ── GOLD ACADEMY PILL (FROM SCREENSHOT IMAGE 7) ── */}
+          <div className="mb-2 flex items-center justify-center">
+            <span className="rounded-full border border-[#D97706]/40 bg-[#FEF3C7]/90 dark:bg-[#78350F]/40 dark:border-[#D97706]/60 px-3 py-0.5 text-[9.5px] sm:text-[10px] font-black uppercase tracking-wider text-[#92400E] dark:text-[#FDE68A]">
+              ✦ FARE · FINISHING ACADEMY FOR REAL ESTATE ✦
+            </span>
+          </div>
+
+          {/* ── 4 CONTACT PILLS (EXACT FORMAT FROM SCREENSHOT IMAGE 7) ── */}
+          <div className="fare-card-3d mx-auto flex w-full max-w-xl flex-wrap items-center justify-center gap-1.5 sm:gap-2 rounded-[8px] px-2.5 py-1.5 sm:px-3 sm:py-2 text-center">
+            <a
+              href="tel:7674993040"
+              className="inline-flex shrink-0 items-center gap-1.5 rounded-[6px] border border-[#BFDBFE] bg-[#EFF6FF] px-2.5 py-1 text-[10.5px] sm:text-[11.5px] font-bold text-[#1D4ED8] transition hover:bg-[#DBEAFE] active:scale-95 dark:border-blue-700/50 dark:bg-blue-950/50 dark:text-blue-200"
+            >
+              <PhoneIcon sx={{ fontSize: 13, color: '#1D4ED8' }} />
+              <span>7674993040</span>
+            </a>
+
+            <a
+              href="https://wa.me/917674993040"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex shrink-0 items-center gap-1.5 rounded-[6px] border border-[#A7F3D0] bg-[#ECFDF5] px-2.5 py-1 text-[10.5px] sm:text-[11.5px] font-bold text-[#047857] transition hover:bg-[#D1FAE5] active:scale-95 dark:border-emerald-700/50 dark:bg-emerald-950/50 dark:text-emerald-200"
+            >
+              <WhatsAppIcon sx={{ fontSize: 14, color: '#047857' }} />
+              <span>WhatsApp</span>
+            </a>
+
+            <a
+              href="https://www.fare.training"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex shrink-0 items-center gap-1.5 rounded-[6px] border border-[#FED7AA] bg-[#FFF7ED] px-2.5 py-1 text-[10.5px] sm:text-[11.5px] font-bold text-[#9A3412] transition hover:bg-[#FFEDD5] active:scale-95 dark:border-amber-700/50 dark:bg-amber-950/50 dark:text-amber-200"
+            >
+              <LanguageIcon sx={{ fontSize: 14, color: '#9A3412' }} />
+              <span>www.fare.training</span>
+            </a>
+
+            <a
+              href="https://www.instagram.com/fare.training"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex shrink-0 items-center gap-1.5 rounded-[6px] border border-[#FBCFE8] bg-[#FDF2F8] px-2.5 py-1 text-[10.5px] sm:text-[11.5px] font-bold text-[#BE185D] transition hover:bg-[#FCE7F3] active:scale-95 dark:border-pink-700/50 dark:bg-pink-950/50 dark:text-pink-200"
+            >
+              <InstagramIcon sx={{ fontSize: 14, color: '#BE185D' }} />
+              <span>@fare.training</span>
+            </a>
           </div>
         </motion.div>
       </motion.div>
