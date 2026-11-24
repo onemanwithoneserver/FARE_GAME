@@ -167,12 +167,12 @@ export default function FooterSection({
 
   return (
     <footer className={`w-full select-none ${compact ? 'pt-1 pb-0.5' : 'mt-1.5 pt-0.5'} ${className}`}>
-      <div className="fare-card-3d mx-auto flex w-full max-w-xl flex-wrap items-center justify-center gap-1.5 sm:gap-2 rounded-[8px] px-2.5 py-1.5 sm:px-3 sm:py-2 text-center">
-        {/* Share Action Pill placed right at the START */}
+      <div className=" mx-auto flex w-full max-w-xl flex-wrap items-center justify-center gap-1.5 sm:gap-2 rounded-[8px] px-2.5 py-1.5 sm:px-3 sm:py-2 text-center">
+        
         <button
           type="button"
           onClick={handleShare}
-          className={`fare-chip fare-card-3d group inline-flex shrink-0 cursor-pointer items-center gap-1.5 rounded-full px-3 py-1 text-[11px] font-extrabold text-white transition-all duration-200 hover:scale-105 active:scale-95 ${
+          className={`fare-chip fare-card-3d group inline-flex shrink-0 cursor-pointer items-center gap-1.5 rounded-full px-3 py-1 text-[11px] font-bold text-white transition-all duration-200 hover:scale-105 active:scale-95 ${
             copied
               ? 'bg-gradient-to-r from-emerald-500 via-green-500 to-teal-500 shadow-[0_2px_10px_rgba(16,185,129,0.5)]'
               : 'fare-share-btn shadow-[0_2px_10px_rgba(22,163,74,0.4)]'
@@ -198,7 +198,6 @@ export default function FooterSection({
           </span>
         </button>
 
-        {/* Social and Contact Link Pills */}
         {socialLinks.map((item) => (
           <a
             key={item.id}
@@ -213,7 +212,7 @@ export default function FooterSection({
                 background: item.brandGradient,
                 boxShadow: item.brandShadow,
               }}
-              className="relative grid h-4 w-4 shrink-0 place-items-center rounded-full transition-transform duration-200 group-hover:scale-110"
+              className="relative grid h-5 w-5 shrink-0 place-items-center rounded-full transition-transform duration-200 group-hover:scale-110"
             >
               <span className="pointer-events-none absolute inset-0 rounded-full shadow-[inset_0_1px_1px_rgba(255,255,255,0.45),inset_0_-1px_1px_rgba(0,0,0,0.25)]" />
               {item.icon}

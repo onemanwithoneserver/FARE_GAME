@@ -60,7 +60,7 @@ export default function InterviewArena({
         {/* LEFT SPEECH CARD: The Problem (from TL) */}
         <div className="relative flex flex-col justify-between rounded-[12px] border-l-4 border-[#DC2626] border-y border-r border-[#E2E8F0] bg-white p-3.5 shadow-sm dark:border-y-white/10 dark:border-r-white/10 dark:bg-[#0B172E] sm:p-4">
           <div>
-            <div className="mb-1.5 flex items-center gap-1.5 text-[10px] font-extrabold uppercase tracking-wider text-[#DC2626]">
+            <div className="mb-1.5 flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-[#DC2626]">
               <WarningAmberIcon sx={{ fontSize: 13, color: '#DC2626' }} />
               <span>
                 {en ? 'YOUR PROBLEM' : 'మీ PROBLEM'} · {stage?.name[lang]}
@@ -89,7 +89,7 @@ export default function InterviewArena({
           >
             <div>
               <div className="mb-1.5 flex items-center justify-between gap-2">
-                <span className="text-[10px] font-extrabold uppercase tracking-wider text-[#C99A2E]">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-[#C99A2E]">
                   {isPerson ? (en ? '👉 CANDIDATE PROFILE' : '👉 నేను · CANDIDATE') : en ? '💡 PROCESS IDEA' : '💡 ప్రాసెస్ ఐడియా'}
                 </span>
                 {item.model && (
@@ -132,7 +132,7 @@ export default function InterviewArena({
 
         {/* Center: YOUR TEAM Roster */}
         <div className="flex flex-col items-center justify-center px-2 text-center">
-          <div className="mb-1 flex items-center gap-1 text-[10px] font-black uppercase tracking-[0.2em] text-[#A7F3D0]">
+          <div className="mb-1 flex items-center gap-1 text-[10px] font-bold uppercase tracking-[0.2em] text-[#A7F3D0]">
             <GroupsIcon sx={{ fontSize: 13, color: '#34D399' }} />
             <span>{en ? 'YOUR TEAM' : 'మీ టీమ్'}</span>
           </div>

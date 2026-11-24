@@ -27,7 +27,7 @@ function BriefingModal() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-50 grid place-items-center bg-[#0B1D3A]/55 p-4 backdrop-blur-sm dark:bg-black/70"
+          className="fixed inset-0 z-50 grid place-items-center bg-[#071328]/65 p-4 backdrop-blur-md"
         >
           <motion.div
             initial={{ opacity: 0, y: 14, scale: 0.98 }}
@@ -121,7 +121,7 @@ function QuitConfirmModal() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-50 grid place-items-center bg-[#0B1D3A]/55 p-4 backdrop-blur-sm dark:bg-black/70"
+          className="fixed inset-0 z-50 grid place-items-center bg-[#071328]/65 p-4 backdrop-blur-md"
         >
           <motion.div
             initial={{ opacity: 0, y: 12, scale: 0.98 }}

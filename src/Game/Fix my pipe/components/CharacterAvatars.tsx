@@ -304,7 +304,7 @@ export function CoachCharacter({ name, tone = 'neutral', reactionKey, compact = 
       </div>
 
       {/* Identity Pill: FARE COACH */}
-      <div className={`flex items-center gap-1.5 rounded-full border border-[#C99A2E]/70 bg-[#0B1D3A] text-white shadow-md ${compact ? '-mt-0.5 px-2.5 py-0.5 text-[9px]' : '-mt-1 px-3.5 py-1 text-[11px]'} font-extrabold`}>
+      <div className={`flex items-center gap-1.5 rounded-full border border-[#C99A2E]/70 bg-[#0B1D3A] text-white shadow-md ${compact ? '-mt-0.5 px-2.5 py-0.5 text-[9px]' : '-mt-1 px-3.5 py-1 text-[11px]'} font-bold`}>
         <span className="h-1.5 w-1.5 rounded-full bg-[#EAB308] animate-pulse" />
         <span className="tracking-wide text-white">{name || 'FARE COACH'}</span>
       </div>
@@ -599,7 +599,7 @@ export function TlCharacter({ name, tone = 'neutral', reactionKey, compact = fal
       </div>
 
       {/* Identity Pill: PIPELINE TL */}
-      <div className={`flex items-center gap-1 rounded-full border border-[#10B981]/70 bg-[#0B1D3A] text-white shadow-md ${compact ? '-mt-1 px-2 py-0.5 text-[8px]' : '-mt-1 px-3.5 py-1 text-[11px]'} font-extrabold`}>
+      <div className={`flex items-center gap-1 rounded-full border border-[#10B981]/70 bg-[#0B1D3A] text-white shadow-md ${compact ? '-mt-1 px-2 py-0.5 text-[8px]' : '-mt-1 px-3.5 py-1 text-[11px]'} font-bold`}>
         <span className="h-1.5 w-1.5 rounded-full bg-[#10B981] animate-pulse" />
         <span className="tracking-wide text-white">{name || 'PIPELINE TL'}</span>
       </div>
@@ -845,7 +845,7 @@ export function CandidateCharacter({ item, isPerson, lang, reactionKey, compact 
       </div>
 
       {/* Identity Pill */}
-      <div className={`flex items-center gap-1.5 rounded-full border border-[#38BDF8]/60 bg-[#0B1D3A] text-white shadow-md ${compact ? 'mt-0.5 px-2.5 py-0.5 text-[8.5px]' : '-mt-1 px-3.5 py-1 text-[11px]'} font-extrabold`}>
+      <div className={`flex items-center gap-1.5 rounded-full border border-[#38BDF8]/60 bg-[#0B1D3A] text-white shadow-md ${compact ? 'mt-0.5 px-2.5 py-0.5 text-[8.5px]' : '-mt-1 px-3.5 py-1 text-[11px]'} font-bold`}>
         <span className="h-1.5 w-1.5 rounded-full bg-[#38BDF8] animate-pulse" />
         <span className="max-w-[100px] truncate tracking-wide text-white">{isPerson ? (lang === 'en' ? 'Candidate' : 'అభ్యర్థి') : lang === 'en' ? 'Idea' : 'ఐడియా'}</span>
       </div>

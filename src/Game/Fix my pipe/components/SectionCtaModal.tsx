@@ -12,6 +12,7 @@ import IosShareIcon from '@mui/icons-material/IosShare';
 import CheckIcon from '@mui/icons-material/Check';
 import FareLogo from './FareLogo';
 import { Users3DIcon } from './Icons3D';
+import { CircularBrandBadge, ModernShareGlyph } from './BrandIcons';
 import { Language } from '../types';
 import { FARE_LINKS } from '../data';
 
@@ -48,7 +49,6 @@ export default function SectionCtaModal({
         await navigator.share({ title: 'FARE Funnel Simulator', text, url });
         return;
       } catch {
-        // Fall back to clipboard if user cancels or share is rejected
       }
     }
     if (navigator.clipboard) {
@@ -116,10 +116,9 @@ export default function SectionCtaModal({
           transition={{ duration: 0.2, ease: 'easeOut' }}
           className="fare-card-3d relative w-full max-w-[480px] max-h-[94vh] overflow-y-auto rounded-[12px] border border-[#DBE4FA] bg-white/98 p-3.5 sm:p-5 text-[#0B1D3A] shadow-2xl dark:border-white/10 dark:bg-[#071328]/98 dark:text-white"
         >
-          {/* Top Brand Stripe */}
+          
           <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-[#0B1D3A] via-[#C99A2E] to-[#16A34A]" />
 
-          {/* Top Close Button ('✕') */}
           <button
             type="button"
             onClick={onClose}
@@ -129,21 +128,18 @@ export default function SectionCtaModal({
             <CloseIcon sx={{ fontSize: 16, color: '#FFFFFF' }} />
           </button>
 
-          {/* Micro Section Counter Pill */}
           <div className="mb-2 flex items-center justify-center gap-1.5 text-[9.5px] sm:text-[10.5px] font-bold">
             <span className="rounded-[4px] border border-[#C99A2E]/40 bg-[#C99A2E]/10 px-2.5 py-0.5 uppercase tracking-wider text-[#C99A2E]">
               {en ? `Section ${caseIndex + 1} of ${totalCases} Complete` : `విభాగం ${caseIndex + 1} / ${totalCases} పూర్తయింది`}
             </span>
           </div>
 
-          {/* Centered FARE Logo Card */}
           <div className="mx-auto mb-2 flex justify-center">
             <FareLogo compact={true} />
           </div>
 
-          {/* Title & Subtitle from Screenshot */}
           <div className="mb-3 text-center">
-            <h2 className="text-xl sm:text-2xl font-black tracking-tight text-[#0B1D3A] dark:text-white">
+            <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-[#0B1D3A] dark:text-white">
               {en ? (
                 <>
                   Want to <span className="text-[#C99A2E] dark:text-[#E2C068]">build your team?</span>
@@ -159,7 +155,6 @@ export default function SectionCtaModal({
             </p>
           </div>
 
-          {/* 4 Action Cards from Screenshot */}
           <div className="mb-3 space-y-2">
             {actionCards.map((card, i) => (
               <div
@@ -176,7 +171,7 @@ export default function SectionCtaModal({
                         {card.title}
                       </h4>
                       {card.badge && (
-                        <span className="rounded bg-emerald-500/20 px-1 py-0.2 text-[8px] sm:text-[8.5px] font-black uppercase tracking-wider text-emerald-700 dark:text-emerald-300 border border-emerald-500/30">
+                        <span className="rounded bg-emerald-500/20 px-1 py-0.2 text-[8px] sm:text-[8.5px] font-bold uppercase tracking-wider text-emerald-700 dark:text-emerald-300 border border-emerald-500/30">
                           {card.badge}
                         </span>
                       )}
@@ -199,7 +194,6 @@ export default function SectionCtaModal({
             ))}
           </div>
 
-          {/* Navigation Action Buttons (Next Problem & Home) */}
           <div className="mb-2.5 space-y-2">
             <div className="grid grid-cols-2 gap-2 sm:gap-2.5">
               <button
@@ -226,19 +220,20 @@ export default function SectionCtaModal({
             </div>
           </div>
 
-          {/* ── SHARE THIS GAME BUTTON (FROM SCREENSHOT IMAGE 7) ── */}
-          <div className="mb-2.5">
+          <div className="mb-3 flex justify-center">
             <button
               type="button"
               onClick={handleShare}
-              className="flex w-full cursor-pointer items-center justify-center gap-1.5 rounded-[8px] border border-[#A7F3D0] bg-[#DCFCE7]/80 hover:bg-[#D1FAE5] dark:border-emerald-700/60 dark:bg-emerald-950/40 dark:hover:bg-emerald-900/50 px-3.5 py-2 text-xs sm:text-[13px] font-bold text-[#065F46] dark:text-emerald-200 shadow-sm transition active:scale-98"
+              className="group inline-flex cursor-pointer items-center justify-center gap-2 rounded-full border border-emerald-300/80 bg-gradient-to-r from-emerald-50 via-teal-50/80 to-emerald-100 hover:from-emerald-100 hover:to-teal-100 dark:border-emerald-600/50 dark:bg-emerald-950/40 dark:hover:bg-emerald-900/50 px-4 sm:px-5 py-1.5 text-xs sm:text-[12.5px] font-bold text-[#065F46] dark:text-emerald-200 shadow-xs hover:shadow-sm transition-all duration-150 active:scale-95"
             >
-              {copied ? (
-                <CheckIcon sx={{ fontSize: 16, color: '#059669' }} />
-              ) : (
-                <IosShareIcon sx={{ fontSize: 16, color: '#065F46' }} />
-              )}
-              <span>
+              <span className="grid h-4 w-4 shrink-0 place-items-center rounded-full bg-emerald-600/15 text-[#065F46] dark:bg-emerald-400/20 dark:text-emerald-300">
+                {copied ? (
+                  <CheckIcon sx={{ fontSize: 12, color: '#059669' }} />
+                ) : (
+                  <ModernShareGlyph className="h-2.5 w-2.5 stroke-[2.4]" />
+                )}
+              </span>
+              <span className="leading-tight">
                 {copied
                   ? en ? 'Link Copied!' : 'లింక్ కాపీ చేయబడింది!'
                   : en ? 'Share this game' : 'ఈ గేమ్‌ను షేర్ చేయండి'}
@@ -246,20 +241,12 @@ export default function SectionCtaModal({
             </button>
           </div>
 
-          {/* ── GOLD ACADEMY PILL (FROM SCREENSHOT IMAGE 7) ── */}
-          <div className="mb-2 flex items-center justify-center">
-            <span className="rounded-full border border-[#D97706]/40 bg-[#FEF3C7]/90 dark:bg-[#78350F]/40 dark:border-[#D97706]/60 px-3 py-0.5 text-[9.5px] sm:text-[10px] font-black uppercase tracking-wider text-[#92400E] dark:text-[#FDE68A]">
-              ✦ FARE · FINISHING ACADEMY FOR REAL ESTATE ✦
-            </span>
-          </div>
-
-          {/* ── 4 CONTACT PILLS (EXACT FORMAT FROM SCREENSHOT IMAGE 7) ── */}
-          <div className="fare-card-3d mx-auto flex w-full max-w-xl flex-wrap items-center justify-center gap-1.5 sm:gap-2 rounded-[8px] px-2.5 py-1.5 sm:px-3 sm:py-2 text-center">
+          <div className=" mx-auto flex w-full max-w-xl flex-wrap items-center justify-center gap-1.5 sm:gap-2 rounded-[8px] px-2.5 py-1.5 sm:px-3 sm:py-2 text-center">
             <a
               href="tel:7674993040"
-              className="inline-flex shrink-0 items-center gap-1.5 rounded-[6px] border border-[#BFDBFE] bg-[#EFF6FF] px-2.5 py-1 text-[10.5px] sm:text-[11.5px] font-bold text-[#1D4ED8] transition hover:bg-[#DBEAFE] active:scale-95 dark:border-blue-700/50 dark:bg-blue-950/50 dark:text-blue-200"
+              className="group inline-flex shrink-0 items-center gap-1.5 rounded-full border border-slate-200/80 bg-white/95 px-2.5 py-1 text-[10.5px] sm:text-[11.5px] font-bold text-[#0B1D3A] shadow-xs transition hover:scale-105 active:scale-95 dark:border-white/10 dark:bg-[#132548] dark:text-slate-100"
             >
-              <PhoneIcon sx={{ fontSize: 13, color: '#1D4ED8' }} />
+              <CircularBrandBadge brand="phone" size="sm" />
               <span>7674993040</span>
             </a>
 
@@ -267,9 +254,9 @@ export default function SectionCtaModal({
               href="https://wa.me/917674993040"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex shrink-0 items-center gap-1.5 rounded-[6px] border border-[#A7F3D0] bg-[#ECFDF5] px-2.5 py-1 text-[10.5px] sm:text-[11.5px] font-bold text-[#047857] transition hover:bg-[#D1FAE5] active:scale-95 dark:border-emerald-700/50 dark:bg-emerald-950/50 dark:text-emerald-200"
+              className="group inline-flex shrink-0 items-center gap-1.5 rounded-full border border-slate-200/80 bg-white/95 px-2.5 py-1 text-[10.5px] sm:text-[11.5px] font-bold text-[#0B1D3A] shadow-xs transition hover:scale-105 active:scale-95 dark:border-white/10 dark:bg-[#132548] dark:text-slate-100"
             >
-              <WhatsAppIcon sx={{ fontSize: 14, color: '#047857' }} />
+              <CircularBrandBadge brand="whatsapp" size="sm" />
               <span>WhatsApp</span>
             </a>
 
@@ -277,9 +264,9 @@ export default function SectionCtaModal({
               href="https://www.fare.training"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex shrink-0 items-center gap-1.5 rounded-[6px] border border-[#FED7AA] bg-[#FFF7ED] px-2.5 py-1 text-[10.5px] sm:text-[11.5px] font-bold text-[#9A3412] transition hover:bg-[#FFEDD5] active:scale-95 dark:border-amber-700/50 dark:bg-amber-950/50 dark:text-amber-200"
+              className="group inline-flex shrink-0 items-center gap-1.5 rounded-full border border-slate-200/80 bg-white/95 px-2.5 py-1 text-[10.5px] sm:text-[11.5px] font-bold text-[#0B1D3A] shadow-xs transition hover:scale-105 active:scale-95 dark:border-white/10 dark:bg-[#132548] dark:text-slate-100"
             >
-              <LanguageIcon sx={{ fontSize: 14, color: '#9A3412' }} />
+              <CircularBrandBadge brand="website" size="sm" />
               <span>www.fare.training</span>
             </a>
 
@@ -287,9 +274,9 @@ export default function SectionCtaModal({
               href="https://www.instagram.com/fare.training"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex shrink-0 items-center gap-1.5 rounded-[6px] border border-[#FBCFE8] bg-[#FDF2F8] px-2.5 py-1 text-[10.5px] sm:text-[11.5px] font-bold text-[#BE185D] transition hover:bg-[#FCE7F3] active:scale-95 dark:border-pink-700/50 dark:bg-pink-950/50 dark:text-pink-200"
+              className="group inline-flex shrink-0 items-center gap-1.5 rounded-full border border-slate-200/80 bg-white/95 px-2.5 py-1 text-[10.5px] sm:text-[11.5px] font-bold text-[#0B1D3A] shadow-xs transition hover:scale-105 active:scale-95 dark:border-white/10 dark:bg-[#132548] dark:text-slate-100"
             >
-              <InstagramIcon sx={{ fontSize: 14, color: '#BE185D' }} />
+              <CircularBrandBadge brand="instagram" size="sm" />
               <span>@fare.training</span>
             </a>
           </div>

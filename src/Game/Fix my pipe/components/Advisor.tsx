@@ -471,7 +471,7 @@ export default function Advisor({
             >
               <span className={`absolute inset-y-0 left-0 w-1 ${TONE_BAR[tone]}`} />
               <div className="mb-1 flex items-center justify-between gap-1.5">
-                <div className={`flex items-baseline gap-1 min-w-0 ${compact ? 'text-[9px]' : 'text-[10px] sm:text-[11px]'} font-extrabold uppercase tracking-wider`}>
+                <div className={`flex items-baseline gap-1 min-w-0 ${compact ? 'text-[9px]' : 'text-[10px] sm:text-[11px]'} font-bold uppercase tracking-wider`}>
                   <span className="text-[#B45309] dark:text-amber-400 whitespace-nowrap shrink-0">{name}</span>
                   {role && (
                     <>

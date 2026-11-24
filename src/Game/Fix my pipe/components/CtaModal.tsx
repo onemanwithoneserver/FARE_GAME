@@ -52,7 +52,7 @@ export default function CtaModal({ isOpen, lang, onClose }: CtaModalProps) {
   ];
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#0B1D3A]/55 p-3 sm:p-4 backdrop-blur-sm dark:bg-black/70">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#071328]/65 p-3 sm:p-4 backdrop-blur-md">
       <div className="fare-card-3d relative max-h-[90vh] w-full max-w-[390px] sm:max-w-[420px] overflow-y-auto rounded-[10px] p-4 sm:p-5 md:p-6">
         <button
           onClick={onClose}

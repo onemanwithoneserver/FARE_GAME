@@ -46,7 +46,7 @@ export default function OnboardingModal({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#0B1D3A]/55 p-2 sm:p-4 backdrop-blur-sm dark:bg-black/70">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#071328]/65 p-2 sm:p-4 backdrop-blur-md">
       <div className="fare-card-3d relative max-h-[94dvh] w-full max-w-[275px] xs:max-w-[295px] sm:max-w-[360px] overflow-y-auto rounded-[8px] sm:rounded-[10px] p-2.5 sm:p-5 md:p-6">
         <button
           type="button"

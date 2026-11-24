@@ -42,7 +42,7 @@ export default function FeedbackToast() {
               positive ? 'border-emerald-700 bg-[#16A34A]' : delta === 0 ? 'border-slate-600 bg-slate-700' : 'border-rose-800 bg-[#DC2626]'
             }`}
           >
-            <span className="text-base font-black text-white tabular-nums">{positive ? `+${delta}` : delta}</span>
+            <span className="text-base font-bold text-white tabular-nums">{positive ? `+${delta}` : delta}</span>
             <span className="text-[11px] font-bold uppercase tracking-wider text-white/95">{label}</span>
           </motion.div>
         )}

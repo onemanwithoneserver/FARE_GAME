@@ -19,7 +19,7 @@ export default function TeamRosterModal({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#0B1D3A]/55 p-3 sm:p-4 backdrop-blur-sm dark:bg-black/70">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#071328]/65 p-3 sm:p-4 backdrop-blur-md">
       <div className="fare-card-3d relative flex max-h-[85vh] w-full max-w-[400px] sm:max-w-[420px] flex-col rounded-[10px] p-4 sm:p-5">
         <button
           onClick={onClose}

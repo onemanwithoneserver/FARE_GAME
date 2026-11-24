@@ -1,11 +1,11 @@
-import { useEffect } from 'react';
+﻿import { useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import Backdrop from '../components/Backdrop';
 import Hud from '../components/Hud';
 import TitleBanner from '../components/TitleBanner';
 import ModeButtons from '../components/ModeButtons';
 import Advisor from '../components/Advisor';
-import FooterSection from '../components/FooterSection';
+import FloatingShare from '../components/FloatingShare';
 import FeedbackToast from '../components/FeedbackToast';
 import DossierCard from '../components/DossierCard';
 import { CandidateCharacter } from '../components/CharacterAvatars';
@@ -89,7 +89,6 @@ export default function DesktopView() {
     <div className="relative min-h-screen w-full overflow-x-hidden font-sans text-[#0B1D3A] dark:text-slate-100 selection:bg-amber-500 selection:text-slate-950">
       <Backdrop />
 
-      {/* Main Desktop/Laptop Container — Fits Standard Laptop Viewports Comfortably without Scrolling */}
       <div
         className={`relative z-10 mx-auto flex min-h-screen w-full max-w-[1140px] xl:max-w-[1200px] flex-col px-4 py-2 lg:px-6 lg:py-2.5 ${
           screen === 'result' ? 'justify-between' : 'justify-between'
@@ -106,17 +105,15 @@ export default function DesktopView() {
           }
         />
 
-        {/* HOME SCREEN — Centered Stage with 3D Pipe & Balanced Action Console */}
         {screen === 'home' && (
           <div className="my-auto flex w-full flex-col items-center gap-3 lg:gap-4 py-1">
-            {/* Hero 3D Pipeline Canvas */}
-            <div className="relative mx-auto h-[215px] sm:h-[230px] lg:h-[245px] xl:h-[260px] max-h-[32vh] w-full max-w-4xl xl:max-w-5xl">
-              <Pipe3D activeLeakStage="all" leakLevel={0.65} isFixed={false} lang={lang} flow={0.25} />
+            
+            <div className="relative mx-auto h-[250px] sm:h-[280px] lg:h-[310px] xl:h-[340px] max-h-[42vh] w-full max-w-5xl xl:max-w-6xl">
+              <Pipe3D activeLeakStage="all" leakLevel={0.65} isFixed={false} lang={lang} flow={0.25} hero={true} />
             </div>
 
-            {/* Unified Lower Console: FARE Coach (Left) & Mode Actions with Social Dock (Right) */}
             <div className="mx-auto flex w-full max-w-4xl xl:max-w-5xl flex-col lg:flex-row items-center justify-between gap-4 lg:gap-6">
-              {/* Left Column: FARE Coach Mentor */}
+              
               <div className="w-full lg:max-w-[390px] xl:max-w-[410px] shrink-0">
                 <Advisor
                   characterType="coach"
@@ -124,28 +121,32 @@ export default function DesktopView() {
                   name={en ? 'FARE Coach' : 'FARE కోచ్'}
                   role={en ? 'Executive Mentor' : 'ఎగ్జిక్యూటివ్ మెంటార్'}
                   message={
-                    en
-                      ? 'Your sales funnel has revenue leaks! Pick a mode to hire talent or upgrade systems.'
-                      : 'మీ సేల్స్ ఫన్నెల్‌లో లీక్‌లు ఉన్నాయి! సరైన మోడ్ ఎంచుకుని పరిష్కరించండి.'
+                    <div className="flex flex-col gap-0.5">
+                      <div className="font-bold text-[#0B1D3A] dark:text-amber-300 text-sm sm:text-base">
+                        🎮 {en ? "Let's play a Game!" : "Let's play a Game · రండి గేమ్ ఆడదాం!"}
+                      </div>
+                      <div className="text-xs text-[#475569] dark:text-slate-300">
+                        {en
+                          ? 'Plug the revenue leaks in your sales pipeline. Choose your challenge below!'
+                          : 'మీ సేల్స్ ఫన్నెల్ లీక్‌లను సరిచేయండి. సరైన మోడ్ ఎంచుకుని పరిష్కరించండి!'}
+                      </div>
+                    </div>
                   }
                   messageKey={`home-${lang}`}
                   compact={false}
                 />
               </div>
 
-              {/* Right Column: Mode Buttons + Single Row Footer with Share at Start */}
               <div className="flex w-full lg:max-w-[530px] xl:max-w-[560px] flex-col gap-2">
                 <ModeButtons compact={false} />
-                <FooterSection compact={true} className="!mt-0 !pt-0" />
               </div>
             </div>
           </div>
         )}
 
-        {/* PLAY SCREEN — Balanced 3-Column Arena */}
         {screen === 'play' && currentCase && currentCard && (
           <div className="my-auto flex flex-1 flex-col justify-center gap-2 lg:gap-3 py-1">
-            {/* Reduced pipeline canvas height when question card appears */}
+            
             <div className="relative mx-auto h-[165px] sm:h-[180px] lg:h-[195px] max-h-[24vh] w-full max-w-4xl xl:max-w-5xl">
               <FeedbackToast />
               <Pipe3D
@@ -203,7 +204,6 @@ export default function DesktopView() {
           </div>
         )}
 
-        {/* RESULT SCREEN */}
         {screen === 'result' && (
           <div className="my-auto flex flex-1 flex-col items-center justify-center gap-3 py-2">
             <ResultScreen
@@ -222,9 +222,10 @@ export default function DesktopView() {
           </div>
         )}
 
-        {/* Subtle bottom spacer for vertical symmetry on home */}
         {screen === 'home' && <div className="h-1 shrink-0" />}
       </div>
+
+      <FloatingShare />
 
       <GameModals />
     </div>

@@ -117,7 +117,7 @@ export default function RulesCard({ compact = false, autoPlay = false }: { compa
                       <span className={`grid h-9 w-9 shrink-0 place-items-center rounded-[7px] ${TONE_ICON[r.tone]}`}>
                         {r.renderIcon(iconGlyphPx)}
                       </span>
-                      <b className={`text-sm font-extrabold leading-tight ${TONE_TEXT[r.tone]}`}>{r.title}</b>
+                      <b className={`text-sm font-bold leading-tight ${TONE_TEXT[r.tone]}`}>{r.title}</b>
                     </div>
                     <p className="text-xs leading-relaxed text-[#475569] dark:text-slate-300">{r.text}</p>
                   </li>

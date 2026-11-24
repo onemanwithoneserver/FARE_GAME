@@ -64,7 +64,7 @@ export default function HomeInfoCard({ compact = false }: { compact?: boolean })
               <span
                 className={`${
                   compact ? 'text-sm' : 'text-base sm:text-lg'
-                } font-black tabular-nums tracking-tight text-[#0B1D3A] dark:text-white`}
+                } font-bold tabular-nums tracking-tight text-[#0B1D3A] dark:text-white`}
               >
                 {it.value}
               </span>
@@ -102,7 +102,7 @@ export default function HomeInfoCard({ compact = false }: { compact?: boolean })
             <span
               className={`bg-gradient-to-r from-amber-400 to-amber-500 px-2 py-0.5 ${
                 compact ? 'text-[8px]' : 'text-[9.5px]'
-              } font-black uppercase tracking-wider text-[#0B1D3A] shadow-xs`}
+              } font-bold uppercase tracking-wider text-[#0B1D3A] shadow-xs`}
               style={{ borderRadius: '2px' }}
             >
               {en ? 'Guide' : 'గైడ్'}
@@ -112,7 +112,7 @@ export default function HomeInfoCard({ compact = false }: { compact?: boolean })
             <span
               className={`truncate ${
                 compact ? 'text-[9.5px]' : 'text-[12px] sm:text-[13px]'
-              } font-black text-white group-hover:text-amber-300 transition-colors`}
+              } font-bold text-white group-hover:text-amber-300 transition-colors`}
             >
               {en ? 'How to Play' : 'సూచనలు'}
             </span>

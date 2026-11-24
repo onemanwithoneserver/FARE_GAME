@@ -35,7 +35,7 @@ export default function PressureGauge({ leakLevel, score, combo, lang, compact =
             <span className="block text-[8.5px] font-bold uppercase tracking-wider text-[#C99A2E]">
               {lang === 'en' ? 'Pressure' : 'ప్రెషర్'}
             </span>
-            <span className="block text-[10.5px] font-extrabold text-[#0B1D3A] dark:text-slate-100">
+            <span className="block text-[10.5px] font-bold text-[#0B1D3A] dark:text-slate-100">
               {pressurePct}%
             </span>
           </div>
@@ -43,7 +43,7 @@ export default function PressureGauge({ leakLevel, score, combo, lang, compact =
 
         <div className="flex items-center gap-1.5">
           {combo > 1 && (
-            <div className="fare-icon-3d flex items-center gap-0.5 rounded-[4px] bg-gradient-to-r from-amber-500 to-amber-600 px-1 py-0.5 text-[8.5px] font-black text-white shadow-xs">
+            <div className="fare-icon-3d flex items-center gap-0.5 rounded-[4px] bg-gradient-to-r from-amber-500 to-amber-600 px-1 py-0.5 text-[8.5px] font-bold text-white shadow-xs">
               <Bolt3DIcon size={9} />
               <span>{combo}x</span>
             </div>
@@ -52,7 +52,7 @@ export default function PressureGauge({ leakLevel, score, combo, lang, compact =
             <span className="block text-[8px] font-bold uppercase tracking-wider text-[#64748B] dark:text-slate-400">
               {lang === 'en' ? 'SCORE' : 'స్కోరు'}
             </span>
-            <span className="font-mono text-xs font-black text-[#0B1D3A] dark:text-white tabular-nums sm:text-[13px]">
+            <span className="font-mono text-xs font-bold text-[#0B1D3A] dark:text-white tabular-nums sm:text-[13px]">
               {score.toLocaleString()}
             </span>
           </div>
@@ -116,7 +116,7 @@ export default function PressureGauge({ leakLevel, score, combo, lang, compact =
           <div className="text-[10px] font-bold uppercase tracking-wider text-[#64748B] dark:text-slate-400">
             {lang === 'en' ? 'SCORE' : 'స్కోరు'}
           </div>
-          <div className="font-mono text-xl font-black tracking-tight text-[#0B1D3A] dark:text-white tabular-nums">
+          <div className="font-mono text-xl font-bold tracking-tight text-[#0B1D3A] dark:text-white tabular-nums">
             {score.toLocaleString()}
           </div>
         </div>

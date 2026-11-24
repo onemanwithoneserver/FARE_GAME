@@ -151,7 +151,7 @@ export default function Hud({ center, compact = false }: { center?: ReactNode; c
             >
               {/* Header */}
               <div className="mb-2.5 flex items-center justify-between border-b border-[#DBE4FA] pb-2 dark:border-white/10">
-                <div className="flex items-center gap-1.5 text-xs font-extrabold uppercase tracking-wider text-[#0B1D3A] dark:text-white">
+                <div className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#0B1D3A] dark:text-white">
                   <SettingsIcon sx={{ fontSize: 15, color: '#C99A2E' }} />
                   <span>{lang === 'en' ? 'Game Options' : 'గేమ్ ఆప్షన్స్'}</span>
                 </div>
@@ -189,7 +189,7 @@ export default function Hud({ center, compact = false }: { center?: ReactNode; c
                       </div>
                     </div>
                   </div>
-                  <span className="relative flex items-center gap-1 rounded-[3px] bg-gradient-to-r from-amber-400 to-amber-500 px-2 py-0.5 text-[9px] font-black uppercase tracking-wider text-[#0B1D3A]">
+                  <span className="relative flex items-center gap-1 rounded-[3px] bg-gradient-to-r from-amber-400 to-amber-500 px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider text-[#0B1D3A]">
                     <span>{lang === 'en' ? 'Guide' : 'గైడ్'}</span>
                     <span className="text-[11px] font-bold">→</span>
                   </span>
@@ -215,7 +215,7 @@ export default function Hud({ center, compact = false }: { center?: ReactNode; c
                     </div>
                   </div>
                   <span
-                    className={`rounded-[3px] px-2 py-0.5 text-[10px] font-black uppercase tracking-wider text-white ${
+                    className={`rounded-[3px] px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-white ${
                       sound ? 'bg-[#16A34A]' : 'bg-[#64748B]'
                     }`}
                   >
@@ -243,7 +243,7 @@ export default function Hud({ center, compact = false }: { center?: ReactNode; c
                     </div>
                   </div>
                   <span
-                    className={`rounded-[3px] px-2 py-0.5 text-[10px] font-black uppercase tracking-wider text-white ${
+                    className={`rounded-[3px] px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-white ${
                       song ? 'bg-[#4F46E5]' : 'bg-[#64748B]'
                     }`}
                   >
@@ -286,7 +286,7 @@ export default function Hud({ center, compact = false }: { center?: ReactNode; c
                       <div className="text-[10px] text-[#64748B] dark:text-slate-400">{lang === 'en' ? 'తెలుగులోకి మార్చండి' : 'Switch to English'}</div>
                     </div>
                   </div>
-                  <span className="rounded-[3px] bg-[#2563EB] px-2 py-0.5 text-[10px] font-black text-white">
+                  <span className="rounded-[3px] bg-[#2563EB] px-2 py-0.5 text-[10px] font-bold text-white">
                     {lang === 'te' ? 'తెలుగు' : 'English'}
                   </span>
                 </button>

@@ -138,7 +138,7 @@ export function CoachHumanAvatar({ name }: { name?: string }) {
         </svg>
       </div>
 
-      <span className="mt-1 whitespace-nowrap rounded-full border border-[#C99A2E]/70 bg-[#0B1D3A] px-2.5 py-0.5 text-[11px] font-extrabold tracking-wide text-white shadow-md">
+      <span className="mt-1 whitespace-nowrap rounded-full border border-[#C99A2E]/70 bg-[#0B1D3A] px-2.5 py-0.5 text-[11px] font-bold tracking-wide text-white shadow-md">
         {name || 'FARE COACH'}
       </span>
     </div>
@@ -277,7 +277,7 @@ export function TlHumanAvatar({ name }: { name?: string }) {
       </div>
 
       {/* Name pill underneath */}
-      <span className="mt-1 whitespace-nowrap rounded-full border border-[#C99A2E]/50 bg-[#0B1D3A]/90 px-2.5 py-0.5 text-[11px] font-extrabold tracking-wide text-white shadow-md">
+      <span className="mt-1 whitespace-nowrap rounded-full border border-[#C99A2E]/50 bg-[#0B1D3A]/90 px-2.5 py-0.5 text-[11px] font-bold tracking-wide text-white shadow-md">
         {name || 'మీరు (TL)'}
       </span>
     </div>
@@ -449,7 +449,7 @@ export function CandidateHumanAvatar({
       </div>
 
       {/* Name pill underneath */}
-      <span className="mt-1 whitespace-nowrap rounded-full border border-[#C99A2E]/50 bg-[#0B1D3A]/90 px-2.5 py-0.5 text-[11px] font-extrabold tracking-wide text-white shadow-md">
+      <span className="mt-1 whitespace-nowrap rounded-full border border-[#C99A2E]/50 bg-[#0B1D3A]/90 px-2.5 py-0.5 text-[11px] font-bold tracking-wide text-white shadow-md">
         {name || (isPerson ? 'Candidate' : 'Idea')}
       </span>
     </motion.div>

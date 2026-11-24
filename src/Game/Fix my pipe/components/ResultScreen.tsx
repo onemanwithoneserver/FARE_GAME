@@ -101,7 +101,7 @@ export default function ResultScreen({
             <FareLogo compact={true} />
           </div>
 
-          <div className="inline-flex items-center gap-1.5 rounded-full border border-[#C99A2E]/40 bg-[#C99A2E]/10 px-3 py-0.5 text-[8.5px] sm:text-[9.5px] font-black uppercase tracking-widest text-[#C99A2E]">
+          <div className="inline-flex items-center gap-1.5 rounded-full border border-[#C99A2E]/40 bg-[#C99A2E]/10 px-3 py-0.5 text-[8.5px] sm:text-[9.5px] font-bold uppercase tracking-widest text-[#C99A2E]">
             <span>✦</span>
             <span>{en ? 'ACADEMY BENCHMARK COMPLETED' : 'అకాడమీ బెంచ్‌మార్క్ పూర్తయింది'}</span>
             <span>✦</span>
@@ -123,7 +123,7 @@ export default function ResultScreen({
             ))}
           </div>
 
-          <h2 className="text-xl sm:text-2xl font-black tracking-tight text-[#0B1D3A] dark:text-white">
+          <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-[#0B1D3A] dark:text-white">
             {performanceTitle[lang]}
           </h2>
           <p className="mt-0.5 text-xs text-[#64748B] dark:text-slate-400">
@@ -139,21 +139,21 @@ export default function ResultScreen({
             <div className="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-[#64748B] dark:text-slate-400">
               {en ? 'FINAL SCORE' : 'మొత్తం స్కోరు'}
             </div>
-            <div className="font-mono text-xl sm:text-2xl font-black text-[#C99A2E]">{score.toLocaleString()}</div>
+            <div className="font-mono text-xl sm:text-2xl font-bold text-[#C99A2E]">{score.toLocaleString()}</div>
           </div>
 
           <div className="rounded-[8px] border border-[#E2E8F0] bg-[#F8F9FC] p-2.5 sm:p-3 text-center dark:border-white/10 dark:bg-[#0E1F3D]">
             <div className="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-[#64748B] dark:text-slate-400">
               {en ? 'ACCURACY' : 'ఖచ్చితత్వం'}
             </div>
-            <div className="font-mono text-xl sm:text-2xl font-black text-[#16A34A]">{accuracy}%</div>
+            <div className="font-mono text-xl sm:text-2xl font-bold text-[#16A34A]">{accuracy}%</div>
           </div>
 
           <div className="rounded-[8px] border border-[#E2E8F0] bg-[#F8F9FC] p-2.5 sm:p-3 text-center dark:border-white/10 dark:bg-[#0E1F3D]">
             <div className="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-[#64748B] dark:text-slate-400">
               {en ? 'MAX STREAK' : 'గరిష్ట స్ట్రీక్'}
             </div>
-            <div className="font-mono text-xl sm:text-2xl font-black text-[#2563EB] dark:text-sky-400">{maxCombo}x</div>
+            <div className="font-mono text-xl sm:text-2xl font-bold text-[#2563EB] dark:text-sky-400">{maxCombo}x</div>
           </div>
         </div>
 
@@ -199,7 +199,7 @@ export default function ResultScreen({
         {/* ── 5. TEAM BUILDING SECTION ("THE ABOVE CARD") ── */}
         <div className="border-t border-[#E2E8F0] dark:border-white/10 pt-3 mb-3.5">
           <div className="mb-3 text-center">
-            <h3 className="text-lg sm:text-xl font-black tracking-tight text-[#0B1D3A] dark:text-white">
+            <h3 className="text-lg sm:text-xl font-bold tracking-tight text-[#0B1D3A] dark:text-white">
               {en ? (
                 <>
                   Want to <span className="text-[#C99A2E] dark:text-[#E2C068]">build your team?</span>
@@ -232,7 +232,7 @@ export default function ResultScreen({
                         {card.title}
                       </h4>
                       {card.badge && (
-                        <span className="rounded bg-emerald-500/20 px-1 py-0.2 text-[8px] sm:text-[8.5px] font-black uppercase tracking-wider text-emerald-700 dark:text-emerald-300 border border-emerald-500/30">
+                        <span className="rounded bg-emerald-500/20 px-1 py-0.2 text-[8px] sm:text-[8.5px] font-bold uppercase tracking-wider text-emerald-700 dark:text-emerald-300 border border-emerald-500/30">
                           {card.badge}
                         </span>
                       )}

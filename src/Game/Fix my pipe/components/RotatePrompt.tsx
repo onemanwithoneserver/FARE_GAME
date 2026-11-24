@@ -109,7 +109,7 @@ export default function RotatePrompt({ onDismiss }: RotatePromptProps) {
           </div>
 
           {/* Heading */}
-          <h2 className="mb-2 text-base font-black leading-snug tracking-tight text-white sm:text-xl">
+          <h2 className="mb-2 text-base font-bold leading-snug tracking-tight text-white sm:text-xl">
             {en ? 'Please Rotate to Landscape' : 'దయచేసి ఫోన్‌ను అడ్డంగా తిప్పండి'}
           </h2>
 

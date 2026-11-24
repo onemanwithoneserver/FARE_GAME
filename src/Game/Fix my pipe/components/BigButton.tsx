@@ -81,7 +81,7 @@ export default function BigButton({
               ? 'text-[15px] md:text-base truncate'
               : sm
               ? 'text-[11.5px] sm:text-xs tracking-tight'
-              : 'text-[12.5px] sm:text-[13px] lg:text-[13.5px] tracking-tight whitespace-nowrap'
+              : 'text-[12px] sm:text-[12.5px] lg:text-[13px] tracking-tight leading-snug'
           }`}
         >
           {title}

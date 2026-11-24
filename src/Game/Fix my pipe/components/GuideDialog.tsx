@@ -58,7 +58,7 @@ export default function GuideDialog({ open, onClose, lang }: GuideDialogProps) {
       iconBg: 'bg-emerald-600 shadow-emerald-600/30',
       title: en ? 'Hire / Implement' : 'నియమించు / అమలు',
       badge: '+10 / +3 pts',
-      badgeStyle: 'border-emerald-500/30 bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 font-black',
+      badgeStyle: 'border-emerald-500/30 bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 font-bold',
       containerStyle:
         'border-emerald-500/35 bg-gradient-to-r from-emerald-50/70 via-white to-emerald-50/40 dark:from-emerald-950/25 dark:via-[#0E1F3D] dark:to-emerald-950/15',
       desc: en
@@ -74,7 +74,7 @@ export default function GuideDialog({ open, onClose, lang }: GuideDialogProps) {
       iconBg: 'bg-rose-600 shadow-rose-600/30',
       title: en ? 'Avoid / Reject' : 'వద్దు / తిరస్కరించండి',
       badge: en ? 'Avoids −5 Loss' : '−5 నష్టం నివారణ',
-      badgeStyle: 'border-rose-500/30 bg-rose-500/10 text-rose-700 dark:text-rose-300 font-black',
+      badgeStyle: 'border-rose-500/30 bg-rose-500/10 text-rose-700 dark:text-rose-300 font-bold',
       containerStyle:
         'border-rose-500/35 bg-gradient-to-r from-rose-50/70 via-white to-rose-50/40 dark:from-rose-950/25 dark:via-[#0E1F3D] dark:to-rose-950/15',
       desc: en
@@ -155,11 +155,11 @@ export default function GuideDialog({ open, onClose, lang }: GuideDialogProps) {
           </div>
           <div>
             <div className="flex items-center gap-1.5 sm:gap-2">
-              <h3 id="guide-dialog-title" className="text-sm sm:text-[15px] font-black leading-tight tracking-tight text-[#0B1D3A] dark:text-white">
+              <h3 id="guide-dialog-title" className="text-sm sm:text-[15px] font-bold leading-tight tracking-tight text-[#0B1D3A] dark:text-white">
                 {en ? 'Game Guide' : 'గేమ్ సూచనలు'}
               </h3>
               <span
-                className="bg-amber-400/20 px-1.5 py-0.5 text-[8px] sm:text-[8.5px] font-black uppercase tracking-wider text-amber-700 dark:bg-amber-400/10 dark:text-amber-300 border border-amber-400/30"
+                className="bg-amber-400/20 px-1.5 py-0.5 text-[8px] sm:text-[8.5px] font-bold uppercase tracking-wider text-amber-700 dark:bg-amber-400/10 dark:text-amber-300 border border-amber-400/30"
                 style={{ borderRadius: '2px' }}
               >
                 FARE DESK
@@ -215,13 +215,13 @@ export default function GuideDialog({ open, onClose, lang }: GuideDialogProps) {
                     {st.icon}
                   </span>
                   <span
-                    className={`px-1.5 py-0.2 text-[8.5px] sm:text-[9px] font-black uppercase tracking-wider ${st.badgeBg}`}
+                    className={`px-1.5 py-0.2 text-[8.5px] sm:text-[9px] font-bold uppercase tracking-wider ${st.badgeBg}`}
                     style={{ borderRadius: '2px' }}
                   >
                     {st.step}
                   </span>
                 </div>
-                <div className="text-[11px] sm:text-[11.5px] font-black leading-tight text-[#0B1D3A] dark:text-white">
+                <div className="text-[11px] sm:text-[11.5px] font-bold leading-tight text-[#0B1D3A] dark:text-white">
                   {st.title}
                 </div>
                 <div className="mt-0.5 sm:mt-1 text-[9px] sm:text-[9.5px] font-medium leading-tight text-[#64748B] dark:text-slate-400">
@@ -239,7 +239,7 @@ export default function GuideDialog({ open, onClose, lang }: GuideDialogProps) {
           {/* Section 2: Direct Action Cards */}
           <div className="space-y-2">
             <div className="flex items-center gap-2">
-              <span className="text-[9.5px] sm:text-[10px] font-extrabold uppercase tracking-widest text-[#64748B] dark:text-slate-400">
+              <span className="text-[9.5px] sm:text-[10px] font-bold uppercase tracking-widest text-[#64748B] dark:text-slate-400">
                 {en ? 'How to Make Decisions' : 'నిర్ణయాల విధానం'}
               </span>
               <div className="h-px flex-1 bg-slate-200/80 dark:bg-white/10" />
@@ -260,7 +260,7 @@ export default function GuideDialog({ open, onClose, lang }: GuideDialogProps) {
                       >
                         {act.icon}
                       </span>
-                      <span className="text-xs sm:text-[13px] font-black text-[#0B1D3A] dark:text-white tracking-tight">
+                      <span className="text-xs sm:text-[13px] font-bold text-[#0B1D3A] dark:text-white tracking-tight">
                         {act.title}
                       </span>
                     </div>
@@ -285,7 +285,7 @@ export default function GuideDialog({ open, onClose, lang }: GuideDialogProps) {
                       {act.keys.map((k) => (
                         <kbd
                           key={k}
-                          className="inline-block border border-slate-300 bg-white px-1.5 py-0.5 text-[9.5px] sm:text-[10px] font-black text-[#0B1D3A] shadow-xs dark:border-white/20 dark:bg-[#15284B] dark:text-white"
+                          className="inline-block border border-slate-300 bg-white px-1.5 py-0.5 text-[9.5px] sm:text-[10px] font-bold text-[#0B1D3A] shadow-xs dark:border-white/20 dark:bg-[#15284B] dark:text-white"
                           style={{ borderRadius: '2px' }}
                         >
                           {k}
@@ -311,14 +311,14 @@ export default function GuideDialog({ open, onClose, lang }: GuideDialogProps) {
           <div className="space-y-2">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <span className="text-[9.5px] sm:text-[10px] font-extrabold uppercase tracking-widest text-[#64748B] dark:text-slate-400">
+                <span className="text-[9.5px] sm:text-[10px] font-bold uppercase tracking-widest text-[#64748B] dark:text-slate-400">
                   {en ? 'Scoring & Impact' : 'స్కోరింగ్ ఫలితాలు'}
                 </span>
                 <div className="h-px w-8 sm:w-10 bg-slate-200/80 dark:bg-white/10" />
               </div>
 
               <div
-                className="inline-flex items-center gap-1 border border-amber-500/30 bg-amber-500/10 px-1.5 sm:px-2 py-0.5 text-[8.5px] sm:text-[9.5px] font-black uppercase tracking-wider text-amber-700 dark:text-amber-300"
+                className="inline-flex items-center gap-1 border border-amber-500/30 bg-amber-500/10 px-1.5 sm:px-2 py-0.5 text-[8.5px] sm:text-[9.5px] font-bold uppercase tracking-wider text-amber-700 dark:text-amber-300"
                 style={{ borderRadius: '2px' }}
               >
                 <WhatshotIcon sx={{ fontSize: 12, color: '#D97706' }} />
@@ -340,11 +340,11 @@ export default function GuideDialog({ open, onClose, lang }: GuideDialogProps) {
                     >
                       {r.icon}
                     </span>
-                    <span className={`text-xs sm:text-[13px] font-black tabular-nums ${r.color}`}>
+                    <span className={`text-xs sm:text-[13px] font-bold tabular-nums ${r.color}`}>
                       {r.score}
                     </span>
                   </div>
-                  <span className="mt-1 sm:mt-1.5 text-[10.5px] sm:text-[11px] font-black leading-tight text-[#0B1D3A] dark:text-white">
+                  <span className="mt-1 sm:mt-1.5 text-[10.5px] sm:text-[11px] font-bold leading-tight text-[#0B1D3A] dark:text-white">
                     {r.label}
                   </span>
                   <span className="mt-0.5 text-[8.5px] sm:text-[9px] font-semibold text-[#64748B] dark:text-slate-400">
@@ -368,7 +368,7 @@ export default function GuideDialog({ open, onClose, lang }: GuideDialogProps) {
         <button
           type="button"
           onClick={onClose}
-          className="group relative cursor-pointer overflow-hidden border border-[#1E3A8A]/50 bg-gradient-to-r from-[#0B1D3A] via-[#142A54] to-[#1E3A8A] px-4 sm:px-5 py-1.5 sm:py-2 text-[11px] sm:text-xs font-black tracking-wide text-white shadow-[0_2px_8px_rgba(11,29,58,0.25)] transition-all hover:brightness-110 active:scale-95 dark:border-white/20 dark:from-[#1E3A8A] dark:to-[#2563EB]"
+          className="group relative cursor-pointer overflow-hidden border border-[#1E3A8A]/50 bg-gradient-to-r from-[#0B1D3A] via-[#142A54] to-[#1E3A8A] px-4 sm:px-5 py-1.5 sm:py-2 text-[11px] sm:text-xs font-bold tracking-wide text-white shadow-[0_2px_8px_rgba(11,29,58,0.25)] transition-all hover:brightness-110 active:scale-95 dark:border-white/20 dark:from-[#1E3A8A] dark:to-[#2563EB]"
           style={{ borderRadius: '3px' }}
         >
           <span className="pointer-events-none absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-white/20 to-transparent" />

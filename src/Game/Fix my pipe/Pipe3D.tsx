@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+﻿import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { Environment, Html, Lightformer } from '@react-three/drei';
 import * as THREE from 'three';
@@ -38,16 +38,21 @@ interface Pipe3DProps {
   isFixed: boolean;
   lang: Language;
   flow?: number;
+  hero?: boolean;
 }
 
-function FitCamera({ onPpu }: { onPpu: (v: number) => void }) {
+function FitCamera({ onPpu, hero = false }: { onPpu: (v: number) => void; hero?: boolean }) {
   const { camera, size } = useThree();
   useEffect(() => {
     const cam = camera as THREE.PerspectiveCamera;
     const aspect = size.width / Math.max(1, size.height);
     const isNarrow = size.width < 520;
-    const halfW = (SCENE_MAX_X - SCENE_MIN_X) / 2 + (isNarrow ? -0.22 : 0.28);
-    const halfH = (SCENE_TOP - SCENE_BOTTOM) / 2 + (isNarrow ? 0.04 : 0.1);
+    const halfW =
+      (SCENE_MAX_X - SCENE_MIN_X) / 2 +
+      (hero ? (isNarrow ? -0.45 : -0.35) : isNarrow ? 0.22 : 0.28);
+    const halfH =
+      (SCENE_TOP - SCENE_BOTTOM) / 2 +
+      (hero ? 0.05 : isNarrow ? 0.12 : 0.1);
     const t = Math.tan(THREE.MathUtils.degToRad(cam.fov / 2));
     const dist = Math.max(halfH / t, halfW / (t * aspect));
     const cx = (SCENE_MAX_X + SCENE_MIN_X) / 2;
@@ -56,7 +61,7 @@ function FitCamera({ onPpu }: { onPpu: (v: number) => void }) {
     cam.lookAt(cx, cy, 0);
     cam.updateProjectionMatrix();
     onPpu(size.height / (2 * t * dist));
-  }, [camera, size.width, size.height, onPpu]);
+  }, [camera, size.width, size.height, onPpu, hero]);
   return null;
 }
 
@@ -84,10 +89,10 @@ function StageLabel({ i, ppu, lang }: { i: number; ppu: number; lang: Language }
         <Icon sx={{ fontSize: iconPx, color: '#FFFFFF', filter: 'drop-shadow(0 2px 4px rgba(0,0,0,.45))' }} />
         {showText && (
           <span
-            className="text-center font-extrabold tracking-tight text-white leading-[1.05] break-words"
+            className="text-center font-bold tracking-tight text-white leading-[1.05] break-words hyphens-none"
             style={{
               fontSize: fontPx,
-              maxWidth: Math.round(Math.max(34, Math.min(84, 1.35 * ppu))),
+              maxWidth: Math.round(Math.max(68, Math.min(115, 2.0 * ppu))),
               textShadow: '0 2px 6px rgba(0,0,0,.75)',
             }}
           >
@@ -417,7 +422,7 @@ function GoldenTap({ flow }: { flow: number }) {
 
   return (
     <group>
-      {/* ── Transition Connector: pipe → faucet ── */}
+      {/* â”€â”€ Transition Connector: pipe â†’ faucet â”€â”€ */}
       <mesh position={[LAST_EDGE + 0.14, PIPE_Y, 0]} rotation={[0, 0, Math.PI / 2]}>
         <cylinderGeometry args={[0.48, 0.48, 0.1, 32]} />
         <meshStandardMaterial {...GOLD_LIGHT} />
@@ -427,7 +432,7 @@ function GoldenTap({ flow }: { flow: number }) {
         <meshStandardMaterial {...GOLD} />
       </mesh>
 
-      {/* ── Smooth Faucet Body (rounded cylinder, not a sphere) ── */}
+      {/* â”€â”€ Smooth Faucet Body (rounded cylinder, not a sphere) â”€â”€ */}
       <mesh position={[TAP_X, PIPE_Y, 0]} rotation={[0, 0, Math.PI / 2]}>
         <cylinderGeometry args={[0.34, 0.34, 0.5, 32]} />
         <meshStandardMaterial {...GOLD} />
@@ -447,7 +452,7 @@ function GoldenTap({ flow }: { flow: number }) {
         <meshStandardMaterial {...GOLD_BRIGHT} />
       </mesh>
 
-      {/* ── Elegant Curved Swan-Neck Spout ── */}
+      {/* â”€â”€ Elegant Curved Swan-Neck Spout â”€â”€ */}
       {/* Upper curve section */}
       <mesh position={[TAP_X, PIPE_Y - 0.14, 0]}>
         <cylinderGeometry args={[0.2, 0.22, 0.28, 24]} />
@@ -458,7 +463,7 @@ function GoldenTap({ flow }: { flow: number }) {
         <cylinderGeometry args={[0.16, 0.19, 0.16, 24]} />
         <meshStandardMaterial {...GOLD} />
       </mesh>
-      {/* Lower spout — elegant taper to tip */}
+      {/* Lower spout â€” elegant taper to tip */}
       <mesh position={[TAP_X, PIPE_Y - 0.47, 0]}>
         <cylinderGeometry args={[0.11, 0.15, 0.14, 24]} />
         <meshStandardMaterial {...GOLD_LIGHT} />
@@ -469,7 +474,7 @@ function GoldenTap({ flow }: { flow: number }) {
         <meshStandardMaterial {...GOLD_BRIGHT} />
       </mesh>
 
-      {/* ── Modern Lever Handle (tilts when flowing) ── */}
+      {/* â”€â”€ Modern Lever Handle (tilts when flowing) â”€â”€ */}
       <mesh position={[TAP_X, PIPE_Y + 0.36, 0]}>
         <cylinderGeometry args={[0.055, 0.065, 0.14, 16]} />
         <meshStandardMaterial {...GOLD_LIGHT} />
@@ -492,7 +497,7 @@ function GoldenTap({ flow }: { flow: number }) {
         </mesh>
       </group>
 
-      {/* ── Golden Revenue Stream ── */}
+      {/* â”€â”€ Golden Revenue Stream â”€â”€ */}
       <mesh ref={streamRef} position={[TAP_X, (spoutTip + vaultTop) / 2, 0]}>
         <cylinderGeometry args={[0.055, 0.085, spoutTip - vaultTop, 16, 1, true]} />
         <meshBasicMaterial color="#FCD34D" transparent opacity={0.78} />
@@ -500,7 +505,7 @@ function GoldenTap({ flow }: { flow: number }) {
       {/* Faint glow on the stream */}
       <pointLight ref={glowRef} position={[TAP_X, (spoutTip + vaultTop) / 2, 0.3]} color="#FCD34D" distance={2} />
 
-      {/* ── Falling Gold Coins ── */}
+      {/* â”€â”€ Falling Gold Coins â”€â”€ */}
       <instancedMesh ref={dropsRef} args={[undefined, undefined, 12]} frustumCulled={false}>
         <cylinderGeometry args={[1, 1, 0.28, 16]} />
         <meshStandardMaterial {...GOLD} color="#FCD34D" />
@@ -562,19 +567,19 @@ function TreasureVault({ flow, isDark }: { flow: number; isDark: boolean }) {
 
   return (
     <group>
-      {/* ── Tiered Pedestal Base ── */}
-      {/* Bottom tier — wide */}
+      {/* â”€â”€ Tiered Pedestal Base â”€â”€ */}
+      {/* Bottom tier â€” wide */}
       <mesh position={[x, FLOOR_Y + 0.025, 0]}>
         <boxGeometry args={[1.3, 0.05, 0.9]} />
         <meshStandardMaterial color={isDark ? '#0D1B35' : '#CBD5E1'} metalness={0.4} roughness={0.45} />
       </mesh>
-      {/* Top tier — slightly smaller */}
+      {/* Top tier â€” slightly smaller */}
       <mesh position={[x, FLOOR_Y + 0.065, 0]}>
         <boxGeometry args={[1.18, 0.04, 0.8]} />
         <meshStandardMaterial {...GOLD} roughness={0.35} />
       </mesh>
 
-      {/* ── Vault Body — Rich Navy with Gold Emboss ── */}
+      {/* â”€â”€ Vault Body â€” Rich Navy with Gold Emboss â”€â”€ */}
       <mesh position={[x, y, 0]}>
         <boxGeometry args={[1.1, h, 0.74]} />
         <meshStandardMaterial
@@ -587,7 +592,7 @@ function TreasureVault({ flow, isDark }: { flow: number; isDark: boolean }) {
         />
       </mesh>
 
-      {/* ── Elegant Gold Frame — Thin Corner Pillars ── */}
+      {/* â”€â”€ Elegant Gold Frame â€” Thin Corner Pillars â”€â”€ */}
       {/* Vertical corner pillars */}
       {[[-0.52, 0.34], [-0.52, -0.34], [0.52, 0.34], [0.52, -0.34]].map(([dx, dz], k) => (
         <mesh key={`pillar-${k}`} position={[x + dx, y, dz]}>
@@ -606,7 +611,7 @@ function TreasureVault({ flow, isDark }: { flow: number; isDark: boolean }) {
         <meshStandardMaterial {...GOLD} />
       </mesh>
 
-      {/* ── Front Emblem: FARE Shield ── */}
+      {/* â”€â”€ Front Emblem: FARE Shield â”€â”€ */}
       {/* Shield backing plate */}
       <mesh position={[x, y + 0.04, 0.38]}>
         <cylinderGeometry args={[0.11, 0.1, 0.03, 6]} />
@@ -618,14 +623,14 @@ function TreasureVault({ flow, isDark }: { flow: number; isDark: boolean }) {
         <meshStandardMaterial color="#0B1D3A" metalness={0.7} roughness={0.3} />
       </mesh>
 
-      {/* ── Open Lid — Angled Back with Polished Interior ── */}
+      {/* â”€â”€ Open Lid â€” Angled Back with Polished Interior â”€â”€ */}
       <group position={[x, top, -0.37]} rotation={[-0.55, 0, 0]}>
         {/* Lid body */}
         <mesh position={[0, 0.12, 0.3]}>
           <boxGeometry args={[1.1, 0.09, 0.7]} />
           <meshStandardMaterial color="#0B1D3A" metalness={0.6} roughness={0.35} />
         </mesh>
-        {/* Lid inner lining — gold satin */}
+        {/* Lid inner lining â€” gold satin */}
         <mesh position={[0, 0.072, 0.3]} rotation={[0, 0, 0]}>
           <boxGeometry args={[1.02, 0.01, 0.62]} />
           <meshStandardMaterial {...GOLD_LIGHT} />
@@ -637,7 +642,7 @@ function TreasureVault({ flow, isDark }: { flow: number; isDark: boolean }) {
         </mesh>
       </group>
 
-      {/* ── Coin Pile — Overflowing Gold ── */}
+      {/* â”€â”€ Coin Pile â€” Overflowing Gold â”€â”€ */}
       {/* Base gold mound */}
       <mesh position={[x, top - 0.01, 0.02]} scale={[0.46, 0.09 + flow * 0.06, 0.28]}>
         <sphereGeometry args={[1, 28, 14, 0, Math.PI * 2, 0, Math.PI / 2]} />
@@ -651,13 +656,13 @@ function TreasureVault({ flow, isDark }: { flow: number; isDark: boolean }) {
         </mesh>
       ))}
 
-      {/* ── Sparkle Particle Effects ── */}
+      {/* â”€â”€ Sparkle Particle Effects â”€â”€ */}
       <instancedMesh ref={sparkRef} args={[undefined, undefined, 24]} frustumCulled={false}>
         <sphereGeometry args={[1, 6, 6]} />
         <meshBasicMaterial color="#FDE68A" />
       </instancedMesh>
 
-      {/* ── Warm Glow Light ── */}
+      {/* â”€â”€ Warm Glow Light â”€â”€ */}
       <pointLight ref={lightRef} position={[x, top + 0.6, 0.6]} color="#E8C252" distance={4.5} />
     </group>
   );
@@ -707,7 +712,7 @@ function PipelineScene({ activeLeakStage, leakLevel, isFixed, flow, ppu, lang, i
   );
 }
 
-export default function Pipe3D({ activeLeakStage, leakLevel, isFixed, lang, flow }: Pipe3DProps) {
+export default function Pipe3D({ activeLeakStage, leakLevel, isFixed, lang, flow, hero = false }: Pipe3DProps) {
   const isDark = usePipeGameStore((s) => s.theme === 'dark');
   const [ppu, setPpu] = useState(0);
   const handlePpu = useCallback((v: number) => setPpu((prev) => (Math.abs(prev - v) > 0.5 ? v : prev)), []);
@@ -715,7 +720,7 @@ export default function Pipe3D({ activeLeakStage, leakLevel, isFixed, lang, flow
   return (
     <div className="absolute inset-0">
       <Canvas dpr={[1, 1.75]} gl={{ alpha: true, antialias: true, powerPreference: 'high-performance' }} camera={{ fov: 16, near: 0.1, far: 100 }}>
-        <FitCamera onPpu={handlePpu} />
+        <FitCamera onPpu={handlePpu} hero={hero} />
         <ambientLight intensity={isDark ? 0.55 : 0.75} />
         <hemisphereLight args={[isDark ? '#BFDBFE' : '#FFFFFF', isDark ? '#0B1D3A' : '#CBD5E1', isDark ? 0.65 : 0.8]} />
         <directionalLight position={[4, 7, 6]} intensity={1.6} />
