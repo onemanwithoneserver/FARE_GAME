@@ -93,7 +93,7 @@ export default function RoundEndModal({
         <div className="mb-6">
           <h4 className="mb-2.5 text-[10px] font-bold uppercase tracking-[0.16em] text-[#64748B] dark:text-slate-400">
             {isPerson
-              ? lang === 'en' ? 'Top Candidate Fits For This Problem' : 'ఈ సమస్యకు సరిపోయే బెస్ట్ అభ్యర్థులు'
+              ? lang === 'en' ? 'Top Candidate Fits For This Problem' : 'ఈ సమస్యకు సరిపోయే అత్యుత్తమ అభ్యర్థులు'
               : lang === 'en' ? 'Highest-Impact Process Fixes' : 'అత్యధిక ప్రభావం చూపించే సిస్టమ్స్'}
           </h4>
           <div className="space-y-2">

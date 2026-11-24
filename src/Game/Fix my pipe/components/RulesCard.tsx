@@ -47,7 +47,7 @@ function slides(lang: Language): Row[][] {
     ],
     [
       { tone: 'red', renderIcon: (px) => <Layers3DIcon size={px} />, title: en ? '3 Cases' : '3 కేసులు', text: en ? 'Each case has one leaking funnel stage.' : 'ప్రతి కేసులో ఒక దశ లీక్ అవుతుంది.' },
-      { tone: 'blue', renderIcon: (px) => <GroupsIcon sx={{ fontSize: px, color: '#FFFFFF' }} />, title: en ? '8 Cards' : '8 కార్డులు', text: en ? 'Review every candidate or idea and decide.' : 'ప్రతి అభ్యర్థి లేదా ఐడియాను పరిశీలించి నిర్ణయించండి.' },
+      { tone: 'blue', renderIcon: (px) => <GroupsIcon sx={{ fontSize: px, color: '#FFFFFF' }} />, title: en ? '8 Cards' : '8 కార్డులు', text: en ? 'Review every candidate or idea and decide.' : 'ప్రతి అభ్యర్థి లేదా ఆలోచనను పరిశీలించి నిర్ణయించండి.' },
       { tone: 'green', renderIcon: (px) => <VerifiedUserIcon sx={{ fontSize: px, color: '#FFFFFF' }} />, title: en ? 'Seal it' : 'సీల్ చేయండి', text: en ? 'Seal the leak to send gold to the vault.' : 'లీక్ ఆపితే బంగారం వాల్ట్‌లోకి వెళ్తుంది.' },
     ],
     [

@@ -219,7 +219,7 @@ export default function Hud({ center, compact = false }: { center?: ReactNode; c
                       sound ? 'bg-[#16A34A]' : 'bg-[#64748B]'
                     }`}
                   >
-                    {sound ? 'ON' : 'OFF'}
+                    {sound ? (lang === 'en' ? 'ON' : 'ఆన్') : (lang === 'en' ? 'OFF' : 'ఆఫ్')}
                   </span>
                 </button>
 
@@ -247,7 +247,7 @@ export default function Hud({ center, compact = false }: { center?: ReactNode; c
                       song ? 'bg-[#4F46E5]' : 'bg-[#64748B]'
                     }`}
                   >
-                    {song ? 'ON' : 'OFF'}
+                    {song ? (lang === 'en' ? 'ON' : 'ఆన్') : (lang === 'en' ? 'OFF' : 'ఆఫ్')}
                   </span>
                 </button>
 
@@ -267,7 +267,7 @@ export default function Hud({ center, compact = false }: { center?: ReactNode; c
                     </div>
                   </div>
                   <span className="rounded-[3px] border border-[#DBE4FA] bg-[#F1F5F9] px-2 py-0.5 text-[10px] font-bold text-[#0B1D3A] dark:border-white/15 dark:bg-white/10 dark:text-white">
-                    {isDark ? 'Dark' : 'Light'}
+                    {isDark ? (lang === 'en' ? 'Dark' : 'డార్క్') : (lang === 'en' ? 'Light' : 'లైట్')}
                   </span>
                 </button>
 
@@ -306,7 +306,7 @@ export default function Hud({ center, compact = false }: { center?: ReactNode; c
                         <GroupsIcon sx={{ fontSize: 16, color: '#FFFFFF' }} />
                       </span>
                       <div>
-                        <div className="text-xs font-bold text-[#0B1D3A] dark:text-white">{lang === 'en' ? 'Team Roster' : 'హైర్ చేసిన టీమ్'}</div>
+                        <div className="text-xs font-bold text-[#0B1D3A] dark:text-white">{lang === 'en' ? 'Team Roster' : 'ఎంపికైన బృందం'}</div>
                         <div className="text-[10px] text-[#64748B] dark:text-slate-400">{hiredTeam.length} {lang === 'en' ? 'hires' : 'సభ్యులు'}</div>
                       </div>
                     </div>

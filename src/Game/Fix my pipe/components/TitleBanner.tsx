@@ -22,7 +22,7 @@ export default function TitleBanner({ compact = false, subtitle }: { compact?: b
       </span>
 
       <h1
-        className={`font-bold leading-tight tracking-tight text-[#0B1D3A] dark:text-white ${
+        className={`font-semibold leading-tight tracking-tight text-[#0B1D3A] dark:text-white ${
           compact
             ? 'mt-1 text-base sm:text-lg md:text-xl'
             : 'mt-1.5 text-2xl sm:text-3xl md:text-4xl'
@@ -34,7 +34,7 @@ export default function TitleBanner({ compact = false, subtitle }: { compact?: b
           </>
         ) : (
           <>
-            మీ <span className="text-[#C99A2E]">Sales Funnel</span> ని ఎలా fix చేస్తారు?
+            మీ <span className="text-[#C99A2E]">సేల్స్ ఫన్నెల్</span> ని ఎలా సరిచేస్తారు?
           </>
         )}
       </h1>

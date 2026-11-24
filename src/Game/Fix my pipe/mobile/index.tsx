@@ -211,7 +211,7 @@ export default function MobileView() {
                     message={
                       <div className="flex flex-col gap-0.5">
                         <div className="font-bold text-[#0B1D3A] dark:text-amber-300 text-xs">
-                          🎮 {en ? "Let's play a Game!" : "Let's play a Game · రండి గేమ్ ఆడదాం!"}
+                          🎮 {en ? "Let's play a Game!" : "రండి గేమ్ ఆడదాం!"}
                         </div>
                         <div className="text-[9.5px] text-[#475569] dark:text-slate-300">
                           {en
@@ -390,7 +390,7 @@ export default function MobileView() {
                 message={
                   <div className="flex flex-col gap-0.5">
                     <div className="font-bold text-[#0B1D3A] dark:text-amber-300 text-xs sm:text-sm">
-                      🎮 {en ? "Let's play a Game!" : "Let's play a Game · రండి గేమ్ ఆడదాం!"}
+                      🎮 {en ? "Let's play a Game!" : "రండి గేమ్ ఆడదాం!"}
                     </div>
                     <div className="text-[10px] sm:text-[11px] text-[#475569] dark:text-slate-300">
                       {en
@@ -437,7 +437,7 @@ export default function MobileView() {
                         animate={{ y: -32, scale: 1.25, opacity: 1 }}
                         exit={{ y: -50, scale: 1.05, opacity: 0 }}
                         transition={{ duration: 0.65, ease: 'easeOut' }}
-                        className={`pointer-events-none absolute left-1/2 -translate-x-1/2 -top-2 z-40 font-bold text-2xl drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)] ${
+                        className={`pointer-events-none absolute left-1/2 -translate-x-1/2 -top-2 z-40 font-semibold text-2xl drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)] ${
                           scorePop.delta > 0 ? 'text-emerald-500' : 'text-rose-500'
                         }`}
                       >
@@ -491,9 +491,13 @@ export default function MobileView() {
                   </motion.div>
 
                   <div className="flex flex-col items-center gap-0.5 px-1">
-                    <div className="grid h-6 w-6 place-items-center rounded-full border border-slate-200 bg-white text-[10px] font-bold shadow-xs dark:border-white/10 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
-                      VS
-                    </div>
+                    <motion.div
+                      animate={{ scale: [1, 1.08, 1] }}
+                      transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut' }}
+                      className="grid h-6 w-6 place-items-center rounded-full border border-slate-200 bg-white text-[10px] font-bold shadow-xs dark:border-white/10 dark:bg-slate-800 text-slate-600 dark:text-slate-300"
+                    >
+                      {en ? 'VS' : 'మధ్య'}
+                    </motion.div>
                     <span className="text-[8px] font-bold uppercase tracking-wider text-slate-400">
                       {en ? 'Interview' : 'ఇంటర్వ్యూ'}
                     </span>
@@ -544,7 +548,7 @@ export default function MobileView() {
                             : 'తర్వాతి అభ్యర్థి'
                           : en
                           ? 'Next Idea'
-                          : 'తర్వాతి ఐడియా'
+                          : 'తర్వాతి ఆలోచన'
                       }
                       onClick={() => advanceCard()}
                       className="!px-4 !py-1.5"
@@ -560,7 +564,7 @@ export default function MobileView() {
                       iconNode={<Cross3DIcon size={14} />}
                       title={isPerson ? (en ? 'Reject' : 'వద్దు') : en ? 'Pass' : 'వద్దు'}
                       onClick={() => decide(false)}
-                      className="flex-1 max-w-[138px] justify-center !py-1.5 !px-3 !text-xs font-bold"
+                      className="flex-1 max-w-[138px] justify-center !py-1.5 !px-3 !text-xs font-semibold"
                     />
 
                     <BigButton
@@ -571,7 +575,7 @@ export default function MobileView() {
                       iconNode={<Check3DIcon size={15} />}
                       title={isPerson ? (en ? 'Hire' : 'నియమించు') : en ? 'Implement' : 'అమలు చేయండి'}
                       onClick={() => decide(true)}
-                      className="flex-1 max-w-[138px] justify-center !py-1.5 !px-3 !text-xs font-bold"
+                      className="flex-1 max-w-[138px] justify-center !py-1.5 !px-3 !text-xs font-semibold"
                     />
                   </div>
                 )}

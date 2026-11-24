@@ -76,7 +76,7 @@ export default function BigButton({
       )}
       <span className="min-w-0 flex-1">
         <span
-          className={`block font-bold leading-tight ${
+          className={`block font-semibold leading-tight ${
             lg
               ? 'text-[15px] md:text-base truncate'
               : sm

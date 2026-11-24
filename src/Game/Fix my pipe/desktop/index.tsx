@@ -140,7 +140,7 @@ export default function DesktopView() {
                   message={
                     <div className="flex flex-col gap-0.5">
                       <div className="font-bold text-[#0B1D3A] dark:text-amber-300 text-sm sm:text-base">
-                        🎮 {en ? "Let's play a Game!" : "Let's play a Game · రండి గేమ్ ఆడదాం!"}
+                        🎮 {en ? "Let's play a Game!" : "రండి గేమ్ ఆడదాం!"}
                       </div>
                       <div className="text-xs text-[#475569] dark:text-slate-300">
                         {en

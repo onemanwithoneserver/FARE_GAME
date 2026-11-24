@@ -847,7 +847,7 @@ export function CandidateCharacter({ item, isPerson, lang, reactionKey, compact 
       {/* Identity Pill */}
       <div className={`flex items-center gap-1.5 rounded-full border border-[#38BDF8]/60 bg-[#0B1D3A] text-white shadow-md ${compact ? 'mt-0.5 px-2.5 py-0.5 text-[8.5px]' : '-mt-1 px-3.5 py-1 text-[11px]'} font-bold`}>
         <span className="h-1.5 w-1.5 rounded-full bg-[#38BDF8] animate-pulse" />
-        <span className="max-w-[100px] truncate tracking-wide text-white">{isPerson ? (lang === 'en' ? 'Candidate' : 'అభ్యర్థి') : lang === 'en' ? 'Idea' : 'ఐడియా'}</span>
+        <span className="max-w-[100px] truncate tracking-wide text-white">{isPerson ? (lang === 'en' ? 'Candidate' : 'అభ్యర్థి') : lang === 'en' ? 'Idea' : 'ఆలోచన'}</span>
       </div>
     </motion.div>
   );

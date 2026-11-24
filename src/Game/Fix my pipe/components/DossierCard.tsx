@@ -1,3 +1,4 @@
+import { motion, type Variants } from 'framer-motion';
 import PersonIcon from '@mui/icons-material/Person';
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
@@ -16,6 +17,7 @@ const QUALITY_META: Record<
     cardTint: string;
     badgeCls: string;
     ptsCls: string;
+    glow: string;
   }
 > = {
   ideal: {
@@ -25,6 +27,7 @@ const QUALITY_META: Record<
     cardTint: 'border-emerald-300/80 bg-emerald-50/40 dark:border-emerald-500/40 dark:bg-emerald-950/25',
     badgeCls: 'bg-emerald-600 text-white',
     ptsCls: 'bg-emerald-600 text-white',
+    glow: 'rgba(22,163,74,0.35)',
   },
   part: {
     en: '🤔 Partial decision',
@@ -33,6 +36,7 @@ const QUALITY_META: Record<
     cardTint: 'border-amber-300/80 bg-amber-50/40 dark:border-amber-500/40 dark:bg-amber-950/25',
     badgeCls: 'bg-amber-500 text-[#0B1D3A]',
     ptsCls: 'bg-amber-500 text-[#0B1D3A]',
+    glow: 'rgba(217,119,6,0.3)',
   },
   bad: {
     en: '❌ Incorrect decision',
@@ -41,7 +45,25 @@ const QUALITY_META: Record<
     cardTint: 'border-rose-300/80 bg-rose-50/40 dark:border-rose-500/40 dark:bg-rose-950/25',
     badgeCls: 'bg-rose-600 text-white',
     ptsCls: 'bg-rose-600 text-white',
+    glow: 'rgba(220,38,38,0.3)',
   },
+};
+
+const EASE = [0.16, 1, 0.3, 1] as const;
+
+const containerV: Variants = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.07, delayChildren: 0.05 } },
+};
+
+const itemV: Variants = {
+  hidden: { opacity: 0, y: 12, filter: 'blur(4px)' },
+  show: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 0.42, ease: EASE } },
+};
+
+const popV: Variants = {
+  hidden: { opacity: 0, scale: 0.4 },
+  show: { opacity: 1, scale: 1, transition: { type: 'spring', stiffness: 520, damping: 18 } },
 };
 
 export interface CardFeedback {
@@ -57,6 +79,43 @@ export interface ProblemInfo {
   leakName?: string;
   problemNumber?: string;
   text: string;
+}
+
+function TopStripe({ className }: { className: string }) {
+  return (
+    <motion.span
+      initial={{ scaleX: 0 }}
+      animate={{ scaleX: 1 }}
+      transition={{ duration: 0.6, ease: EASE }}
+      style={{ originX: 0 }}
+      className={`absolute inset-x-0 top-0 h-1 ${className}`}
+    />
+  );
+}
+
+function ProblemHeader({ problem, en, dense }: { problem: ProblemInfo; en: boolean; dense: boolean }) {
+  return (
+    <motion.div variants={itemV} className={`border-b border-slate-200/80 dark:border-white/10 ${dense ? 'pb-3' : 'pb-3.5'}`}>
+      <div className="flex items-center justify-between text-[10px] font-semibold uppercase tracking-[0.12em]">
+        <div className="flex items-center gap-1.5 text-[#DC2626] dark:text-rose-400">
+          <span className="relative flex h-1.5 w-1.5">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#DC2626] opacity-75" />
+            <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[#DC2626]" />
+          </span>
+          {problem.leakName ? `${problem.leakName} · ` : ''}
+          {en ? 'Drop-off' : 'డ్రాప్-ఆఫ్'}
+        </div>
+        {problem.problemNumber && (
+          <span className="font-semibold text-[#C99A2E] dark:text-[#E2C068] tracking-widest">
+            {problem.problemNumber}
+          </span>
+        )}
+      </div>
+      <h2 className={`mt-1.5 font-semibold leading-snug text-[#0B1D3A] dark:text-white ${dense ? 'text-sm' : 'text-[15px] sm:text-base'}`}>
+        {problem.text}
+      </h2>
+    </motion.div>
+  );
 }
 
 interface DossierCardProps {
@@ -96,171 +155,210 @@ export default function DossierCard({
   if (awaitingNext && feedback) {
     const qm = QUALITY_META[feedback.quality];
     const ptsText = feedback.scoreDelta > 0 ? `+${feedback.scoreDelta}` : `${feedback.scoreDelta}`;
+    const isBad = feedback.quality === 'bad';
+    const isIdeal = feedback.quality === 'ideal';
 
     return (
-      <div
-        className={`fare-card-3d relative w-full overflow-hidden rounded-[8px] sm:rounded-[10px] border ${qm.cardTint} ${
-          dense ? 'p-3 sm:p-3.5' : 'p-3.5 sm:p-4 md:p-4.5'
+      <motion.div
+        variants={containerV}
+        initial="hidden"
+        animate="show"
+        className={`fare-card-3d relative flex w-full flex-col overflow-hidden rounded-[10px] sm:rounded-[12px] border ${qm.cardTint} ${
+          dense ? 'gap-3 p-4' : 'gap-3.5 p-5'
         }`}
       >
-        <span className={`absolute inset-x-0 top-0 h-1 ${qm.stripe}`} />
+        <motion.div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 rounded-[inherit]"
+          initial={{ boxShadow: `inset 0 0 0 0 ${qm.glow}` }}
+          animate={
+            isBad
+              ? { x: [0, -7, 7, -5, 5, -2, 0], boxShadow: [`inset 0 0 0 0 ${qm.glow}`, `inset 0 0 28px 2px ${qm.glow}`, `inset 0 0 0 0 ${qm.glow}`] }
+              : { boxShadow: [`inset 0 0 0 0 ${qm.glow}`, `inset 0 0 30px 3px ${qm.glow}`, `inset 0 0 10px 0 ${qm.glow}`] }
+          }
+          transition={{ duration: isBad ? 0.5 : 1.1, ease: 'easeOut' }}
+        />
+        <TopStripe className={qm.stripe} />
 
-        {problem && (
-          <div className={`border-b border-slate-200/80 dark:border-white/10 ${dense ? 'pb-2 mb-2 sm:pb-2.5 sm:mb-2.5' : 'pb-2.5 mb-3'}`}>
-            <div className="flex items-center justify-between gap-2 text-[9.5px] font-bold uppercase tracking-[0.1em] text-[#DC2626] dark:text-rose-400">
-              <span className="flex items-center gap-1.5">
-                <span className="h-1.5 w-1.5 rounded-full bg-[#DC2626] animate-pulse" />
-                {problem.leakName ? `${problem.leakName} · ` : ''}{en ? 'Drop-off' : 'డ్రాప్-ఆఫ్'}
-              </span>
-              {problem.problemNumber && (
-                <span className="text-[#C99A2E]">{problem.problemNumber}</span>
-              )}
-            </div>
-            <h2 className={`mt-0.5 font-bold leading-snug text-[#0B1D3A] dark:text-white ${dense ? 'text-xs sm:text-[13px]' : 'text-sm sm:text-base'}`}>
-              {problem.text}
-            </h2>
+        {isIdeal && (
+          <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
+            {Array.from({ length: 10 }).map((_, i) => (
+              <motion.span
+                key={i}
+                className="absolute top-3 h-1.5 w-1.5 rounded-full"
+                style={{
+                  left: `${8 + i * 9}%`,
+                  background: ['#16A34A', '#C99A2E', '#38BDF8', '#F472B6'][i % 4],
+                }}
+                initial={{ y: 0, opacity: 1, scale: 1 }}
+                animate={{ y: [0, -18 - (i % 3) * 8, 60], x: [0, (i % 2 ? 1 : -1) * 12], opacity: [1, 1, 0], rotate: 180 }}
+                transition={{ duration: 1.3, delay: 0.15 + i * 0.03, ease: 'easeOut' }}
+              />
+            ))}
           </div>
         )}
 
-        <div className="flex items-center justify-between gap-2 mb-2">
-          <div className="flex items-center gap-2 min-w-0">
-            <div className={`grid shrink-0 place-items-center rounded-full border border-[#E2E8F0] bg-white dark:border-white/15 dark:bg-[#15284B] ${dense ? 'h-7 w-7 text-sm' : 'h-8 w-8 text-base'}`}>
+        {problem && <ProblemHeader problem={problem} en={en} dense={dense} />}
+
+        <motion.div variants={itemV} className="flex items-center justify-between gap-2.5">
+          <div className="flex items-center gap-2.5 min-w-0 flex-1">
+            <motion.div
+              animate={{ y: [0, -3, 0] }}
+              transition={{ duration: 2.4, repeat: Infinity, ease: 'easeInOut' }}
+              className={`grid shrink-0 place-items-center rounded-[8px] border border-[#E2E8F0] bg-[#F8F9FC] dark:border-white/15 dark:bg-[#15284B] ${dense ? 'h-9 w-9 text-lg' : 'h-10 w-10 text-xl'}`}
+            >
               {item.emoji}
-            </div>
-            <span className={`truncate font-bold text-[#0B1D3A] dark:text-white ${dense ? 'text-xs sm:text-[13px]' : 'text-sm'}`}>
+            </motion.div>
+            <h3 className={`font-semibold leading-snug text-[#0B1D3A] dark:text-white ${dense ? 'text-xs sm:text-sm' : 'text-sm sm:text-[15px]'}`}>
               {translateText(item.name, lang)}
-            </span>
+            </h3>
           </div>
-          <span className={`shrink-0 rounded-full px-2.5 py-0.5 font-mono font-bold tabular-nums shadow-xs ${qm.ptsCls} ${dense ? 'text-xs' : 'text-xs sm:text-sm'}`}>
+          <motion.span
+            initial={{ scale: 0, rotate: -25, opacity: 0 }}
+            animate={{ scale: [0, 1.35, 1], rotate: 0, opacity: 1 }}
+            transition={{ duration: 0.55, delay: 0.25, ease: EASE }}
+            className={`shrink-0 rounded-full px-2.5 py-0.5 font-mono font-semibold tabular-nums shadow-xs ${qm.ptsCls} ${dense ? 'text-xs' : 'text-xs sm:text-sm'}`}
+          >
             {ptsText}
-          </span>
-        </div>
+          </motion.span>
+        </motion.div>
 
-        <div className="mb-1.5">
-          <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 font-bold uppercase tracking-wider ${qm.badgeCls} ${dense ? 'text-[9px] sm:text-[9.5px]' : 'text-[10px]'}`}>
+        <motion.div variants={itemV} className="flex flex-col items-start gap-1.5">
+          <motion.span
+            variants={popV}
+            className={`inline-flex items-center rounded-full px-2.5 py-0.5 font-semibold uppercase tracking-wider ${qm.badgeCls} ${dense ? 'text-[9.5px]' : 'text-[10px]'}`}
+          >
             {qm[lang]}
-          </span>
-        </div>
+          </motion.span>
+          <div className={`font-semibold leading-snug text-[#0B1D3A] dark:text-white ${dense ? 'text-xs sm:text-[13.5px]' : 'text-sm sm:text-[15px]'}`}>
+            {translateText(feedback.text, lang)}
+          </div>
+        </motion.div>
 
-        <div className={`font-bold leading-snug text-[#0B1D3A] dark:text-white ${dense ? 'text-[13px] sm:text-sm mb-2' : 'text-base sm:text-[17px] mb-2.5'}`}>
-          {translateText(feedback.text, lang)}
-        </div>
-
-        <div className={`flex items-start gap-2 rounded-[7px] border border-[#E2E8F0] bg-white/85 dark:border-white/10 dark:bg-[#071124]/65 ${dense ? 'px-2.5 py-2 mb-2' : 'px-3 py-2.5 mb-2.5'}`}>
-          <span className="shrink-0 font-bold uppercase tracking-wider text-[#C99A2E] text-[10px] mt-0.5">
+        <motion.div
+          variants={itemV}
+          className={`flex items-start gap-2.5 rounded-[8px] border border-[#E2E8F0] bg-white/85 dark:border-white/10 dark:bg-[#071124]/65 ${dense ? 'px-3 py-2.5' : 'px-3.5 py-3'}`}
+        >
+          <span className="shrink-0 font-semibold uppercase tracking-wider text-[#C99A2E] text-[10px] mt-0.5">
             {en ? 'Why' : 'ఎందుకు'}
           </span>
           <p className={`font-medium leading-snug text-[#1E293B] dark:text-slate-100 ${dense ? 'text-xs' : 'text-xs sm:text-sm'}`}>
             {translateText(item.reason, lang)}
           </p>
-        </div>
+        </motion.div>
 
         {isPerson && (item.detail || item.pros || item.cons) && (
-          <div className={`border-t border-[#E2E8F0] dark:border-white/10 ${dense ? 'pt-2 space-y-1.5' : 'pt-2.5 space-y-2'}`}>
-            <div className="text-[9.5px] font-bold uppercase tracking-widest text-[#64748B] dark:text-slate-400">
+          <motion.div
+            variants={itemV}
+            className={`flex flex-col border-t border-[#E2E8F0] dark:border-white/10 ${dense ? 'pt-3 gap-2' : 'pt-3.5 gap-2.5'}`}
+          >
+            <div className="text-[10px] font-semibold uppercase tracking-widest text-[#64748B] dark:text-slate-400">
               {en ? 'About this profile' : 'ఈ ప్రొఫైల్ గురించి'}
             </div>
             {item.detail && (
-              <p className={`text-[#475569] dark:text-slate-300 leading-snug ${dense ? 'text-[11px]' : 'text-xs'}`}>
+              <p className={`text-[#475569] dark:text-slate-300 leading-relaxed ${dense ? 'text-xs' : 'text-[13px]'}`}>
                 {translateText(item.detail, lang)}
               </p>
             )}
             {(item.pros || item.cons) && (
-              <div className="grid gap-1">
+              <div className="grid gap-1.5">
                 {item.pros && (
-                  <div className={`flex items-start gap-2 rounded-[6px] bg-white/75 dark:bg-[#0B172E]/70 border border-[#E2E8F0]/80 dark:border-white/10 ${dense ? 'px-2 py-1 text-[11px]' : 'px-2.5 py-1.5 text-xs'}`}>
-                    <span className="grid h-4 w-4 shrink-0 place-items-center rounded-full bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 font-bold text-[10px] mt-0.5">
+                  <motion.div
+                    initial={{ opacity: 0, x: -14 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.45, duration: 0.35, ease: EASE }}
+                    className={`flex items-start gap-2.5 rounded-[8px] bg-white/75 dark:bg-[#0B172E]/70 border border-[#E2E8F0]/80 dark:border-white/10 ${dense ? 'px-3 py-2 text-xs' : 'px-3.5 py-2.5 text-[13px]'}`}
+                  >
+                    <span className="grid h-4 w-4 shrink-0 place-items-center rounded-full bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 font-semibold text-[10px] mt-0.5">
                       +
                     </span>
-                    <span className="text-[#0B1D3A] dark:text-slate-200 leading-snug">
-                      {translateText(item.pros, lang)}
-                    </span>
-                  </div>
+                    <span className="text-[#0B1D3A] dark:text-slate-200 leading-snug">{translateText(item.pros, lang)}</span>
+                  </motion.div>
                 )}
                 {item.cons && (
-                  <div className={`flex items-start gap-2 rounded-[6px] bg-white/75 dark:bg-[#0B172E]/70 border border-[#E2E8F0]/80 dark:border-white/10 ${dense ? 'px-2 py-1 text-[11px]' : 'px-2.5 py-1.5 text-xs'}`}>
-                    <span className="grid h-4 w-4 shrink-0 place-items-center rounded-full bg-amber-500/20 text-amber-700 dark:text-amber-300 font-bold text-[10px] mt-0.5">
+                  <motion.div
+                    initial={{ opacity: 0, x: -14 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.55, duration: 0.35, ease: EASE }}
+                    className={`flex items-start gap-2.5 rounded-[8px] bg-white/75 dark:bg-[#0B172E]/70 border border-[#E2E8F0]/80 dark:border-white/10 ${dense ? 'px-3 py-2 text-xs' : 'px-3.5 py-2.5 text-[13px]'}`}
+                  >
+                    <span className="grid h-4 w-4 shrink-0 place-items-center rounded-full bg-amber-500/20 text-amber-700 dark:text-amber-300 font-semibold text-[10px] mt-0.5">
                       !
                     </span>
-                    <span className="text-[#0B1D3A] dark:text-slate-200 leading-snug">
-                      {translateText(item.cons, lang)}
-                    </span>
-                  </div>
+                    <span className="text-[#0B1D3A] dark:text-slate-200 leading-snug">{translateText(item.cons, lang)}</span>
+                  </motion.div>
                 )}
               </div>
             )}
-          </div>
+          </motion.div>
         )}
 
         {showActions && (
-          <div className={`flex justify-center ${dense ? 'pt-2.5' : 'pt-3'}`}>
-            <BigButton
-              tone="gold"
-              size="sm"
-              compactWidth={true}
-              trailing={false}
-              iconNode={<ArrowForwardIcon sx={{ fontSize: 15, color: '#FFFFFF' }} />}
-              title={
-                isLastCard
-                  ? en
-                    ? 'See problem summary'
-                    : 'సమస్య సారాంశం చూడండి'
-                  : isPerson
-                  ? en
-                    ? 'Next candidate'
-                    : 'తర్వాతి అభ్యర్థి'
-                  : en
-                  ? 'Next Idea'
-                  : 'తర్వాతి ఐడియా'
-              }
-              onClick={() => onNext?.()}
-              className="!px-4 !py-1.5"
-            />
-          </div>
+          <motion.div variants={itemV} className="flex justify-center pt-1">
+            <motion.div animate={{ scale: [1, 1.04, 1] }} transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut', delay: 0.8 }}>
+              <BigButton
+                tone="gold"
+                size="sm"
+                compactWidth={true}
+                trailing={false}
+                iconNode={<ArrowForwardIcon sx={{ fontSize: 15, color: '#FFFFFF' }} />}
+                title={
+                  isLastCard
+                    ? en
+                      ? 'See problem summary'
+                      : 'సమస్య సారాంశం చూడండి'
+                    : isPerson
+                    ? en
+                      ? 'Next candidate'
+                      : 'తర్వాతి అభ్యర్థి'
+                    : en
+                    ? 'Next Idea'
+                    : 'తర్వాతి ఆలోచన'
+                }
+                onClick={() => onNext?.()}
+                className="!px-4 !py-1.5"
+              />
+            </motion.div>
+          </motion.div>
         )}
-      </div>
+      </motion.div>
     );
   }
 
   return (
-    <div
-      className={`fare-card-3d relative w-full overflow-hidden rounded-[8px] sm:rounded-[10px] ${
-        dense ? 'p-3 sm:p-3.5' : 'p-3.5 sm:p-4 md:p-4.5'
-      }`}
+    <motion.div
+      variants={containerV}
+      initial="hidden"
+      animate="show"
+      className={`fare-card-3d relative flex w-full flex-col overflow-hidden rounded-[10px] sm:rounded-[12px] ${dense ? 'gap-3 p-4' : 'gap-3.5 p-5'}`}
     >
-      <span className={`absolute inset-x-0 top-0 h-1 ${isPerson ? 'bg-[#0B1D3A] dark:bg-[#C99A2E]' : 'bg-[#0F766E]'}`} />
+      <TopStripe className={isPerson ? 'bg-[#0B1D3A] dark:bg-[#C99A2E]' : 'bg-[#0F766E]'} />
 
-      {problem && (
-        <div className={`border-b border-slate-200/80 dark:border-white/10 ${dense ? 'pb-2 mb-2 sm:pb-2.5 sm:mb-2.5' : 'pb-2.5 mb-3'}`}>
-          <div className="flex items-center justify-between gap-2 text-[9.5px] font-bold uppercase tracking-[0.1em] text-[#DC2626] dark:text-rose-400">
-            <span className="flex items-center gap-1.5">
-              <span className="h-1.5 w-1.5 rounded-full bg-[#DC2626] animate-pulse" />
-              {problem.leakName ? `${problem.leakName} · ` : ''}{en ? 'Drop-off' : 'డ్రాప్-ఆఫ్'}
-            </span>
-            {problem.problemNumber && (
-              <span className="text-[#C99A2E]">{problem.problemNumber}</span>
-            )}
-          </div>
-          <h2 className={`mt-0.5 font-bold leading-snug text-[#0B1D3A] dark:text-white ${dense ? 'text-xs sm:text-[13px]' : 'text-sm sm:text-base'}`}>
-            {problem.text}
-          </h2>
-        </div>
-      )}
+      {problem && <ProblemHeader problem={problem} en={en} dense={dense} />}
 
-      <div className={`flex items-start justify-between gap-1.5 sm:gap-2 ${dense ? 'mb-2 sm:mb-2.5' : 'mb-2.5'}`}>
-        <div className="flex min-w-0 items-center gap-2 sm:gap-2.5">
-          <div
+      <motion.div variants={itemV} className="flex items-center justify-between gap-3">
+        <div className="flex min-w-0 items-center gap-3">
+          <motion.div
+            initial={{ scale: 0.5, rotate: -12, opacity: 0 }}
+            animate={{ scale: 1, rotate: 0, opacity: 1, y: [0, -3, 0] }}
+            transition={{
+              scale: { type: 'spring', stiffness: 420, damping: 16, delay: 0.12 },
+              rotate: { type: 'spring', stiffness: 420, damping: 16, delay: 0.12 },
+              opacity: { duration: 0.2, delay: 0.12 },
+              y: { duration: 2.4, repeat: Infinity, ease: 'easeInOut', delay: 0.6 },
+            }}
+            whileHover={{ scale: 1.08, rotate: 4 }}
             className={`grid shrink-0 place-items-center rounded-[8px] border ${
               isPerson
                 ? 'border-[#E2E8F0] bg-[#F8F9FC] dark:border-white/10 dark:bg-[#15284B]'
                 : 'border-teal-500/30 bg-teal-500/10 dark:border-teal-400/30 dark:bg-teal-950/50'
-            } ${dense ? 'h-9 w-9 text-lg' : 'h-11 w-11 text-2xl'}`}
+            } ${dense ? 'h-11 w-11 text-xl' : 'h-12 w-12 text-2xl'}`}
           >
             {item.emoji}
-          </div>
+          </motion.div>
           <div className="min-w-0">
             <div
-              className={`flex items-center gap-1 font-bold uppercase tracking-[0.14em] ${
+              className={`flex items-center gap-1 font-semibold uppercase tracking-[0.14em] ${
                 isPerson ? 'text-[#C99A2E]' : 'text-[#0F766E] dark:text-teal-400'
               } ${dense ? 'text-[8.5px] sm:text-[9px]' : 'text-[9.5px]'}`}
             >
@@ -275,9 +373,9 @@ export default function DossierCard({
                   <LightbulbIcon sx={{ fontSize: dense ? 9 : 11, color: '#FFFFFF' }} />
                 )}
               </span>
-              <span>{isPerson ? (en ? 'Candidate to hire' : 'నియమించే అభ్యర్థి') : en ? 'Process idea' : 'ప్రాసెస్ ఐడియా'}</span>
+              <span>{isPerson ? (en ? 'Candidate to hire' : 'నియమించే అభ్యర్థి') : en ? 'Process idea' : 'విధాన ఆలోచన'}</span>
             </div>
-            <h3 className={`font-bold leading-tight text-[#0B1D3A] dark:text-white ${dense ? 'mt-0.5 text-[13.5px] sm:text-[15px]' : 'mt-0.5 text-base md:text-[18px]'}`}>
+            <h3 className={`font-semibold leading-snug text-[#0B1D3A] dark:text-white ${dense ? 'mt-1 text-sm sm:text-[15px]' : 'mt-1 text-base md:text-[17px]'}`}>
               {translateText(item.name, lang)}
             </h3>
             {!isPerson && stageName && (
@@ -295,52 +393,66 @@ export default function DossierCard({
             {translateText(item.model, lang)}
           </span>
         )}
-      </div>
+      </motion.div>
 
-      <div className={`rounded-[7px] border border-[#C99A2E]/30 bg-[#FEF3C7]/45 dark:border-[#C99A2E]/30 dark:bg-[#C99A2E]/10 ${dense ? 'px-3 py-2 mb-2' : 'px-3.5 py-2.5 mb-3'}`}>
-        <p className={`font-bold text-[#92400E] dark:text-[#FDE68A] ${dense ? 'text-xs' : 'text-xs sm:text-sm'}`}>
+      <motion.div
+        variants={itemV}
+        className={`relative overflow-hidden rounded-[8px] border border-[#C99A2E]/30 bg-[#FEF3C7]/45 dark:border-[#C99A2E]/30 dark:bg-[#C99A2E]/10 ${dense ? 'px-3.5 py-2.5' : 'px-4 py-3'}`}
+      >
+        <motion.span
+          aria-hidden
+          className="pointer-events-none absolute inset-y-0 -left-1/3 w-1/3 bg-gradient-to-r from-transparent via-white/70 to-transparent dark:via-white/15"
+          animate={{ x: ['0%', '420%'] }}
+          transition={{ duration: 1.8, repeat: Infinity, repeatDelay: 1.6, ease: 'easeInOut', delay: 0.6 }}
+        />
+        <p className={`relative flex items-center gap-1.5 font-semibold text-[#92400E] dark:text-[#FDE68A] ${dense ? 'text-xs' : 'text-xs sm:text-sm'}`}>
+          <motion.span
+            animate={{ rotate: [0, -12, 12, -6, 0] }}
+            transition={{ duration: 0.9, repeat: Infinity, repeatDelay: 2.2 }}
+            className="inline-block"
+          >
+            🤔
+          </motion.span>
           {isPerson
             ? en
               ? 'Can this person fix this problem?'
-              : 'ఈ person ఈ problem ని fix చేయగలరా?'
+              : 'ఈ వ్యక్తి ఈ సమస్యను పరిష్కరించగలరా?'
             : en
             ? 'Will this idea fix this problem?'
-            : 'ఈ ఐడియా ఈ problem ని fix చేస్తుందా?'}
+            : 'ఈ ఆలోచన ఈ సమస్యను పరిష్కరిస్తుందా?'}
         </p>
-      </div>
+      </motion.div>
 
       {showActions && (
-        <div className={`flex items-center justify-center gap-2 sm:gap-2.5 ${dense ? 'pt-1' : 'pt-1.5'}`}>
-          <BigButton
-            tone="red"
-            size="sm"
-            compactWidth={true}
-            trailing={false}
-            iconNode={<Cross3DIcon size={dense ? 13 : 14} />}
-            title={isPerson ? (en ? 'Reject' : 'వద్దు') : en ? 'Pass' : 'వద్దు'}
-            onClick={() => onReject?.()}
-            disabled={disabled}
-            className={dense ? '!py-1.5 !px-3 !text-xs min-w-[92px]' : '!py-2 !px-3.5 min-w-[115px]'}
-          />
-
-          <div className="hidden sm:flex items-center gap-1.5 rounded-[8px] border border-[#DBE4FA] bg-[#F8F9FC] px-2.5 py-1.5 text-[11px] font-bold text-[#0B1D3A] shadow-xs dark:border-white/10 dark:bg-[#15284B] dark:text-slate-200">
-            <span>{item.emoji}</span>
-            <span className="max-w-[115px] truncate">{translateText(item.name, lang)}</span>
-          </div>
-
-          <BigButton
-            tone="green"
-            size="sm"
-            compactWidth={true}
-            trailing={false}
-            iconNode={<Check3DIcon size={dense ? 13 : 15} />}
-            title={isPerson ? (en ? 'Hire' : 'నియమించు') : en ? 'Implement' : 'అమలు చేయండి'}
-            onClick={() => onAccept?.()}
-            disabled={disabled}
-            className={dense ? '!py-1.5 !px-3 !text-xs min-w-[92px]' : '!py-2 !px-3.5 min-w-[115px]'}
-          />
-        </div>
+        <motion.div variants={itemV} className="flex items-center justify-center gap-2.5 pt-1">
+          <motion.div whileHover={{ y: -2 }} whileTap={{ scale: 0.94 }}>
+            <BigButton
+              tone="red"
+              size="sm"
+              compactWidth={true}
+              trailing={false}
+              iconNode={<Cross3DIcon size={dense ? 13 : 14} />}
+              title={isPerson ? (en ? 'Reject' : 'వద్దు') : en ? 'Pass' : 'వద్దు'}
+              onClick={() => onReject?.()}
+              disabled={disabled}
+              className={dense ? '!py-1.5 !px-3 !text-xs min-w-[92px]' : '!py-2 !px-3.5 min-w-[115px]'}
+            />
+          </motion.div>
+          <motion.div whileHover={{ y: -2 }} whileTap={{ scale: 0.94 }}>
+            <BigButton
+              tone="green"
+              size="sm"
+              compactWidth={true}
+              trailing={false}
+              iconNode={<Check3DIcon size={dense ? 13 : 15} />}
+              title={isPerson ? (en ? 'Hire' : 'నియమించు') : en ? 'Implement' : 'అమలు చేయండి'}
+              onClick={() => onAccept?.()}
+              disabled={disabled}
+              className={dense ? '!py-1.5 !px-3 !text-xs min-w-[92px]' : '!py-2 !px-3.5 min-w-[115px]'}
+            />
+          </motion.div>
+        </motion.div>
       )}
-    </div>
+    </motion.div>
   );
 }

@@ -29,17 +29,29 @@ export default function SelectedTeamRow({ items, isPerson, lang, compact = false
             return (
               <motion.div
                 key={`${item.id}-${idx}`}
-                initial={{ scale: 0.3, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 0.3, opacity: 0 }}
-                transition={{ type: 'spring', stiffness: 420, damping: 24 }}
+                initial={{ scale: 0, opacity: 0, y: 10 }}
+                animate={{ scale: [0, 1.3, 0.94, 1], opacity: 1, y: 0 }}
+                exit={{ scale: 0.2, opacity: 0 }}
+                whileHover={{ scale: 1.2, y: -2 }}
+                whileTap={{ scale: 0.94 }}
+                transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
                 title={label}
                 aria-label={label}
-                style={{ boxShadow: `0 0 0 2px ${ringColor}` }}
-                className={`grid shrink-0 place-items-center rounded-full bg-[#1B2C52] text-white shadow-sm ${
+                style={{
+                  boxShadow: `0 0 0 2px ${ringColor}, 0 2px 10px -1px ${ringColor}60`,
+                }}
+                className={`relative grid shrink-0 place-items-center rounded-full bg-[#1B2C52] text-white shadow-sm cursor-pointer select-none transition-shadow ${
                   compact ? 'h-7 w-7 text-xs' : 'h-8 w-8 text-sm'
                 }`}
               >
+                <motion.span
+                  aria-hidden
+                  initial={{ scale: 0.8, opacity: 0.9 }}
+                  animate={{ scale: 1.7, opacity: 0 }}
+                  transition={{ duration: 0.7, ease: 'easeOut' }}
+                  className="pointer-events-none absolute inset-0 rounded-full"
+                  style={{ border: `2px solid ${ringColor}` }}
+                />
                 {isPerson ? (
                   <svg viewBox="0 0 40 40" className="h-full w-full rounded-full" aria-hidden="true">
                     <circle cx="20" cy="15" r="7.2" fill="#d9a77c" />

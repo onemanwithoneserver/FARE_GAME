@@ -161,9 +161,9 @@ export default function ResultScreen({
         {hiredTeam.length > 0 && (
           <div className="mb-3.5 rounded-[8px] border border-[#E2E8F0] bg-[#F8F9FC] p-2.5 sm:p-3 dark:border-white/10 dark:bg-[#0E1F3D]">
             <h4 className="mb-2 flex items-center justify-between text-[9.5px] sm:text-[10px] font-bold uppercase tracking-[0.14em] text-[#64748B] dark:text-slate-400">
-              <span>{isPerson ? (en ? 'Hired Team Roster' : 'హైర్ చేసిన టీమ్') : en ? 'Implemented Solutions' : 'అమలు చేసిన సిస్టమ్స్'}</span>
+              <span>{isPerson ? (en ? 'Hired Team Roster' : 'ఎంపికైన బృందం') : en ? 'Implemented Solutions' : 'అమలు చేసిన పరిష్కారాలు'}</span>
               <span className="text-[#C99A2E]">
-                {hiredTeam.length} {en ? 'Assets' : 'అసెట్లు'}
+                {hiredTeam.length} {isPerson ? (en ? 'Members' : 'సభ్యులు') : en ? 'Solutions' : 'పరిష్కారాలు'}
               </span>
             </h4>
             <div className="flex flex-wrap gap-1.5">
@@ -190,8 +190,8 @@ export default function ResultScreen({
             <Layers3DIcon size={18} />
             <span>
               {isPerson
-                ? en ? 'Switch to Mode 2: Fix The Process' : 'మోడ్ 2: ప్రాసెస్ ఫిక్స్ చేయండి'
-                : en ? 'Switch to Mode 1: Hire The Right Person' : 'మోడ్ 1: సరైన వ్యక్తిని హైర్ చేయండి'}
+                ? en ? 'Switch to Mode 2: Fix The Process' : 'మోడ్ 2: సేల్స్ విధానాన్ని సరిచేయండి'
+                : en ? 'Switch to Mode 1: Hire The Right Person' : 'మోడ్ 1: సరైన వ్యక్తిని ఎంపిక చేసుకోండి'}
             </span>
           </button>
         </div>

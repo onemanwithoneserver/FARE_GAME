@@ -51,7 +51,7 @@ export default function InterviewArena({
   }, [onAccept, onReject, disabled]);
 
   const tlLabel = playerName ? `${playerName} (TL)` : en ? 'You (TL)' : 'మీరు (TL)';
-  const candidateLabel = isPerson ? (en ? 'Candidate' : 'అభ్యర్థి') : en ? 'Idea' : 'ఐడియా';
+  const candidateLabel = isPerson ? (en ? 'Candidate' : 'అభ్యర్థి') : en ? 'Idea' : 'ఆలోచన';
 
   return (
     <div className="flex w-full flex-col gap-3">
@@ -63,7 +63,7 @@ export default function InterviewArena({
             <div className="mb-1.5 flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-[#DC2626]">
               <WarningAmberIcon sx={{ fontSize: 13, color: '#DC2626' }} />
               <span>
-                {en ? 'YOUR PROBLEM' : 'మీ PROBLEM'} · {stage?.name[lang]}
+                {en ? 'YOUR PROBLEM' : 'మీ సమస్య'} · {stage?.name[lang]}
               </span>
             </div>
             <p className="text-xs font-semibold leading-relaxed text-[#0B1D3A] dark:text-slate-100 sm:text-sm">
@@ -90,7 +90,7 @@ export default function InterviewArena({
             <div>
               <div className="mb-1.5 flex items-center justify-between gap-2">
                 <span className="text-[10px] font-bold uppercase tracking-wider text-[#C99A2E]">
-                  {isPerson ? (en ? '👉 CANDIDATE PROFILE' : '👉 నేను · CANDIDATE') : en ? '💡 PROCESS IDEA' : '💡 ప్రాసెస్ ఐడియా'}
+                  {isPerson ? (en ? '👉 CANDIDATE PROFILE' : '👉 అభ్యర్థి ప్రొఫైల్') : en ? '💡 PROCESS IDEA' : '💡 విధాన ఆలోచన'}
                 </span>
                 {item.model && (
                   <span className="rounded bg-[#0B1D3A]/5 px-2 py-0.5 text-[10px] font-bold text-[#0B1D3A] dark:bg-white/10 dark:text-slate-200">

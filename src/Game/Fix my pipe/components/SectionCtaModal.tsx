@@ -60,12 +60,12 @@ export default function SectionCtaModal({
 
   const actionCards = [
     {
-      title: en ? 'Hire trained profiles' : 'శిక్షణ పొందిన ప్రొఫైల్స్ ని హైర్ చేయండి',
+      title: en ? 'Hire trained profiles' : 'శిక్షణ పొందిన ప్రొఫైల్స్ ని నియమించండి',
       sub: en ? 'FARE Talent Pool · Zero commission' : 'FARE టాలెంట్ పూల్ · జీరో కమీషన్',
       badge: '',
       icon: <Users3DIcon size={18} />,
       iconBg: 'bg-gradient-to-br from-amber-500 to-amber-600',
-      btnText: en ? 'Hire now' : 'హైర్ చేయండి',
+      btnText: en ? 'Hire now' : 'నియమించుకోండి',
       btnBg: 'bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white shadow-sm',
       url: 'https://wa.me/917674993040?text=Hi%20FARE%2C%20I%20want%20to%20hire%20trained%20real%20estate%20profiles',
     },
