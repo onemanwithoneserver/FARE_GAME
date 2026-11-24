@@ -105,11 +105,6 @@ function ProblemHeader({ problem, en, dense }: { problem: ProblemInfo; en: boole
           {problem.leakName ? `${problem.leakName} · ` : ''}
           {en ? 'Drop-off' : 'డ్రాప్-ఆఫ్'}
         </div>
-        {problem.problemNumber && (
-          <span className="font-semibold text-[#C99A2E] dark:text-[#E2C068] tracking-widest">
-            {problem.problemNumber}
-          </span>
-        )}
       </div>
       <h2 className={`mt-1.5 font-semibold leading-snug text-[#0B1D3A] dark:text-white ${dense ? 'text-sm' : 'text-[15px] sm:text-base'}`}>
         {problem.text}
