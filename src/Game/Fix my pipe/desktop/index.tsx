@@ -9,6 +9,7 @@ import FloatingShare from '../components/FloatingShare';
 import FeedbackToast from '../components/FeedbackToast';
 import DossierCard from '../components/DossierCard';
 import { CandidateCharacter } from '../components/CharacterAvatars';
+import SelectedTeamRow from '../components/SelectedTeamRow';
 import PressureGauge from '../components/PressureGauge';
 import ResultScreen from '../components/ResultScreen';
 import GameModals from '../components/GameModals';
@@ -39,11 +40,14 @@ export default function DesktopView() {
     maxCombo,
     goodCount,
     totalDecisions,
+    awaitingNext,
     lastFeedback,
+    history,
     hiredTeam,
     player,
     startGame,
     decide,
+    advanceCard,
     openCta,
     returnHome,
   } = usePipeGameStore();
@@ -52,10 +56,23 @@ export default function DesktopView() {
   const currentCard = deck.length > 0 && cardIndex < deck.length ? deck[cardIndex] : null;
   const isPerson = mode === 1;
   const en = lang === 'en';
+  const roundSelected = history
+    .filter((r) => r.caseIndex === caseIndex && r.decision === 'yes' && r.scoreDelta > 0)
+    .map((r) => r.item);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (screen !== 'play' || showBriefing || showRoundEnd || showSectionCta || showCta || showRoster || showOnboarding || showQuitConfirm) {
+        return;
+      }
+      if (awaitingNext) {
+        if (e.key === 'ArrowRight' || e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          advanceCard();
+        } else if (e.key === 'Escape') {
+          e.preventDefault();
+          usePipeGameStore.getState().openQuitConfirm();
+        }
         return;
       }
       if (e.key === 'ArrowRight' || e.key === 'Enter') {
@@ -71,7 +88,7 @@ export default function DesktopView() {
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [screen, showBriefing, showRoundEnd, showSectionCta, showCta, showRoster, showOnboarding, showQuitConfirm, decide]);
+  }, [screen, showBriefing, showRoundEnd, showSectionCta, showCta, showRoster, showOnboarding, showQuitConfirm, awaitingNext, decide, advanceCard]);
 
   const advisorTone: 'neutral' | 'good' | 'bad' = !lastFeedback
     ? 'neutral'
@@ -145,9 +162,8 @@ export default function DesktopView() {
         )}
 
         {screen === 'play' && currentCase && currentCard && (
-          <div className="my-auto flex flex-1 flex-col justify-center gap-2 lg:gap-3 py-1">
-            
-            <div className="relative mx-auto h-[165px] sm:h-[180px] lg:h-[195px] max-h-[24vh] w-full max-w-4xl xl:max-w-5xl">
+          <div className="my-auto flex flex-1 flex-col justify-center gap-2 lg:gap-2.5 py-1">
+            <div className="relative mx-auto h-[155px] sm:h-[170px] lg:h-[185px] max-h-[23vh] w-full max-w-4xl xl:max-w-5xl">
               <FeedbackToast />
               <Pipe3D
                 activeLeakStage={currentCase.leak as StageId}
@@ -170,10 +186,15 @@ export default function DesktopView() {
                 />
               </div>
 
-              <div className="mx-auto w-full max-w-2xl xl:max-w-[680px]">
+              <div className="mx-auto w-full max-w-2xl xl:max-w-[680px] flex flex-col gap-2">
+                {roundSelected.length > 0 && (
+                  <div className="flex justify-center">
+                    <SelectedTeamRow items={roundSelected} isPerson={isPerson} lang={lang} />
+                  </div>
+                )}
                 <AnimatePresence mode="wait">
                   <motion.div
-                    key={currentCard.id}
+                    key={`${currentCard.id}-${awaitingNext ? 'fb' : 'q'}`}
                     initial={{ opacity: 0, y: 10, scale: 0.98 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: -10, scale: 0.98 }}
@@ -182,8 +203,18 @@ export default function DesktopView() {
                     <DossierCard
                       item={currentCard}
                       lang={lang}
+                      stageName={STAGES[currentCase.leak]?.name[lang]}
+                      problem={{
+                        leakName: STAGES[currentCase.leak]?.name[lang],
+                        problemNumber: `${en ? 'Problem' : 'సమస్య'} ${caseIndex + 1}/${caseOrder.length}`,
+                        text: translateText(currentCase.t, lang),
+                      }}
+                      awaitingNext={awaitingNext}
+                      feedback={lastFeedback}
+                      isLastCard={cardIndex + 1 >= deck.length}
                       onAccept={() => decide(true)}
                       onReject={() => decide(false)}
+                      onNext={advanceCard}
                       dense={false}
                     />
                   </motion.div>

@@ -69,11 +69,14 @@ export interface PipeGameState {
   hiredTeam: CardItem[];
   player: PlayerProfile | null;
   busy: boolean;
+  awaitingNext: boolean;
   lastFeedback: {
     text: string;
     type: 'clamp' | 'tape' | 'fall' | 'crack' | 'reject_good' | 'reject_bad';
     scoreDelta: number;
     leakDelta: number;
+    quality: 'ideal' | 'part' | 'bad';
+    accepted: boolean;
   } | null;
 
   setLang: (lang: Language) => void;
@@ -86,6 +89,7 @@ export interface PipeGameState {
   startRound: () => void;
   dismissBriefing: () => void;
   decide: (accepted: boolean) => void;
+  advanceCard: () => void;
   nextCase: () => void;
   openSectionCta: () => void;
   closeSectionCta: () => void;
@@ -206,6 +210,7 @@ export const usePipeGameStore = create<PipeGameState>((set, get) => {
     hiredTeam: [],
     player: savedPlayer,
     busy: false,
+    awaitingNext: false,
     lastFeedback: null,
 
     setLang: (lang) => {
@@ -287,6 +292,7 @@ export const usePipeGameStore = create<PipeGameState>((set, get) => {
         showCta: false,
         showRoster: false,
         showOnboarding: false,
+        awaitingNext: false,
         lastFeedback: null,
       });
 
@@ -303,6 +309,7 @@ export const usePipeGameStore = create<PipeGameState>((set, get) => {
         cardIndex: 0,
         leak: 1.0,
         busy: false,
+        awaitingNext: false,
         showBriefing: true,
         showRoundEnd: false,
         showSectionCta: false,
@@ -312,12 +319,12 @@ export const usePipeGameStore = create<PipeGameState>((set, get) => {
 
     dismissBriefing: () => {
       soundEngine.playClick();
-      set({ showBriefing: false, busy: false });
+      set({ showBriefing: false, busy: false, awaitingNext: false });
     },
 
     decide: (accepted) => {
       const state = get();
-      if (state.busy || state.cardIndex >= state.deck.length) return;
+      if (state.busy || state.awaitingNext || state.cardIndex >= state.deck.length) return;
 
       const item = state.deck[state.cardIndex];
       const isPerson = state.mode === 1;
@@ -402,10 +409,22 @@ export const usePipeGameStore = create<PipeGameState>((set, get) => {
       const newScore = Math.max(0, state.score + scoreDelta);
       const newGood = isSuccess ? state.goodCount + 1 : state.goodCount;
       const newTotal = state.totalDecisions + 1;
-      const nextCardIndex = state.cardIndex + 1;
+
+      const quality: 'ideal' | 'part' | 'bad' = accepted
+        ? code === 10
+          ? 'ideal'
+          : code === 6 || code === 4
+          ? 'part'
+          : 'bad'
+        : code <= 2
+        ? 'ideal'
+        : code === 4
+        ? 'part'
+        : 'bad';
 
       set({
-        busy: true,
+        busy: false,
+        awaitingNext: true,
         leak: nextLeak,
         score: newScore,
         combo: newCombo,
@@ -419,25 +438,35 @@ export const usePipeGameStore = create<PipeGameState>((set, get) => {
           type: feedbackType,
           scoreDelta,
           leakDelta,
+          quality,
+          accepted,
         },
       });
+    },
 
-      setTimeout(() => {
-        if (nextCardIndex >= state.deck.length) {
-          soundEngine.playWin();
-          set({
-            busy: false,
-            cardIndex: nextCardIndex,
-            showRoundEnd: true,
-            sealedCount: get().sealedCount + (nextLeak <= 0.08 ? 1 : 0),
-          });
-        } else {
-          set({
-            busy: false,
-            cardIndex: nextCardIndex,
-          });
-        }
-      }, 500);
+    advanceCard: () => {
+      const state = get();
+      if (!state.awaitingNext) return;
+      soundEngine.playClick();
+      const nextCardIndex = state.cardIndex + 1;
+      if (nextCardIndex >= state.deck.length) {
+        soundEngine.playWin();
+        set({
+          awaitingNext: false,
+          busy: false,
+          cardIndex: nextCardIndex,
+          showRoundEnd: true,
+          lastFeedback: null,
+          sealedCount: state.sealedCount + (state.leak <= 0.08 ? 1 : 0),
+        });
+      } else {
+        set({
+          awaitingNext: false,
+          busy: false,
+          cardIndex: nextCardIndex,
+          lastFeedback: null,
+        });
+      }
     },
 
     nextCase: () => {
@@ -523,6 +552,7 @@ export const usePipeGameStore = create<PipeGameState>((set, get) => {
         finishedAt: null,
         sealedCount: 0,
         busy: false,
+        awaitingNext: false,
         lastFeedback: null,
       });
     },

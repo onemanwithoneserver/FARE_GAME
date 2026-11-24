@@ -7,6 +7,7 @@ import ModeButtons from '../components/ModeButtons';
 import FeedbackToast from '../components/FeedbackToast';
 import DossierCard from '../components/DossierCard';
 import { CandidateCharacter, TlCharacter } from '../components/CharacterAvatars';
+import SelectedTeamRow from '../components/SelectedTeamRow';
 import PressureGauge from '../components/PressureGauge';
 import ResultScreen from '../components/ResultScreen';
 import FooterSection from '../components/FooterSection';
@@ -15,6 +16,7 @@ import GameModals from '../components/GameModals';
 import Pipe3D from '../Pipe3D';
 import Advisor from '../components/Advisor';
 import BigButton from '../components/BigButton';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { Cross3DIcon, Check3DIcon } from '../components/Icons3D';
 import { usePipeGameStore } from '../store';
 import { RAW_CASES, STAGES, translateText } from '../data';
@@ -43,11 +45,14 @@ export default function MobileView() {
     maxCombo,
     goodCount,
     totalDecisions,
+    awaitingNext,
     lastFeedback,
+    history,
     hiredTeam,
     player,
     startGame,
     decide,
+    advanceCard,
     openCta,
     returnHome,
   } = usePipeGameStore();
@@ -76,6 +81,16 @@ export default function MobileView() {
       if (screen !== 'play' || showBriefing || showRoundEnd || showSectionCta || showCta || showRoster || showOnboarding || showQuitConfirm) {
         return;
       }
+      if (awaitingNext) {
+        if (e.key === 'ArrowRight' || e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          advanceCard();
+        } else if (e.key === 'Escape') {
+          e.preventDefault();
+          usePipeGameStore.getState().openQuitConfirm();
+        }
+        return;
+      }
       if (e.key === 'ArrowRight' || e.key === 'Enter') {
         e.preventDefault();
         decide(true);
@@ -89,12 +104,15 @@ export default function MobileView() {
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [screen, showBriefing, showRoundEnd, showSectionCta, showCta, showRoster, showOnboarding, showQuitConfirm, decide]);
+  }, [screen, showBriefing, showRoundEnd, showSectionCta, showCta, showRoster, showOnboarding, showQuitConfirm, awaitingNext, decide, advanceCard]);
 
   const currentCase = caseOrder.length > 0 ? RAW_CASES[caseOrder[caseIndex]] : null;
   const currentCard = deck.length > 0 && cardIndex < deck.length ? deck[cardIndex] : null;
   const isPerson = mode === 1;
   const en = lang === 'en';
+  const roundSelected = history
+    .filter((r) => r.caseIndex === caseIndex && r.decision === 'yes' && r.scoreDelta > 0)
+    .map((r) => r.item);
 
   useEffect(() => {
     if (currentCard?.id) {
@@ -244,10 +262,15 @@ export default function MobileView() {
                   />
                 </div>
 
-                <div className="mx-auto w-full max-w-[360px] sm:max-w-[400px]">
+                <div className="mx-auto w-full max-w-[360px] sm:max-w-[400px] flex flex-col gap-1.5">
+                  {roundSelected.length > 0 && (
+                    <div className="flex justify-center">
+                      <SelectedTeamRow items={roundSelected} isPerson={isPerson} lang={lang} compact={true} />
+                    </div>
+                  )}
                   <AnimatePresence mode="wait">
                     <motion.div
-                      key={currentCard.id}
+                      key={`${currentCard.id}-${awaitingNext ? 'fb' : 'q'}`}
                       initial={{ opacity: 0, y: 6, scale: 0.98 }}
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: -6, scale: 0.98 }}
@@ -256,8 +279,18 @@ export default function MobileView() {
                       <DossierCard
                         item={currentCard}
                         lang={lang}
+                        stageName={STAGES[currentCase.leak]?.name[lang]}
+                        problem={{
+                          leakName: STAGES[currentCase.leak]?.name[lang],
+                          problemNumber: `${en ? 'Problem' : 'సమస్య'} ${caseIndex + 1}/${caseOrder.length}`,
+                          text: translateText(currentCase.t, lang),
+                        }}
+                        awaitingNext={awaitingNext}
+                        feedback={lastFeedback}
+                        isLastCard={cardIndex + 1 >= deck.length}
                         onAccept={() => decide(true)}
                         onReject={() => decide(false)}
+                        onNext={advanceCard}
                         dense={true}
                       />
                     </motion.div>
@@ -383,8 +416,7 @@ export default function MobileView() {
 
         {screen === 'play' && currentCase && currentCard && (
           <div className="my-auto flex flex-col gap-2 py-1">
-            
-            <div className="relative mx-auto h-[25dvh] min-h-[180px] max-h-[245px] w-full max-w-md">
+            <div className="relative mx-auto h-[20dvh] min-h-[145px] max-h-[195px] w-full max-w-md">
               <FeedbackToast />
               <Pipe3D
                 activeLeakStage={currentCase.leak as StageId}
@@ -416,7 +448,7 @@ export default function MobileView() {
 
                   <AnimatePresence mode="wait">
                     <motion.div
-                      key={currentCard.id}
+                      key={`${currentCard.id}-${awaitingNext ? 'fb' : 'q'}`}
                       initial={{ opacity: 0, y: 10, scale: 0.97 }}
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: -8, scale: 0.97 }}
@@ -425,6 +457,15 @@ export default function MobileView() {
                       <DossierCard
                         item={currentCard}
                         lang={lang}
+                        stageName={STAGES[currentCase.leak]?.name[lang]}
+                        problem={{
+                          leakName: STAGES[currentCase.leak]?.name[lang],
+                          problemNumber: `${en ? 'Problem' : 'సమస్య'} ${caseIndex + 1}/${caseOrder.length}`,
+                          text: translateText(currentCase.t, lang),
+                        }}
+                        awaitingNext={awaitingNext}
+                        feedback={lastFeedback}
+                        isLastCard={cardIndex + 1 >= deck.length}
                         showActions={false}
                         dense={true}
                       />
@@ -449,7 +490,7 @@ export default function MobileView() {
                     />
                   </motion.div>
 
-                  <div className="flex flex-col items-center gap-0.5">
+                  <div className="flex flex-col items-center gap-0.5 px-1">
                     <div className="grid h-6 w-6 place-items-center rounded-full border border-slate-200 bg-white text-[10px] font-bold shadow-xs dark:border-white/10 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
                       VS
                     </div>
@@ -478,54 +519,62 @@ export default function MobileView() {
                   </AnimatePresence>
                 </div>
 
-                <div className="grid grid-cols-2 gap-2 sm:gap-2.5 w-full pt-0.5">
-                  <BigButton
-                    tone="red"
-                    size="sm"
-                    compactWidth={false}
-                    trailing={false}
-                    iconNode={<Cross3DIcon size={14} />}
-                    title={isPerson ? (en ? 'Reject' : 'వద్దు') : en ? 'Pass' : 'వద్దు'}
-                    onClick={() => decide(false)}
-                    className="justify-center !py-2 sm:!py-2.5 !px-3 !text-xs sm:!text-sm font-bold shadow-sm"
-                  />
-                  <BigButton
-                    tone="green"
-                    size="sm"
-                    compactWidth={false}
-                    trailing={false}
-                    iconNode={<Check3DIcon size={15} />}
-                    title={isPerson ? (en ? 'Hire' : 'నియమించు') : en ? 'Implement' : 'అమలు చేయండి'}
-                    onClick={() => decide(true)}
-                    className="justify-center !py-2 sm:!py-2.5 !px-3 !text-xs sm:!text-sm font-bold shadow-sm"
-                  />
-                </div>
+                {roundSelected.length > 0 && (
+                  <div className="flex items-center justify-center -my-0.5">
+                    <SelectedTeamRow items={roundSelected} isPerson={isPerson} lang={lang} compact={true} />
+                  </div>
+                )}
 
-                <div className="min-h-[28px] flex items-center justify-center w-full">
-                  <AnimatePresence mode="wait">
-                    {activeFeedback && (
-                      <motion.div
-                        key={activeFeedback.id}
-                        initial={{ opacity: 0, y: 4, scale: 0.98 }}
-                        animate={{ opacity: 1, y: 0, scale: 1 }}
-                        exit={{ opacity: 0, y: -4, scale: 0.96 }}
-                        transition={{ duration: 0.15 }}
-                        onClick={() => setActiveFeedback(null)}
-                        className={`fare-card-3d flex cursor-pointer items-center justify-center gap-1.5 rounded-[8px] border px-3 py-1 text-center text-[11px] sm:text-xs font-semibold shadow-xs ${
-                          activeFeedback.scoreDelta >= 0
-                            ? 'border-emerald-300/80 bg-emerald-50/95 text-emerald-800 dark:border-emerald-500/30 dark:bg-emerald-950/40 dark:text-emerald-200'
-                            : 'border-rose-300/80 bg-rose-50/95 text-rose-800 dark:border-rose-500/30 dark:bg-rose-950/40 dark:text-rose-200'
-                        }`}
-                      >
-                        <span className={`font-bold ${activeFeedback.scoreDelta >= 0 ? 'text-emerald-600 dark:text-emerald-400' : 'text-rose-600 dark:text-rose-400'}`}>
-                          {activeFeedback.scoreDelta >= 0 ? `+${activeFeedback.scoreDelta}` : activeFeedback.scoreDelta}
-                        </span>
-                        <span className="opacity-40">·</span>
-                        <span>{translateText(activeFeedback.text, lang)}</span>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
+                {awaitingNext ? (
+                  <div className="flex justify-center w-full pt-1">
+                    <BigButton
+                      tone="gold"
+                      size="sm"
+                      compactWidth={true}
+                      trailing={false}
+                      iconNode={<ArrowForwardIcon sx={{ fontSize: 15, color: '#FFFFFF' }} />}
+                      title={
+                        cardIndex + 1 >= deck.length
+                          ? en
+                            ? 'See problem summary'
+                            : 'సమస్య సారాంశం చూడండి'
+                          : isPerson
+                          ? en
+                            ? 'Next candidate'
+                            : 'తర్వాతి అభ్యర్థి'
+                          : en
+                          ? 'Next Idea'
+                          : 'తర్వాతి ఐడియా'
+                      }
+                      onClick={() => advanceCard()}
+                      className="!px-4 !py-1.5"
+                    />
+                  </div>
+                ) : (
+                  <div className="flex items-center justify-center gap-3 w-full pt-1">
+                    <BigButton
+                      tone="red"
+                      size="sm"
+                      compactWidth={false}
+                      trailing={false}
+                      iconNode={<Cross3DIcon size={14} />}
+                      title={isPerson ? (en ? 'Reject' : 'వద్దు') : en ? 'Pass' : 'వద్దు'}
+                      onClick={() => decide(false)}
+                      className="flex-1 max-w-[138px] justify-center !py-1.5 !px-3 !text-xs font-bold"
+                    />
+
+                    <BigButton
+                      tone="green"
+                      size="sm"
+                      compactWidth={false}
+                      trailing={false}
+                      iconNode={<Check3DIcon size={15} />}
+                      title={isPerson ? (en ? 'Hire' : 'నియమించు') : en ? 'Implement' : 'అమలు చేయండి'}
+                      onClick={() => decide(true)}
+                      className="flex-1 max-w-[138px] justify-center !py-1.5 !px-3 !text-xs font-bold"
+                    />
+                  </div>
+                )}
               </div>
           </div>
         )}
