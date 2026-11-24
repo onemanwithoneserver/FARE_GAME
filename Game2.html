@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="te"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Fix Your Sales Funnel · FARE Sales Leadership Simulation</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Noto+Sans+Telugu:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* =========================================================
+   FARE · Fix Your Sales Funnel · design system
+   ========================================================= */
+:root{
+  --bg:#071226; --bg2:#0d1a33; --surface:#111f3b; --surface2:#16264a; --line:#22345c;
+  --gold:#c8992c; --gold-h:#d9ab3c; --gold-soft:rgba(200,153,44,.14);
+  --teal:#2a9d8f; --teal-soft:rgba(42,157,143,.16);
+  --ok:#2fb36a; --ok-soft:rgba(47,179,106,.14);
+  --warn:#e0a128; --warn-soft:rgba(224,161,40,.14);
+  --err:#d0604f; --err-soft:rgba(208,96,79,.14);
+  --text:#f3f5fa; --text2:#aab4c8; --text3:#7c88a3;
+  --r-sm:10px; --r:14px; --r-lg:20px;
+  --sp1:4px; --sp2:8px; --sp3:12px; --sp4:16px; --sp5:24px;
+  --sh:0 10px 28px rgba(0,0,0,.28);
+  --font:Outfit,"Noto Sans Telugu",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{overflow-x:clip}
+body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100dvh;-webkit-font-smoothing:antialiased}
+button{font-family:inherit;cursor:pointer;color:inherit}
+a{color:inherit}
+.hide{display:none!important}
+.app{max-width:600px;margin:0 auto;min-height:100dvh;padding:var(--sp3) var(--sp4) calc(var(--sp4) + env(safe-area-inset-bottom))}
+.scr{display:none}.scr.on{display:flex;flex-direction:column;gap:var(--sp3)}
+
+/* ---------- type ---------- */
+.eyebrow{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);background:var(--gold-soft);border:1px solid rgba(200,153,44,.35);border-radius:999px;padding:5px 12px}
+.h1{font-size:clamp(30px,9vw,44px);font-weight:800;line-height:1.02;letter-spacing:-.01em;text-transform:uppercase}
+.h1 em{font-style:normal;color:var(--gold)}
+.h2{font-size:22px;font-weight:700;line-height:1.25}
+.lead{font-size:15px;line-height:1.5;color:var(--text2)}
+.label{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--text3)}
+.muted{color:var(--text2)}
+
+/* ---------- buttons ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:52px;padding:0 22px;border-radius:var(--r);border:2px solid transparent;font-size:16px;font-weight:700;text-decoration:none;transition:background .15s,transform .1s,box-shadow .15s,border-color .15s}
+.btn:active{transform:scale(.98)}
+.btn:disabled{opacity:.38;cursor:default;transform:none}
+.btn-primary{background:var(--gold);color:#0a1326;box-shadow:0 6px 18px rgba(200,153,44,.25)}
+.btn-primary:hover:not(:disabled){background:var(--gold-h)}
+.btn-secondary{background:transparent;color:var(--text);border-color:var(--line)}
+.btn-secondary:hover:not(:disabled){border-color:var(--text3);background:rgba(255,255,255,.03)}
+.btn-wa{background:#1f9d55;color:#fff}.btn-wa:hover{background:#23b061}
+.btn-block{width:100%}
+.btn svg{width:20px;height:20px;flex:none}
+
+/* ---------- cards ---------- */
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:var(--sp4)}
+.chip{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:600;border-radius:999px;padding:3px 10px;background:var(--surface2);color:var(--text2);border:1px solid var(--line)}
+
+/* ---------- avatars ---------- */
+.av{flex:none;display:inline-grid;place-items:center;border-radius:50%;font-weight:800;color:#fff;letter-spacing:.02em;position:relative}
+.av svg{width:100%;height:100%;display:block}
+.av-48{width:48px;height:48px;font-size:16px}.av-40{width:40px;height:40px;font-size:14px}.av-28{width:28px;height:28px;font-size:10px}
+
+/* ---------- header ---------- */
+.topbar{display:flex;align-items:center;gap:var(--sp3)}
+.logo{height:34px;background:#fff;border-radius:8px;padding:3px 7px}
+.iconbtn{width:40px;height:40px;border-radius:12px;border:1px solid var(--line);background:var(--surface);font-size:17px;display:grid;place-items:center;flex:none}
+
+/* =========================================================
+   HOME
+   ========================================================= */
+.home-hero{display:flex;flex-direction:column;align-items:flex-start;gap:var(--sp3);padding-top:var(--sp2)}
+.funnel{background:var(--bg2);border:1px solid var(--line);border-radius:var(--r-lg);padding:var(--sp4) var(--sp3) var(--sp3)}
+.funnel-foot{display:flex;justify-content:space-between;align-items:center;margin-top:30px;font-size:12px;color:var(--text2)}
+.funnel-foot b{color:var(--err)}.funnel-foot .sales{color:var(--gold);font-weight:700}
+.modes{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp3)}
+.mode{position:relative;text-align:left;background:var(--surface);border:2px solid var(--line);border-radius:var(--r-lg);padding:var(--sp4);display:flex;flex-direction:column;gap:var(--sp2);transition:border-color .15s,background .15s}
+.mode:hover{border-color:var(--text3)}
+.mode[aria-pressed="true"]{border-color:var(--gold);background:linear-gradient(180deg,rgba(200,153,44,.10),var(--surface))}
+.mode .mi{width:44px;height:44px;border-radius:12px;display:grid;place-items:center}
+.mode .mi svg{width:24px;height:24px}
+.mode.hire .mi{background:var(--gold-soft);color:var(--gold)}.mode.proc .mi{background:var(--teal-soft);color:var(--teal)}
+.mode b{font-size:16.5px;line-height:1.2}
+.mode p{font-size:12.5px;line-height:1.4;color:var(--text2)}
+.mode .tick{position:absolute;top:12px;right:12px;width:22px;height:22px;border-radius:50%;border:2px solid var(--line);display:grid;place-items:center;font-size:12px;color:transparent}
+.mode[aria-pressed="true"] .tick{background:var(--gold);border-color:var(--gold);color:#0a1326}
+.steps3{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp2)}
+.steps3 div{display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;font-size:12px;color:var(--text2);line-height:1.3}
+.steps3 i{font-style:normal;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--surface2);border:1px solid var(--line);font-weight:800;color:var(--gold);font-size:14px}
+.meta{text-align:center;font-size:12.5px;color:var(--text3)}
+
+/* =========================================================
+   PIPELINE (shared by home + play)
+   ========================================================= */
+.pipe-row{display:flex;align-items:center;position:relative}
+.pipe-cap{width:8px;height:36px;border-radius:4px;background:#3a4b72;flex:none}
+.pipe{flex:1;display:flex;height:26px;border-radius:13px;overflow:visible;position:relative}
+.stg{flex:1;position:relative;background:linear-gradient(180deg,#4a5d86,#8ea0c4 50%,#4a5d86);border-right:3px solid var(--bg2);transition:background .5s,filter .5s}
+.stg:first-child{border-radius:13px 0 0 13px}.stg:last-child{border-radius:0 13px 13px 0;border-right:0}
+.stg::before{content:"";position:absolute;left:0;right:0;top:45%;height:3px;background:repeating-linear-gradient(90deg,rgba(160,210,255,0) 0 6px,rgba(160,210,255,.9) 6px 12px);background-size:12px 100%;animation:flow .8s linear infinite;opacity:var(--flow,1);transition:opacity .6s}
+@keyframes flow{to{background-position:12px 0}}
+.stg .nm{position:absolute;top:calc(100% + 6px);left:50%;transform:translateX(-50%);font-size:10px;font-weight:700;color:var(--text2);white-space:nowrap}
+@media (max-width:400px){.stg .nm,.scene .stg .nm{font-size:9.5px;white-space:normal;width:100%;text-align:center;line-height:1.1}}
+.stg.lk{background:linear-gradient(180deg,#8a3a30,#e8806c 50%,#8a3a30)}
+.stg.lk .nm{color:#ff9d8b}
+.stg.fx{background:linear-gradient(180deg,#1d6f65,#7fd6c5 50%,#1d6f65)}
+.stg.fx .nm{color:#7fe0c9}
+.stg.flash{animation:flashOk .7s}.stg.shake{animation:shake .45s}
+@keyframes flashOk{40%{filter:brightness(1.6)}}
+@keyframes shake{25%,75%{transform:translateX(-4px)}50%{transform:translateX(4px)}}
+.drip{position:absolute;top:calc(100% + 20px);left:50%;width:7px;height:10px;margin-left:-3px;border-radius:50% 50% 50% 50%/60% 60% 40% 40%;background:#7fc6ff;opacity:0;animation:drip 1.2s infinite ease-in}
+@keyframes drip{0%{transform:translateY(0);opacity:0}20%{opacity:1}100%{transform:translateY(24px);opacity:0}}
+.tap{width:44px;height:44px;flex:none;position:relative;margin-left:2px}
+.tap svg{width:44px;height:44px}
+.coin{position:absolute;left:24px;top:38px;width:14px;height:14px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ffe08a,#c8992c 65%);color:#4a3200;font-size:9px;font-weight:800;display:grid;place-items:center;opacity:0;animation:coin 1.3s infinite ease-in}
+.coin:nth-of-type(2){animation-delay:.45s;left:20px}.coin:nth-of-type(3){animation-delay:.9s;left:28px}
+.coin.off{display:none}
+@keyframes coin{0%{transform:translateY(0);opacity:0}20%{opacity:1}100%{transform:translateY(26px);opacity:0}}
+
+/* =========================================================
+   PLAY
+   ========================================================= */
+#sPlay.on{min-height:calc(100dvh - 28px)}
+.hud{display:flex;align-items:center;gap:var(--sp3)}
+.hud .prog{flex:1;min-width:0}
+.hud .prog .label{display:block;margin-bottom:5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.segs{display:flex;gap:3px}.segs i{flex:1;height:5px;border-radius:3px;background:var(--line);transition:background .3s}
+.segs i.d{background:var(--gold)}.segs i.c{background:var(--text)}
+.score{position:relative;min-width:64px;text-align:center;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:4px 10px}
+.score small{display:block;font-size:9px;font-weight:700;letter-spacing:.12em;color:var(--text3)}
+.score b{font-size:18px;font-weight:800}
+.score .pop{position:absolute;left:50%;top:-6px;transform:translateX(-50%);font-size:13px;font-weight:800;animation:rise 1.1s ease-out forwards;pointer-events:none}
+@keyframes rise{from{opacity:1;transform:translate(-50%,0)}to{opacity:0;transform:translate(-50%,-22px)}}
+.problem{display:flex;gap:var(--sp3);align-items:flex-start;background:var(--surface);border:1px solid var(--line);border-left:5px solid var(--err);border-radius:var(--r-lg);padding:var(--sp3) var(--sp4)}
+.problem .tag{display:inline-flex;align-items:center;gap:6px;font-size:10.5px;font-weight:700;letter-spacing:.1em;color:#ff9d8b;text-transform:uppercase}
+.problem .tag::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--err);animation:blink 1.2s infinite}
+@keyframes blink{50%{opacity:.25}}
+.problem h2{font-size:clamp(17px,4.6vw,20px);font-weight:700;line-height:1.35;margin-top:3px}
+/* scene */
+.scene{position:relative;height:150px;border-radius:var(--r-lg);background:linear-gradient(180deg,#0f2147 0%,#0c1b3c 70%,#0c2630 70%,#0a2128 100%);border:1px solid var(--line);overflow:hidden}
+.scene .pipe-row{position:absolute;left:4%;right:3%;top:16px}
+.scene .stg .nm{font-size:9px}
+.scene .drops{position:absolute;top:60px;width:30px;height:46px;margin-left:-15px;pointer-events:none}
+.scene .drops i{position:absolute;width:6px;height:9px;border-radius:50% 50% 50% 50%/60% 60% 40% 40%;background:#7fc6ff;opacity:0;animation:drip2 1s infinite ease-in}
+.scene .drops i:nth-child(1){left:4px}.scene .drops i:nth-child(2){left:13px;animation-delay:.25s}.scene .drops i:nth-child(3){left:9px;animation-delay:.5s}.scene .drops i:nth-child(4){left:20px;animation-delay:.75s}.scene .drops i:nth-child(5){left:1px;animation-delay:.9s}.scene .drops i:nth-child(6){left:17px;animation-delay:.6s}
+.scene .drops i.off{display:none}
+@keyframes drip2{0%{transform:translateY(0);opacity:0}15%{opacity:1}100%{transform:translateY(34px);opacity:0}}
+.puddle{position:absolute;top:98px;width:70px;height:10px;margin-left:-35px;border-radius:50%;background:radial-gradient(ellipse,rgba(127,198,255,.9) 0%,rgba(127,198,255,.3) 60%,transparent 72%);transition:transform .6s}
+.patches{position:absolute;top:8px;height:42px;width:44px;margin-left:-22px;pointer-events:none;display:flex;align-items:center;justify-content:center}
+.leaktag,.fixtag{position:absolute;top:-6px;font-size:9px;font-weight:800;letter-spacing:.06em;border-radius:999px;padding:1px 7px;white-space:nowrap;color:#fff}
+.leaktag{background:var(--err);animation:blink 1.2s infinite}.fixtag{background:var(--teal)}
+.clamp{position:absolute;top:6px;width:22px;height:36px;border-radius:7px;border:4px solid #d7deee;box-shadow:0 0 0 2px #33456f,0 0 12px rgba(127,224,201,.7);animation:stick .45s cubic-bezier(.2,1.6,.4,1)}
+.patch{position:absolute;top:10px;font-size:20px;animation:stick .45s cubic-bezier(.2,1.6,.4,1)}
+.patch.fall{animation:fall 1.1s ease-in forwards}
+@keyframes stick{from{transform:scale(2) rotate(-25deg);opacity:0}}
+@keyframes fall{30%{transform:rotate(25deg)}100%{transform:translateY(110px) rotate(140deg);opacity:0}}
+.who{position:absolute;bottom:10px;display:flex;flex-direction:column;align-items:center;gap:3px;transition:left .7s ease,bottom .7s ease,transform .6s ease,opacity .5s}
+.who .tagn{font-size:9.5px;font-weight:700;background:rgba(255,255,255,.92);color:#0a1326;border-radius:6px;padding:1px 6px;white-space:nowrap}
+#tl{left:12px}
+#cand{left:calc(100% - 66px)}
+#cand.enter{animation:walkin .6s ease-out}
+@keyframes walkin{from{transform:translateX(90px);opacity:0}}
+#cand.bob .av{animation:bob .6s infinite}
+@keyframes bob{50%{transform:translateY(-3px)}}
+#cand.out{transform:translateX(120px);opacity:0}
+.teamrow{position:absolute;left:50%;transform:translateX(-50%);bottom:10px;display:flex;flex-direction:column;align-items:center;gap:3px}
+.teamrow .label{font-size:9px}
+.teamrow span{display:flex;gap:2px;min-height:28px;align-items:center}
+/* candidate card */
+.cand-card{flex:none;display:flex;flex-direction:column;gap:var(--sp3);animation:cardIn .35s ease-out}
+@keyframes cardIn{from{transform:translateY(10px);opacity:0}}
+.cc-head{display:flex;gap:var(--sp3);align-items:center}
+.cc-head .nm{font-size:18px;font-weight:700;line-height:1.25}
+.cc-head .cat{margin-top:4px}
+.cc-desc{font-size:14px;line-height:1.45;color:var(--text2)}
+.cc-rows{display:grid;gap:6px}
+.cc-row{display:flex;gap:10px;align-items:flex-start;font-size:13px;line-height:1.4;background:var(--bg2);border-radius:var(--r-sm);padding:8px 10px}
+.cc-row .k{flex:none;width:20px;height:20px;border-radius:50%;display:grid;place-items:center;font-size:11px;font-weight:800}
+.cc-row.plus .k{background:var(--ok-soft);color:var(--ok)}.cc-row.minus .k{background:var(--warn-soft);color:var(--warn)}
+.cc-row span:last-child{color:var(--text)}
+.cc-q{font-size:14px;color:var(--gold);font-weight:600}
+.cc-detail{display:flex;flex-direction:column;gap:8px;border-top:1px solid rgba(255,255,255,.12);padding-top:10px;margin-top:4px}
+.idea-ic{width:48px;height:48px;border-radius:14px;background:var(--teal-soft);border:1px solid rgba(42,157,143,.4);display:grid;place-items:center;font-size:24px;flex:none}
+/* feedback card */
+.fb{flex:none;display:flex;flex-direction:column;gap:var(--sp2);border-radius:var(--r-lg);padding:var(--sp4);border:1px solid;animation:cardIn .3s ease-out}
+.fb.ok{background:var(--ok-soft);border-color:rgba(47,179,106,.45)}.fb.warn{background:var(--warn-soft);border-color:rgba(224,161,40,.45)}.fb.err{background:var(--err-soft);border-color:rgba(208,96,79,.45)}
+.fb .t{font-size:19px;font-weight:700;line-height:1.3}
+.fb .r{font-size:14px;line-height:1.45;color:var(--text2)}
+.fb .who2{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text2)}
+.fb .pts{margin-left:auto;font-weight:800;font-size:15px;border-radius:999px;padding:3px 12px}
+.fb.ok .pts{background:var(--ok);color:#06210f}.fb.warn .pts{background:var(--warn);color:#2a1c00}.fb.err .pts{background:var(--err);color:#fff}
+/* actions */
+.actions{position:sticky;bottom:0;margin-top:auto;display:grid;grid-template-columns:1fr 1.3fr;gap:var(--sp3);padding:var(--sp3) 0 calc(var(--sp1) + env(safe-area-inset-bottom));background:linear-gradient(180deg,rgba(7,18,38,0),var(--bg) 30%);z-index:5}
+.actions .btn{min-height:58px;font-size:17px;white-space:nowrap;padding:0 12px}
+#bNo svg{color:var(--err)}
+.actions.next{grid-template-columns:1fr}
+.hintline{position:absolute;left:0;right:0;bottom:100%;padding:6px 0;background:var(--bg);grid-column:1/-1;text-align:center;font-size:12.5px;font-weight:600;color:var(--gold)}
+.pulse{animation:pulseRing 1.4s infinite}
+@keyframes pulseRing{0%{box-shadow:0 0 0 0 rgba(200,153,44,.55)}70%{box-shadow:0 0 0 12px rgba(200,153,44,0)}}
+
+/* =========================================================
+   OVERLAYS
+   ========================================================= */
+.ov{position:fixed;inset:0;z-index:30;display:flex;align-items:flex-start;justify-content:center;padding:max(16px,env(safe-area-inset-top)) 14px 16px;overflow-y:auto;background:rgba(3,8,20,.72);backdrop-filter:blur(4px)}
+.sheet{width:100%;max-width:480px;margin:auto;background:var(--bg2);border:1px solid var(--line);border-radius:24px;padding:var(--sp5) var(--sp4);box-shadow:var(--sh);animation:sheetIn .35s cubic-bezier(.2,1.2,.4,1);display:flex;flex-direction:column;gap:var(--sp3)}
+@keyframes sheetIn{from{transform:translateY(16px) scale(.97);opacity:0}}
+.sheet.center{text-align:center;align-items:stretch}
+.ico-lg{font-size:40px;line-height:1}
+.rule2{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp2)}
+.rule2 div{border-radius:var(--r);padding:var(--sp3);font-size:13px;line-height:1.35;text-align:left}
+.rule2 b{display:block;font-size:15px;margin-bottom:2px}
+.rule2 .y{background:var(--ok-soft);border:1px solid rgba(47,179,106,.35)}.rule2 .y b{color:var(--ok)}
+.rule2 .n{background:var(--surface);border:1px solid var(--line)}
+.blist{display:flex;flex-direction:column;gap:6px;max-height:44dvh;overflow:auto;text-align:left}
+.bi{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:8px 10px}
+.bi .tx{flex:1;min-width:0}.bi .tx b{display:block;font-size:13.5px}.bi .tx small{display:block;font-size:11.5px;color:var(--text2);line-height:1.35}
+.bi .st{text-align:right;font-size:11px;font-weight:700;white-space:nowrap}
+.bi .st .g{color:var(--gold)}.bi .st .y{display:block;color:var(--ok)}.bi .st .m{display:block;color:var(--text3)}
+/* CTA */
+.ctaP{width:100%;max-width:480px;margin:var(--sp3) auto 0;display:flex;flex-direction:column;gap:var(--sp3);text-align:center}
+.ctaP h2{font-size:26px;font-weight:800;line-height:1.2}.ctaP h2 em{font-style:normal;color:var(--gold)}
+.ctaP .sub{color:var(--text2);font-size:14px}
+.cc{display:flex;align-items:center;gap:var(--sp3);text-align:left;text-decoration:none;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:var(--sp3) var(--sp4);color:var(--text);transition:border-color .15s}
+.cc:hover{border-color:var(--text3)}
+.cc .ci{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;font-size:22px;flex:none;background:var(--surface2)}
+.cc b{display:block;font-size:15px;line-height:1.25}.cc small{display:block;font-size:12px;color:var(--text2);margin-top:2px}
+.cc .go{margin-left:auto;flex:none;font-size:12.5px;font-weight:700;border-radius:999px;padding:7px 12px;white-space:nowrap}
+.cc.t .go{background:var(--gold);color:#0a1326}.cc.c .go{background:var(--teal);color:#fff}.cc.s .go{background:var(--surface2);border:1px solid var(--line)}.cc.w .go{background:#1f9d55;color:#fff}
+.free{display:inline-block;font-size:9.5px;font-weight:800;background:var(--ok);color:#06210f;border-radius:6px;padding:1px 6px;margin-left:6px;vertical-align:2px}
+/* share + contact */
+.shareB{display:flex;align-items:center;justify-content:center;gap:8px;min-height:50px;border-radius:var(--r);background:#1f9d55;color:#fff!important;font-weight:700;font-size:15px;text-decoration:none}
+.shareB:hover{background:#23b061}
+.contact{border-top:1px solid var(--line);padding-top:var(--sp4);text-align:center;font-size:12px;color:var(--text3)}
+.contact b{display:block;color:var(--text2);margin-bottom:var(--sp2);font-size:12.5px}
+.cl{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
+.cl a{text-decoration:none;font-size:12px;font-weight:600;color:var(--text);background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:6px 12px}
+.rs{display:inline-grid;place-items:center;width:1.15em;height:1.15em;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ffe08a,#c8992c 65%);color:#4a3200;font-style:normal;font-weight:800;font-size:.85em;vertical-align:-.15em}
+
+/* =========================================================
+   RESULTS
+   ========================================================= */
+.res-hero{text-align:center;display:flex;flex-direction:column;align-items:center;gap:var(--sp2)}
+.ring{--p:0;width:150px;height:150px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(var(--gold) calc(var(--p)*1%),var(--surface2) 0);position:relative}
+.ring::before{content:"";position:absolute;inset:12px;border-radius:50%;background:var(--bg)}
+.ring div{position:relative;text-align:center}.ring b{display:block;font-size:38px;font-weight:800;line-height:1}.ring small{font-size:11px;color:var(--text3);letter-spacing:.1em;font-weight:700}
+.tier{font-size:24px;font-weight:800}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp2)}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:var(--sp3) var(--sp2);text-align:center}
+.stat b{display:block;font-size:22px;font-weight:800}.stat small{font-size:11px;color:var(--text3);font-weight:600}
+.ins{display:grid;gap:var(--sp2)}
+.ins .row{display:flex;gap:10px;align-items:flex-start;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:10px 12px;font-size:13.5px;line-height:1.4}
+.ins .row .k{flex:none;width:26px;height:26px;border-radius:8px;display:grid;place-items:center;font-size:13px;font-weight:800}
+.ins .row.s .k{background:var(--ok-soft);color:var(--ok)}.ins .row.w .k{background:var(--warn-soft);color:var(--warn)}
+.ins .row small{display:block;color:var(--text2);font-size:12px}
+.other{display:flex;align-items:center;gap:var(--sp3);text-align:left;background:var(--surface);border:2px solid var(--teal);border-radius:var(--r-lg);padding:var(--sp4)}
+.other .mi{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:var(--teal-soft);color:var(--teal);flex:none}.other .mi svg{width:24px;height:24px}
+.other b{display:block;font-size:16px}.other small{font-size:12.5px;color:var(--text2)}
+.stats2{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp2)}
+.stat.big b{font-size:28px;color:var(--gold)}
+.stat.q-i{border-color:rgba(47,179,106,.45);background:var(--ok-soft)}.stat.q-i b{color:var(--ok)}
+.stat.q-p{border-color:rgba(224,161,40,.45);background:var(--warn-soft)}.stat.q-p b{color:var(--warn)}
+.stat.q-x{border-color:rgba(208,96,79,.45);background:var(--err-soft)}.stat.q-x b{color:var(--err)}
+.qbar{display:flex;height:10px;border-radius:5px;overflow:hidden;background:var(--surface2)}
+.qbar i{display:block;height:100%;width:0;transition:width .8s ease}.qbar .qi{background:var(--ok)}.qbar .qp{background:var(--warn)}.qbar .qx{background:var(--err)}
+.qnote{font-size:11.5px;color:var(--text3);text-align:center;margin-top:-4px}
+.ring small{line-height:1.2;display:block}
+.ctaP.inline{border-top:1px solid var(--line);padding-top:var(--sp5)}
+.fb .badge{align-self:flex-start;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;border-radius:999px;padding:3px 10px}
+.fb.ok .badge{background:var(--ok);color:#06210f}.fb.warn .badge{background:var(--warn);color:#2a1c00}.fb.err .badge{background:var(--err);color:#fff}
+.fb .why{display:flex;gap:10px;align-items:flex-start;background:rgba(0,0,0,.22);border-radius:var(--r);padding:10px 12px}
+.fb .why .label{flex:none;color:var(--gold);margin-top:2px}
+.fb .why p{font-size:15px;line-height:1.45;color:var(--text);font-weight:500}
+.ins .row.x .k{background:var(--err-soft);color:var(--err)}
+.ins .tally{display:flex;gap:6px;margin-top:6px;flex-wrap:wrap}
+.ins .tally span{font-size:11px;font-weight:700;border-radius:999px;padding:2px 8px;background:var(--surface2);color:var(--text2)}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp2)}
+
+/* ---------- responsive ---------- */
+@media (max-width:360px){.h1{font-size:28px}.modes{grid-template-columns:1fr}.steps3 div{font-size:11px}.scene{height:140px}}
+@media (min-width:700px){.app{padding-top:var(--sp5)}.scene{height:170px}.puddle{top:108px}}
+@media (min-height:820px){.scene{height:170px}.puddle{top:108px}}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01s!important;animation-iteration-count:1!important;transition:none!important}}
+</style></head><body>
+<div class="app">
+
+ <!-- ================= HOME ================= -->
+ <section class="scr on" id="sHome">
+  <div class="topbar"><img class="logo" src="data:image/jpeg;base64,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" alt="FARE"><span style="flex:1"></span><button class="iconbtn" id="muteH" aria-label="Sound">🔊</button></div>
+  <div class="home-hero">
+   <span class="eyebrow">Sales leadership simulation</span>
+   <h1 class="h1">Fix your <em>sales funnel</em></h1>
+   <p class="lead">మీరు Team Lead. Funnel లో drop-off ఎక్కడో చూసి, సరైన decision తో sales ని తిరిగి flow చేయించండి.</p>
+  </div>
+  <div class="funnel" aria-label="Leaking sales funnel">
+   <div class="pipe-row"><span class="pipe-cap"></span><div class="pipe" id="homePipe"></div><div class="tap"><svg viewBox="0 0 70 70" aria-hidden="true"><rect x="0" y="18" width="40" height="22" rx="4" fill="#a87d1c"/><rect x="0" y="21" width="40" height="5" fill="#e6bd57" opacity=".7"/><path d="M36 18 h10 a14 14 0 0 1 14 14 v14 h-14 v-10 a4 4 0 0 0 -4 -4 h-6 z" fill="#c8992c"/><rect x="44" y="44" width="18" height="6" rx="2" fill="#a87d1c"/><rect x="26" y="8" width="6" height="12" fill="#a87d1c"/><rect x="16" y="2" width="26" height="8" rx="4" fill="#e6bd57"/></svg><i class="coin">₹</i></div></div>
+   <div class="funnel-foot"><span>📉 ప్రతి stage లో <b>leads చేజారిపోతున్నారు</b></span><span class="sales">Sales <i class="rs">₹</i></span></div>
+  </div>
+  <div>
+   <div class="label" style="margin-bottom:8px">Choose your game</div>
+   <div class="modes" role="group" aria-label="Game mode">
+    <button class="mode hire" id="mHire" aria-pressed="true"><span class="tick">✓</span><span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.6 3.4-5.5 6.5-5.5s5.7 1.9 6.5 5.5"/><circle cx="17" cy="9" r="2.5"/><path d="M16.5 14.6c2.6.2 4.4 1.9 5 4.9"/></svg></span><b>Hire the Right People</b><p>సరైన candidates ని గుర్తించి funnel problems fix చేయండి</p></button>
+    <button class="mode proc" id="mProc" aria-pressed="false"><span class="tick">✓</span><span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 0 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 0 1 0-4h.1A1.7 1.7 0 0 0 4.6 9a1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 0 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 0 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></span><b>Fix the Sales Process</b><p>సరైన actions, systems తో conversion పెంచండి</p></button>
+   </div>
+  </div>
+  <button class="btn btn-primary btn-block" id="bPlay" style="min-height:58px;font-size:18px">▶ Play now</button>
+  <p class="meta" id="homeMeta">3 problems · 8 candidates each · ~3 min</p>
+  <div class="steps3"><div><i>1</i>Problem చదవండి</div><div><i>2</i>Hire / Implement లేదా Reject</div><div><i>3</i>Funnel fix అవ్వడం చూడండి</div></div>
+  <a class="shareB" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="width:20px;height:20px"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.7.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></svg> Share on WhatsApp</a>
+  <div id="contactH"></div>
+ </section>
+
+ <!-- ================= PLAY ================= -->
+ <section class="scr" id="sPlay">
+  <div class="hud">
+      <div class="prog"><span class="label" id="pgT">Problem 1/3 · Candidate 1/8</span><div class="segs" id="prog"></div></div>
+   <div class="score" id="scoreBox"><small>SCORE</small><b id="score">0</b></div>
+   <button class="iconbtn" id="mute" aria-label="Sound">🔊</button>
+  </div>
+  <div class="problem" id="probCard"><span class="av av-40" id="tlAv"></span><div><span class="tag" id="probTag">Site visits · drop-off</span><h2 id="probText"></h2></div></div>
+  <div class="scene" id="scene">
+   <div class="pipe-row"><span class="pipe-cap"></span><div class="pipe" id="pipe"></div><div class="tap" id="tapBox"><svg viewBox="0 0 70 70" aria-hidden="true"><rect x="0" y="18" width="40" height="22" rx="4" fill="#a87d1c"/><rect x="0" y="21" width="40" height="5" fill="#e6bd57" opacity=".7"/><path d="M36 18 h10 a14 14 0 0 1 14 14 v14 h-14 v-10 a4 4 0 0 0 -4 -4 h-6 z" fill="#c8992c"/><rect x="44" y="44" width="18" height="6" rx="2" fill="#a87d1c"/><rect x="26" y="8" width="6" height="12" fill="#a87d1c"/><rect x="16" y="2" width="26" height="8" rx="4" fill="#e6bd57"/></svg><i class="coin">₹</i><i class="coin">₹</i><i class="coin">₹</i></div></div>
+   <div class="drops" id="drops"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+   <div class="puddle" id="puddle"></div>
+   <div class="patches" id="patches"></div>
+   <div class="who" id="tl"><span class="av av-40" id="tlAv2"></span><span class="tagn">You · TL</span></div>
+   <div class="teamrow"><span id="teamRow"></span></div>
+   <div class="who" id="cand"><span class="av av-40" id="cAv"></span><span class="tagn" id="cTagn">Candidate</span></div>
+  </div>
+  <div class="card cand-card" id="cCard"></div>
+  <div class="actions" id="acts"><button class="btn btn-secondary" id="bNo">✕ Reject</button><button class="btn btn-primary" id="bYes">✓ Hire</button></div>
+ </section>
+
+ <!-- ================= RESULTS ================= -->
+ <section class="scr" id="sRes">
+  <div class="topbar"><img class="logo" src="data:image/jpeg;base64,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" alt="FARE"><span style="flex:1"></span><span class="eyebrow" id="rMode">Hire the Right People</span></div>
+  <div class="res-hero"><div class="ring" id="ring"><div><b id="rPct">0%</b><small>DECISION<br>QUALITY</small></div></div><div class="tier" id="rTitle"></div><div id="rStars" style="font-size:22px;letter-spacing:3px"></div></div>
+  <div class="stats2"><div class="stat big"><b id="sScore">0</b><small>Total score</small></div><div class="stat big"><b id="sTotal">0</b><small>Decisions</small></div></div>
+  <div class="qbar" id="qbar"><i class="qi"></i><i class="qp"></i><i class="qx"></i></div>
+  <div class="stats"><div class="stat q-i"><b id="sIdeal">0</b><small>🎯 Ideal</small></div><div class="stat q-p"><b id="sPart">0</b><small>🤔 Partial</small></div><div class="stat q-x"><b id="sBad">0</b><small>❌ Incorrect</small></div></div>
+  <p class="qnote">Decision quality = Ideal decisions full credit, Partial decisions half credit.</p>
+  <div><div class="label" style="margin-bottom:8px">Learning summary</div><div class="ins" id="rIns"></div></div>
+  <button class="other" id="bLv2"></button>
+  <div class="row2"><button class="btn btn-secondary" id="bAgain">↻ Replay</button><button class="btn btn-secondary" id="bHome">⌂ Home</button></div>
+    <a class="shareB" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="width:20px;height:20px"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.7.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></svg> Share your score on WhatsApp</a>
+  <p class="muted" id="rSum" style="display:none"></p>
+  <div class="ctaP inline" id="ctaBox">
+   <h2>Want to <em>build your team?</em></h2>
+   <p class="sub">సరైన profiles, సరైన skills, సరైన support</p>
+   <a class="cc t" id="ctaT" target="_blank" rel="noopener"><span class="ci">🧑‍💼</span><span><b>Hire trained profiles</b><small>FARE Talent Pool · Zero commission</small></span><span class="go">Hire now</span></a>
+   <a class="cc c" id="ctaC" target="_blank" rel="noopener"><span class="ci">🎓</span><span><b>Learn Team Building skills<span class="free">FREE</span></b><small>Open Plot Team Building course</small></span><span class="go">Start free</span></a>
+   <a class="cc s" id="ctaS" target="_blank" rel="noopener"><span class="ci">📞</span><span><b>Talk your training need with FARE<span class="free">FREE</span></b><small>1:1 session with a FARE expert</small></span><span class="go">Book session</span></a>
+   <a class="cc w" id="ctaW" target="_blank" rel="noopener"><span class="ci">💬</span><span><b>Join WhatsApp community<span class="free">FREE</span></b><small>Weekly team building tips</small></span><span class="go">Join</span></a>
+  </div>
+  <div id="contactC"></div>
+ </section>
+</div>
+
+<!-- briefing -->
+<div class="ov hide" id="ovBrief"><div class="sheet center" id="briefP"></div></div>
+<!-- round summary -->
+<div class="ov hide" id="ovRound"><div class="sheet center" id="roundP"></div></div>
+
+<script>
+var GAME_OVERRIDE={name:"Fix Your Sales Funnel",share:"🔧 Fix Your Sales Funnel: మీరు TL. Sales drop-off ని fix చేయడానికి సరైన person ని hire చేయండి! FARE game 👇",url:"https://claude.ai/artifact/3MLSLamonqmFbgj9RYMiVJ"};
+/* ===== FARE leak data v3 · built from the editable Profile Pool sheet (18 profiles) =====
+   code 10 🎯 Perfect · 6 👍 Near perfect · 4 🤔 Moderate · 2 ❌🔀 Right person, wrong stage · 1 ❌ Wrong · 0 ❌⚠️ Makes it worse */
+const ST={lead:["LEADS","#4a90e2"],follow:["FOLLOWUP","#7b9be0"],visit:["SITE VISITS","#2a9d8f"],close:["CLOSING","#e8a317"],ref:["REFERRALS","#9b7be0"]};
+const F=["Leads","Followup","Site visits","Closing","Referrals"], R=F;
+/* ---- Profile pool (mirrors the Sheet) · fit = [Leads, Followup, Site visits, Closing, Referrals] ---- */
+const POOL_GROUPS={field:"🤝 Field sales & network",digital:"📣 Marketing & digital",site:"🗺️ Site, closing & post-sales",lead:"🧑‍✈️ Leadership & team building"};
+const POOL=[
+ {g:"field",e:"🤝",n:"Existing plot agent",who:"ఇప్పటికే వేరే projects లో plots అమ్ముతున్న agent",plus:"Plot buyers network, site visit & closing experience",minus:"ఒకేసారి చాలా projects అమ్ముతారు, loyalty తక్కువ, commission ఎక్కువ అడుగుతారు",model:"Commission",fit:[6,4,6,10,4]},
+ {g:"field",e:"🏢",n:"Residential CP / agent",who:"Apartments, villas అమ్మిన experience ఉన్న CP లేదా CP firm",plus:"Ready buyer network, closing experience",minus:"Plots కంటే apartments కి priority ఇవ్వొచ్చు, commission ఎక్కువ అడుగుతారు",model:"Commission",fit:[6,4,4,6,4]},
+ {g:"field",e:"🛡️",n:"LIC / insurance agent",who:"Telugu states లో చాలా common. Families తో long relationships",plus:"Follow-up discipline, trust, family network",minus:"Real estate product knowledge తక్కువ, part-time గా ఉంటారు",model:"Commission",fit:[6,6,1,4,6]},
+ {g:"field",e:"📈",n:"Mutual fund distributor / financial advisor",who:"Investment, returns, goals గురించి మాట్లాడే advisor",plus:"Value selling, investor clients",minus:"Site, layout knowledge తక్కువ",model:"Commission",fit:[4,4,1,6,6]},
+ {g:"field",e:"💰",n:"Chit fund / finance agent",who:"Towns, mandals లో monthly collections చేసే agent",plus:"Local trust, regular-saver network",minus:"Big-ticket selling experience తక్కువ",model:"Commission",fit:[6,4,1,4,4]},
+ {g:"field",e:"🧓",n:"Retired govt employee",who:"Retired, time ఉంది, community లో respect",plus:"Trust, patience, senior buyers తో బాగా connect",minus:"Volume, speed తక్కువ, digital tools కష్టం",model:"Part-time / commission",fit:[4,1,1,4,4]},
+ {g:"field",e:"🏪",n:"Small business owner",who:"Shop, contractor, local business నడిపేవాళ్లు",plus:"Local customers network",minus:"Part-time, business busy అయితే drop",model:"Commission",fit:[4,1,1,1,4]},
+ {g:"field",e:"🏠",n:"Homemaker network (kitty / SHG groups)",who:"Women groups, apartment associations లో active",plus:"Warm referrals, family decision-makers కి reach",minus:"Site visits, negotiation కి support కావాలి",model:"Part-time / commission",fit:[4,1,1,1,6]},
+ {g:"field",e:"🔁",n:"Network marketing (MLM) background",who:"Downline building experience ఉన్నవాళ్లు",plus:"Recruitment energy, presentation skills",minus:"Selling కంటే downline కి focus. Over-promising risk",model:"Commission",fit:[4,1,1,0,1]},
+ {g:"field",e:"🎓",n:"Fresher / graduate",who:"College అయిపోయిన youth, digital-savvy",plus:"Trainable, తక్కువ salary, social media తెలుసు",minus:"Credibility, pitch skills లేవు. Training must",model:"Salary + incentive",fit:[1,4,1,0,1]},
+ {g:"digital",e:"📣",n:"Digital ads expert (Meta / Google)",who:"Paid campaigns, lead forms, landing pages",plus:"వారాల్లోనే fresh leads, measurable",minus:"Ad budget కావాలి. Leads తర్వాత follow-up team లేకపోతే waste",model:"Salary / agency fee",fit:[10,1,1,1,1]},
+ {g:"digital",e:"🎬",n:"Content creator / real estate YouTuber",who:"Site videos, reels, location explainers, testimonials",plus:"Trust, organic leads long run లో",minus:"Results slow, direct selling చేయరు",model:"Salary / per-video",fit:[6,4,4,1,6]},
+ {g:"digital",e:"📞",n:"Tele-caller (2–5 yrs exp)",who:"BPO లేదా real estate calling experience",plus:"Fast follow-up, visits book చేస్తారు",minus:"Leads లేకపోతే idle. Closing చేయరు",model:"Salary + incentive",fit:[1,10,10,1,4]},
+ {g:"digital",e:"🖥️",n:"Online ad expert",who:"Property portals (99acres, MagicBricks, Housing.com) లో listings, paid leads manage చేస్తారు",plus:"High-intent buyers, త్వరగా leads",minus:"Portal cost ఎక్కువ, అదే lead చాలా agents కి వెళ్తుంది, fast follow-up కావాలి",model:"Salary / per-lead",fit:[10,1,1,1,1]},
+ {g:"field",e:"🕵️",n:"Competitor agent",who:"పక్క plotted project (competitor) కి పని చేస్తున్న agent",plus:"Plotted buyers, competitor pricing & objections తెలుసు",minus:"Loyalty తక్కువ, మళ్లీ వెళ్లిపోవచ్చు; competitor తో conflict రావచ్చు",model:"Commission / salary + incentive",fit:[6,4,6,6,1]},
+ {g:"digital",e:"⚙️",n:"Lead automation expert",who:"WhatsApp automation, CRM, lead assignment, reminders, post-sale updates setup",plus:"Instant response, ఏ lead miss అవ్వదు. Buyers తో regular touch వల్ల relationships, referrals",minus:"Calls, meetings చేయరు; setup కి time, team use చేయాలి",model:"Salary / agency fee",fit:[4,10,4,1,10]},
+ {g:"site",e:"🏦",n:"Bank loan DSA / ex-banker",who:"Home / plot loans, eligibility, EMI planning తెలుసు",plus:"Loan, investment doubts clear, credibility",minus:"Lead generation, site experience తక్కువ",model:"Salary / per-loan",fit:[1,4,1,10,4]},
+ {g:"lead",e:"🧑‍✈️",n:"Experienced team lead / sales manager",who:"Team ని targets, reviews తో నడిపించిన experience",plus:"Discipline, consistency, coaching",minus:"Salary ఎక్కువ, సరైన team కావాలి",model:"Salary + override",fit:[4,6,10,6,4]}
+];
+const PP=n=>{const p=POOL.find(x=>x.n===n); if(!p) throw new Error("not in pool: "+n); return p;};
+/* option: [profile name, code, one-line reason] → expanded to [emoji, name, code, reason] */
+const mk=(st,t,q,leak,opts)=>({st,t,q,leak,p:opts.map(([n,c,r])=>[PP(n).e,n,c,r])});
+const CASES=[
+ mk("lead","Team కి regular leads రావడం లేదు","Agents మళ్లీ మళ్లీ relatives కే call చేస్తున్నారు.",0,[
+  ["Digital ads expert (Meta / Google)",10,"వారాల్లోనే fresh leads"],
+  ["Content creator / real estate YouTuber",6,"నిరంతరం వచ్చే organic leads, long run లో"],
+  ["Retired govt employee",4,"Community లో warm leads, కానీ త్వరగా అయిపోతాయి"],
+  ["Tele-caller (2–5 yrs exp)",2,"Followup, Site visits లో 🎯. ఇక్కడ call చేయడానికి leads లేవు"],
+  ["Fresher / graduate",1,"Network లేదు, contacts లేవు"]]),
+ mk("follow","Leads ఉన్నాయి, కానీ ఎక్కువ leads interest చూపించడం లేదు","Friday lead. Tuesday call. అప్పటికే late.",1,[
+  ["Lead automation expert",10,"Instant replies, auto reminders"],
+  ["Experienced team lead / sales manager",6,"Daily follow-up reviews, కానీ calls చేసేది team"],
+  ["Content creator / real estate YouTuber",4,"Leads ని warm గా ఉంచుతారు, system కావాలి"],
+  ["Digital ads expert (Meta / Google)",2,"Leads stage లో 🎯. ఇక్కడ ఇంకా ఎక్కువ leads cold"],
+  ["Small business owner",1,"Part-time, follow-up కి time లేదు"]]),
+ mk("visit","300 leads, కేవలం 6 site visits","Enquiries బాగానే వస్తున్నాయి. Sunday ఎవరూ రావడం లేదు.",2,[
+  ["Tele-caller (2–5 yrs exp)",10,"బాగా pitch చేసి, visits book చేస్తారు"],
+  ["Existing plot agent",6,"Site visits చేయించిన experience, కానీ సొంత clients కే priority"],
+  ["Content creator / real estate YouTuber",4,"Site reels తో interest, కానీ slow"],
+  ["Online ad expert",2,"Leads stage లో 🎯. ఎక్కువ leads, అదే leak"],
+  ["Fresher / graduate",1,"ఇంకా pitch skills లేవు"]]),
+ mk("visit","కొన్ని Sundays లోనే site visits","ఎవరికి mood ఉంటే అప్పుడే పని.",2,[
+  ["Experienced team lead / sales manager",10,"Weekly targets, Monday reviews"],
+  ["Competitor agent",6,"Weekly visit routine తెలుసు, buyers తీసుకొస్తారు"],
+  ["Lead automation expert",4,"Reminders తో no-shows తగ్గుతాయి, discipline కాదు"],
+  ["Mutual fund distributor / financial advisor",2,"Closing, Referrals లో 👍. Site visits నడపరు"],
+  ["Network marketing (MLM) background",1,"Downline కి focus, visits కి కాదు"]]),
+ mk("close","20 visits, 1 booking","అందరూ 'ఇంట్లో discuss చేసి చెప్తాం' అంటున్నారు.",3,[
+  ["Existing plot agent",10,"Plot buyers objections handle చేసి close చేస్తారు"],
+  ["Residential CP / agent",6,"Closing experience ఉంది, plots కి కొంచెం adjust కావాలి"],
+  ["LIC / insurance agent",4,"Trust ఉంది, కానీ product knowledge తక్కువ"],
+  ["Digital ads expert (Meta / Google)",2,"Leads లో 🎯. ఎక్కువ visits, అదే result"],
+  ["Fresher / graduate",0,"Negotiation లో discount ఇచ్చేసి deal పాడు చేస్తారు"]]),
+ mk("close","Investment value ని team explain చేయలేకపోతోంది","'Rates పెరుగుతాయి sir.' అంతే.",3,[
+  ["Bank loan DSA / ex-banker",10,"Loans, returns, credibility"],
+  ["Mutual fund distributor / financial advisor",6,"Value selling, investment language తెలుసు"],
+  ["Chit fund / finance agent",4,"Savings mindset తెలుసు, big-ticket experience తక్కువ"],
+  ["Tele-caller (2–5 yrs exp)",2,"Followup లో 🎯. Investment questions కి answer కాదు"],
+  ["Network marketing (MLM) background",0,"'Double అవుతుంది sir' లాంటి over-promises, trust పోతుంది"]]),
+ mk("ref","కొన్న తర్వాత customers కనిపించరు","సంవత్సరానికి ఒక referral, అదీ కష్టమే.",4,[
+  ["Lead automation expert",10,"Regular updates తో buyers తో relationship, referrals అడుగుతారు"],
+  ["LIC / insurance agent",6,"Families తో long relationships"],
+  ["Experienced team lead / sales manager",4,"Team ని referrals అడగమని push, కానీ system కాదు"],
+  ["Competitor agent",2,"Leads, Closing లో 👍. Old buyers తో connect ఉండదు"],
+  ["Digital ads expert (Meta / Google)",2,"Leads లో 🎯. Happy customers ని ignore చేస్తారు"]])
+];
+
+/* ---- top up every scenario to 12 profiles from the pool (default stage fit from the Sheet) ---- */
+const SHORT={ /* [why it helps, why it falls short] */
+ "Existing plot agent":["Plot buyers network, closing experience","వేరే projects కూడా అమ్ముతారు, loyalty తక్కువ"],
+ "Residential CP / agent":["Ready buyer network, closing experience","Apartments కి priority, plots కి focus తక్కువ"],
+ "LIC / insurance agent":["Follow-up discipline, family trust","Part-time, plots knowledge తక్కువ"],
+ "Mutual fund distributor / financial advisor":["Investment language, investor clients","Site, layout knowledge తక్కువ"],
+ "Chit fund / finance agent":["Local trust, regular savers network","Big-ticket selling experience తక్కువ"],
+ "Retired govt employee":["Community లో trust, patience","Speed, volume తక్కువ"],
+ "Small business owner":["Local customers network","Part-time, business busy అయితే drop"],
+ "Homemaker network (kitty / SHG groups)":["Women groups లో warm referrals","Site visits, negotiation కి support కావాలి"],
+ "Network marketing (MLM) background":["Presentation energy","Selling కంటే downline కి focus"],
+ "Fresher / graduate":["Trainable, social media తెలుసు","Credibility, pitch skills లేవు"],
+ "Digital ads expert (Meta / Google)":["వారాల్లోనే fresh leads","Leads తెస్తారు, ఈ problem fix చేయరు"],
+ "Content creator / real estate YouTuber":["Trust పెంచే videos, organic leads","Results slow, direct selling చేయరు"],
+ "Tele-caller (2–5 yrs exp)":["Fast follow-up, visits book చేస్తారు","Calls చేస్తారు, closing / relationships కాదు"],
+ "Online ad expert":["Portals నుంచి high-intent leads","Leads తెస్తారు, ఈ problem fix చేయరు"],
+ "Competitor agent":["Plotted buyers, competitor objections తెలుసు","Loyalty తక్కువ, మళ్లీ వెళ్లిపోవచ్చు"],
+ "Lead automation expert":["Auto reminders, ఏ lead miss అవ్వదు","System ఇస్తారు, calls / meetings చేయరు"],
+ "Bank loan DSA / ex-banker":["Loans, EMI doubts clear, credibility","Leads, site experience తక్కువ"],
+ "Experienced team lead / sales manager":["Targets, reviews, coaching","Salary ఎక్కువ, సొంతంగా ఈ పని చేయరు"]};
+/* scenario-specific overrides of the default stage fit: [case title, profile, code] */
+const OVR=[["Investment value ని team explain చేయలేకపోతోంది","Existing plot agent",6]];
+(function(){
+  const SN=["Leads","Followup","Site visits","Closing","Referrals"], IC={10:"🎯",6:"👍"};
+  CASES.forEach(c=>{
+    const s=c.leak, have=new Set(c.p.map(x=>x[1]));
+    const ex=POOL.filter(p=>!have.has(p.n)).map(p=>{
+      const f=p.fit[s], good=p.fit.map((v,i)=>v>=6?SN[i]+" లో "+IC[v]:null).filter(Boolean);
+      let code=(f<=1&&good.length)?2:f; const o=OVR.find(x=>x[0]===c.t&&x[1]===p.n); if(o) code=o[2];
+      const [pos,neg]=SHORT[p.n];
+      const r=code>=6?pos: code===4?pos.split(",")[0]+", కానీ "+neg: code===2?good.slice(0,2).join(", ")+". ఇక్కడ కాదు": neg;
+      return [p.e,p.n,code,r];
+    }).sort((a,b)=>b[2]-a[2]);
+    const pick=ex.length<=7?ex:[...ex.slice(0,4),...ex.slice(-3)];
+    c.p.push(...pick);
+  });
+})();
+const VAL={10:{pts:10,fix:40,e:"🎯",h:"Perfect fit!",col:"#7fe0c9",good:1},6:{pts:6,fix:25,e:"👍",h:"Near perfect fit",col:"#8fc1ff",good:1},
+  4:{pts:3,fix:10,e:"🤔",h:"Moderate fit",col:"#f5c451",good:.5},2:{pts:-3,fix:-5,e:"🔀",h:"Right person, wrong stage",col:"#f0a08c",good:0},
+  1:{pts:-5,fix:-10,e:"❌",h:"Wrong fit",col:"#f39a86",good:0},0:{pts:-8,fix:-20,e:"⚠️",h:"Makes it worse!",col:"#f39a86",good:0}};
+
+/* ===== shared helpers ===== */
+const $=id=>document.getElementById(id);
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+let SOUND=true, AC;
+function beep(f,d=.12,type="sine",v=.12){ if(!SOUND) return; try{AC=AC||new (window.AudioContext||window.webkitAudioContext)(); const o=AC.createOscillator(),g=AC.createGain(); o.type=type;o.frequency.value=f;g.gain.value=v;o.connect(g);g.connect(AC.destination);o.start();g.gain.exponentialRampToValueAtTime(.0001,AC.currentTime+d);o.stop(AC.currentTime+d);}catch(e){} }
+const sfx={good:()=>{beep(660,.1);setTimeout(()=>beep(990,.15),80);}, bad:()=>beep(200,.28,"sawtooth",.07), soft:()=>beep(420,.08,"triangle",.12),
+  win:()=>[523,659,784,1047].forEach((f,i)=>setTimeout(()=>beep(f,.16),i*110))};
+function wireMute(id){ const b=$(id); if(!b) return; b.onclick=()=>{SOUND=!SOUND; b.textContent=SOUND?"🔊":"🔇";}; }
+/* Hire / pass reactions (Telugu + English mix) · codes: 10 Perfect, 6 Near perfect, 4 Moderate, 2 Wrong+🔀, 1 Wrong, 0 Wrong+⚠️ */
+const HIRE={10:{e:"🎯",h:"Perfect fit!",pts:10,c:"#2a9d8f",good:1},6:{e:"👍",h:"Near perfect fit",pts:6,c:"#4a90e2",good:1},
+            4:{e:"🤔",h:"Moderate fit",pts:3,c:"#e8a317",good:.5},2:{e:"🔀",h:"Right person, wrong stage",pts:-3,c:"#d9604a",good:0},
+            1:{e:"❌",h:"Wrong fit",pts:-5,c:"#d9604a",good:0},0:{e:"⚠️",h:"Makes it worse!",pts:-8,c:"#b8412c",good:0}};
+const PASS={10:{e:"😱",h:"Perfect fit ని వదిలేశారు!",pts:-5,c:"#d9604a",good:0},6:{e:"🤷",h:"ఇది help చేసేది",pts:0,c:"#8f9ab3",good:0},
+            4:{e:"👌",h:"Fair pass",pts:1,c:"#e8a317",good:.5},2:{e:"✅",h:"Smart pass! వేరే stage కి సరిపోతారు",pts:3,c:"#2a9d8f",good:1},
+            1:{e:"✅",h:"సరిగ్గా skip చేశారు!",pts:5,c:"#2a9d8f",good:1},0:{e:"✅",h:"Risk తప్పించారు!",pts:5,c:"#2a9d8f",good:1}};
+/* illustrative bookings effect per hire */
+const BOOK={10:6,6:4,4:2,2:0,1:0,0:-1}, BASE_BOOK=3, PLOT_L=20;
+const rupees=l=>l>=100?`₹${(l/100).toFixed(1)} Cr`:`₹${Math.round(l)} L`;
+function toast(r,p,pts,extra=""){ const t=$("toast"); t.style.setProperty("--pc",r.c);
+  t.innerHTML=`<div class="big">${r.e}</div><b>${r.h}</b><div class="t">${p[0]} ${p[3]}</div><span class="p">${pts>0?"+":""}${pts}${extra}</span>`;
+  t.classList.add("show"); clearTimeout(toast.tm); toast.tm=setTimeout(()=>t.classList.remove("show"),1500); }
+const TIERS=pct=>pct>=.85?["🏆","Funnel Doctor"]:pct>=.65?["🚀","Team Architect"]:pct>=.45?["⚙️","Growing Team Builder"]:["🌱","Downline Thinker"];
+const CTA_HTML=`<p class="cta">💡 <b>ముందు leak ని కనుక్కోండి, తర్వాత దానికి సరైన person ని hire చేయండి.</b><br>FARE Open Plot Team Building · www.fare.training · 7674993040</p>`;
+/* ===== FARE CTA links (replace with final URLs) ===== */
+const FARE_LINKS={
+  talent:"https://www.fare.training",
+  course:"https://www.fare.training",
+  session:"https://wa.me/917674993040?text="+encodeURIComponent("Hi FARE, I would like a FREE session to discuss my team training needs"),
+  share:"",  /* public game link; empty = current page URL */
+  whatsapp:"https://wa.me/917674993040?text="+encodeURIComponent("Hi FARE, please add me to the team building tips WhatsApp community")
+};
+
+/* ===== share + contact ===== */
+const GAME_CFG=Object.assign({name:"Fix Your Sales Funnel",share:"🔧 Fix Your Sales Funnel: మీ sales funnel ఎక్కడ leak అవుతోంది? ఈ FARE game ఆడి చూడండి 👇",url:"https://claude.ai/artifact/Vy9uw1ifg49P5nhSsp6ARf"},(typeof GAME_OVERRIDE!=="undefined")?GAME_OVERRIDE:{});
+const SHARE_TEXT=GAME_CFG.share;
+function shareURL(){ if(FARE_LINKS.share) return FARE_LINKS.share; return /claudeusercontent|claude\.ai/.test(location.hostname)?GAME_CFG.url:location.href.split("#")[0]; }
+function wireShare(){ document.querySelectorAll(".shareB").forEach(a=>{
+  a.href="https://wa.me/?text="+encodeURIComponent(SHARE_TEXT+"\n"+shareURL());
+  a.onclick=async e=>{ if(!navigator.share) return; e.preventDefault();
+    try{ await navigator.share({title:GAME_CFG.name+" · FARE",text:SHARE_TEXT,url:shareURL()}); }
+    catch(err){ if(!err||err.name!=="AbortError") location.href=a.href; } }; }); }
+const CONTACT_HTML=`<div class="contact"><b>FARE · Finishing Academy for Real Estate</b>
+  <div class="cl"><a href="tel:+917674993040">📞 7674993040</a><a href="https://wa.me/917674993040" target="_blank" rel="noopener">💬 WhatsApp</a><a href="https://www.fare.training" target="_blank" rel="noopener">🌐 www.fare.training</a><a href="https://www.instagram.com/fare.training" target="_blank" rel="noopener">📸 @fare.training</a></div></div>`;
+
+/* ===== FIX THE PROCESS: solution options per funnel stage =====
+   Based on the FARE Sales Funnel Ready Reckoner (focus areas + Learn & self-implement / Groom team / Hire vendor-agency).
+   code 10 = ✅ Good fix · 4 = 🤔 Mid fix · 1 = ❌ Bad fix · 0 = ⚠️ Makes it worse
+   [emoji, solution, code, one-line reason] */
+const PSOL=[
+ /* 0 · LEADS */ [
+  ["🎓","Existing agents కి lead generation training",10,"Personal branding, social media తో ప్రతి agent సొంత leads తెస్తారు"],
+  ["🧲","Lead-gen experience ఉన్న agents ని onboard చేయండి",10,"Day 1 నుంచే సొంత leads, team కి example"],
+  ["📣","Meta / Google ads: clear target, daily tracking",10,"వారాల్లోనే fresh leads, cost per lead తెలుస్తుంది"],
+  ["🏢","కొత్త lead agency ని onboard చేయండి",4,"Leads వస్తాయి, కానీ quality, cost control మీ చేతిలో ఉండవు"],
+  ["💸","Lead generation మీద ఎక్కువ spend",4,"Leads పెరుగుతాయి, కానీ tracking లేకపోతే budget waste"],
+  ["🎥","Weekly site reels & content",4,"Trust పెరుగుతుంది, కానీ results slow"],
+  ["🎪","Property exhibitions / local events",4,"Walk-in leads, కానీ ఒక్కసారికే"],
+  ["👥","కొత్త agents ని hire చేయండి (lead skills లేకుండా)",1,"Leads లేని agents పెరుగుతారు, అదే problem"],
+  ["📞","Relatives & friends కి మళ్లీ call చేయమనండి",1,"Network అయిపోయింది, ఇంకా ఒత్తిడి"],
+  ["📈","Team size (downline) పెంచండి",0,"ఉన్న company leads ఇంకా ఎక్కువ మంది మధ్య divide అవుతాయి"]],
+ /* 1 · FOLLOWUP */ [
+  ["⚙️","WhatsApp automation + CRM reminders",10,"ప్రతి lead కి instant reply, ఏ follow-up miss అవ్వదు"],
+  ["⏱️","5-minute first call rule + daily follow-up review",10,"Lead hot గా ఉన్నప్పుడే call, discipline పెరుగుతుంది"],
+  ["🗣️","Telecalling & sales pitch training",10,"Qualify చేసి, interest create చేసే pitch"],
+  ["📋","Excel sheet లో leads track చేయండి",4,"ఏమీ లేకపోవడం కంటే better, కానీ update చేయరు"],
+  ["📲","Weekly project updates అన్ని leads కి పంపండి",4,"Leads ని warm గా ఉంచుతుంది, కానీ personal touch లేదు"],
+  ["🎁","Phone లోనే discount offer",1,"Interest కాదు, price bargaining మొదలవుతుంది"],
+  ["💸","ఇంకా ఎక్కువ leads కొనండి",1,"Cold leads ఇంకా పెరుగుతాయి"],
+  ["📢","Bulk SMS blast",1,"ఎవరూ చదవరు, brand cheap గా కనిపిస్తుంది"],
+  ["🤞","Interest ఉంటే వాళ్లే call చేస్తారు",1,"Competitor ముందే call చేస్తారు"],
+  ["😤","రోజూ అదే script తో pressure calls",0,"Spam అని block చేస్తారు, lead పోతుంది"]],
+ /* 2 · SITE VISITS */ [
+  ["🗣️","Telecalling & pitch training: visit book చేయడం",10,"Call ని visit గా మార్చే pitch"],
+  ["📅","Weekly visit targets + Monday review",10,"ప్రతి Sunday visits plan అవుతాయి"],
+  ["🚐","Fixed Sunday slots + free pickup",10,"Customer కి easy, no-shows తగ్గుతాయి"],
+  ["🔔","Visit ముందు రోజు & ఆ రోజు reminders",10,"Booked visits నిజంగా జరుగుతాయి"],
+  ["🎬","Site video reels leads కి పంపండి",4,"Interest పెరుగుతుంది, కానీ visit guarantee కాదు"],
+  ["🎁","Site visit కి gift",4,"కొంత మంది వస్తారు, కానీ serious buyers కాకపోవచ్చు"],
+  ["🏆","Monthly visit contest",4,"Short-term energy, system కాదు"],
+  ["💸","ఇంకా ఎక్కువ leads కొనండి",1,"ఎక్కువ leads, అదే visit leak"],
+  ["👥","ఇంకా agents ని add చేయండి",1,"Pitch, planning లేకపోతే visits పెరగవు"],
+  ["🏷️","Visit ముందే phone లో best price చెప్పండి",0,"Price తెలిసిపోయింది, site కి రావాల్సిన అవసరం లేదు"]],
+ /* 3 · CLOSING */ [
+  ["🛡️","Objection handling training (role plays)",10,"'ఇంట్లో discuss చేస్తాం' కి సరైన answer"],
+  ["💎","Value selling: location growth, investment case",10,"Price కాదు, future value చూపిస్తారు"],
+  ["📚","Product & investment knowledge sessions",10,"Approvals, location, loans: ప్రతి doubt clear"],
+  ["🏦","Bank tie-up: site లోనే loan eligibility",10,"Money doubt అక్కడే solve, booking వెంటనే"],
+  ["🧾","Brochure & FAQ sheet",4,"Help అవుతుంది, కానీ conversation replace చేయదు"],
+  ["⏳","Limited-time offer",4,"కొంత urgency, ఎక్కువ వాడితే trust పోతుంది"],
+  ["🧑‍✈️","Final meeting లో senior join అవ్వడం",4,"Trust పెరుగుతుంది, కానీ team skill పెరగదు"],
+  ["👥","ఇంకా ఎక్కువ site visits తేండి",1,"అదే conversion, ఎక్కువ effort waste"],
+  ["😤","'Today only' hard pressure closing",1,"Customer దూరం అవుతారు"],
+  ["💸","పెద్ద discounts ఇవ్వండి",0,"Margin పోతుంది, project value తగ్గినట్టు కనిపిస్తుంది"]],
+ /* 4 · REFERRALS */ [
+  ["🤝","Post-sale relationship plan",10,"Registration, development updates: buyer తో regular touch"],
+  ["⚙️","Automated updates + festival wishes",10,"ప్రతి buyer కి personal touch, effort లేకుండా"],
+  ["🎁","Buyers కి referral reward program",10,"Happy buyers కొత్త buyers ని తెస్తారు"],
+  ["🏡","Plot owners meet / site day",10,"Community feeling, referrals natural గా వస్తాయి"],
+  ["📱","Buyers WhatsApp group",4,"Connect అవుతుంది, కానీ manage చేయకపోతే complaints board"],
+  ["🙏","Registration రోజు మాత్రమే referral అడగండి",4,"కొంత help, relationship లేకుండా ఒక్కసారికే"],
+  ["💸","Referrals బదులు ఇంకా ads",1,"Leads వస్తాయి, కానీ cheapest source ని వదిలేశారు"],
+  ["👥","Referrals కోసం ఇంకా agents",1,"Relationship system లేకపోతే అదే result"],
+  ["🚪","Registration తర్వాత follow-up అవసరం లేదు",1,"Buyer మర్చిపోతారు, referral రాదు"],
+  ["📢","Buyers కి కొత్త project offers spam",0,"Irritation, negative word of mouth"]]
+];
+const PCASES=CASES.map(c=>({...c,p:PSOL[c.leak]}));
+/* reactions for process mode: Do it / Skip */
+const PDO={10:{e:"✅",h:"Good fix!",pts:10,c:"#2a9d8f",good:1},4:{e:"🤔",h:"Mid fix: కొంత help, కానీ slow",pts:3,c:"#e8a317",good:.5},
+           1:{e:"❌",h:"Bad fix",pts:-5,c:"#d9604a",good:0},0:{e:"⚠️",h:"Leak ఇంకా పెరుగుతుంది!",pts:-8,c:"#b8412c",good:0}};
+const PSKIP={10:{e:"😱",h:"Good fix ని skip చేశారు!",pts:-5,c:"#d9604a",good:0},4:{e:"👌",h:"Fair skip",pts:1,c:"#e8a317",good:.5},
+           1:{e:"✅",h:"సరిగ్గా skip చేశారు!",pts:5,c:"#2a9d8f",good:1},0:{e:"✅",h:"Risk తప్పించారు!",pts:5,c:"#2a9d8f",good:1}};
+
+const HELP={"Existing plot agent":"ఇప్పటికే plots అమ్ముతున్నారు, buyers ని close చేస్తారు","Residential CP / agent":"Apartments అమ్మిన agent, ready buyers ఉంటారు","LIC / insurance agent":"Families తో trust, regular follow-up అలవాటు","Mutual fund distributor / financial advisor":"Investment, returns గురించి explain చేస్తారు","Chit fund / finance agent":"Local savers network ఉన్న collection agent","Retired govt employee":"Community లో respect, part-time గా పని","Small business owner":"Shop / business ఉంది, local contacts","Homemaker network (kitty / SHG groups)":"Women groups లో warm contacts","Network marketing (MLM) background":"Downline build చేసిన experience","Fresher / graduate":"College అయిపోయిన youth, experience లేదు","Digital ads expert (Meta / Google)":"Facebook / Google ads తో కొత్త leads తెస్తారు","Content creator / real estate YouTuber":"Site videos, reels తో trust పెంచుతారు","Tele-caller (2–5 yrs exp)":"Calls చేసి customers ని site కి తీసుకొస్తారు","Online ad expert":"99acres, MagicBricks లో leads తెస్తారు","Competitor agent":"పక్క project లో plots అమ్ముతున్న agent","Lead automation expert":"WhatsApp, CRM తో auto reminders & updates","Bank loan DSA / ex-banker":"Plot loans, EMI doubts clear చేస్తారు","Experienced team lead / sales manager":"Targets, reviews తో team ని నడిపిస్తారు"};
+const PLAIN=["Agents కి కొత్త leads రావడం లేదు. అందరూ relatives కే మళ్లీ మళ్లీ call చేస్తున్నారు.",
+ "Leads వస్తున్నాయి, కానీ సరైన follow-up లేక interest పోతోంది.",
+ "300 leads వచ్చాయి, కానీ 6 మందే site visit కి వచ్చారు.",
+ "Team కి mood ఉన్న Sundays లోనే site visits జరుగుతున్నాయి.",
+ "20 మంది site చూశారు, కానీ 1 booking మాత్రమే.",
+ "Customers 'ఇది మంచి investment ఎందుకు?' అంటే team answer చెప్పలేకపోతోంది.",
+ "Plot కొన్నవాళ్లు తర్వాత కనిపించరు, referrals రావడం లేదు."];
+
+
+const SN=["Leads","Followup","Site visits","Closing","Referrals"];
+/* ===== reactions (unchanged logic): [message, patch kind, leak change, points] ===== */
+const RX_Y={10:["🎯 Perfect hire! Permanent solution, conversion పెరిగింది","clamp",.55,10],6:["👍 మంచి hire, conversion కొంత పెరిగింది","band",.32,6],4:["🤔 Temporary solution మాత్రమే, కొంచెం help","tape",.15,3],2:["🔀 ఈ stage కి కాదు, result లేదు","fall",0,-3],1:["❌ Wrong hire! Temporary solution, problem అలాగే ఉంది","fall",-.1,-5],0:["⚠️ Drop-off ఇంకా పెరిగింది!","crack",-.25,-8]};
+const RX_N={10:["😱 Best person ని వదిలేశారు!",-5],6:["🤷 మంచి option miss అయింది",0],4:["👌 OK, పర్వాలేదు",1],2:["✅ సరైన reject: వేరే stage person",3],1:["✅ సరైన reject!",5],0:["✅ Risk తప్పించారు!",5]};
+const PY={10:["✅ Great Idea! Permanent solution, conversion పెరిగింది","clamp",.4,10],4:["🤔 Temporary solution, కొంచెం help","tape",.12,3],1:["❌ Bad Idea, problem అలాగే ఉంది","fall",-.1,-5],0:["⚠️ Drop-off ఇంకా పెరిగింది!","crack",-.25,-8]};
+const PN={10:["😱 మంచి Idea ని reject చేశారు!",-5],4:["👌 OK, పర్వాలేదు",1],1:["✅ సరైన reject!",5],0:["✅ Risk తప్పించారు!",5]};
+
+/* ===== avatars (professional initials avatars, colour by profile category) ===== */
+const GROUP_COL={field:"#2a9d8f",digital:"#4a7fd6",site:"#c8992c",lead:"#8b6fd6"};
+const poolOf=n=>POOL.find(x=>x.n===n);
+function initials(n){ const w=n.split(/[(/]/)[0].replace(/[^A-Za-z\s-]/g," ").split(/[\s-]+/).filter(x=>x&&x.length>1); return ((w[0]||"?")[0]+((w[1]||"")[0]||"")).toUpperCase(); }
+const PERSON=(body,skin,tie)=>`<svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="15" r="7.2" fill="${skin}"/><path d="M20 7.6c-4.3 0-7.4 2.6-7.4 6.4 1.6-2.2 4.4-3.1 7.4-3.1s5.8.9 7.4 3.1c0-3.8-3.1-6.4-7.4-6.4z" fill="#2b1d14"/><path d="M6.5 40c.6-8.6 6.4-13.6 13.5-13.6S32.9 31.4 33.5 40z" fill="${body}"/>${tie?`<path d="M18.4 26.6h3.2l-.6 2.2 1.4 7.6-2.4 2.4-2.4-2.4 1.4-7.6z" fill="${tie}"/>`:`<path d="M16.6 26.8 20 31l3.4-4.2" fill="none" stroke="#fff" stroke-width="1.6" stroke-linejoin="round" opacity=".8"/>`}</svg>`;
+function avatarHTML(n,cls){ const p=poolOf(n), c=p?GROUP_COL[p.g]:"#4a5d86";
+  return `<span class="av ${cls}" style="background:#1b2c52;box-shadow:0 0 0 2px ${c};overflow:hidden">${PERSON(c,"#d9a77c",0)}</span>`; }
+const TL_AV=cls=>`<span class="av ${cls}" style="background:#1b2c52;box-shadow:0 0 0 2px #c8992c;overflow:hidden">${PERSON("#22345c","#c98f63","#c8992c")}</span>`;
+const IDEA_AV=(e,cls)=>`<span class="av ${cls}" style="background:#123a3a;box-shadow:0 0 0 2px #2a9d8f;font-size:18px">${e}</span>`;
+function setAv(el,html){ el.outerHTML=html.replace('class="av','id="'+el.id+'" class="av'); }
+
+/* ===== state ===== */
+let LV=1, order=[], qi=0, deck=[], di=0, L=1, score=0, busy=false, hist=[], good=0, total=0, outcomes=[], advT=null, Q={ideal:0,part:0,bad:0}, RQ=null;
+/* Decision quality, derived from the existing outcome codes (points are NOT changed):
+   Hire mode    - Hire: 10 ideal · 6/4 partial (useful but not the best fit) · 2/1/0 incorrect
+                  Reject: 2/1/0 ideal · 4 partial (OK either way) · 10/6 incorrect (good person missed)
+   Process mode - Implement: 10 ideal · 4 partial · 1/0 incorrect
+                  Reject: 1/0 ideal · 4 partial · 10 incorrect */
+function quality(s,yes){ if(yes) return s===10?"ideal":(s===6||s===4)?"part":"bad";
+  return s<=2?"ideal":s===4?"part":"bad"; }
+const QLBL={ideal:"🎯 Ideal decision",part:"🤔 Partial decision",bad:"❌ Incorrect decision"};
+const NQ=3, ND=8;
+function show(id){ document.querySelectorAll(".scr").forEach(s=>s.classList.toggle("on",s.id===id)); scrollTo(0,0); }
+function buildDeck(c){
+  if(LV===1){ const g=c.p.filter(x=>x[2]>=6), o=shuffle(c.p.filter(x=>x[2]<6)); return shuffle([...g.slice(0,3),...o.slice(0,ND-Math.min(3,g.length))]); }
+  const S=PSOL[c.leak], g=shuffle(S.filter(x=>x[2]===10)).slice(0,3), o=shuffle(S.filter(x=>x[2]!==10)).slice(0,ND-3); return shuffle([...g,...o]); }
+function startGame(lv){ LV=lv; order=shuffle([...CASES.keys()]).slice(0,NQ); qi=0; score=0; good=0; total=0; hist=[]; outcomes=[]; Q={ideal:0,part:0,bad:0}; show("sPlay"); problem(); }
+function pipeHTML(leak){ return SN.map((s,i)=>`<div class="stg ${leak===null||i===leak?'lk':''}" id="sg${leak===null?'h':''}${i}"><span class="nm">${s}</span>${leak===null?'<i class="drip" style="animation-delay:'+(i*.23)+'s"></i>':''}</div>`).join(""); }
+function leakX(){ const c=CASES[order[qi]], sc=$("scene"), pr=$("pipe").getBoundingClientRect(), sr=sc.getBoundingClientRect(); return pr.left-sr.left+pr.width*(c.leak+.5)/5; }
+function problem(){ const c=CASES[order[qi]]; deck=buildDeck(c); di=0; L=1; RQ={ideal:0,part:0,bad:0};
+  $("probTag").textContent=SN[c.leak]+" · drop-off"; $("probText").textContent=PLAIN[order[qi]];
+  $("pipe").innerHTML=pipeHTML(c.leak).replace(/ lk/g,(m,o)=>m);
+  SN.forEach((_,i)=>{ if(i!==c.leak) $("sg"+i).classList.remove("lk"); });
+  requestAnimationFrame(()=>{ const x=Math.max(30,leakX()); ["drops","puddle","patches"].forEach(id=>$(id).style.left=x+"px"); });
+  $("patches").innerHTML=`<span class="leaktag" id="ltag">DROP-OFF</span>`; $("teamRow").innerHTML="";
+  paint(); brief(c); }
+function brief(c){ const h=LV===1;
+  $("briefP").innerHTML=`<span class="eyebrow" style="align-self:center;color:#ff9d8b;background:var(--err-soft);border-color:rgba(208,96,79,.4)">Problem ${qi+1} / ${NQ} · ${SN[c.leak]}</span>
+   <h2 class="h2">${PLAIN[order[qi]]}</h2>
+   <p class="lead" style="font-size:14px">${h?`<b style="color:var(--text)">${ND} candidates</b> ఒక్కొక్కరిగా మిమ్మల్ని కలుస్తారు. ఈ <b style="color:var(--text)">${SN[c.leak]}</b> drop-off ని ఎవరు fix చేస్తారు?`:`<b style="color:var(--text)">${ND} Ideas</b> ఒక్కొక్కటిగా వస్తాయి. ఏ Ideas ఈ <b style="color:var(--text)">${SN[c.leak]}</b> drop-off ని fix చేస్తాయి?`}</p>
+   <div class="rule2"><div class="y"><b>✓ ${h?"Hire":"Implement"}</b>conversion పెరుగుతుంది</div><div class="n"><b>✕ Reject</b>సరిపోకపోతే</div></div>
+   <button class="btn btn-primary btn-block" id="bGo">▶ Start</button>`;
+  $("ovBrief").classList.remove("hide"); $("bGo").onclick=()=>{ $("ovBrief").classList.add("hide"); nextCand(); }; }
+function paint(){ const n=Math.max(0,Math.min(6,Math.ceil(L*6))); $("drops").querySelectorAll("i").forEach((d,k)=>d.classList.toggle("off",k>=n));
+  $("puddle").style.transform=`scale(${.4+Math.min(1.6,Math.max(0,L))*0.8},1)`;
+  const fixed=L<=.08, c=CASES[order[qi]]; const sg=$("sg"+c.leak); sg.classList.toggle("lk",!fixed); sg.classList.toggle("fx",fixed);
+  SN.forEach((_,i)=>{ if(i>c.leak) $("sg"+i).style.setProperty("--flow",Math.max(.12,1-L)); });
+  const lt=$("ltag"); if(lt){ lt.className=fixed?"fixtag":"leaktag"; lt.textContent=fixed?"CONVERTING":"DROP-OFF"; }
+  const cn=fixed?3:L<.5?2:L<.85?1:0; $("tapBox").querySelectorAll(".coin").forEach((d,k)=>d.classList.toggle("off",k>=cn)); }
+function profileCard(p){ const P=poolOf(p[1]), cat=P?POOL_GROUPS[P.g]:"Candidate", desc=HELP[p[1]]||(P?P.who:"");
+  return `<div class="cc-head">${avatarHTML(p[1],"av-48")}<div><div class="nm">${p[1]}</div><div class="cat"><span class="chip">${cat}</span></div></div></div>
+   <p class="cc-q">ఈ person ఈ problem ని fix చేయగలరా?</p>`; }
+function profileDetail(p){ const P=poolOf(p[1]), desc=HELP[p[1]]||(P?P.who:"");
+  return `<div class="cc-detail"><div class="label">About this profile</div>${desc?`<p class="cc-desc">${desc}</p>`:""}
+   ${P?`<div class="cc-rows"><div class="cc-row plus"><span class="k">+</span><span>${P.plus}</span></div><div class="cc-row minus"><span class="k">!</span><span>${P.minus}</span></div></div>`:""}</div>`; }
+function ideaCard(p){ const c=CASES[order[qi]];
+  return `<div class="cc-head"><span class="idea-ic">${p[0]}</span><div><div class="label" style="color:var(--teal)">Process idea</div><div class="nm" style="margin-top:2px">${p[1]}</div><div class="cat"><span class="chip">${SN[c.leak]} stage</span></div></div></div>`; }
+function setActions(mode){ const a=$("acts"), isP=LV===1;
+  if(mode==="decide"){ a.className="actions"; a.innerHTML=`<button class="btn btn-secondary" id="bNo">✕ Reject</button><button class="btn btn-primary" id="bYes">✓ ${isP?"Hire":"Implement"}</button>`;
+    $("bYes").onclick=()=>decide(true); $("bNo").onclick=()=>decide(false); }
+  else { a.className="actions next"; a.innerHTML=`<button class="btn btn-primary" id="bNext">${di+1>=deck.length?"See problem summary →":"Next "+(isP?"candidate":"Idea")+" →"}</button>`;
+    $("bNext").onclick=advance; } }
+function nextCand(){ clearTimeout(advT); if(di>=deck.length){ setTimeout(roundEnd,300); return; }
+  const p=deck[di], isP=LV===1; busy=false;
+  $("pgT").textContent=`Problem ${qi+1}/${NQ}  ·  ${isP?"Candidate":"Idea"} ${di+1}/${deck.length}`;
+  $("prog").innerHTML=deck.map((_,i)=>`<i class="${i<di?'d':i===di?'c':''}"></i>`).join(""); $("score").textContent=score;
+  const cd=$("cand"); cd.style.transition="none"; cd.className="who"; cd.style.left=""; cd.style.bottom=""; cd.style.opacity=""; cd.style.transform="";
+  setAv($("cAv"), isP?avatarHTML(p[1],"av-40"):IDEA_AV(p[0],"av-40")); $("cTagn").textContent=isP?"Candidate":"Idea";
+  void cd.offsetWidth; cd.style.transition=""; cd.classList.add("enter","bob");
+  const cc=$("cCard"); cc.className="card cand-card"; void cc.offsetWidth; cc.innerHTML=isP?profileCard(p):ideaCard(p);
+  setActions("decide");
+  if(qi===0&&di===0&&!seenHand()){ $("bYes").classList.add("pulse"); $("acts").insertAdjacentHTML("afterbegin",`<div class="hintline" id="hand">👇 ఈ ${isP?"candidate":"Idea"} ఈ problem ని fix చేస్తారా? ఎంచుకోండి</div>`); } }
+function seenHand(){ try{return !!localStorage.getItem("fare_i_hand");}catch(e){return true;} }
+function popScore(pts){ const b=document.createElement("span"); b.className="pop"; b.textContent=(pts>0?"+":"")+pts; b.style.color=pts>0?"var(--ok)":pts<0?"var(--err)":"var(--text2)"; $("scoreBox").appendChild(b); setTimeout(()=>b.remove(),1200); }
+function feedback(t,sub,pts,p,isP,q){ const tone={ideal:"ok",part:"warn",bad:"err"}[q];
+  const cc=$("cCard"); cc.className="fb "+tone;
+  cc.innerHTML=`<div class="who2">${isP?avatarHTML(p[1],"av-28"):IDEA_AV(p[0],"av-28")}<span>${p[1]}</span><span class="pts">${pts>0?"+":""}${pts}</span></div><span class="badge">${QLBL[q]}</span><div class="t">${t}</div><div class="why"><span class="label">Why</span><p>${sub}</p></div>${isP?profileDetail(p):""}`; }
+function decide(yes){ if(busy) return; busy=true; $("bYes").disabled=$("bNo").disabled=true;
+  const hd=$("hand"); if(hd){ hd.remove(); try{localStorage.setItem("fare_i_hand","1");}catch(e){} }
+  const p=deck[di], s=p[2], isP=LV===1, cd=$("cand"); cd.classList.remove("bob","enter"); total++;
+  const sgEl=$("sg"+CASES[order[qi]].leak);
+  const q=quality(s,yes); Q[q]++; RQ[q]++;
+  if(yes){ const [t,kind,d,pts]=(isP?RX_Y:PY)[s]; score+=pts; if(pts>0) good++; hist.push({p,yes});
+    const sc=$("scene"), x=leakX(); cd.style.left=(x-20)+"px"; cd.style.bottom=(sc.clientHeight-92)+"px";
+    feedback(t,p[3],pts,p,isP,q); popScore(pts);
+    setTimeout(()=>{ addPatch(kind); L=Math.max(0,Math.min(1.6,L-d)); paint(); (pts>0?sfx.good:sfx.bad)();
+      sgEl.classList.remove("flash","shake"); void sgEl.offsetWidth; sgEl.classList.add(pts>0?"flash":"shake");
+      cd.style.opacity="0"; cd.style.transform="scale(.4)";
+      if(pts>0) $("teamRow").insertAdjacentHTML("beforeend",isP?avatarHTML(p[1],"av-28"):IDEA_AV(p[0],"av-28")); },650);
+  } else { const [t,pts]=(isP?RX_N:PN)[s]; score+=pts; if(pts>0) good++; hist.push({p,yes});
+    cd.classList.add("out"); feedback(t,p[3],pts,p,isP,q); popScore(pts); (pts>0?sfx.soft:sfx.bad)(); }
+  $("score").textContent=score;
+  setTimeout(()=>setActions("next"),700); }
+function advance(){ clearTimeout(advT); if(!busy) return; di++; nextCand(); }
+function addPatch(kind){ const P=$("patches"), o=(Math.random()*12-6);
+  if(kind==="clamp") P.insertAdjacentHTML("beforeend",`<span class="clamp" style="left:${11+o/2}px"></span>`);
+  else if(kind==="band") P.insertAdjacentHTML("beforeend",`<span class="patch" style="left:${10+o}px;transform:rotate(${o*3}deg)">🔧</span>`);
+  else if(kind==="tape") P.insertAdjacentHTML("beforeend",`<span class="patch" style="left:${14+o}px;font-size:14px;transform:rotate(${o*4}deg)">🔧</span>`);
+  else if(kind==="fall"){ P.insertAdjacentHTML("beforeend",`<span class="patch fall" style="left:${12+o}px">🔧</span>`); }
+  else { P.insertAdjacentHTML("beforeend",`<span class="patch" style="left:${12+o}px">💥</span>`); } }
+function roundEnd(){ busy=false; const c=CASES[order[qi]], fixed=L<=.08, isP=LV===1;
+  outcomes.push({stage:SN[c.leak],text:PLAIN[order[qi]],L,q:RQ});
+  const best=(isP?c.p.filter(x=>x[2]>=6):PSOL[c.leak].filter(x=>x[2]===10)).sort((a,b)=>b[2]-a[2]);
+  $("roundP").innerHTML=`<div class="ico-lg">${fixed?"🏆":L<.5?"💪":"💧"}</div><h2 class="h2">${fixed?"Drop-off fix అయింది! Sales flowing 🎉":L<.5?"చాలావరకు fix అయింది":"Drop-off ఇంకా ఉంది"}</h2>
+   <div class="label" style="color:var(--gold)">${isP?"ఈ problem కి best people":"ఈ problem కి best Ideas"}</div>
+   <div class="blist">${best.map(x=>{const h=hist.some(r=>r.p===x&&r.yes), inDeck=deck.includes(x);
+     return `<div class="bi">${isP?avatarHTML(x[1],"av-40"):IDEA_AV(x[0],"av-40")}<span class="tx"><b>${x[1]}</b><small>${x[3]}</small></span><span class="st"><span class="g">${isP?(x[2]===10?'🎯 Perfect':'👍 Near perfect'):'✅ Good Idea'}</span>${inDeck?(h?'<span class="y">✓ '+(isP?'Hired':'Done')+'</span>':'<span class="m">Missed</span>'):''}</span></div>`}).join("")}</div>
+   <button class="btn btn-primary btn-block" id="rNext" style="min-height:58px;font-size:18px">${qi>=NQ-1?"See final results 🏁":"Continue to problem "+(qi+2)+" →"}</button>`;
+  $("ovRound").classList.remove("hide"); $("ovRound").scrollTop=0; fixed?sfx.win():null;
+  $("rNext").onclick=()=>{ $("ovRound").classList.add("hide"); qi++; if(qi<NQ) problem(); else result(); }; }
+/* FARE call-to-action destinations. Talent + course currently fall back to the FARE homepage;
+   put the final page URLs here when they are ready. */
+const CTA_LINKS={ talent:FARE_LINKS.talent, course:FARE_LINKS.course, session:FARE_LINKS.session, whatsapp:FARE_LINKS.whatsapp };
+function ctaLinks(){ $("ctaT").href=CTA_LINKS.talent; $("ctaC").href=CTA_LINKS.course; $("ctaW").href=CTA_LINKS.whatsapp; $("ctaS").href=CTA_LINKS.session; }
+function result(){ const pct=total?(Q.ideal+Q.part*.5)/total:0; show("sRes"); ctaLinks();
+  $("rStars").textContent=pct>=.8?"⭐⭐⭐":pct>=.6?"⭐⭐":"⭐";
+  $("rTitle").textContent=pct>=.8?"🏆 Funnel Expert TL!":pct>=.6?"👍 మంచి TL!":"🌱 ఇంకా నేర్చుకోవచ్చు";
+  $("rSum").innerHTML=`${total} decisions: ${Q.ideal} ideal, ${Q.part} partial, ${Q.bad} incorrect · Score ${score}`;
+  $("rPct").textContent=Math.round(pct*100)+"%"; const ring=$("ring"); ring.style.setProperty("--p",0); let k=0; const tgt=Math.round(pct*100); const iv=setInterval(()=>{ k=Math.min(tgt,k+3); ring.style.setProperty("--p",k); if(k>=tgt) clearInterval(iv); },20);
+  $("sScore").textContent=score; $("sTotal").textContent=total; $("sIdeal").textContent=Q.ideal; $("sPart").textContent=Q.part; $("sBad").textContent=Q.bad;
+  const qb=$("qbar").children; [Q.ideal,Q.part,Q.bad].forEach((v,i)=>{ qb[i].style.width="0"; setTimeout(()=>qb[i].style.width=(total?v/total*100:0)+"%",60); });
+  $("rMode").textContent=LV===1?"Hire the Right People":"Fix the Sales Process";
+  const tally=q=>`<span class="tally"><span>🎯 ${q.ideal} ideal</span><span>🤔 ${q.part} partial</span><span>❌ ${q.bad} incorrect</span></span>`;
+  const ins=outcomes.map(o=>{ const st=o.L<=.08?["s","✓",`<b>${o.stage}</b> drop-off fix చేశారు`]:o.L<.5?["w","!",`<b>${o.stage}</b>: చాలావరకు fix, కొంచెం మిగిలింది`]:["x","!",`<b>${o.stage}</b>: ఇంకా improve చేయాలి`];
+    return `<div class="row ${st[0]}"><span class="k">${st[1]}</span><span>${st[2]}<small>${o.text}</small>${tally(o.q)}</span></div>`; });
+  const tip=Q.bad===0?"":LV===1?`<div class="row w"><span class="k">💡</span><span><b>Learning</b><small>Hire చేసే ముందు: ఈ person కి <b>ఈ stage</b> లో experience ఉందా? వేరే stage expert ని hire చేస్తే drop-off fix అవ్వదు.</small></span></div>`
+    :`<div class="row w"><span class="k">💡</span><span><b>Learning</b><small>Temporary solutions కాకుండా, ఈ stage లో <b>system / process</b> ని మార్చే Ideas ని implement చేయండి.</small></span></div>`;
+  $("rIns").innerHTML=ins.join("")+tip;
+  const other=LV===1;
+  $("bLv2").innerHTML=`<span class="mi">${other?'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 0 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 0 1 0-4h.1A1.7 1.7 0 0 0 4.6 9a1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 0 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 0 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>':'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.6 3.4-5.5 6.5-5.5s5.7 1.9 6.5 5.5"/><circle cx="17" cy="9" r="2.5"/><path d="M16.5 14.6c2.6.2 4.4 1.9 5 4.9"/></svg>'}</span><span><b>Now try: ${other?"Fix the Sales Process":"Hire the Right People"}</b><small>${other?"సరైన Ideas ని implement చేయండి":"సరైన candidates ని hire చేయండి"}</small></span><span style="margin-left:auto;font-size:20px;color:var(--teal)">→</span>`;
+  sfx.win(); }
+$("bLv2").onclick=()=>startGame(LV===1?2:1); $("bAgain").onclick=()=>startGame(LV); $("bHome").onclick=()=>show("sHome");
+/* ===== home: mode selection + play ===== */
+let MODE_SEL=1;
+function selMode(m){ MODE_SEL=m; $("mHire").setAttribute("aria-pressed",m===1); $("mProc").setAttribute("aria-pressed",m===2);
+  $("homeMeta").textContent=m===1?"3 problems · 8 candidates each · ~3 min":"3 problems · 8 Ideas each · ~3 min"; }
+$("mHire").onclick=()=>selMode(1); $("mProc").onclick=()=>selMode(2);
+function go(lv){ startGame(lv); }
+$("bPlay").onclick=()=>go(MODE_SEL);
+/* ===== init ===== */
+$("homePipe").innerHTML=pipeHTML(null);
+setAv($("tlAv"),TL_AV("av-40")); setAv($("tlAv2"),TL_AV("av-40"));
+$("contactH").innerHTML=$("contactC").innerHTML=CONTACT_HTML; wireShare(); wireMute("mute"); wireMute("muteH");
+</script></body></html>
