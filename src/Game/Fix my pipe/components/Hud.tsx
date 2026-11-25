@@ -10,6 +10,8 @@ import DarkModeIcon from '@mui/icons-material/DarkMode';
 import LogoutIcon from '@mui/icons-material/Logout';
 import SettingsIcon from '@mui/icons-material/Settings';
 import TranslateIcon from '@mui/icons-material/Translate';
+import FullscreenIcon from '@mui/icons-material/Fullscreen';
+import FullscreenExitIcon from '@mui/icons-material/FullscreenExit';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import CloseIcon from '@mui/icons-material/Close';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
@@ -89,6 +91,76 @@ export default function Hud({ center, compact = false }: { center?: ReactNode; c
     try {
       navigate(`/fix-my-pipe/${nextTheme}`);
     } catch (_) {}
+  };
+
+  const [isFullscreen, setIsFullscreen] = useState(() => {
+    if (typeof document === 'undefined') return false;
+    return Boolean(
+      document.fullscreenElement ||
+      (document as any).webkitFullscreenElement ||
+      (document as any).mozFullScreenElement ||
+      (document as any).msFullscreenElement
+    );
+  });
+
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      setIsFullscreen(
+        Boolean(
+          document.fullscreenElement ||
+          (document as any).webkitFullscreenElement ||
+          (document as any).mozFullScreenElement ||
+          (document as any).msFullscreenElement
+        )
+      );
+    };
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
+    document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
+    document.addEventListener('mozfullscreenchange', handleFullscreenChange);
+    document.addEventListener('MSFullscreenChange', handleFullscreenChange);
+    return () => {
+      document.removeEventListener('fullscreenchange', handleFullscreenChange);
+      document.removeEventListener('webkitfullscreenchange', handleFullscreenChange);
+      document.removeEventListener('mozfullscreenchange', handleFullscreenChange);
+      document.removeEventListener('MSFullscreenChange', handleFullscreenChange);
+    };
+  }, []);
+
+  const handleToggleFullscreen = async () => {
+    try {
+      const isFs = Boolean(
+        document.fullscreenElement ||
+        (document as any).webkitFullscreenElement ||
+        (document as any).mozFullScreenElement ||
+        (document as any).msFullscreenElement
+      );
+
+      if (!isFs) {
+        const elem = document.documentElement as any;
+        if (elem.requestFullscreen) {
+          await elem.requestFullscreen();
+        } else if (elem.webkitRequestFullscreen) {
+          await elem.webkitRequestFullscreen();
+        } else if (elem.mozRequestFullScreen) {
+          await elem.mozRequestFullScreen();
+        } else if (elem.msRequestFullscreen) {
+          await elem.msRequestFullscreen();
+        }
+      } else {
+        const doc = document as any;
+        if (doc.exitFullscreen) {
+          await doc.exitFullscreen();
+        } else if (doc.webkitExitFullscreen) {
+          await doc.webkitExitFullscreen();
+        } else if (doc.mozCancelFullScreen) {
+          await doc.mozCancelFullScreen();
+        } else if (doc.msExitFullscreen) {
+          await doc.msExitFullscreen();
+        }
+      }
+    } catch (err) {
+      console.warn('Fullscreen toggle failed:', err);
+    }
   };
 
   // Close more menu when clicking outside
@@ -268,6 +340,48 @@ export default function Hud({ center, compact = false }: { center?: ReactNode; c
                   </div>
                   <span className="rounded-[3px] border border-[#DBE4FA] bg-[#F1F5F9] px-2 py-0.5 text-[10px] font-bold text-[#0B1D3A] dark:border-white/15 dark:bg-white/10 dark:text-white">
                     {isDark ? (lang === 'en' ? 'Dark' : 'డార్క్') : (lang === 'en' ? 'Light' : 'లైట్')}
+                  </span>
+                </button>
+
+                {/* Full Screen Toggle */}
+                <button
+                  type="button"
+                  onClick={handleToggleFullscreen}
+                  className="group flex w-full cursor-pointer items-center justify-between rounded-[6px] border border-[#DBE4FA]/80 p-2 text-left transition hover:border-[#2563EB]/50 hover:bg-[#F8F9FD] dark:border-white/10 dark:hover:bg-white/5"
+                >
+                  <div className="flex items-center gap-2">
+                    <span
+                      className={`fare-icon-3d grid h-7 w-7 place-items-center rounded-[4px] text-white ${
+                        isFullscreen ? 'bg-[#0F766E]' : 'bg-[#0B1D3A] dark:bg-[#1A3463]'
+                      }`}
+                    >
+                      {isFullscreen ? (
+                        <FullscreenExitIcon sx={{ fontSize: 16, color: '#FFFFFF' }} />
+                      ) : (
+                        <FullscreenIcon sx={{ fontSize: 16, color: '#FFFFFF' }} />
+                      )}
+                    </span>
+                    <div>
+                      <div className="text-xs font-bold text-[#0B1D3A] dark:text-white">
+                        {lang === 'en' ? 'Full Screen' : 'పూర్తి స్క్రీన్'}
+                      </div>
+                      <div className="text-[10px] text-[#64748B] dark:text-slate-400">
+                        {isFullscreen
+                          ? lang === 'en'
+                            ? 'Exit full screen'
+                            : 'పూర్తి స్క్రీన్ నుంచి నిష్క్రమించు'
+                          : lang === 'en'
+                          ? 'Enter full screen'
+                          : 'పూర్తి స్క్రీన్‌లోకి మారండి'}
+                      </div>
+                    </div>
+                  </div>
+                  <span
+                    className={`rounded-[3px] px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-white ${
+                      isFullscreen ? 'bg-[#0F766E]' : 'bg-[#64748B]'
+                    }`}
+                  >
+                    {isFullscreen ? (lang === 'en' ? 'ON' : 'ఆన్') : (lang === 'en' ? 'OFF' : 'ఆఫ్')}
                   </span>
                 </button>
 
