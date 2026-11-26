@@ -42,19 +42,19 @@ export default function TopNextButton({
           e.stopPropagation();
           onNext();
         }}
-        initial={{ scale: 0.85, opacity: 0 }}
+        initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: [1, 1.05, 1], opacity: 1 }}
         transition={{
-          scale: { repeat: Infinity, duration: 1.8, ease: 'easeInOut' },
+          scale: { repeat: Infinity, duration: 2, ease: 'easeInOut' },
           opacity: { duration: 0.2 },
         }}
         aria-label={tooltipTitle}
-        className={`fare-card-3d inline-flex cursor-pointer items-center gap-1 shrink-0 rounded-full border border-amber-400/80 bg-gradient-to-r from-[#D97706] to-[#B45309] hover:from-[#B45309] hover:to-[#92400E] font-bold text-white shadow-[0_2px_8px_rgba(217,119,6,0.35)] transition-all active:scale-95 ${
+        className={`inline-flex cursor-pointer items-center gap-1 shrink-0 rounded-full border border-[#9A6A10] bg-[#C99A2E] hover:bg-[#B6851F] text-[#0B1D3A] font-bold shadow-[0_2px_8px_rgba(201,154,46,0.4),0_1.5px_0_#8A5A00] transition-all active:scale-95 ${
           compact ? 'px-2.5 py-0.5 text-[11px]' : 'px-3 py-1 text-xs'
         } ${className}`}
       >
-        <span>{en ? 'Next' : 'తర్వాతి'}</span>
-        <ArrowForwardIcon sx={{ fontSize: compact ? 13 : 15, color: '#FFFFFF' }} />
+        <span className="font-bold tracking-tight text-[#0B1D3A]">{en ? 'Next' : 'తర్వాతి'}</span>
+        <ArrowForwardIcon sx={{ fontSize: compact ? 13 : 15, color: '#0B1D3A' }} />
       </motion.button>
     </Tooltip>
   );
