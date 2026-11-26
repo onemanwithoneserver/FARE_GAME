@@ -70,9 +70,15 @@ export default function MobileView() {
     handleResize();
     window.addEventListener('resize', handleResize);
     window.addEventListener('orientationchange', handleResize);
+    if (typeof window !== 'undefined' && window.screen?.orientation) {
+      window.screen.orientation.addEventListener('change', handleResize);
+    }
     return () => {
       window.removeEventListener('resize', handleResize);
       window.removeEventListener('orientationchange', handleResize);
+      if (typeof window !== 'undefined' && window.screen?.orientation) {
+        window.screen.orientation.removeEventListener('change', handleResize);
+      }
     };
   }, []);
 
@@ -159,10 +165,10 @@ export default function MobileView() {
 
   if (isLandscape) {
     return (
-      <div className="relative h-dvh max-h-dvh w-full overflow-hidden font-sans text-[#0B1D3A] dark:text-slate-100 selection:bg-amber-500 selection:text-slate-950">
+      <div className="relative min-h-dvh w-full overflow-x-hidden overflow-y-auto font-sans text-[#0B1D3A] dark:text-slate-100 selection:bg-amber-500 selection:text-slate-950">
         <Backdrop compact={true} />
 
-        <div className="relative z-10 mx-auto flex h-dvh max-h-dvh w-full max-w-[800px] sm:max-w-[860px] flex-col justify-between px-2 py-0.5 sm:px-3 sm:py-1">
+        <div className="relative z-10 mx-auto flex min-h-dvh w-full max-w-[800px] sm:max-w-[860px] flex-col justify-start gap-1.5 px-2 pt-1 pb-10 sm:px-3 sm:pt-1.5 sm:pb-12">
           
           <Hud
             compact={true}
@@ -195,9 +201,9 @@ export default function MobileView() {
           />
 
           {screen === 'home' && (
-            <div className="my-auto flex flex-1 flex-col justify-evenly gap-1 py-0.5">
+            <div className="flex flex-1 flex-col justify-evenly gap-1 py-1">
               
-              <div className="relative mx-auto h-[130px] sm:h-[150px] max-h-[38dvh] w-full max-w-5xl">
+              <div className="relative mx-auto h-[120px] sm:h-[140px] max-h-[36dvh] w-full max-w-5xl">
                 <Pipe3D activeLeakStage="all" leakLevel={0.65} isFixed={false} lang={lang} flow={0.25} hero={true} />
               </div>
 
@@ -237,9 +243,9 @@ export default function MobileView() {
           )}
 
           {screen === 'play' && currentCase && currentCard && (
-            <div className="my-auto flex flex-1 flex-col justify-between gap-1 py-0.5">
+            <div className="flex flex-1 flex-col justify-start gap-1.5 py-0.5">
               
-              <div className="relative mx-auto h-[84px] sm:h-[94px] max-h-[26dvh] w-full max-w-4xl">
+              <div className="relative mx-auto h-[76px] sm:h-[88px] max-h-[24dvh] w-full max-w-4xl shrink-0">
                 <FeedbackToast />
                 <Pipe3D
                   activeLeakStage={currentCase.leak as StageId}
@@ -249,8 +255,8 @@ export default function MobileView() {
                 />
               </div>
 
-              <div className="mx-auto grid w-full max-w-4xl grid-cols-[135px_minmax(0,1fr)_135px] sm:grid-cols-[145px_minmax(0,1fr)_145px] items-end gap-2">
-                <div className="justify-self-start w-full">
+              <div className="mx-auto grid w-full max-w-4xl grid-cols-[135px_minmax(0,1fr)_135px] sm:grid-cols-[145px_minmax(0,1fr)_145px] items-start gap-2">
+                <div className="justify-self-start w-full sticky top-2">
                   <Advisor
                     characterType="tl"
                     name={player?.name ? `${player.name} (TL)` : en ? 'Pipeline TL' : 'పైప్‌లైన్ TL'}
@@ -297,7 +303,7 @@ export default function MobileView() {
                   </AnimatePresence>
                 </div>
 
-                <div className="flex flex-col items-center gap-1.5 justify-self-end w-full">
+                <div className="flex flex-col items-center gap-1.5 justify-self-end w-full sticky top-2">
                   <PressureGauge leakLevel={leak} score={score} combo={combo} lang={lang} compact={true} />
                   <CandidateCharacter
                     item={currentCard}
@@ -312,7 +318,7 @@ export default function MobileView() {
           )}
 
           {screen === 'result' && (
-            <div className="my-auto flex flex-1 items-center justify-center overflow-y-auto py-1">
+            <div className="flex flex-1 items-center justify-center py-2 pb-8">
               <ResultScreen
                 score={score}
                 goodCount={goodCount}
@@ -336,10 +342,10 @@ export default function MobileView() {
   }
 
   return (
-    <div className="relative min-h-dvh w-full overflow-x-hidden font-sans text-[#0B1D3A] dark:text-slate-100 selection:bg-amber-500 selection:text-slate-950">
+    <div className="relative min-h-dvh w-full overflow-x-hidden overflow-y-auto font-sans text-[#0B1D3A] dark:text-slate-100 selection:bg-amber-500 selection:text-slate-950">
       <Backdrop compact={true} />
 
-      <div className="relative z-10 mx-auto flex min-h-dvh w-full max-w-md flex-col justify-between gap-2 px-3 py-2">
+      <div className="relative z-10 mx-auto flex min-h-dvh w-full max-w-md flex-col justify-start gap-2.5 px-3 pt-2 pb-14 sm:pb-16">
         <Hud
           compact={true}
           center={
@@ -367,10 +373,10 @@ export default function MobileView() {
         />
 
         {screen === 'home' && (
-          <div className="my-auto flex flex-col gap-2.5 py-1">
+          <div className="flex flex-1 flex-col justify-center gap-2.5 py-1">
             <TitleBanner compact={true} />
 
-            <div className="relative mx-auto h-[32dvh] min-h-[235px] max-h-[310px] w-full">
+            <div className="relative mx-auto h-[30dvh] min-h-[210px] max-h-[290px] w-full">
               <Pipe3D
                 activeLeakStage="all"
                 leakLevel={0.65}
@@ -415,8 +421,8 @@ export default function MobileView() {
         )}
 
         {screen === 'play' && currentCase && currentCard && (
-          <div className="my-auto flex flex-col gap-2 py-1">
-            <div className="relative mx-auto h-[20dvh] min-h-[145px] max-h-[195px] w-full max-w-md">
+          <div className="flex flex-1 flex-col justify-start gap-2 py-1 w-full">
+            <div className="relative mx-auto h-[18dvh] min-h-[110px] max-h-[165px] w-full max-w-md shrink-0">
               <FeedbackToast />
               <Pipe3D
                 activeLeakStage={currentCase.leak as StageId}
@@ -584,7 +590,7 @@ export default function MobileView() {
         )}
 
         {screen === 'result' && (
-          <div className="my-auto flex flex-1 flex-col items-center justify-center gap-2.5 py-2">
+          <div className="flex flex-1 flex-col items-center justify-center gap-2.5 py-2 pb-8">
             <ResultScreen
               score={score}
               goodCount={goodCount}

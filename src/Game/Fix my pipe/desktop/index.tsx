@@ -103,11 +103,11 @@ export default function DesktopView() {
     : 'ప్రతి అభ్యర్థిని జాగ్రత్తగా పరిశీలించండి. లీక్ ఆపితే కన్వర్షన్ పెరుగుతుంది!';
 
   return (
-    <div className="relative min-h-screen w-full overflow-x-hidden font-sans text-[#0B1D3A] dark:text-slate-100 selection:bg-amber-500 selection:text-slate-950">
+    <div className="relative min-h-screen w-full overflow-x-hidden overflow-y-auto font-sans text-[#0B1D3A] dark:text-slate-100 selection:bg-amber-500 selection:text-slate-950">
       <Backdrop />
 
       <div
-        className={`relative z-10 mx-auto flex min-h-screen w-full max-w-[1140px] xl:max-w-[1200px] flex-col px-4 py-2 lg:px-6 lg:py-2.5 ${
+        className={`relative z-10 mx-auto flex min-h-screen w-full max-w-[1140px] xl:max-w-[1200px] flex-col px-4 pt-2 pb-10 lg:px-6 lg:pt-2.5 lg:pb-12 ${
           screen === 'result' ? 'justify-between' : 'justify-between'
         }`}
       >
