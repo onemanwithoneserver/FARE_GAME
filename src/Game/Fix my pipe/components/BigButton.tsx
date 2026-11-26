@@ -88,7 +88,7 @@ export default function BigButton({
         </span>
         {subtitle && (
           <span
-            className={`${hideSubtitleOnMobile ? 'hidden sm:block' : 'block'} truncate opacity-75 ${
+            className={`${hideSubtitleOnMobile ? 'hidden sm:block' : 'block'} leading-tight opacity-75 ${
               lg ? 'text-xs' : sm ? 'text-[9.5px] sm:text-[10px]' : 'text-[10.5px] sm:text-[11px]'
             }`}
           >

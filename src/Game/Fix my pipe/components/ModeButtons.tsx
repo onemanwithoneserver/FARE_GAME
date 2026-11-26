@@ -30,7 +30,7 @@ export default function ModeButtons({
         size={compact ? 'sm' : 'md'}
         iconNode={<Users3DIcon size={compact ? 16 : 18} />}
         title={en ? 'Hire The Right Person' : 'సరైన వ్యక్తిని నియమించండి'}
-        subtitle={en ? 'Fix People Leaks · Interview Candidates' : 'బృందం లీక్‌లను సరిచేయండి · అభ్యర్థులు'}
+        subtitle={en ? 'Interview Candidates' : 'అభ్యర్థుల ఇంటర్వ్యూ'}
         onClick={() => startOrPrompt(1)}
         className={compact ? '!py-1.5 !px-2' : '!py-2 !px-2.5 sm:!px-3'}
       />
@@ -39,7 +39,7 @@ export default function ModeButtons({
         size={compact ? 'sm' : 'md'}
         iconNode={<Wrench3DIcon size={compact ? 16 : 18} />}
         title={en ? 'Fix The Sales Process' : 'సేల్స్ విధానాన్ని సరిచేయండి'}
-        subtitle={en ? 'Fix System Leaks · Implement Ideas' : 'వ్యవస్థ లీక్‌లను సరిచేయండి · ఆలోచనలు'}
+        subtitle={en ? 'Implement Ideas' : 'ఆలోచనల అమలు'}
         onClick={() => startOrPrompt(2)}
         className={compact ? '!py-1.5 !px-2' : '!py-2 !px-2.5 sm:!px-3'}
       />
