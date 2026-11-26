@@ -16,6 +16,7 @@ import GameModals from '../components/GameModals';
 import Pipe3D from '../Pipe3D';
 import Advisor from '../components/Advisor';
 import BigButton from '../components/BigButton';
+import TopNextButton from '../components/TopNextButton';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { Cross3DIcon, Check3DIcon } from '../components/Icons3D';
 import { usePipeGameStore } from '../store';
@@ -178,22 +179,33 @@ export default function MobileView() {
               ) : screen === 'result' ? (
                 <TitleBanner compact={true} subtitle={en ? 'Performance Report' : 'మీ ఫలితాలు'} />
               ) : screen === 'play' ? (
-                <div className="flex items-center gap-1.5 rounded-[8px] border border-[#DBE4FA] bg-white/95 px-2.5 py-0.5 text-xs font-bold shadow-xs dark:border-white/15 dark:bg-[#0E1E3D]/95">
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
-                    {en ? 'Score' : 'స్కోర్'}
-                  </span>
-                  <motion.span
-                    key={`land-score-${score}`}
-                    initial={{ scale: 1.25 }}
-                    animate={{ scale: 1 }}
-                    className="text-sm font-bold text-[#C99A2E] dark:text-[#E2C068]"
-                  >
-                    {score}
-                  </motion.span>
-                  {combo > 1 && (
-                    <span className="rounded-[4px] bg-amber-500/20 px-1 py-0.2 text-[9px] font-bold text-amber-600 dark:text-amber-400">
-                      {combo}x
+                <div className="flex items-center gap-1.5 sm:gap-2">
+                  <div className="flex items-center gap-1.5 rounded-[8px] border border-[#DBE4FA] bg-white/95 px-2.5 py-0.5 text-xs font-bold shadow-xs dark:border-white/15 dark:bg-[#0E1E3D]/95">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
+                      {en ? 'Score' : 'స్కోర్'}
                     </span>
+                    <motion.span
+                      key={`land-score-${score}`}
+                      initial={{ scale: 1.25 }}
+                      animate={{ scale: 1 }}
+                      className="text-sm font-bold text-[#C99A2E] dark:text-[#E2C068]"
+                    >
+                      {score}
+                    </motion.span>
+                    {combo > 1 && (
+                      <span className="rounded-[4px] bg-amber-500/20 px-1 py-0.2 text-[9px] font-bold text-amber-600 dark:text-amber-400">
+                        {combo}x
+                      </span>
+                    )}
+                  </div>
+                  {awaitingNext && (
+                    <TopNextButton
+                      onNext={advanceCard}
+                      lang={lang}
+                      isPerson={isPerson}
+                      isLastCard={cardIndex + 1 >= deck.length}
+                      compact={true}
+                    />
                   )}
                 </div>
               ) : null
@@ -350,22 +362,33 @@ export default function MobileView() {
           compact={true}
           center={
             screen === 'play' ? (
-              <div className="flex items-center gap-1.5 rounded-[8px] border border-[#DBE4FA] bg-white/95 px-2.5 py-0.5 text-xs font-bold shadow-xs dark:border-white/15 dark:bg-[#0E1E3D]/95">
-                <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
-                  {en ? 'Score' : 'స్కోర్'}
-                </span>
-                <motion.span
-                  key={`score-${score}`}
-                  initial={{ scale: 1.25 }}
-                  animate={{ scale: 1 }}
-                  className="text-sm font-bold text-[#C99A2E] dark:text-[#E2C068]"
-                >
-                  {score}
-                </motion.span>
-                {combo > 1 && (
-                  <span className="rounded-[4px] bg-amber-500/20 px-1 py-0.2 text-[9px] font-bold text-amber-600 dark:text-amber-400">
-                    {combo}x
+              <div className="flex items-center gap-1.5 sm:gap-2">
+                <div className="flex items-center gap-1.5 rounded-[8px] border border-[#DBE4FA] bg-white/95 px-2.5 py-0.5 text-xs font-bold shadow-xs dark:border-white/15 dark:bg-[#0E1E3D]/95">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
+                    {en ? 'Score' : 'స్కోర్'}
                   </span>
+                  <motion.span
+                    key={`score-${score}`}
+                    initial={{ scale: 1.25 }}
+                    animate={{ scale: 1 }}
+                    className="text-sm font-bold text-[#C99A2E] dark:text-[#E2C068]"
+                  >
+                    {score}
+                  </motion.span>
+                  {combo > 1 && (
+                    <span className="rounded-[4px] bg-amber-500/20 px-1 py-0.2 text-[9px] font-bold text-amber-600 dark:text-amber-400">
+                      {combo}x
+                    </span>
+                  )}
+                </div>
+                {awaitingNext && (
+                  <TopNextButton
+                    onNext={advanceCard}
+                    lang={lang}
+                    isPerson={isPerson}
+                    isLastCard={cardIndex + 1 >= deck.length}
+                    compact={true}
+                  />
                 )}
               </div>
             ) : null
@@ -472,6 +495,7 @@ export default function MobileView() {
                         awaitingNext={awaitingNext}
                         feedback={lastFeedback}
                         isLastCard={cardIndex + 1 >= deck.length}
+                        onNext={advanceCard}
                         showActions={false}
                         dense={true}
                       />

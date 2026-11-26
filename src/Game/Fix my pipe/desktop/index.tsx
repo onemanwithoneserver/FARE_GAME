@@ -13,6 +13,7 @@ import SelectedTeamRow from '../components/SelectedTeamRow';
 import PressureGauge from '../components/PressureGauge';
 import ResultScreen from '../components/ResultScreen';
 import GameModals from '../components/GameModals';
+import TopNextButton from '../components/TopNextButton';
 import Pipe3D from '../Pipe3D';
 import { usePipeGameStore } from '../store';
 import { RAW_CASES, STAGES, translateText } from '../data';
@@ -118,6 +119,14 @@ export default function DesktopView() {
               <TitleBanner compact={false} />
             ) : screen === 'result' ? (
               <TitleBanner compact={false} subtitle={en ? 'Performance Report' : 'మీ ఫలితాలు'} />
+            ) : screen === 'play' && awaitingNext ? (
+              <TopNextButton
+                onNext={advanceCard}
+                lang={lang}
+                isPerson={isPerson}
+                isLastCard={cardIndex + 1 >= deck.length}
+                compact={false}
+              />
             ) : null
           }
         />

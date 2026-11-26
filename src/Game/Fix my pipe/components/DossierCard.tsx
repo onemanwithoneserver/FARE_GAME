@@ -5,6 +5,7 @@ import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { Check3DIcon, Cross3DIcon } from './Icons3D';
 import BigButton from './BigButton';
+import TopNextButton from './TopNextButton';
 import { translateText } from '../data';
 import type { CardItem, Language } from '../types';
 
@@ -93,18 +94,31 @@ function TopStripe({ className }: { className: string }) {
   );
 }
 
-function ProblemHeader({ problem, en, dense }: { problem: ProblemInfo; en: boolean; dense: boolean }) {
+function ProblemHeader({
+  problem,
+  en,
+  dense,
+  topActionNode,
+}: {
+  problem: ProblemInfo;
+  en: boolean;
+  dense: boolean;
+  topActionNode?: React.ReactNode;
+}) {
   return (
     <motion.div variants={itemV} className={`border-b border-slate-200/80 dark:border-white/10 ${dense ? 'pb-3' : 'pb-3.5'}`}>
-      <div className="flex items-center justify-between text-[10px] font-semibold uppercase tracking-[0.12em]">
-        <div className="flex items-center gap-1.5 text-[#DC2626] dark:text-rose-400">
-          <span className="relative flex h-1.5 w-1.5">
+      <div className="flex items-center justify-between text-[10px] font-semibold uppercase tracking-[0.12em] gap-2">
+        <div className="flex items-center gap-1.5 text-[#DC2626] dark:text-rose-400 min-w-0">
+          <span className="relative flex h-1.5 w-1.5 shrink-0">
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#DC2626] opacity-75" />
             <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[#DC2626]" />
           </span>
-          {problem.leakName ? `${problem.leakName} · ` : ''}
-          {en ? 'Drop-off' : 'డ్రాప్-ఆఫ్'}
+          <span className="truncate">
+            {problem.leakName ? `${problem.leakName} · ` : ''}
+            {en ? 'Drop-off' : 'డ్రాప్-ఆఫ్'}
+          </span>
         </div>
+        {topActionNode}
       </div>
       <h2 className={`mt-1.5 font-semibold leading-snug text-[#0B1D3A] dark:text-white ${dense ? 'text-sm' : 'text-[15px] sm:text-base'}`}>
         {problem.text}
@@ -146,6 +160,16 @@ export default function DossierCard({
 }: DossierCardProps) {
   const isPerson = item.type === 'candidate';
   const en = lang === 'en';
+
+  const topNextButton = awaitingNext && onNext ? (
+    <TopNextButton
+      onNext={onNext}
+      lang={lang}
+      isPerson={isPerson}
+      isLastCard={isLastCard}
+      compact={true}
+    />
+  ) : null;
 
   if (awaitingNext && feedback) {
     const qm = QUALITY_META[feedback.quality];
@@ -193,7 +217,16 @@ export default function DossierCard({
           </div>
         )}
 
-        {problem && <ProblemHeader problem={problem} en={en} dense={dense} />}
+        {problem ? (
+          <ProblemHeader
+            problem={problem}
+            en={en}
+            dense={dense}
+            topActionNode={topNextButton}
+          />
+        ) : (
+          topNextButton && <div className="flex justify-end pb-1">{topNextButton}</div>
+        )}
 
         <motion.div variants={itemV} className="flex items-center justify-between gap-2.5">
           <div className="flex items-center gap-2.5 min-w-0 flex-1">
